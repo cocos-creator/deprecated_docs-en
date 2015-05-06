@@ -1,52 +1,59 @@
-title: JavaScript入门指南
+title: JavaScript Primer
 categories: manual
 permalinks: manual/scripting/javascript-primer
 ---
 
-> 本文改编自 [A JavaScript Primer For Meteor](https://www.discovermeteor.com/blog/javascript-for-meteor/)
+> This guide is based on [A JavaScript Primer For Meteor](https://www.discovermeteor.com/blog/javascript-for-meteor/)
 
-## 概述
+## Overview
 
-本文以介绍 JavaScript 为主，初学者掌握本文的内容后，将能够对 JavaScript 有大体了解，并且满足 Fireball 的开发需求。
+This guide provides a set of minimal JavaScript syntax and patterns for beginner to be able to understand scripting in Fireball.
 
-JavaScript是一门充满争议的编程语言：它以 Java 命名，但实际上和 Java 毫无关系。JavaScript 的创造[只用了10天时间](https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript)，但在20年时间里却发展成世界上最流行的 Web 开发语言。如果为 JavaScript 今日的地位和流行程度找一个原因，那毫无疑问是容易上手的语言特性。当然，精通 JavaScript 是一项艰巨的任务，但学会足够开发 Web 应用和游戏的知识却很简单，如果你已经有了一定编程基础，熟悉 JavaScript 语言特性不会花费你多长时间。
+JavaScript is a language full of contradictions: it’s named after Java even though it doesn’t have anything to do with it, it was [created in 10 days](https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript) but is still in use 20 years later, and despite getting its fair share of criticism, it’s ubiquitous on the web.
 
-另外，在使用 Fireball 开发游戏时你大多数情况下都会重复使用一些固有的模式。根据帕雷托法则（也叫二八定律），掌握一门语言的20%就足够你应付80%以上的情况了。现在就让我们来花最短的时间学习足够的 JavaScript 知识，以便我们开始使用 Fireball 开发游戏。
+If JavaScript has one thing going for it, is that it’s easy to get started with. Now don’t get me wrong: truly mastering JavaScript is a difficult task. But learning enough to get by isn’t that hard, and shouldn’t take long especially if you already have some experience with other programming languages.
 
-## 边读边尝试
+What’s more, when building Fireball games you’ll often find yourself re-using the same patterns over and over. And as stated by the Pareto principle, learning 20% of a language should be enough to cover 80% of situations.
 
-如果你能看到这篇文章，那么你已经具备了全功能的 JavaScript 开发环境——我说的就是你正在使用的浏览器！
+So today, let’s take a look at the absolute minimum amount of JavaScript you need to know to learn Fireball.
 
-在本页面中读到的所有例子，你都可以把他们输入到浏览器的控制台里并查看运行结果，如果你不清楚怎么做，可以阅读[如何在不同浏览器中打开控制台的指南](http://webmasters.stackexchange.com/a/77337)。
+## Following Along
 
-准备好了吗？让我们开始学习 JavaScript 吧！
+Did you know that you already possessed a full-fledged JavaScript development environment? I’m talking about the very browser you’re reading this with!
 
-## 变量
+So you can follow along with all these examples simply by typing them into your browser console. Here’s [a handy guide](http://webmasters.stackexchange.com/a/77337) on how to open it in various browsers.
 
-在 JavaScript 中，我们像这样声明一个变量:
+Ready? Let’s learn some JavaScript!
+
+## Variables
+
+Here’s how you declare a variable in JavaScript:
 
 ```js
 var a;
 ```
 
-保留字 `var` 之后紧跟着的，就是一个变量名，接下来我们可以为变量赋值：
+The var keyword lets JavaScript know that whatever comes after is a variable. Now let’s assign a value to our variable:
 
 ```js
 var a = 12;
 ```
 
-在阅读其他人的 JavaScript 代码时，你也会看到下面这样的变量声明：
+Now maybe you’ve seen something like this while looking at some JavaScript code:
 
 ```
 a = 12;
 ```
 
-如果你在浏览器控制台中尝试，会发现 JavaScript 在面对省略 `var` 时的变量声明并不会报错，但在 Fireball 项目脚本中，声明变量时的 `var` 是不能省略的，否则编译器会报错。
+JavaScript doesn’t seem to mind when you ommit the var keyword. So what is it good for?
 
+The var keyword makes our variable local. Inside a Fireball project, this means that prefixing a variable with var will restrict its scope to the function you’re declaring it in (or the file, if you declare it outside of any function).
 
-## 函数
+On the other hand, **omitting the var keyword will make your variable available to your whole Fireball project**. Sometimes that’s good, but in most case it’s better to try and avoid polluting the global scope.
 
-在 JavaScript 里我们像这样声明函数：
+## Functions
+
+Here’s how you declare a function in JavaScript:
 
 ```js
 var myAwesomeFunction = function (myArgument) {
@@ -54,13 +61,15 @@ var myAwesomeFunction = function (myArgument) {
 }
 ```
 
-像这样调用函数:
+And here’s how you’d call your function:
 
 ```js
 myAwesomeFunction(something);
 ```
 
-我们看到函数声明也和变量声明一样遵从 `var something = somethingElse` 的模式。因为在 JavaScript 里，函数和变量本质上是一样的，我们可以像下面这样把一个函数当做参数传入另一个函数中：
+You’ll notice function declarations follow the same var something = somethingElse pattern as variable declarations.
+
+As they should, since in JavaScript, functions are variables too! This means that you can do stuff like using functions as arguments for other functions:
 
 ```js
 square = function (a) {
@@ -72,9 +81,9 @@ applyOperation = function (f, a) {
 applyOperation (square, 10); // 100
 ```
 
-## 返回值
+## Return
 
-函数的返回值是由 `return` 打头的语句定义的，我们这里要了解的是函数体内 `return` 语句之后的内容是不会被执行的。
+A return statement takes a value and returns this value as the result of a function. The key thing to remember here is that whatever comes after return will never get executed:
 
 ```js
 myFunction = function (a) {
@@ -83,9 +92,9 @@ myFunction = function (a) {
 }
 ```
 
-## If 
+## If Statements
 
-JavaScript 中条件判断语句`if` 是这样用的：
+Here’s what an If statement looks like in JavaScript:
 
 ```js
 if (foo) {
@@ -93,9 +102,9 @@ if (foo) {
 }
 ```
 
-## If/Else
+## If/Else Statements
 
-`if` 后的值如果为 false，会执行`else` 中的语句：
+Here’s what an If/Else statement looks like in JavaScript:
 
 ```js
 if (foo) {
@@ -106,20 +115,21 @@ else {
 }
 ```
 
-If/Else 条件判断还可以像这样写成一行：
+If/Else statements also have their own shorthand syntax:
 
 ```js
 foo ? function1() : function2();
 ```
-当 `foo` 的值为 true 时，表达式会返回 `function1()` 的执行结果，反之会返回 `function2()` 的执行结果。当我们需要根据条件来为变量赋值时，这种写法就非常方便：
+
+This is particularly useful when assigning a value to a variable:
 
 ```js
 var n = foo ? 1 : 2;
 ```
 
-上面的语句可以表述为“当 `foo` 是 true 时，将 `n` 的值赋为1，否则赋为2”。
+This means “if foo is true, then set n to 1, otherwise set it to 2”.
 
-当然我们还可以使用 `else if` 来处理更多的判断类型：
+Oh and for good measure, here’s an If/Else If/Else:
 
 ```js
 if (foo) {
@@ -133,23 +143,23 @@ else {
 }
 ```
 
-## JavaScript 数组（Array）
+## JavaScript Arrays
 
- JavaScript 里像这样声明数组：
+Here’s how you define an array:
 
 ```js
 a = [123, 456, 789];
 ```
 
-像这样访问数组中的成员：（从0开始索引）
+And here’s how you access an array item (indexes start at 0):
 
 ```js
 a[1]; // 456
 ```
 
-## JavaScript 对象（Object）
+## JavaScript Objects
 
-我们像这样声明一个对象（object）：
+Here’s how you define a JavaScript object:
 
 ```js
 myProfile = {
@@ -160,9 +170,9 @@ myProfile = {
 }
 ```
 
-在对象声明的语法（`myProfile = {...}`）之中，有一组用逗号相隔的键值对。每一对都包括一个 key（字符串类型，有时候会用双引号包裹）和一个 value（可以是任何类型：包括 string，number，boolean，变量名，数组，对象甚至是函数）。我们管这样的一对键值叫做对象的属性（property），key 是属性名，value 是属性值。
+After the object declaration (`myProfile = {…}`) comes a list of comma-separated pairs. Each pair contains a key (a string, which can optionally be enclosed in quotes if it contains any spaces) and a value (any type of JavaScript item: strings, numbers, booleans, variables, arrays, objects, and even functions).
 
-你可以在 value 中嵌套其他对象，或者由一组对象组成的数组：
+You can also nest objects, and even use arrays:
 
 ```js
 myProfile = {
@@ -184,14 +194,14 @@ myProfile = {
 }
 ```
 
-访问对象的某个属性非常简单，我们只要使用 dot 语法就可以了，还可以和数组成员的访问结合起来：
+Accessing an object’s property couldn’t be simpler: just use the dot notation. You can even combine it with arrays:
 
 ```js
 myProfile.name; // Jare Guo
 myProfile.friends[1].name; // Nantas
 ```
 
-JavaScript 中的对象无处不在，在函数的参数传递中也会大量使用，比如在 Fireball 中，我们就可以像这样定义 FireClass 对象：
+You’ll find JavaScript objects almost everywhere in JavaScript, especially when invoking functions. For example, here’s how you define a FireClass in Fireball:
 
 ```js
 var MyComponent = Fire.Class({
@@ -199,11 +209,11 @@ var MyComponent = Fire.Class({
 });
 ```
 
-`{extends: Fire.Component}` 这就是一个用做函数参数的对象。在 JavaScript 中大多数情况我们使用对象时都不一定要为他命名，很可能会像这样直接使用。
+This `{extends: Fire.Component}` argument is an anonymous JavaScript object. With JavaScript, you’ll see that most of the time you don’t actually need to assign a name to an object (or even to a function) to make use of it.
 
-## 匿名函数
+## Anonymous Functions
 
-我们之前试过了用变量声明的语法来定义函数：
+We’ve seen you can declare functions using the following syntax:
 
 ```js
 myFunction = function (myArgument) {
@@ -211,7 +221,7 @@ myFunction = function (myArgument) {
 }
 ```
 
-再复习一下将函数作为参数传入其他函数调用中的用法：
+And we’ve seen that JavaScript treats functions just like variables, letting you pass them as arguments to other functions:
 
 ```js
 square = function (a) {
@@ -223,7 +233,7 @@ applyOperation = function (f, a) {
 applyOperation(square, 10); // 100
 ```
 
-我们还见识了 JavaScript 的语法是多么喜欢偷懒，所以我们就可以用这样的方式代替上面的多个函数声明：
+And we’ve also seen that JavaScript loves coming up with shorter ways to write things. So here’s an equivalent syntax:
 
 ```js
 applyOperation = function (f, a) {
@@ -237,11 +247,11 @@ applyOperation(
 ) // 100
 ```
 
-我们这次并没有声明 `square` 函数，并将 `square` 作为参数传递，而是在参数的位置直接写了一个新的函数体，这样的做法被称为匿名函数，在 JavaScript 中是最为广泛使用的模式。
+Instead of defining the square function and passing it as an argument, we’re defining it inside the argument call. This is known as using an “anonymous function”, and it’s one of the most common JavaScript patterns around.
 
-## 链式语法
+## Chaining
 
-下面我们介绍一种在数组和字符串操作中常用的语法：
+We’ve seen that you can pass parameters to functions. But there’s another syntax that you’ll often encounter for things such as array or string operations:
 
 ```js
 var myArray = [123, 456];
@@ -250,11 +260,11 @@ var myString = "abcdef";
 myString.replace("a", "z"); // "zbcdef"
 ```
 
-上面代码中的点符号表示“调用 `myString` 字符串对象的 `replace` 函数，并且传递 `a` 和 `z` 作为参数，然后获得返回值”。
+This dot notation means “call the `replace` function on `myString` with arguments “a” and “z” and return the result”.
 
-使用点符号的表达式，最大的优点是你可以把多项任务链接在一个表达式里，当然前提是每个调用的函数必须有合适的返回值。我们不会过多介绍如何定义可链接的函数，但是使用他们是非常简单的，只要使用以下的模式：`something.function1().function2().function3()`
+The beauty of it is that you can also chain multiple links together as long as they all return something. We won’t get into how to define chainable functions, but using them is easy enough. Just follow the `something.function1().function2().function3()` pattern.
 
-链条中的每个环节都会接到一个初始值，调用一个函数，然后把函数执行结果传递到下一环节：
+Each link of the chain will take a value, apply a function to it, and then pass on its result to the next link:
 
 ```js
 var n = 5;
@@ -263,13 +273,13 @@ n.double().square(); //100
 
 ## This
 
-`this` 可能是 JavaScript 中最难以理解和掌握的概念了。
+`this` is probably one of the hardest concept to master in all of JavaScript.
 
-简单地说，`this` 关键字能让你访问正在处理的对象：就像变色龙一样，`this` 也会随着执行环境的变化而变化。
+Basically, the `this` keyword lets you access the object on which you’re currently working: just like a chameleon, `this` keeps changing based on its surroundings.
 
-解释`this` 的原理是很复杂的，不妨让我们使用两种工具来帮助我们在实践中理解 `this` 的值：
+So instead of trying to explain `this`, let me give you two tools to help you figure things out yourself (what do you mean, I’m taking the easy way out?!).
 
-首先是最普通又最常用的`console.log()` ，它能够将对象的信息输出到浏览器的控制台里。在每个函数体开始的地方加入一个`console.log()` ，确保我们了解当时运行环境下正在处理的对象是什么。
+The first is the good old `console.log()`, which prints any object to the browser’s console. Adding a `console.log(this)` to begin a function is often the best way to figure out what’s going on:
 
 ```js
 myFunction = function (a, b) {
@@ -278,7 +288,7 @@ myFunction = function (a, b) {
 }
 ```
 
-另外一个方法是将 `this` 赋值给另外一个变量：
+The second pattern is assigning `this` to another variable:
 
 ```js
 myFunction = function (a, b) {
@@ -287,15 +297,15 @@ myFunction = function (a, b) {
 }
 ```
 
-乍一看好像这样子并没有什么作用，实际上它允许你安全的使用`myObject` 这个变量来指代最初执行函数的对象，而不用担心在后面的代码中 `this` 会变成其他东西。
+While it might at first seem like this doesn’t accomplish anything, it lets you safely re-use `myObject` throughout your code, since unlike `this` its value won’t change depending on the context.
 
-## 运算符
+## Operators
 
-`=` 是赋值运算符， `a = 12` 表示把 “12” 赋值给变量 `a`。
+`=` is the assigment operator. This means that `a = 12` means assign the value “12” to `a`.
 
-如果你需要比较两个值，可以使用 `==`，例如 `a == 12`。
+If you want to compare two values, you would use `==`, as in `a == 12`.
 
-JavaScript 中还有个独特的 `===` 运算符，它能够比较两边的值和类型是否全都相同。（类型是指 string, number 这些）：
+JavaScript also features the `===` operator, which compares both value and type (i.e. string, integer, etc.):
 
 ```js
 a = "12";
@@ -303,50 +313,56 @@ a == 12; // true
 a === 12; // false
 ```
 
-大多数情况下，我们都推荐使用 `===` 运算符来比较两个值，因为希望比较两个不同类型但有着相同值的情况是比较少见的。
+In most cases, you’ll want to use the `===` operator whenever comparing two values, because there aren’t that many cases where you’d want two variables to be equal in value but not in type.
 
-下面是 JavaScript 判断两个值是否不相等的比较运算符：
+Here’s JavaScript’s unequality operator:
 
 ```js
 a = 12;
 a !== 11; // true
 ```
 
-`!` 运算符还可以单独使用，用来对一个 boolean 值取反：
+The `!` operator can also be used independently to get the opposite of a boolean value:
 
 ```js
 a = true;
 !a; // false
 ```
 
-`!` 运算符总会得到一个 boolean 类型的值，所以可以用来将非 boolean 类型的值转为 boolean 类型：
+An interesting consequence of the `!` operator is that it always returns a boolean value, even if what comes after is not a boolean:
 
 ```js
 a = 12;
 !a; // false
+```
+
+This means that if you want to convert a variable to boolean you can just use the `!` operator twice (once to force the variable to boolean, a second time to revert the value back):
+
+```js
+a = 12;
 !!a; // true
 ```
 
-或者：
+Or:
 
 ```js
 a = 0;
-!a; // true
 !!a; // false
 ```
 
-## 代码风格
+## Style
 
-最后，下面这些代码风格上的规则能帮助我们写出更清晰明确的代码：
+Finally, here are a few optional style rules that will make your JavaScript code cleaner:
 
-- 使用驼峰命名法：定义 `myRandomVariable` 这样的变量名，而不是 `my_random_variable`
-- 在每一行结束时写一个`;`，尽管在 JavaScript 里行尾的`;` 是可以忽略的
-- 在每个关键字前后都加上空格，如`a = b + 1`，而不是`a=b+1`
+- Use camelCase: write myRandomVariable, not my_random_variable.
+- Add a ; at the end of each line, even if it’s optional.
+- Separate each keyword with a space, i.e. a = b + 1, not a=b+1.
 
+You’ll find more guidelines in the (TODO).
 
-## 组合我们学到的知识
+## Putting It Together
 
-以上基础的 JavaScript 语法知识已经介绍完了，下面我们来看看能否理解实际的 Fireball 脚本代码:
+So now that you’re equipped with the basics of JavaScript syntax, let’s try to put it together and understand a bit of Fireball code:
 
 ```js
 var Comp = Fire.Class({
@@ -369,31 +385,29 @@ var Comp = Fire.Class({
 });
 ```
 
-这段代码向引擎定义了一个新组件，这个组件具有一个 `target` 参数，在运行时会初始化为指定的对象，并且在运行的过程中每一帧都将自己设置成和 `target` 相同的坐标。
+The above code defines a new component for engine, with a `target` parameter. At runtime this component will place itself at the same position as `target` entity.
 
-让我们分别看下每一句的作用（我会高亮有用的语法模式）：
+Let’s break this down (I’ll highlight each syntax pattern as we go):
 
-`var Comp = Fire.Class({`：这里我们使用 `Fire` 这个对象，通过**点语法**来调用对象的`Class()`方法（该方法是`Fire`对象的一个属性），调用时传递的参数是一个匿名的**JavaScript 对象** （`{}`）。
+`var Comp = Fire.Class({`: We’re diving into the `Fire` object, using **dot notation** to call the `Class()` function (which is itself a property of `Fire`) on an anonymous **JavaScript object** (`{}`) (chaining, JavaScript objects).
 
-`target: { default: null, type: Fire.Entity }`：这个键值对声明了一个名为 `target` 的属性，值是另一个 JavaScript 匿名对象。这个对象定义了 target 的默认值和值类型。
+`target: { default: null, type: Fire.Entity }`: This key-pair defines a `target` property. Value is an object literal, which specifies default value and type for `target`.
 
-`extends: Fire.Component`：这个键值对声明这个 Class 的父类是 Fire.Component。Fire.Component 是 Fireball 的内置类型。
+`extends: Fire.Component`: This means the class inherits from `Fire.Component`，it's a builtin class in Fireball.
 
-`onStart: function () {`：这一对键值定义了一个成员方法，叫做`onStart`，他的值是一个匿名函数。
+`onStart: function () {`: The key/value pair implement an instance method called onStart, the value is an **anonymous function**.
 
-`this.target = Fire.Entity.find('`：在这一句的上下文中，`this`表示正在被创建的 Component 组件，这里通过 `this.target` 来访问 `target` 属性。
+`this.target = Fire.Entity.find('`: In this context, `this` corresponds to the component being created. We use `this.target` to access `target` property.
 
-## 继续学习
+## Going Forward
 
-这篇简短的教程从任何角度上说都无法代替系统的 JavaScript 学习，但这里介绍的几种语法模式已经能够帮助你理解绝大部分 Fireball 文档和教程中的代码了，至少从语法上完全可以理解。
+This tutorial is by no means meant to replace actually learning JavaScript. But the various patterns covered here should be enough to let you understand the vast majority of Discover Fireball’s code, at least from a syntax point of view.
 
-如果你像我一样喜欢通过实践学习，那么现在就可以开始跟随教程和文档学习在 Fireball 中开发游戏了！
+So if like me you prefer learning by doing, hopefully this should be enough to get you ready to start building Fireball games!
 
 ## JavaScript Resources
 
-以下是 JavaScript 的一些入门教程:
+If you want to learn more about JavaScript, we recommend the following ebook:
 
-- [JavaScript标准参考教程](http://javascript.ruanyifeng.com/)
-- [JavaScript秘密花园](http://bonsaiden.github.io/JavaScript-Garden/zh/)
-
-欢迎在评论里提供更多的学习教程。
+- [Eloquent JavaScript](http://eloquentjavascript.net/)
+- [JavaScript Garden](http://bonsaiden.github.io/JavaScript-Garden/)

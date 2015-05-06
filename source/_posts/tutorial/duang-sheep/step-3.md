@@ -1,94 +1,100 @@
-title: 新手教程：创建障碍物
+title: Tutorial - Create Pipes
 categories: tutorial
 permalinks: tutorial/duang-sheep/step3
 ---
 
-## 本章任务
-- 在`Game`场景中动态创建障碍物
+## Goal
+- Create a pipe template in `Game` scene, so that we can dynamically create pipes in runtime.
 
 ---
 
-## 详细步骤
+## Steps
 
-### 创建障碍物模板
+### Create Pipe Template
 
-在`Hierarchy`视图中创建2个物体`Template`和`PipeGroup`，然后将`PipeGroup`拖拽到`Template`上，成为它的子物体。
+Create two entities named `Template` and `PipeGroup` in `Hierarchy` view. Drag `PipeGroup` onto `Template`, make it a child.
 
-在`Asset`视图里找到`sprites/background/pipe`图片资源，拖拽到`Hierarchy`视图中的`Template/PipeGroup`物体上，展开`PipeGroup`，可以看到我们新添加了一个子物体`pipe`。
+Find `sprites/background/pipe` image asset in `Asset` view. Drag it onto `Template/PipeGroup` in `Hierarchy` view. Expand `PipeGroup`, you'll find a new child entity `pipe`.
 
-右键点击`pipe`，选择`Duplicate`复出一个新的子物体，将两个子物体命名为`topPipe`和`bottomPipe`，并分别按照下图设置所有新建物体的`Transform`组件属性。
+Right click `pipe` entity, and duplicate a new entity. Name the two as `topPipe` and `bottomPipe`. Set up their `Transform` component as the following picture shows:
 
 
-**Template 示例图:**
+**Template setup:**
 
 ![000](https://cloud.githubusercontent.com/assets/7564028/6843785/03c63d12-d3e1-11e4-88b8-789dd2f0ae3f.png)
 
-**PipeGroup 示例图:** (NOTE:为了让PipeGroup对象不显示在Game屏幕中设置它的X轴)
+**PipeGroup setup:** (NOTE: We put PipeGroup out of screen since it's only a template.)
 
 ![001](https://cloud.githubusercontent.com/assets/7564028/6843962/af1fed88-d3e2-11e4-9c73-3212640a011b.png)
 
-**topPipe 示例图:** (NOTE调整Y轴是为了设置2个水管的距离)
+**topPipe setup:**
 
 ![002](https://cloud.githubusercontent.com/assets/7564028/6843963/b2d67b4a-d3e2-11e4-95a4-2b8b1e217bf8.png)
 
-**bottomPipe 示例图:** (NOTE:调整Y轴是为了设置2个水管的距离 调整Scale的Y是为了做镜像翻转)
+**bottomPipe setup:** (NOTE: Set Scale to negative value will flip the sprite)
 
 ![003](https://cloud.githubusercontent.com/assets/7564028/6843964/b54cb254-d3e2-11e4-80ad-99f900f52c36.png)
 
-**最终示例图:**
+**Final Setup:**
 
 ![004](https://cloud.githubusercontent.com/assets/7564028/6843936/59b380f8-d3e2-11e4-9d73-0c3f654a6efd.png)
 
 
 
-### 障碍物行为脚本
+### Pipe Scripting
 
-在`assets/script`文件夹下，新建一个名叫`PipeGroup`的脚本，我们会在该脚本添加初始化`topPipe`与`bottomPipe`之间的距离、根据屏幕卷动控制障碍物沿X轴移动、以及移动超出屏幕边界时销毁自身的功能。
+In `assets/script` folder, create a new script file named `PipeGroup`. We will use this script to control the initialization of pipe position, the distance between top and bottom pipes, the scrolling of pipes and destroy pipe when it's out of screen.
 
-为脚本添加下面的代码，然后拖拽该脚本到`Hierarchy`视图中的`PipeGroup`物体上。
+Add the following code to the script file, and drag it to `PipeGroup` entity in `Hierarchy` view.
 
+**PipeGroup**
 ```js
 var PipeGroup = Fire.Class({
-// 继承
-extends: Fire.Component,
-// 构造函数
-constructor: function () {
-    // 管道的宽度
+  // Inherit
+  extends: Fire.Component,
+  // constructor with a width member
+  constructor: function () {
+    // pipe width
     this.width = 0;
 },
-// 属性
+// Properties
 properties: {
-    // 基础移动速度
+    // scroll speed
     speed: 200,
-    // 超出这个范围就会被销毁
+    // destroy pipe when reach this position
     minX: -900,
-    // 上方管子坐标范围 Min 与 Max
+    // top pipe y position range
     topPosRange: {
         default: new Fire.Vec2(100, 160)
     },
-    // 上方与下方管道的间距 Min 与 Max
+    // top and bottom pipe distance range
     spacingRange: {
       default: new Fire.Vec2(210, 230)
     }
 },
-// 初始化
+// Initialization
 onEnable: function () {
+    //randomly set a y position for top pipe
     var topYpos = Math.randomRange(this.topPosRange.x, this.topPosRange.y);
+    //randomly set distance between top and bottom pipe
     var randomSpacing = Math.randomRange(this.spacingRange.x, this.spacingRange.y);
     var bottomYpos = topYpos - randomSpacing;
 
+    //set pipe positions
     var topEntity = this.entity.find('topPipe');
     topEntity.transform.y = topYpos;
 
     var bottomEntity = this.entity.find('bottomPipe');
     bottomEntity.transform.y = bottomYpos;
 
+    //set width
     var bottomPipeRenderer = bottomEntity.getComponent(Fire.SpriteRenderer);
     this.width = bottomPipeRenderer.sprite.width;
 },
-// 更新
+// update
 update: function () {
     this.transform.x -= Fire.Time.deltaTime * this.speed;
+    //destroy pipes when it reaches out of screen position
     if (this.transform.x < this.minX) {
         this.entity.destroy();
     }
@@ -97,79 +103,77 @@ update: function () {
 
 ```
 
-**PipeGroup 示例图:**
+**PipeGroup setup:**
 
 ![005](https://cloud.githubusercontent.com/assets/7564028/6844160/7ad5aa5c-d3e4-11e4-8208-c88ed5ca337a.png)
 
 
-### 障碍物生成器
+### Pipe Manager
 
-最后我们需要在同样位置创建一个控制`PipeGroup`在游戏运行时动态生成的脚本，命名为`PipeGroupManager`。该脚本会根据游戏开始后经过的时间来生成`PipeGroup`的克隆物体。
+Let's create another script in `assets/script` folder named `PipeGroupManager`, to control the generation of `PipeGroup` in runtime.
 
-为该脚本添加下面的内容，并在`Hierarchy`中创建一个名叫`PipeGroupManager`的物体，并拖拽该脚本到这个物体上。
+Add the following code to the new script. Create an entity named `PipeGroupManager` and drag the script onto it.
 
-**下方是脚本实现:**
+**PipeGroupManager:**
 ```js
 var PipeGroupManager = Fire.Class({
-// 继承
-extends: Fire.Component,
-// 构造函数
-constructor: function () {
-    // 上一次创建PipeGroup的时间
+    extends: Fire.Component,
+    constructor: function () {
+    // Last PipeGroup created time
     this.lastTime = 0;
-},
-// 属性
-properties: {
-    // 获取PipeGroup模板
-    srcPipeGroup: {
-        default: null,
-        type: Fire.Entity
-    },
-    // PipeGroup初始坐标
-    initPipeGroupPos: {
-        default: new Fire.Vec2(600, 0)
-    },
-    // 创建PipeGroup需要的时间
-    spawnInterval: 3
-},
-// 初始化
-onLoad: function () {
-    this.lastTime = Fire.Time.time + 10;
-},
-// 创建管道组
-createPipeGroupEntity: function () {
-    var pipeGroup = Fire.instantiate(this.srcPipeGroup);
-    pipeGroup.parent = this.entity;
-    pipeGroup.transform.position = this.initPipeGroupPos;
-    pipeGroup.active = true;
-},
-// 更新
-update: function () {
-    // 每过一段时间创建障碍物
-    var idleTime = Math.abs(Fire.Time.time - this.lastTime);
-    if (idleTime >= this.spawnInterval) {
-        this.lastTime = Fire.Time.time;
-        this.createPipeGroupEntity();
-    }
-}
+  },
+  // Properties
+  properties: {
+      // reference to PipeGroup template
+      srcPipeGroup: {
+          default: null,
+          type: Fire.Entity
+      },
+      // PipeGroup initial position
+      initPipeGroupPos: {
+          default: new Fire.Vec2(600, 0)
+      },
+      // interval to next PipeGroup spawn
+      spawnInterval: 3
+  },
+  // Initialization
+  onLoad: function () {
+      this.lastTime = Fire.Time.time + 10;
+  },
+  // Instantiate PipeGroup
+  createPipeGroupEntity: function () {
+      var pipeGroup = Fire.instantiate(this.srcPipeGroup);
+      pipeGroup.parent = this.entity;
+      pipeGroup.transform.position = this.initPipeGroupPos;
+      pipeGroup.active = true;
+  },
+  // Updates
+  update: function () {
+      // Spawn PipeGroup in a certain interval
+      var idleTime = Math.abs(Fire.Time.time - this.lastTime);
+      if (idleTime >= this.spawnInterval) {
+          this.lastTime = Fire.Time.time;
+          this.createPipeGroupEntity();
+      }
+  }
 });
 ```
 
-参考[通过 Inspector 访问其他对象](/manual/scripting/component/access/#访问其它对象)的文档，将`PipeGroup`物体拖拽到`PipeGroupManager`组件中的`Src Pipe Group`属性上，完成属性引用。
+Learn how to access entity and component by reading [Access Other Component in Inspector ](/manual/scripting/component/access/#access-other-component). Drag `PipeGroup` entity to `Src Pipe Group` property of `PipeGroupManager` component. Now we the property `srcPipeGroup` has the reference to our Pipe template.
 
 
-**PipeGroupManager 示例图:**
+**PipeGroupManager setup:**
 
 ![006](https://cloud.githubusercontent.com/assets/7564028/6844364/0ef1b4a0-d3e6-11e4-93e6-58d060b9a6b5.png)
 
-### 运行查看效果
+### Run Your Game!
 
-最后可以点击运行按钮在`Game`视图看到结果
+Click play button, and check your work so far in `Game` view.
 
-**最终效果示例图:**
+**Final Setup:**
 
 ![007](https://cloud.githubusercontent.com/assets/7564028/6844397/4fac07f2-d3e6-11e4-85bf-5b66604a3204.png)
 
 ---
 
-**NOTE:** [ Step - 3 创建障碍物快照传送门](https://github.com/fireball-x/tutorial/commits/step-3)
+**NOTE:** [ Step - 3 Project Snapshot for Creating Pipes](https://github.com/fireball-x/tutorial/commits/step-3)

@@ -1,65 +1,71 @@
-title: 新手教程：创建背景
+title: Tutorial - Create Background
 categories: tutorial
 permalinks: tutorial/duang-sheep/step2
 ---
 
 
-## 本章任务
-- 在`Game`场景中创建无限循环滚动的与地面背景
+## Goal
+
+- Create scrolling sky and ground background in `Game` scene.
 
 ---
 
-## 详细步骤
+## Steps
 
-### 创建天空背景
+### Create Sky
 
-在`Hierarchy`视图中点击鼠标右键，并选择弹出选项中的`Create Empty`功能来创建`New Entity`。然后右键点击`New Entity`，并选择弹出菜单中的`Rename`来将物体重新命名为`Background`，最后在该物体的`Inspector`视图中的`Fire.Transform`组件下设置`Position`属性为 (0, 0)。
+Right click in `Hierarchy` view and choose `Create Empty` from context menu. Right click the `New Entity` object, choose `Rename` and name it to `Background`. 
 
-**示例图 Background属性:**
+With the same entity selected, find `Fire.Transform` component in `Inspector` view and set `Position` to (0, 0).
+
+**Background Transform:**
 ![000](https://cloud.githubusercontent.com/assets/7564028/6842952/d0a8d9ba-d3d8-11e4-979f-3f842f95f987.png)
 
-`Assets`视图中的`sprites/background`文件夹下找到名字为`bg`的资源图片，拖动到`Hierarchy`视图中`Background` 物体上(Entity)。可以看到物体上添加了一个叫做`Fire.SpriteRender`的新组件（Component）。接下来选中`bg`物体(Entity)，通过右键选项中的`Duplicate`功能复制生成另一个对象。将两个物体分别命名为`bg_1` `bg_2`， 并在`Inspector`视图中如图设置它们的Position坐标为`(0, 0)`，`(900,0)`。
+In `Assets` view, find `bg` image in `sprites/background` folder. Drag it to `Background` entity in `Hierarchy` view. You'll find a new entity `bg` created under `Background`, with a `Fire.SpriteRender` Component. 
 
-**示例图 bg_1属性:**
+Next let's duplicate `bg` entity by right click it and choose `Duplicate`. Rename the two entities to `bg_1` and `bg_2`, set their `Position` property in `Inspector` view to `(0, 0)` and `(900,0)`.
+
+**bg_1 setup:**
 ![001](https://cloud.githubusercontent.com/assets/7564028/6843004/5b8c7334-d3d9-11e4-93c8-c32f8d4d8322.png)
 
-**示例图 bg_2属性:**
+**bg_2 setup:**
 ![002](https://cloud.githubusercontent.com/assets/7564028/6843007/65eadbc2-d3d9-11e4-85ab-ed773b7d0fbd.png)
 
-### 创建地面背景
+### Create Ground
 
-按照同样的方法新建一个地面物体，命名为`Ground`，将`Assets`视图中的`sprites/background/ground`资源图片拖到`Ground`物体上。并复制成两个物体`ground_1` `ground_2`，将他们的位置如下图设为`(0, -15)` `(864, -15)`。
+Create a new entity `Ground` the same way. Drag image asset `sprites/background/ground` from `Assets` view to `Ground` entity. Duplicate `ground` entity and rename both to `ground_1` and `ground_2`, set their positions to `(0, -15)` and `(864, -15)`.
 
-**示例图 Ground属性:**
+**Ground setup:**
 ![003](https://cloud.githubusercontent.com/assets/7564028/6843009/68a489a8-d3d9-11e4-9f35-2d9df96ac0bc.png)
 
-**示例图 ground_1属性:**
+**ground_1 setup:**
 ![004](https://cloud.githubusercontent.com/assets/7564028/6843014/7d8be7d0-d3d9-11e4-98e0-323303486f3d.png)
 
-**示例图 ground_2属性:**
+**ground_2 setup:**
 ![005](https://cloud.githubusercontent.com/assets/7564028/6843016/7ffe8900-d3d9-11e4-96a7-8dab6d3ca6e3.png)
 
-### 创建卷屏脚本
+### Create Scrolling Script
 
-参考手册中[**创建和使用脚本**](http://docs.fireball-x.com/zh/scripting/component/)与[**类型定义**](http://docs.fireball-x.com/zh/scripting/class/)的方法，在`Assets`视图中的`assets/script`文件夹下创建一个叫`ScrollPicture`的脚本。
+Learn how to create a component by reading [**Component Overview**](http://docs.fireball-x.com/zh/scripting/component/) and [**Define a Class**](http://docs.fireball-x.com/zh/scripting/class/). In `Assets` view, create a script file named `ScrollPicture` in `script` folder.
 
-该脚本实现了根据主角运动速度让背景物体沿X轴向左偏移，只要超过我们设置的偏移极限值，就会让背景物体返回原始位置，从而实现无限卷屏循环。
+This script will make all background entities moving from right to left according to the sheep's speed. Once a background entity moves out of sight on the left, we will reposition it to the far right and keep scrolling infinitely.
 
 ```js
 var ScrollPicture = Fire.Class({
 
-  // 继承
+  // Custom components must inherit from Fire.Component
   extends: Fire.Component,
 
-  // 属性
+  // Properties
+  // The values is not relevant here, we will set proper values in Inspector
   properties: {
-      // 滚动的速度
-      speed:200,
-      // X轴边缘
+      // scrolling speed
+      speed: 0,
+      // reset position when moving past this distance
       offsetX: 0
   },
 
-  // 更新
+  // update background entity position
   update: function () {
       this.transform.x -= Fire.Time.deltaTime * this.speed;
       if (this.transform.x < -this.offsetX) {
@@ -69,21 +75,21 @@ var ScrollPicture = Fire.Class({
 });
 ```
 
-完成脚本后，分别拖放到`Background`与`Ground`物体上
+Once you put the above code into the script file, save and drag the script to `Background` and `Ground` entities. This will create `ScrollPicture` components on those entities.
 
-**BackGround 挂脚本后示例图:**
+**BackGround Setup:**
 ![006](https://cloud.githubusercontent.com/assets/7564028/6843018/835bc748-d3d9-11e4-849e-3aee381b85bc.png)
 
-**Ground 挂脚本后示例图:**
+**Ground Setup:**
 ![007](https://cloud.githubusercontent.com/assets/7564028/6843079/309b75f2-d3da-11e4-89b5-7fd2e93c3fb8.png)
 
-### 运行查看效果
+### Run Your Game!
 
-设置完毕后就可以点击编辑器最上方的![008](https://cloud.githubusercontent.com/assets/7564028/6843101/7917f008-d3da-11e4-8577-6e68a10c36c5.png) 运行按钮运行游戏，查看最终效果
+Now you can click the `Play` button ![008](https://cloud.githubusercontent.com/assets/7564028/6843101/7917f008-d3da-11e4-8577-6e68a10c36c5.png) at the top center of the editor to run the game and see the background scrolling already.
 
-**最终效果图:**
+**Final Setup:**
 ![009](https://cloud.githubusercontent.com/assets/7564028/6843104/7ad32c78-d3da-11e4-98ac-a769575ea9a5.png)
 
 ---
 
-**NOTE:** [ Step - 2 创建背景与地面项目快照传送门](https://github.com/fireball-x/tutorial/commits/step-2)
+**NOTE:** [ Step - 2 Project Snapshot for Creating Background](https://github.com/fireball-x/tutorial/commits/step-2)

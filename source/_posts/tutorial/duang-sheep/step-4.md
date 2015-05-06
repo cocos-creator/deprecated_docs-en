@@ -1,12 +1,12 @@
-title: 新手教程：创建绵羊主角
+title: Tutorial - Create Sheep
 categories: tutorial
 permalinks: tutorial/duang-sheep/step4
 ---
 
-## 本章任务
-- 通过`SpriteAnimation`组件添加绵羊需要的几个动画
-- 绵羊点击跳跃操作
-- 绵羊状态的切换
+## Goal
+- Use`SpriteAnimation` component to add animations to sheep
+- Click or touch input to make sheep jump
+- Sheep state control
 
 
 ## 详细步骤
