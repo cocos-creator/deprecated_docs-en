@@ -1,3 +1,5 @@
+[![Circle CI](https://circleci.com/gh/fireball-x/docs-en.svg?style=svg)](https://circleci.com/gh/fireball-x/docs-en)
+
 # Fireball中文文档
 
 这里是Fireball游戏引擎的中文文档资源站。
