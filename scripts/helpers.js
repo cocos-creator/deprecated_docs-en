@@ -71,7 +71,7 @@ hexo.extend.helper.register('doc_category', function(){
         })
     });
     result += '<li role="presentation"><a role="button" href="#top">back to top</a></li>';
-    result += '<li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-zh/edit/master/source/_data/sidebar_' + cat + '.yml">Edit Sidebar</a></li></ul>';
+    result += '<li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_' + cat + '.yml">Edit Sidebar</a></li></ul>';
 
     return result;
 });
