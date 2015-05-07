@@ -1,4 +1,4 @@
-title: 获取Fireball
+title: Get Fireball
 categories: manual
 permalinks: manual/start/get-fireball
 ---
@@ -14,12 +14,9 @@ Click **Try Now** or **Download** menu button on the homepage to enter the downl
 ![get-fireball-01](https://cloud.githubusercontent.com/assets/2867434/6846086/3cc070fa-d3f6-11e4-8f92-2b00d4ba0a9f.png)
 
 
-在下载页面中您将看到目前已发布的Fireball版本列表。选择您想要下载的版本，并点击该版本后的**Download**链接进入版本详情页面。
 There is a list of released versions on the download page. Please select a preferred one, and click the following **download** link for detailed descriptions.
-  ```
-  We suggest you to download the latest version of Fireball.
-  As we are continuously improving our product, every release will bring out new features or user experience enhancements.
-  ```
+*We suggest you to download the latest version of Fireball.
+As we are continuously improving our product, every release will bring out new features or user experience enhancements.*
 
 
 ![get-fireball-02](https://cloud.githubusercontent.com/assets/2867434/6846084/3bf9c8ec-d3f6-11e4-852e-ad5defde3b0a.png)
@@ -37,9 +34,7 @@ You can learn detailed information of selected version in the detail page, inclu
 - Feature improvements
 - Fixed bugs
 
-```
-Clicking the reference ID following description entries will redirect you to the issue page on Github, in case of you want to know more about the entry.
-```
+*Clicking the reference ID following description entries will redirect you to the issue page on Github, in case of you want to know more about the entry.*
 
 ##Running Fireball
 - **For Windows Users**
