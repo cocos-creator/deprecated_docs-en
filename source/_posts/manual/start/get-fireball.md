@@ -49,4 +49,4 @@ Clicking the reference ID following description entries will redirect you to the
 
 ---
 ###Next...
-- Read [Create a project](/manual/start/new-project/) and learn how to create your first Fireball game.
+- Read [New project](/manual/start/new-project/) and learn how to create your first Fireball game.
