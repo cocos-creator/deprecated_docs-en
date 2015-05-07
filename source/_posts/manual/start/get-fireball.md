@@ -15,8 +15,9 @@ Click **Try Now** or **Download** menu button on the homepage to enter the downl
 
 
 There is a list of released versions on the download page. Please select a preferred one, and click the following **download** link for detailed descriptions.
-*We suggest you to download the latest version of Fireball.
-As we are continuously improving our product, every release will bring out new features or user experience enhancements.*
+
+*We suggest you to download the latest version of Fireball.*
+*As we are continuously improving our product, every release will bring out new features or user experience enhancements.*
 
 
 ![get-fireball-02](https://cloud.githubusercontent.com/assets/2867434/6846084/3bf9c8ec-d3f6-11e4-852e-ad5defde3b0a.png)
