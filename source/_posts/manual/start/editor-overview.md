@@ -1,21 +1,21 @@
-title: 认识Editor
+title: Meet Editor
 categories: manual
 permalinks: manual/start/editor-overview
 ---
 
-> 本章节将介绍Fireball引擎编辑器的核心界面，使您能够快速熟悉Fireball Editor的各项功能，为后续的项目开发做好准备。
-> 在阅读本章节之前，请确认您已经完成了以下章节的学习：
-> - [获取Fireball](/manual/start/get-fireball/)
-> - [新建项目](/manual/start/new-project/)
+> This chapter will introduce you all the features of Fireball Editor. It would be a good place for being familiar with Fireball Editor, and getting ready for your future Fireball works.
+> Please make sure you have finished reading the following articles before going further:
+> - [Get Fireball](/manual/start/get-fireball/)
+> - [New Project](/manual/start/new-project/)
 
-# 引言
-在您跃跃欲试，开始创造自己的游戏之前，请务必先花些时间阅读本章节来了解Fireball Editor提供的各项功能——这将使您在以后构建游戏的过程中更加得心应手。当对Editor中任何部分的功能有疑问时，本章节也是您寻找答案的好地方。
-
-
-Fireball Editor的主界面由若干个面板组成，每个面板都被设计用来完成特定任务。您可以调整这些面板的大小、位置来创建满足您个人使用习惯的界面布局。除了这些任务面板，菜单栏、工具栏和其他专门的工具窗口中也提供了构建一款游戏所必不可少的功能。
+# Introduction
+Hold your horse for a while! Now meet the Fireball Editor and all the thrilling features: you have no chance to build a exciting game without understanding what all the tools can do for you. This chapter is a good place to look up as well whenever you are in doubt.
 
 
-下图对Fireball Editor主界面的布局进行了简单介绍（默认布局中**Game面板**与**Scene面板**重叠，您需要单击`Scene`标签旁的`Game`标签进行切换），其中每一部分功能和使用说明都将在下面列出的相应小节中进行详细说明。
+Fireball Editor mainly consists of serveral panels, which are designed for finishing specific tasks, respectively. You can adjust their sizes and positions by your own taste. Beside of these panels, there are other UIs which are essential for building a game, including menu bar, tool bar and tool windows, and you should know about them as well.
+
+
+Check out the screenshot below - it gives a basic concept of the UI layout (In the default layout, **Game Panel** and **Scene Panel** are overlapped, and you may need to switch between them by clicking the `Scene` tab and `Game` tab). We will discuss every piece of features in the sections below.
 
 ![editor-overview-intro](/manual/start/editor-overview/editor-overview-intro.png)
 
