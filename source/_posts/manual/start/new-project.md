@@ -38,18 +38,18 @@ The following settings have to be properly set:
   *Note: This feature is not currently available. Game Kits will be provided in future releases.*
 
 
-项目属性设置完成后，单击`Create`按钮创建项目，Fireball将关闭Dashboard并将新建项目加载到Fireball Editor中。
-关于Fireball Editor的更多信息请参见本文末尾的相关条目。
+Once finishing setting up properties, please click `Create` button to make the new project created. Fireball will shut the Dashboard and load the project in Fireball Editor.
 
 ###Open Other...
-若Recent Projects中没有您想要访问的项目，您可以使用**Open Other...**来手动打开Fireball项目。
-单击`Open Other...`，并在弹出的文件对话框中选择项目位置。由于Fireball项目是以**文件夹**进行组织的，因此您需要定位到**项目文件夹**而非特定的项目文件。
+You can open Fireball projects manually by **Open Other...**, in case of your project is not listed in Recent Projects.
+
+Click `Open Other...` and choose the **project folder** in a pop-up dialog. Fireball Engine maintains projects with **directories** instead of particular project files.
 
 ###Help
-使用**Help**访问Fireball的使用帮助。
+You can access Fireball manuals and help documentations with **Help**.
 
-##项目文件结构
-Fireball项目的文件结构如下：
+##Project File Structure
+Files are structured in a Fireball project as below:
 ```
 ProjectName
 ├──assets
@@ -58,31 +58,31 @@ ProjectName
 ├──settings
 └──temp
 ```
-- 项目参与者公用目录
+- Public folders to project collaborators
   - **assets**
-    项目资源文件，包括实际用于构建项目的所有元素，例如：
-    - 场景
-    - 脚本
-    - Sprite
-    - 贴图
-    - 音频
-    ...
-    简单来说，该目录对应[Editor]（/start/editor-overview)中Assets面板下加载的项目资源。
+    Project resource files, including all actual elements used to form up a project. Such as:
+    - Scenes
+    - Scripts
+    - Sprites
+    - Textures
+    - Audio files
+    - ...
+    Just think them as all loaded resources in the Assets Panel of the [Editor]（/start/editor-overview)
   - **settings**
-    项目的全局设置，这些设置为项目级参数，为项目的所有参与者所共有，例如：
-    - 插件设置
-    - 按键设置
-    - 物理设置
-    ...
-- 客户端私有目录（不应纳入版本管理）
+    Global project settings, which are of project-level and shared by all project collaborators. Such as:
+    - Plug-in settings
+    - Button settings
+    - Physics settings
+    - ...
+- Private folders used by current client *(and you should ignore them in version control)*
   - **library**
-    客户端资源库管理目录，用于[Editor](/start/editor-overview)资源库的数据记录及资源展示。
+    Files in this folder are for resource library management, and will be used by the [Editor](/start/editor-overview) for library data persistence and resource display.
   - **local**
-    项目的本地设置，存储当前用户不适用于项目全局范围的个性化设置，如客户端界面布局。
+    Local project settings, which store user's customized settings, such as Editor layout.
   - **temp**
-    临时文件存放目录。
+    Temporary files created by Fireball Engine.
 
 
 ---
-###接下来...
-- 阅读[「认识Editor」](/start/editor-overview)以了解项目开发环境的更多信息。
+###Next...
+- Read [Meet Editor](/manual/start/editor-overview/) to learn more about the IDE.
