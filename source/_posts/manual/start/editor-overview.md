@@ -9,7 +9,8 @@ permalinks: manual/start/editor-overview
 > - [New Project](/manual/start/new-project/)
 
 # Introduction
-Hold your horse for a while! Now meet the Fireball Editor and all the thrilling features: you will have no chance to build an exciting game without understanding what all the tools can do for you. Whenever you are in doubt, this chapter is a good place to look up as well.
+
+You'll have no chance to build an exciting game without understanding what all the editor tools can do for you first, so hold your horse for a while and meet the Fireball Editor along with thrilling features. And, whenever you are in doubt, don't forget this chapter is a good place to look up for as well.
 
 
 Fireball Editor mainly consists of serveral panels, which are designed for finishing specific tasks, respectively. You can adjust their sizes and positions by your own taste. Beside of these panels, there are other UIs which are essential for building a game, including menu bar, tool bar and tool windows, and you should know about them as well.
