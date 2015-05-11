@@ -20,153 +20,153 @@ Check out the screenshot below - it gives a basic concept of the UI layout (In t
 
 ![editor-overview-intro](/manual/start/editor-overview/editor-overview-intro.png)
 
-# 菜单栏
+# Menus
 ##Fireball
-* **Hide Fireball (快捷键 <kbd>H</kbd> )**
-*暂无说明*
-* **Hide Others (快捷键 <kbd>Shift + H</kbd> )**
-*暂无说明*
+* **Hide Fireball (Shortcut: <kbd>H</kbd> )**
+*In construction*
+* **Hide Others (Shortcut: <kbd>Shift + H</kbd> )**
+*In construction*
 * **Show All**
-*暂无说明*
-* **Quit (快捷键 <kbd>Ctrl/Command + Q</kbd> )**
-退出Fireball Editor
+*In construction*
+* **Quit (Shortcut: <kbd>Ctrl/Command + Q</kbd> )**
+Exit Fireball Editor
 * **Check For Updates**
-检查是否有更新版本的Fireball Editor供升级。
+Check if there is any new version of Fireball Editor to update.
 * **About**
-显示Fireball Editor的关于信息及版权信息。
+Display about information and copyrights of Fireball Editor.
 * **Panels**
-*暂无说明*
+*In construction*
 
 ##File
-* **New Scene (快捷键 <kbd>Ctrl/Command + N</kbd> )**
-新建一个场景。
-一个游戏由一个或多个场景组织而成，当需要制作新关卡、主菜单界面、加载界面、设置界面或类似的独立模块时，就需要通过该功能来新建场景。
-* **Save Scene (快捷键 <kbd>Ctrl/Command + S</kbd> )**
-保存当前打开的场景。
-若当前场景从未被保存过，则会弹出保存文件对话框，此时您可以将场景文件(.fire)保存在指定位置；若当前场景已被保存过，Fireball Editor会直接把场景的改动保存到该场景对应的文件中。
-> 建议您将所有场景文件保存到同一个位置以便管理，如**assets/scenes**。
+* **New Scene (Shortcut: <kbd>Ctrl/Command + N</kbd> )**
+Create a new scene in current project.
+A game consists of one or more scenes. You'll need to create new scenes when you indend to make indepent modules such as new stages, main menu, loading screen, setting screen, etc.
+* **Save Scene (Shortcut: <kbd>Ctrl/Command + S</kbd> )**
+Save the current editing scene.
+A save file dialog will pop up if the current scene is never saved before, in which you can determine where to save your scene file (*.fire). If the scene has been saved, Fireball Editor will update the save file directly.
+> It is suggested to place all scene files in a particular directory for management, for example **assets/scenes**.
 * **Build Settings**
-对项目的构建参数进行设置。
-项目构建(Build)是发布游戏必不可少的步骤，Fireball Editor通过构建操作对您的项目文件进行打包和优化，使其能够便捷、安全、正确地部署到对应的发布平台上。通过Build Settings，您不但可以调整参数以发布满足特定需求的版本，而且能够在发布前进行项目的预览。
-有关Build Settings的更多说明请参阅[工具窗口](#tool-windows)中的Build Settings一节。
+Set the project build parameters.
+Building is a critical step in the deployment process. Fireball Editor will pack and optimize your game files during building process, in order to make it able to be deployed on various platforms fast, safely and correctly. Through Build Settings, you can fine tuning the parameters for certain needs, as well as to preview your game before deployment.
+You will find more information about Build Settings in the [Tool Windows](#tool-windows] section.
 
 ##Edit
-* **Undo (快捷键 <kbd>Z</kbd> )**
-撤销上一个操作。
-* **Redo (快捷键 <kbd>Shift + Z</kbd> )**
-重做最近一个已撤销的操作。
-* **Cut (快捷键 <kbd>X</kbd> )**
-剪切选中的Entity到剪贴板。
-* **Copy (快捷键 <kbd>C</kbd> )**
-复制选中的Entity到剪贴板。
-* **Paste (快捷键 <kbd>V</kbd> )**
-将剪贴板中的Entity粘贴到场景中。
-* **Select All (快捷键 <kbd>A</kbd> )**
-选中当前场景中的所有Entity。
+* **Undo (Shortcut: <kbd>Z</kbd> )**
+Undo the last operation.
+* **Redo (Shortcut: <kbd>Shift + Z</kbd> )**
+Redo the latest undone operation.
+* **Cut (Shortcut: <kbd>X</kbd> )**
+Cut the selected Entity into the clipboard.
+* **Copy (Shortcut: <kbd>C</kbd> )**
+Copy the selected Entity into the clipboard.
+* **Paste (Shortcut: <kbd>V</kbd> )**
+Paste the Entity in the clipboard into the current scene.
+* **Select All (Shortcut: <kbd>A</kbd> )**
+Select all Entities in the current scene.
 
 ##Entity
-> 在Fireball中，每一个游戏对象都被称为一个**Entity（实体）**。通过挂载的不同组件和资源，**Entity**能够表现出不同的外观和行为。游戏场景的展示、交互以及游戏逻辑的执行就是通过一个个**Entity**组织起来的。
+> In Fireball Engine, a game object is called a **Entity**. **Entity** will appear or behave differently by attaching different resources or components. The presentation, interactions and logic execution of a scene are organized by multiple **Entities**.
 
 * **Create Empty**
-在场景中创建一个空白的**Entity**。
-一个空白的**Entity**中只包含该**Entity**的**几何变换信息**位置、旋转、缩放），新创建的空白**Entity**默认属性为：
+Create an empty **Entity** in the scene.
+An empty **Entity** solely contains its **Transform information**, i.e. its position, rotation and scale. The default property values are:
   - ***Position*** x=0, y=0
   - ***Rotation*** 0
   - ***Scale*** x=1, y=1
 * **Create Empty Child**
-在场景中选中的**Entity**下创建一个空白的**子级Entity**。
-若当前没有选中的**Entity**，将在场景的根级别创建一个新的空白**Entity**，此时行为与**Create Empty**相同。
+Create a **Child Entity** that belongs to the selected **Entity**.
+For the situation of no **Entity** is selected, this function will create an empty **Entity** as a root one, which behaves exactly the same as **Create Empty** function.
 
 ##View
-*暂无说明*
+*In construction*
 
 ##Window
-* **Close (快捷键 <kbd>W</kbd> )**
-关闭Fireball Editor窗口。
+* **Close (Shortcut: <kbd>W</kbd> )**
+Close the Fireball Editor window.
 
 ##Developer
-* **Reload (快捷键 <kbd>Ctrl/Command + R</kbd> )**
-重新加载Fireball Editor。
-* **Recompile (快捷键 <kbd>F7</kbd> )**
-重新编译场景中的所有脚本。
-* **Developer Tools (快捷键 <kbd>Alt + Ctrl/Command + I</kbd> )**
-打开**Developer Tools（开发人员工具）**窗口。
-**Developer Tools**为您提供了强大的分析、调试和跟踪工具，对于游戏脚本的开发人员来说必不可少。关于**Developer Tools**的功能介绍和使用说明，请查阅[工具窗口](#tool-windows)中的Developer Tools一节。
+* **Reload (Shortcut: <kbd>Ctrl/Command + R</kbd> )**
+Reload the Fireball Editor.
+* **Recompile (Shortcut: <kbd>F7</kbd> )**
+Recompile all scripts in the current scene.
+* **Developer Tools (Shortcut: <kbd>Alt + Ctrl/Command + I</kbd> )**
+Open the **Developer Tools** window.
+Various useful and powerful features are provided in **Developer Tools** for analyzing, debugging and tracing, which are essential for game script developers. You will find more information about **Developer Tools** in the [Tool Windows](#tool-windows) section.
 * **Show Selected Asset in Library**
-打项目Library文件夹中当前选中资源所在的目录。
+Open the sub-directory of the Library folder where stores the currently selected asset in system file explorer.
 * **Test**
   * **Reload Window Scripts**
-*待完成*
+*In construction*
   * **Reload Core Plugins**
-*待完成*
+*In construction*
   * **Thrown an Uncaught Exception**
-*待完成*
+*In construction*
   * **Ipc send2panel foo:bar@foobar@fire**
-*待完成*
+*In construction*
   * **AssetDB Debugger**
-打开资源数据库的调试窗口**AssetDB Debugger**，用于在调试过程中跟踪资源的变化和对应关系。关于**AssetDB Debugger**的功能介绍和使用说明，请查阅[工具窗口](#tool-windows)中的AssetDB Debugger一节。
+Open the **AssetDB Debugger**, which is for tracking asset modifications and correspondings during debugging. You will find more information about **AssetDB Debugger** in the [Tool Windows](#tool-windows) section.
 
 ##Help
 * **Website**
-访问Fireball引擎的官方网站以获取产品的更多信息。
+Visit the official website of Fireball Engine for more information.
 * **Documentation**
-访问Fireball引擎的文档网站，以学习Fireball引擎的使用说明和查阅开发API。
+Visit the documentation site of Fireball Engine for engine manuals and scripting API references.
 * **Forum**
-访问Fireball引擎的技术论坛，与其他用户及开发者进行交流并分享心得。
+Visit the forum of Fireball Engine to share ideas with other users and developers.
 * **Submit An Issue On Github**
-在Fireball引擎的Github项目中提交一个Issue。通常情况下，如果您在使用过程中发现功能错误，或有对提高用户体验更好的建议，欢迎您通过提交Github Issue的方式向我们反馈。Fireball团队会竭力给您满意的答案。
+Commit an issue in the Fireball Engine Github repository. You can always let us know by committing issues if you encounter bugs or have better ideas about Fireball Engine. Our team will be cheerful and reply you as soon as possible.
 * **Subscribe To Newsletter**
-订阅Fireball引擎的邮件列表，以便及时接收关于本产品的最新消息和更新说明。
+Subscribe to Fireball Engine news letters for latest news and updates.
 
-# 工具栏<a id="toolbar"></a>
-## 移动工具 ![tool-move](/manual/start/editor-overview/tool-move.png)
-通过控制柄对选中的**Entity**进行移动操作。当选中移动工具后，控制柄会变成如下图所示：
+# Toolbar<a id="toolbar"></a>
+## Move Tool ![tool-move](/manual/start/editor-overview/tool-move.png)
+Move the selected **Entity** by handlers. The handlers will look like below when using the Move Tool:
 ![preview-move](/manual/start/editor-overview/preview-move.png)
-* 拖动绿色箭头可使**Entity**沿当前参照系的Y轴移动。
-* 拖动红色箭头可使**Entity**沿当前参照系的X轴移动。
-* 拖动控制柄中央的蓝色矩形则可使**Entity**同时沿当前参照系的X轴和Y轴移动。
+* Dragging the green arrow will move the **Entity** along the coordinates' Y-axis.
+* Dragging the red arrow will move the **Entity** along the coordinates' X-axis.
+* Dragging the blue rectangle in the centre will move the **Entity** along both of the coordinates' X and Y axes.
 
-## 旋转工具 ![tool-rotate](/manual/start/editor-overview/tool-rotate.png)
-通过控制柄对选中的**Entity**进行旋转操作。当选中旋转工具后，控制柄会变成如下图所示：
+## Rotate Tool ![tool-rotate](/manual/start/editor-overview/tool-rotate.png)
+Rotate the selected **Entity** by hander. The handler will look like below when using the Rotate Tool:
 ![preview-rotate](/manual/start/editor-overview/preview-rotate.png)
-* 将鼠标放置于红色控制柄上或其内部按圆周拖动，即可根据拖动方向旋转**Entity**。
-* 在拖动时，控制柄会显示出当前旋转的角度以供参考。
+* Dragging the red handler or any point inside the circle will rotate the **Entity** clockwise or counter-clockwise, depending on the direction of dragging.
+* The angel of rotation will be shown during your rotation.
 
-## 缩放工具 ![tool-scale](/manual/start/editor-overview/tool-scale.png)
-通过控制柄对选中的**Entity**进行缩放操作。当选中缩放工具后，控制柄会变成如下图所示：
+## Scale Tool ![tool-scale](/manual/start/editor-overview/tool-scale.png)
+Scale the selected **Entity** by handlers. The handlers will look like below when using the Scale Tool:
 ![preview-scale](/manual/start/editor-overview/preview-scale.png)
-* 将鼠标放置于绿色手柄上可使**Entity**沿当前参照系的Y轴进行缩放。
-* 将鼠标放置于红色手柄上可使**Entity**沿当前参照系的X轴进行缩放。
-* 拖动控制柄中央的灰色矩形则可使**Entity**同时沿当前参照系的X轴和Y轴缩放。
+* Dragging the green handler will scale the **Entity** along the coordinates' Y-axis.
+* Dragging the red handler will scale the **Entity** along the coordinates' X-axis.
+* Dragging the grey rectangle in the centre will scale the **Entity** along both of the coordinates' X and Y axes.
 
-## 使用自身参照系 ![tool-self-coordinate](/manual/start/editor-overview/tool-self-coordinate.png)
-控制柄的指向以选中的**Entity**自身为参照系，跟随**Entity**的旋转而旋转。
-当使用自身参照系时，控制柄在选中的**Entity**上的表现如下图所示：
+## Use self coordinates ![tool-self-coordinate](/manual/start/editor-overview/tool-self-coordinate.png)
+The handlers aligns with **Entity**'s self coordinates, and will rotate as **Entity** rotates.
+The handlers will behave as below when using self coordinates.
 ![preview-self-coordinate](/manual/start/editor-overview/preview-self-coordinate.png)
-## 使用世界参照系 ![tool-world-coordinate](/manual/start/editor-overview/tool-world-coordinate.png)
-控制柄的指向以当前世界为参照系，始终指向世界的X方向和Y方向。
-当使用世界参照系时，控制柄在选中的**Entity**上的表现如下图所示：
+## Use world coordinates ![tool-world-coordinate](/manual/start/editor-overview/tool-world-coordinate.png)
+The handers aligns with the world coordinates, pointing to the world's X and Y axes.
+The handlers will behave as below when using world coordinates.
 ![preview-world-coordinate](/manual/start/editor-overview/preview-world-coordinate.png)
-## 控制柄置于轴心点 ![tool-pivot](/manual/start/editor-overview/tool-pivot.png)
-控制柄放置在当前选中的**Entity**的轴心点上，移动、旋转和缩放操作均以该轴心点为轴。
-当选中场景中的多个**Entity**时，控制柄会放在选择过程中第一个选中的**Entity**上，如下图所示（本例中从左到右进行框选）：
+## Place on Pivot ![tool-pivot](/manual/start/editor-overview/tool-pivot.png)
+The handlers are placed on pivot of the selected **Entity**. Moving, rotating and scaling use the pivot as centre.
+When multiple **Entities** are selected, the handlers will use the first selected one's pivot. An example is shown below (**Entities** are selected from left to right):
 ![preview-pivot](/manual/start/editor-overview/preview-pivot.png)
-## 控制柄置于中央 ![tool-centre](/manual/start/editor-overview/tool-centre.png)
-控制柄放置在当前选中**Entity**的中心，即移动、旋转和缩放操作均以选区中心为轴。
-当选中场景中的多个**Entity**时，控制柄会放在整个选区的中心位置，如下图所示：
+## Place on Centre ![tool-centre](/manual/start/editor-overview/tool-centre.png)
+The handlers are placed on the centre of the selected **Entities**. Moving, rotating and scaling are based on the centre point.
+When multiple **Entities** are selected, the handlers will be placed on the centre of the entire selection area, shown as below:
 ![preview-centre](/manual/start/editor-overview/preview-centre.png)
-## 运行游戏 ![tool-play](/manual/start/editor-overview/tool-play.png)
-编译并运行当前游戏场景，并激活**Game面板**的交互。
-## 暂停游戏 ![tool-pause](/manual/start/editor-overview/tool-pause.png)
-暂停当前正在运行的游戏。
-通过暂停游戏可以方便地查看暂停状态下的游戏数据、对象状态等，以免游戏继续执行导致数据和状态发生变化。
-## 逐帧运行 ![tool-step](/manual/start/editor-overview/tool-step.png)
-游戏继续执行到下一帧并暂停。
-通过逐帧运行游戏，能够方便地追踪游戏数据和对象状态每一帧的变化，通常用于对游戏内的一段时间范围进行动态调试。
-## 快捷键帮助 ![tool-hotkeys](/manual/start/editor-overview/tool-hotkeys.png)
-单击该按钮将弹出Fireball Editor的快捷键映射表。
-## 当前用户 ![tool-user](/manual/start/editor-overview/tool-user.png)
-*暂无说明*
+## Play ![tool-play](/manual/start/editor-overview/tool-play.png)
+Compile and run the current scene. The interaction of **Game Panel** will be activated in the meantime.
+## Pause ![tool-pause](/manual/start/editor-overview/tool-pause.png)
+Pause the current running game.
+By pausing the current game will make it possible to check game data and object states of a certain moment.
+## Stepping ![tool-step](/manual/start/editor-overview/tool-step.png)
+Run the game to the next frame and the pause.
+By stepping, you can tracking the changes of game data and object states in every frame. This function is often used for dynamic debugging in a certain time range.
+## Shortcut Mapping ![tool-hotkeys](/manual/start/editor-overview/tool-hotkeys.png)
+Clicking this button will pop up the shortcut mapping table for quick reference.
+## User Profile ![tool-user](/manual/start/editor-overview/tool-user.png)
+*In construction*
 
 # Hierarchy面板
 ![hierarchy-panel](/manual/start/editor-overview/hierarchy-panel.png)
