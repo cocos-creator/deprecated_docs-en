@@ -7,14 +7,14 @@ permalinks: manual/start/get-fireball
 > This article will guide you downloading and running Fireball Engine, so you can get yourself started as soon as possible.
 
 ##Downloading Fireball
-You need to visit the [official site](http://www.fireball-x.com) of Fireball for the latest release.
+You need to visit the [official site](http://www.fireball-x.com/en) of Fireball for the latest release.
 Click **Try Now** or **Download** menu button on the homepage to enter the download page.
-
 
 ![get-fireball-01](https://cloud.githubusercontent.com/assets/2867434/6846086/3cc070fa-d3f6-11e4-8f92-2b00d4ba0a9f.png)
 
 
 There is a list of released versions on the download page. Please select a preferred one, and click the following **download** link for detailed descriptions.
+
 
 *We suggest you to download the latest version of Fireball.*
 *As we are continuously improving our product, every release will bring out new features or user experience enhancements.*

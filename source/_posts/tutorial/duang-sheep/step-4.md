@@ -9,88 +9,90 @@ permalinks: tutorial/duang-sheep/step4
 - Sheep state control
 
 
-## 详细步骤
+## Steps
 
-### 设置绵羊动画剪辑
+### Create Sheep Animation Clips
 
-在`Asset`视图中创建`assets/animations`文件夹，然后鼠标右键点击`animations`文件夹后选择`Create/New Sprite Animation`来创建动画剪辑。我们用这样的方法创建5个动画剪辑资源，并将他们分别命名为：
+Create `assets/animations` folder in `Asset` view. Right click `animations` folder and choose `Create/New Sprite Animation` to create a new sprite animation clip. We will create 5 clips with the following names:
 
-- `Run`绵羊奔跑时的动画
-- `Jump`绵羊起跳时的动画
-- `Drop`绵羊下落时的动画
-- `DropEnd`绵羊落地时的动画
-- `Dead`绵羊撞到障碍物时的动画
+- `Run`: sheep run animation
+- `Jump`: sheep jump animation
+- `Drop`: sheep falling animation
+- `DropEnd`: sheep hit ground animation
+- `Dead`: sheep hit pipe animation
 
 然后点击每一个动画剪辑来设置动画帧，动画剪辑资源有以下属性：
 
-- Wrap Mode ----- 动画播放模式
-  - Default      只播放一次
-  - One          与Default一样播放一次
-  - Loop         循环播放
-  - PingPong     来回播放
-  - ClampForever 播放完毕后停在最后一帧
+- Wrap Mode ---- How animation repeats
+  - Default      Reads the default repeat mode on parent
+  - One          When time reaches the end of the animation clip, the clip will automatically stop playing and time will be reset to beginning of the clip.
+  - Loop         Once finished, start play from beginning
+  - PingPong     Back and forth play
+  - ClampForever Plays back the animation. When it reaches the end, it will keep playing the last frame and never stop playing.
 
-- Stop Action ---- 动画播放完以后触发的事件
-  - DoNothing     什么都不做
-  - DefaultSprite 展示默认的Sprite图片
-  - Hide          隐藏物体
-  - Destroy       销毁物体
-- Speed --- 动画播放速度
-- Frame Rate -- 动画帧率
-- Frame Infos -- 每个动画帧的图片资源数据
+- Stop Action ---- Action to take when animation finished playing the last frame
+  - DoNothing     Do nothing and shows the last frame
+  - DefaultSprite Switch to show default sprite
+  - Hide          Hide entity
+  - Destroy       Destroy entity
+- Speed --- Animation play speed, 1 is normal speed
+- Frame Rate -- Frame rate at which keyframes are sampled.
+- Frame Infos -- Each animation frame's sprite image and duration
   - FrameInfo
-    - Sprite  图片
-    - Frames  该图片会连续显示几帧
+    - Sprite  Which image to show at this set of frames
+    - Frames  How many frames this image lasts
 
-下面我们要做的，就是通过修改`Frame Infos`属性的`size`值，为每个动画剪辑设置正确的动画帧数量，然后将`Asset`视图中`sprites/sheep`里正确的图片资源拖拽到每个对应的`FrmeInfo`属性中。
+We will first set a `size` value for `Frame Infos` property. This should match each animation's image count. Then find each image in `sprites/sheep` folder in `Assets` view, and drag it to a `FrameInfo` in the list in correct order.
 
-**Run 动画剪辑Inspector视图示例图:**
+(This workflow will be improved in the future.)
+
+**Run Animation Setup in Inspector**
 
 ![001](https://cloud.githubusercontent.com/assets/7564028/6844693/3462f6e8-d3e8-11e4-81d7-a30afbc005a1.png)
 
-**Jump 动画剪辑Inspector视图示例图:**
+**Jump Animation Setup in Inspector**
 
 ![002](https://cloud.githubusercontent.com/assets/7564028/6844691/34523650-d3e8-11e4-8d4f-3e37312fe855.png)
 
-**Drop 动画剪辑Inspector视图示例图:**
+**Drop Animation Setup in Inspector**
 
 ![003](https://cloud.githubusercontent.com/assets/7564028/6844690/3452255c-d3e8-11e4-9571-d9a09066df3b.png)
 
-**DropEnd 动画剪辑Inspector视图示例图:**
+**DropEnd Animation Setup in Inspector**
 
 ![004](https://cloud.githubusercontent.com/assets/7564028/6844689/34520c3e-d3e8-11e4-9d7a-5d71d11d5ebe.png)
 
-**Dead 动画剪辑Inspector视图示例图:**
+**Dead Animation Setup in Inspector**
 
 ![005](https://cloud.githubusercontent.com/assets/7564028/6844692/34543bda-d3e8-11e4-9e0e-cffae3484836.png)
 
 
-### 添加 SpriteAnimation 组件
+### Create SpriteAnimation Component
 
-在`Hierarchy`视图中创建一个`Sheep`物体，选中该物体并点击`Inspector`视图右上角的`＋`按钮，分别添加一个`SpriteRenderer`组件和`SpriteAnimation`组件。
+Create an entity named `Sheep` in `Hierarchy` view. Select the entity and click the `+` button on the top right of `Inspector` view. Add a `SpriteRenderer` component and a `SpriteAnimation` component to `Sheep` entity.
 
-然后从`Assets`窗口中将`sprites/sheep/sheep_run_03`拖拽到`SpriteRenderer`组件中的`Sprite`属性上，作为绵羊物体在场景中的表示。
+Drag the image asset `sprites/sheep/sheep_run_03` from `Assets` view onto `SpriteRenderer` component's `Sprite` property, as the default sprite of sheep.
 
-再选中`Sheep`物体，将`SpriteAnimation`组件的`Animations`的`size`设为`5`。然后将刚才创建的各个动画剪辑，拖拽到`Animations`属性列表中的各个成员中。如下图所示。
+Make sure`Sheep` entity is selected, set `SpriteAnimation` component's `Animations/size` to `5`. And drag the animation clips we just created to each slot in the list. The order does not matter.
 
-**下方是具体设置SpriteRender和SpriteAnimation的详细示例图:**
+**SpriteRender and SpriteAnimation Setup**
 
  ![005](https://cloud.githubusercontent.com/assets/7564028/6845001/eb17a59e-d3ea-11e4-9b8c-05bdf19542b9.png)
 
 
-### 绵羊控制脚本
+### Sheep Control Script
 
-创建名为`Sheep`的脚本，该脚本将会实现：
+Create a script named `Sheep`, at the same place as other scripts. It will do the following tasks：
 
-- 接受玩家输入并控制绵羊行为
-- 绵羊运动坐标的计算
-- 动画的播放以及状态之间的切换
+- Listen to player input and control sheep's action
+- Calculate sheep's position each frame during a movement
+- Play sprite animation on sheep and control states
 
-脚本建立完成后，添加下面的内容，然后挂到`Hierarchy`中的`Sheep`物体上。
+Add the following code to the script we just created, and drag the script to `Sheep` entity in `Hierarchy` view.
 
-**下方为脚本实现:**
+**Sheep.js**
 ```js
-// 绵羊状态
+// Sheep state enum
 var State = Fire.defineEnum({
     None   : -1,
     Run    : -1,
@@ -101,28 +103,26 @@ var State = Fire.defineEnum({
 });
 
 var Sheep = Fire.Class({
-    // 继承
     extends: Fire.Component,
-    // 构造函数
     constructor: function () {
-        // 当前播放动画组件
+        // current playing animation
         this.anim = null;
-        // 当前速度
+        // sheep speed
         this.currentSpeed = 0;
-        // 跳跃事件
+        // jump event
         this.jumpEvent = null;
     },
-    // 属性
+    // Properties
     properties: {
-        // Y轴最大高度
+        // max Y position sheep can reach
         maxY: 250,
-        // 地面高度
+        // ground Y position sheep will land on
         groundY: -170,
-        // 重力
+        // gravity acceleration
         gravity: 9.8,
-        // 起跳速度
+        // jump speed
         initSpeed: 500,
-        // 绵羊状态
+        // sheep state
         _state: {
             default: State.Run,
             type: State,
@@ -144,11 +144,11 @@ var Sheep = Fire.Class({
             type: State
         }
     },
-    // 初始化
+    // initialization
     onLoad: function () {
         this.anim = this.getComponent(Fire.SpriteAnimation);
 
-        // 添加绵羊控制事件(为了注销事件缓存事件)
+        // If a jump event fires, let sheep jump
         this.jumpEvent = function (event) {
             if (this.state !== State.Dead) {
                 this._jump();
@@ -156,17 +156,17 @@ var Sheep = Fire.Class({
         }.bind(this);
         Fire.Input.on('mousedown', this.jumpEvent);
     },
-    // 删除
+    // when sheep is destroyed
     onDestroy: function () {
-        // 注销绵羊控制事件
+        // unregister mousedown event
         Fire.Input.off('mousedown', this.jumpEvent);
     },
-    // 更新
+    // Updates
     update: function () {
         this._updateState();
         this._updateTransform();
     },
-    // 更新绵羊状态
+    // Update sheep state each frame
     _updateState: function () {
         switch (this.state) {
             case Sheep.State.Jump:
@@ -189,7 +189,7 @@ var Sheep = Fire.Class({
                 break;
         }
     },
-    // 更新绵羊坐标
+    // Update sheep position according to movement
     _updateTransform: function () {
         var flying = this.state === Sheep.State.Jump || this.transform.y > this.groundY;
         if (flying) {
@@ -197,7 +197,7 @@ var Sheep = Fire.Class({
             this.transform.y += Fire.Time.deltaTime * this.currentSpeed;
         }
     },
-    // 开始跳跃设置状态数据，播放动画
+    // switch to jump state when receive jump event
     _jump: function () {
         this.state = State.Jump;
         this.currentSpeed = this.initSpeed;
@@ -207,14 +207,14 @@ var Sheep = Fire.Class({
 Sheep.State = State;
 ```
 
-### 运行查看效果
+### Run Your Game!
 
-最后可以点击运行按钮在`Game`视图看到结果。
+Click play button, and check your work so far in `Game` view.
 
-**最终效果示例图:**
+**Final Setup:**
 
 ![006](https://cloud.githubusercontent.com/assets/7564028/6864237/7847f050-d499-11e4-8385-650907a360e3.png)
 
 ---
 
-**NOTE:** [ Step - 3 创建绵羊主角快照传送门](https://github.com/fireball-x/tutorial/commits/step-4)
+**NOTE:** [ Step - 4 Project Snapshot for Creating Sheep](https://github.com/fireball-x/tutorial/commits/step-4)

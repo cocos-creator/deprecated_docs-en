@@ -1,79 +1,74 @@
-title: 新手教程：添加分数文字
+title: Tutorial - Score Text
 categories: tutorial
 permalinks: tutorial/duang-sheep/step6
 ---
 
 
-## 本章任务
-- 当绵羊通过障碍物时增加分数
-- 位图字体的使用
+## Goal
+
+- Gain score when sheep jump over a pipe
+- Create a BitmapText component to display text in game
 
 ---
 
-## 详细步骤
+## Steps
 
-### 创建位图字体
+### Create BitmapText
 
-拖放`Assets`中的`fonts/number1`资源文件到`Hierarchy`视图中，创建一个包含`BitmapText`位图字体组件的物体来显示分数，将该物体改名为`Score`。并把`BitmapText`组件中的`Text`属性值改为`0`。
+To display text in game, we need to to create a `BitmapText` component. Drag `fonts/number1` asset from `Assets` view to `Hierarchy` view. This will create an entity with `BitmapText` component. Rename the entity to `Score`, and change the `Text` property in `BitmapText` component to `0`.
 
-**示例图:**
+**Score Entity Setup**
 
 ![000](https://cloud.githubusercontent.com/assets/7564028/6865000/0eff3c74-d4a4-11e4-8aaf-c5a4fb4f8f35.png)
-
-**PS:如果在Game视图中无法看到字体的话可以尝试把`number1`图片资源拖到`number1`BitmapFont属性中Texture中重新添加一次**
 
 ![001](https://cloud.githubusercontent.com/assets/7564028/6865002/11d508c0-d4a4-11e4-83c4-b7b3429e978f.png)
 
 
-### 标记通过的障碍物
+### Mark Passed Pipes
 
-编辑`PipeGroup`脚本，添加记录障碍物是否已被通过的标记`passed`，并将绵羊即将跳过的下方障碍物保存在`bottomRenderer`属性中。
+Open `PipeGroup` script for editing. Add a variable `passed` to mark if the PipeGroup is passed. Also get the reference of the bottom pipe that sheep is about to jump over and store it in `bottomRenderer` property.
 
-**NOTE:`.....`表示的脚本内容不变，无需改动**
+**PipeGroup.js: `.....` are parts stay unchanged**
 
 ```js
 var PipeGroup = Fire.Class({
-  // 继承
   extends: Fire.Component,
-  // 构造函数
   constructor: function () {
-      // 保存下方管道的Renderer,方便获得水平边界
+      // store the reference of current bottom pipe's renderer
       this.bottomRenderer = null;
-      // 是否已经被通过
+      // if the pipe group is passed
       this.passed = false;
   },
-  // 属性
+  // properties
   properties: {.....},
-  // 初始化
+  // initialization
   onEnable: function () {
       .....
 
       this.bottomRenderer = bottomEntity.getComponent(Fire.SpriteRenderer);
       this.passed = false;
   },
-  // 更新
+  // update
   update: function () {.....}
 });
 ```
 
 
-编辑`PipeGroupManger`脚本，添加获取距离绵羊最近的未通过障碍物函数，并在绵羊成功跳过时更改障碍物的`passed`属性。
+Open `PipeGroupManger` script for editing. Add a function to get the next PipeGroup that is not passed already. Update its `passed` property value when sheep jump over it successfully.
 
-**NOTE:`.....`表示的脚本内容不变，无需更改**
+**PipeGroupManager.js: `.....` are parts stay unchanged**
 
 ```js
 var PipeGroupManager = Fire.Class({
-  // 继承
   extends: Fire.Component,
-  // 构造函数
   constructor: function () {.....},
-  // 属性
+  // properties
   properties: {.....},
-  // 初始化
+  // initialization
   onLoad: function () {.....},
-  // 创建管道组
+  // create PipeGroup entity
   createPipeGroupEntity: function () {.....},
-  // 获取下个未通过的水管
+  // get the next PipeGroup in the list that is not passed
   getNext: function () {
       for (var i = 0; i < this.pipeGroupList.length; ++i) {
           var pipeGroupEntity = this.pipeGroupList[i];
@@ -84,22 +79,23 @@ var PipeGroupManager = Fire.Class({
       }
       return null;
   },
-  // 标记已通过的水管
+  // mark the PipeGroup as passed
   setAsPassed: function (pipeGroup) {
       pipeGroup.passed = true;
   },
-  // 碰撞检测
+  // collision detection
   collisionDetection: function (sheepRect) {.....},
-  // 更新
+  // update
   update: function () {.....}
 });
 ```
 
-### 添加得分和分数更新
+### Add Score Logic and Display Update
 
-编辑`GameManager`脚本，为`GameManager`添加一个`scoreText`属性，并把刚才创建的`Score`物体拖拽到这个属性上。然后添加绵羊越过障碍物时为玩家增加分数的逻辑。
+Open `GameManager` script for editing, add a `scoreText` property to hold the `Score` entity we just created. Then we will add logic to handle score increase when sheep jump over a pipe.
 
-**NOTE:`.....`为之前的脚本不变,无需变动**
+**GameManager.js: `.....` are parts stay unchanged**
+
 ```js
 var Sheep = require('Sheep');
 var ScrollPicture = require('ScrollPicture');
@@ -108,49 +104,46 @@ var PipeGroupManager = require('PipeGroupManager');
 var GameState = Fire.defineEnum({.....});
 
 var GameManager = Fire.Class({
-    // 继承
     extends: Fire.Component,
-    // 构造函数
     constructor: function () {.....},
-    // 属性
     properties: {
         .....
-        // 获取分数对象
+        // reference to Score entity
         scoreText: {
             default: null,
             type: Fire.BitmapText
         }
     },
-    // 开始
+    // when game starts, initialize score value and text display
     start: function () {
         .....
         this.score = 0;
         this.scoreText.text = this.score;
     },
-    // 更新
+    // updates
     update: function () {
         switch (this.gameState) {
             case GameState.Run:
                 .....
-                // 计算分数
+                // update score value and display
                 this.updateSorce();
                 break;
             default :
                 break;
         }
     },
-    // 更新分数
+    // update score value and display
     updateSorce: function () {
         var nextPipeGroup = this.pipeGroupMgr.getNext();
         if (nextPipeGroup) {
             var sheepRect = this.sheep.renderer.getWorldBounds();
             var pipeGroupRect = nextPipeGroup.bottomRenderer.getWorldBounds();
-            // 当绵羊的右边坐标越过水管右侧坐标
+            // when sheep's left edge passed PipeGroup's right edge
             var crossed = sheepRect.xMin > pipeGroupRect.xMax;
             if (crossed) {
-                // 分数+1
+                // score + 1
                 this.score++;
-                // 更新位图字体组件的 text 属性
+                // Update BitmapText's text property
                 this.scoreText.text = this.score;
                 this.pipeGroupMgr.setAsPassed(nextPipeGroup);
             }
@@ -159,10 +152,10 @@ var GameManager = Fire.Class({
 });
 ```
 
-**最终效果示例图:**
+**Final Setup**
 
 ![002](https://cloud.githubusercontent.com/assets/7564028/6865247/cf548e28-d4a6-11e4-97b3-bb50a43c37b7.png)
 
 ----
 
-**NOTE:** [ Step - 6 添加分数文字快照传送门](https://github.com/fireball-x/tutorial/commits/step-6)
+**NOTE:** [ Step - 6 Project Snapshot for Score Text](https://github.com/fireball-x/tutorial/commits/step-6)

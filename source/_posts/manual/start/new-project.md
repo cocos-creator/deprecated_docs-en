@@ -76,7 +76,7 @@ ProjectName
     - ...
 - Private folders used by current client *(and you should ignore them in version control)*
   - **library**
-    Files in this folder are for resource library management, and will be used by the [Editor](/start/editor-overview) for library data persistence and resource display.
+    Files in this folder are for resource library management, and will be used by the [Editor](/manual/start/editor-overview) for library data persistence and resource display.
   - **local**
     Local project settings, which store user's customized settings, such as Editor layout.
   - **temp**
@@ -85,4 +85,4 @@ ProjectName
 
 ---
 ###Next...
-- Read [Meet Editor](/manual/start/editor-overview/) to learn more about the IDE.
+- Read [Editor Overview](/manual/start/editor-overview/) to learn more about the IDE.
