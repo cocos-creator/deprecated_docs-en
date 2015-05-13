@@ -168,44 +168,44 @@ Clicking this button will pop up the shortcut mapping table for quick reference.
 ## User Profile ![tool-user](/manual/start/editor-overview/tool-user.png)
 *In construction*
 
-# Hierarchy面板
+# Hierarchy Panel
 ![hierarchy-panel](/manual/start/editor-overview/hierarchy-panel.png)
-**Hierarchy面板**用于管理当前场景中所有的 **Entity**，即游戏对象。**Entity** 在 **Hierarchy面板** 中以层级方式进行组织——这表示某些 **Entity** 之间存在父子关系，子级 **Entity** 能够继承父级 **Entity** 的某些属性。例如，当移动、旋转或缩放父级**Entity**时，子级**Entity**也会随之变换。
+**Hierarchy Panel** is for managing all **Entities** (game objects) in the scene. **Entities** are organized hierarchically in the **Hierarchy Panel** to indicate the parent-child relationship between **Entities**. Child **Entities** will inherit some properties of their parents. For instance, when moving, rotating or scaling parent **Entities**, their children will transform with them.
 
-## Entity列表
+## Entity List
 
-场景中的**Entity**会按它们之间的层级关系在列表中进行展现。拥有子级对象的**Entity**名称前会显示一个小箭头![collapse-arrow](/manual/start/editor-overview/collapse-arrow.png)。单击箭头即可展开或折叠该父级**Entity**。
+**Entities** in a scene will be present in terms of their relationship.  Those that owns children will show a little arrow ![collapse-arrow](/manual/start/editor-overview/collapse-arrow.png) in front of their names. Parent **Entities** will be expanded or collapsed by clicking the arrow.
 
-选中列表中的**Entity**，将会在**Inspector面板**中显示其属性，同时会在**Scene面板**中显示该**Entity**的控制柄。您可以使用 <kbd>Shift</kbd> 键和 <kbd>Ctrl</kbd> 键来在列表中进行连续多选或不连续多选。
+Properties of selected **Entities** will be shown in the **Inspector Panel**, while the handlers of the **Entities** will appear in the **Scene Panel** in the meantime. You can select multiple **Entities** in the list by pressing <kbd>Shift</kbd> key or <kbd>Ctrl</kbd> key, continuously or not.
 
-如需修改**Entity**间的父子关系，请拖动列表项目并将其置于所需的层级位置处。例如，将**Entity** A置于**Entity** B上，则可使A成为B的子级**Entity**。
+You can also change the relationship by dragging **Entities** in the list. Say, dragging **Entity** A onto **Entity** B will make A become B's child.
 
-在Entity列表中点击鼠标右键将弹出右键菜单，其中：
-* **Duplicate**: 创建一个当前选中**Entity**的副本，并将其置于列表最后。当需要在场景中创建多个具有相似属性的**Entity**时，这是最快捷的方法。
-* **Rename**: 对当前选中的**Entity**重命名。您也可以在**Inspector面板**中为**Entity**重命名。
-* **Delete**: 删除当前选中的**Entity**。您也可以通过键盘的 <kbd>Delete</kbd> 键删除选中的**Entity**。
-* **Create Empty**: 在场景中创建一个空白的**Entity**。
-一个空白的**Entity**中只包含该**Entity**的**几何变换信息**位置、旋转、缩放），新创建的空白**Entity**默认属性为：
-  - ***Position*** x=0, y=0
-  - ***Rotation*** 0
-  - ***Scale*** x=1, y=1
-* **Create Empty Child**: 在场景中选中的**Entity**下创建一个空白的**子级Entity**。
-若当前没有选中的**Entity**，将在场景的根级别创建一个新的空白**Entity**，此时行为与**Create Empty**相同。
-
-## 新增**Entity**
-单击左上角的![add-button](/manual/start/editor-overview/add-button.png)按钮将弹出场景中**Entity**的创建菜单：
-* **Create Empty**
-在场景中创建一个空白的**Entity**。
-一个空白的**Entity**中只包含该**Entity**的**几何变换信息**位置、旋转、缩放），新创建的空白**Entity**默认属性为：
+Click right mouse button in the list will pop up a context menu, whose features includes:
+* **Duplicate**: Make a copy of selected **Entity** and add it to the end of the list. It is the easiest way to create multiple **Entities** with same or similar properties.
+* **Rename**: Rename the selected **Entity**. You can do so in the **Inspector Panel** as well.
+* **Delete**: Delete the selected **Entity**. You can do so by pressing <kbd>Delete</kbd> key as well.
+* **Create Empty**: Create an empty **Entity** in the scene.
+An empty **Entity** solely contains its **Transform information**, i.e. its position, rotation and scale. The default property values are:
   - ***Position*** x=0, y=0
   - ***Rotation*** 0
   - ***Scale*** x=1, y=1
 * **Create Empty Child**
-在场景中选中的**Entity**下创建一个空白的**子级Entity**。
-若当前没有选中的**Entity**，将在场景的根级别创建一个新的空白**Entity**，此时行为与**Create Empty**相同。
+Create a **Child Entity** that belongs to the selected **Entity**.
+For the situation of no **Entity** is selected, this function will create an empty **Entity** as a root one, which behaves exactly the same as **Create Empty** function.
 
-## 搜索**Entity**
-搜索框用于快速筛选和定位具有指定关键字的**Entity**。当场景中拥有大量**Entity**，或包含复杂的层级关系时，使用搜索框能够有效提高您的工作效率。
+## Add **Entity**
+Click the ![add-button](/manual/start/editor-overview/add-button.png) in the upper-left corner in the panel will show you the **Entity** creation menu, whose features includes:
+* **Create Empty**: Create an empty **Entity** in the scene.
+An empty **Entity** solely contains its **Transform information**, i.e. its position, rotation and scale. The default property values are:
+  - ***Position*** x=0, y=0
+  - ***Rotation*** 0
+  - ***Scale*** x=1, y=1
+* **Create Empty Child**
+Create a **Child Entity** that belongs to the selected **Entity**.
+For the situation of no **Entity** is selected, this function will create an empty **Entity** as a root one, which behaves exactly the same as **Create Empty** function.
+
+## Search **Entity**
+The search box is designed for filtering and locating **Entities** with specific keywords quickly. When there are numerous **Entities** in the scene, or the relationship between them are quite complicating, the search box will improve your efficiency in a great deal.
 
 # Assets面板
 ![assets-panel](/manual/start/editor-overview/assets-panel.png)
