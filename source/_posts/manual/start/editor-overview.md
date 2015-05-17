@@ -207,140 +207,149 @@ For the situation of no **Entity** is selected, this function will create an emp
 ## Search **Entity**
 The search box is designed for filtering and locating **Entities** with specific keywords quickly. When there are numerous **Entities** in the scene, or the relationship between them are quite complicating, the search box will improve your efficiency in a great deal.
 
-# Assets面板
+# Assets Panel  
 ![assets-panel](/manual/start/editor-overview/assets-panel.png)
 
-**Asset（资源）** 是游戏中一切展现元素和逻辑控制的组成基础，这些**Asset**属于整个游戏项目，为所有游戏场景共有。只有拥有对应的**Asset**，场景中的**Entity**才能够发挥各自的作用，例如展示相应的图形、调用脚本进行逻辑控制等。Fireball引擎中，**Asset** 可以是以下类型：
+**Assets**, belonging to the entire project, are basic elements for visual presents and logic controls of a game, and are shared among all scenes. **Entities** become useful, such as drawing graphics and executing scripts, only if there are corresponding **Assets**. In Fireball Engine, **Assets** can be of following types:
 
-* Texture（纹理）
-* Normal Map（法向贴图）
-* Sprite（精灵）
-* Sprite Animation（精灵动画）
-* 音乐音效
-* 游戏字体
-* Fire-shell脚本
-* Atlas图集
-* 场景
+* Textures
+* Normal Maps
+* Sprites
+* Sprite Animations
+* Music and sound effects
+* Fonts
+* Fire-shell scripts
+* Atlases
+* Scenes
 
-Fireball Engine中，为不同类型的**Asset**提供了不同的控制行为，使其可以匹配不同类型的**Component**。更多详细信息请参见Fireball Engine的API开发文档。
+There are different behaviours for different **Assets** that varies among **Components**. For more information please refer to Fireball Engine API documentaion.
 
-## Asset列表
+## Asset List
 
-游戏项目中的**Asset**按照目录关系进行组织，以*Assets*文件夹为根目录，因此Fireball Editor只会加载*Assets*目录下的**Assets**。
-对于一个完整的游戏来说，其项目中可能包含大量**Asset**，因此我们强烈建议按照**Asset**的类别组织目录以方便查找，例如所有脚本**Asset**均放置于*script*目录下，界面相关的**Asset**放置于*ui*目录下，以此类推。
-选中列表中的**Asset**后，会在**Inspector面板**中显示所选**Asset**的属性。您可以使用 <kbd>Shift</kbd> 键和 <kbd>Ctrl</kbd> 键来进行连续多选和不连续多选。
-在列表中拖动**Asset**可以改变所选**Asset**所属的目录，以便对其进行更好的归纳组织。
-如需将**Asset**放入当前场景，可将其拖拽到**Hierarchy面板**中，该**Asset**将自动被转换为**Entity**放入场景。
-> 此处有一项特例：场景**Asset**不能通过拖拽放入**Hierarchy**面板中，因为一个场景不能够包含另一个场景。您可以通过双击场景**Asset**来打开所选场景。
+**Assets** of a project are organized by folders. The *Assets* folder is used as root, which means that Fire Editor will load the **Assets** placed in *Assets* folder and its sub folders. There can be numerous **Assets** for a complete game, so it is suggested to organize **Assets** by sub folders for your own convenience. For instance, all scripts should be in the *script* folder, while UI related **Assets** be in the *ui* folder, etc.
 
-在Asset列表中点击鼠标右键可以打开右键菜单，其中：
+Once an **Asset** is selected in the list, its property will be shown in the **Inspector Panel**. You can do multiple selection by <kbd>Shift</kbd> key or <kbd>Ctrl</kbd> key.
+
+You can set the which folder it belongs to by dragging an **Asset** for better structure.
+
+If you want to put an **Asset** into the current scene, simply drag it into the **Hierarchy** panel. The **Asset** will be converted to **Entity** automatically and be placed into the scene.
+> Here is an exception: scenes cannot be dragged into **Hierarchy Panel**, for them cannot be contained by another scene. You can open the scene **Assets** by double-clicking them.
+
+Click right mouse button in the list will pop up a context menu, whose features includes:
 * **Create**
-  - **New Folder**: 在当前选中的文件夹下创建新的子文件夹。
-  - **New Script**: 创建新的Fire-shell脚本。新创建的脚本会提供基础的编辑模版，详情请查阅API开发文档。
-  - **New Scene**: 创建新的场景。
-  - **New Atlas**: 创建新的Atlas图集。
-  - **New Sprite(Standalone)**: 创建静态Sprite（精灵）对象。必须选中一项静态图片作为材质才能创建。
-  - **New Sprite Animation**: *施工中*
-* **Rename**: 重命名选中的**Asset**
-* **Delete**: 删除选中的**Asset**。您也可以使用 <kbd>Delete</kbd> 键删除。
-* **Reimport**: 重新加载Asset列表中的所有**Asset**。
-* **Show in Explorer**: 打开文件管理器，并定位到选中的**Asset**文件。
-* **Show in Library**: 打开文件管理器，并定位到*Library*目录下选中**Asset**的元数据文件。
-* **Show Uuid**: 在**Console面板**中显示选中**Asset**的唯一标识Uuid。
+  - **New Folder**: Create a new sub folder in the selected folder.
+  - **New Script**: Create a new fire-shell script. A basic template will be provided in a new script. Details can be found in API documentation. 
+  - **New Scene**: Create a new scene.
+  - **New Atlas**: Create a new atlas (image pack).
+  - **New Sprite(Standalone)**: Create a static sprite object. An image as texture must be selected first.
+  - **New Sprite Animation**: *In construction*
+* **Rename**: Rename the selected **Asset**.
+* **Delete**: Delete the selected **Asset**. You can do so with <kbd>Delete</kbd> key as well.
+* **Reimport**: Reimport all **Assets** in the Asset List.
+* **Show in Explorer**: Open the system file explorer and locate to the **Asset** file.
+* **Show in Library**: Open the system file explorer and locate to the meta file of the selected **Asset** in the *Library* folder.
+* **Show Uuid**: Print the UUID of the selected **Asset** in the **Console Panel**.
 
-## 新增**Asset**
-单击左上角的![add-button](/manual/start/editor-overview/add-button.png)按钮将弹出**Asset**的创建菜单，其中：
-* **New Folder**: 在当前选中的文件夹下创建新的子文件夹。
-* **New Script**: 创建新的Fire-*hell脚本。新创建的脚本会提供基础的编辑模版，详情请查阅API开发文档。
-* **New Scene**: 创建新的场景。
-* **New Atlas**: 创建新的Atlas图集。
-* **New Sprite(Standalone)**: 创建静态Sprite（精灵）对象。必须选中一项静态图片作为材质才能创建。
-除了使用新增按钮添加**Asset**外，您也可以直接将欲添加的文件拖拽到**Asset面板**上来将其添加到项目中。
+## Add **Assets**
+Click the ![add-button](/manual/start/editor-overview/add-button.png) button in the upper-left corner will pop up the **Asset** adding menu, whose features include:
 
-## 搜索**Asset**
-搜索框用于快速筛选和定位具有指定关键字的**Asset**。当项目中拥有大量**Asset**时，使用搜索框能够有效提高您的工作效率。
+  - **New Folder**: Create a new sub folder in the selected folder.
+  - **New Script**: Create a new fire-shell script. A basic template will be provided in a new script. Details can be found in API documentation. 
+  - **New Scene**: Create a new scene.
+  - **New Atlas**: Create a new atlas (image pack).
+  - **New Sprite(Standalone)**: Create a static sprite object. An image as texture must be selected first.
+You can also add new files to the **Asset Panel** by drag and drop.
 
-# Inspector面板
-**Inspector面板**使您可以查看并编辑当前选中项目的属性。
-无论您选中的是场景中的**Entity**，还是资源库中的**Asset**，**Inspector面板** 都会立即显示其可以编辑的关联属性和数值，而在**Inspector面板** 中做出的修改也将实时应用到所选项目上，而无须重新编译游戏。
+## Search **Assets**
+The search box is designed for filtering and locating **Assets** with specific keywords quickly. When there are numerous **Assets** in the scene, or the relationship between them are quite complicating, the search box will improve your efficiency in a great deal.
 
-## **Entity** 属性编辑
+# Inspector Panel
+The **Inspector Panel** allows you to inspect and edit properties of selected items.
+The **Inspector Panel** will show editable properties and their values as soon as you select an **Asset** as well as an **Entity**. All modifications made in inspector will be applied onto selected item without recompiling.
+
+## **Entity** Property Editing
 
 ![inspector-entity](/manual/start/editor-overview/inspector-entity.png)
-* 启用/禁用复选框
-  通过勾选/清空该复选框，可以启用或禁用当前编辑的**Entity**。禁用的**Entity**将不会在游戏场景中显示。
-* 名称文本框
-  修改当前选中的**Entity**的名称，以便更易查找和识别场景中的**Entity**。不同的**Entity**可以重名，但是我们建议您遵循统一的命名规范来为游戏项目中的**Entity**命名，以降低项目的开发难度和维护难度。您也可以通过**Hierarchy面板**来为**Entity**命名。
-* 新增**Component**按钮
-  您可以为**Entity**添加**Component（组件)**以使其具备相应的行为和功能。
-  单击右上角的![add-button](/manual/start/editor-overview/add-button.png)按钮将弹出**Component**新增菜单，包括：
-  - **Scripts**: 将Fire-shell脚本绑定到该**Entity**上以控制其行为。Fireball Editor将自动搜索Asset库中所有的脚本，并以子菜单的形式列举出来以便快速选择。
-  - **SpriteRenderer**: 新增Sprite精灵渲染组件，使该**Entity**能够将指定的Sprite精灵**Asset**渲染到场景中。
-  - **BitmapText**: 使用位图字体在场景中显示文本。
-  - **Text**: 使用系统字体在场景中显示文本。
-  - **Camera**: 新增游戏摄影机，用于控制游戏的视角。
-  - **AudioSource**: 新增音频播放源，用于在游戏场景中播放音乐或音效。
-  - **Sprite Animation**: 新增Sprite精灵动画控制器。*施工中*
-* **Component**列表
-  这里是**Inspector面板**的主要工作区域，其中包括了该**Entity**所拥有的所有**Component**及**Component**的可编辑属性。通常情况下，**Entity**的**Component**根据被添加的顺序进行排列，但是`Fire.Transform`会始终显示在第一个，因为它是**Entity**的基本组件。点击**Component**名称左侧的箭头图标可以展开或折叠该**Component**的详细信息以节省空间。点击名称右侧的“X”图标将从**Entity**中删除该**Component**。
-  关于每种**Component**属性的详细说明，请参阅相应**Component**的说明文档。
+* Enable/Disable checkbox
+  You can enable or disable the selected **Entity** by ticking or unticking the checkbox. Disabled **Entities** will not be shown in the scene.
+* Name textbox
+  Change the name of the selected **Entity** for better identification. Different **Entities** can have a same name, however, we suggest you to name your **Entities** following certain rules, in order to reduce the difficulty of development and maintenance. You can rename **Entities** in the **Hierarchy Panel** as well.
+* New **Component** Button
+  You can add **Components** for **Entities** to make them acquire certain functions and behaviours.
+  Click the ![add-button](/manual/start/editor-overview/add-button.png) button in the upper-right corner will pop up the **Component** adding menu, whose features include:
+  - **Scripts**: Bind a Fire-shell script to the **Entity** for behaviour controlling. Fireball will search all scripts in the asset library, and list them in the sub-menu for quick selection.
+  - **SpriteRenderer**: Add a sprite renderer component to make the **Entity** render specified sprite **Asset** in the scene.
+  - **BitmapText**: Draw texts with bitmap font in the scene.
+  - **Text**: Draw texts with system fonts in the scene.
+  - **Camera**: Add a camera to control the game view.
+  - **AudioSource**: Add a audio source for playing music or sound effects.
+  - **Sprite Animation**: Add a sprite animation controller. *施工中*
+* **Component** List
+  This is the main working area of the **Inspector Panel**, including all **Components** of the selected **Entity** and all their editable properties. Typically, **Components** of an **Entity** will be listed in the sequence as added, but `Fire.Transform` will be the first one constantly, as it is the basic component. Click the arrow icon on the left of **Component** name will expand or collapse its details, which can save you some space. Click the X button will delete the **Component** from the **Entity**.
+  For details of **Component** properties, please refer to **Component** documentation.
 
-## **Asset** 属性编辑
+## **Asset** Property Editing
 
 ![inspector-asset](/manual/start/editor-overview/inspector-asset.png)
 
-相比**Entity**的属性编辑面板，**Asset**的属性编辑面板要简洁很多。这是因为**Asset**并不作为游戏场景直接使用的对象，无需进行与场景相关的详细参数设置，而且它们大多数都是从外部被导入的，通常情况下需要使用相应的外部工具进行编辑（如图像处理软件）。
+Comparing with **Entity** property panel, the one of **Assets** are much simpler, for the reason that **Assets** are not used directly in game scenes, which makes them unnecessary to be edited in detail in the editor - they are always fine tuned in particular external tools (such as image processing softwares). 
 
-总的来说，**Asset**属性编辑面板中的参数由两种类别组成，但部分种类的**Asset**可能只拥有其中一种类别的属性可供编辑：
+Generally, parameters in **Asset** property panel consist of two major types (some kinds of **Assets** probably have only one type of parameters for editing):
 * **Meta**
-  **Asset**在Fireball Editor中的元数据，主要包含了被编辑的**Asset**在引擎中的行为或表现方式。例如，对于导入的图片文件，可以设置其**Asset**类型为Sprite精灵、纹理或法向贴图。
+  Meta data of **Assets** in Fireball Editor, including their behaviour or presenting methods in the engine. For instance, you can set the **Asset** type as sprite, texture or normal map for imported images.
 * **Asset**
-  被编辑**Asset**的原始资源属性，例如图片的尺寸、音频的采样率等。这些属性通常情况下不能在Fireball Editor中进行编辑，只能作为查阅之用。
+  The raw properties of the **Asset**, such as the image size, the audio sampling rate, etc. These properties usually cannot be changed in Fireball Editor but for reference.
 
-**Asset**属性编辑面板还提供了**Asset**的预览窗口，以供开发者对所编辑的**Asset**进行确认。对于不同种类的**Asset**：
-* 如果是图形文件，预览窗口将在窗口尺寸的限制内显示该图片，并在窗口底部注明图片的原始尺寸。
-* 如果是音频文件，预览窗口将提供音频的回放控制工具栏，使您可以播放和停止播放该音频文件，并且可以控制是否循环播放。同时，预览窗口中将显示该音频文件的一些基本信息（声道、采样率、音频格式等）以及回放的时间信息。
+**Asset** property panel provides preview window as well, for ensuring the editing and modifications. For different types of **Assets**:
+* If it's an image, preview window will show the image within the constraint of the window size, and note its original size in the bottom.
+* If it's an audio, preview window will show a playback tool bar for playing, stopping and looping the audio. Some basic information will be shown in the preview window meanwhile, including channels, sampling rate, format and playback time.
 
-在**Inspector面板**中修改**Asset**的属性后，需要单击面板右上角的![inspector-apply](/manual/start/editor-overview/inspector-apply.png)以将更改应用到所有关联的**Entity**上，或单击![inspector-revert](/manual/start/editor-overview/inspector-revert.png)撤销修改。
+的You will need to click the ![inspector-apply](/manual/start/editor-overview/inspector-apply.png) button in the upper-right corner of the **Inspector Panel** once making changes to an **Asset**, for applying your modifications to relevant **Entities**. Or you can click ![inspector-revert](/manual/start/editor-overview/inspector-revert.png) button to discard the changes you made.
 
-# Scene面板
+# Scene Panel
 ![scene-panel](/manual/start/editor-overview/scene-panel.png)
-**Scene面板**用于对当前的游戏场景进行编辑，可以说是游戏制作中最直观、最主要的编辑面板。
-**Scene面板**通常被用于设计和构建游戏关卡的地图，例如对关卡背景、地图地面、障碍物、可视元素等进行设置。得益于**Scene面板**的可视化特性，它也被用于设计UI（用户交互界面）布局等一切希望所见即所得的游戏元素。
-**需要注意的是，场景中必须有一个摄影机（Camera)用于提供视角，否则在游戏中将看不到任何画面。**不过通常情况下您并不需要担心这一点，因为在创建每个场景时，Fireball Editor都提供了一个默认的摄影机。
+The **Scene Panel** is designed to editor the current game scene. It is the most 'frank' panel and most frequently used one in game making process, if you ask me.
 
-**Scene面板**的使用十分简单。您只需要在其中单击选中或框选所需编辑的**Entity**，然后使用工具栏上相应的变换工具对其进行位置、旋转或缩放的更改便可即时看到变化结果。当某个或多个**Entity**被选中时，在**Hierarchy面板**中会对选中项进行高亮显示，同时**Scene面板**中也会显示控制柄（控制柄的显示位置取决于您的**控制柄位置设置**，详情请参见[工具栏](#toolbar)的使用说明）。
+The **Scene Panel** are usually used for stage designing and building, such as setting up background, floor, obstacles and other visual elements. Thanks to its visual feature, it can also be used for UI layout and any WYSIWYG elements.
 
-当游戏场景过大时，您可以使用鼠标滚轮来缩放场景的显示范围。
+**It is notable that every scene must have at least one camera for game view, or no picture will be shown when game runs.** However, it is a relief that you don't need to worry about it. Fireball Editor has created a default camera for you when a scene is created.
 
-通过面板右上角的搜索框，您可以通过**Entity**的名称来快速选中场景中对应的项目。
+The **Scene Panel** is very easy to master. All you need is to click or drag a selection box to selected the **Entities** you want to edit, transform them will the tools in tool bar, and check the results. When multiple **Entities** are selected, the items will be highlighten in the **Hierarchy Panel**, and handlers will be shown in the **Scene Panel** (but their positions depends on your **handler position setting**, referring to the [Toolbar](#toolbar) manual).
 
-# Game面板
+When the scene is large, you can use your mouse scroller for zooming.
+
+Also, you can quick select **Entities** by putting keywords in the search box in the upper-right corner.
+
+# Game Panel
 ![game-panel](/manual/start/editor-overview/game-panel.png)
-**Game面板**是游戏场景的运行窗口。其本身并不提供游戏场景的编辑功能，但是在游戏场景进入运行状态后，它将与最终的游戏运行环境完全一致——这意味着您可以使用**Game面板**查看游戏的最终运行效果，以及进行游戏中的交互操作。
+The ** Game Panel** is where the game runs. It has no editing functions itself, but while game running, it will simulate the user-end environment, which allows you to ensure what the game looks like in users' eyes, and to check the in-game interactions.
 
-**Game面板**中的游戏视角取决于您对摄影机**Entity**的设置，不过您可以通过面板的工具栏设置不同的画面比例，以模拟游戏在不同平台和屏幕尺寸下的运行效果。大部分画面比例通过其名称就可以知道其含义，而此处将对其中几种特殊的比例和设置进行说明：
-* **Free Aspect**: 画面大小根据当前**Game面板**的尺寸进行调整，确保填满面板的显示范围。
-* **Custom Size**: 自定义画面尺寸。选中此项后，您可以使用工具栏右侧的数值框对画面尺寸进行精确的自定义设置。尺寸大小的单位为像素。
-* **Rotate**: 勾选此项后，游戏画面将进行90°旋转，以模拟横屏效果。
+Game view in the **Game Panel** depends on your settings of the camera **Entity**. The good news is, you can set screen ratio in the **Game Panel** to simulate different platforms and screens. Most aspect ratios are self-explained by their names, however there are some special ones:
+* **Free Aspect**: Fit the display area with the **Game Panel** size, using the entire available space.
+* **Custom Size**: Customize the size of the display area. By selecting this, you can set width and height accurantly in the value boxes to the right, with the unit of pixels.
+* **Rotate**: By ticking this option, the game display will rotate by 90 degrees, for landscape simulation.
 
-# Console面板
+# Console Panel
 ![console-panel](/manual/start/editor-overview/console-panel.png)
-**Console面板**主要用于对游戏脚本的运行状态进行监控，以及通过输出的调试信息进行脚本调试。其中的信息可能来自您编写的有脚本，也可能来自Fireball Editor本身。
+The **Console Panel** is for monitoring game script running status and console output, in purpose of debugging. Information printed here can be from your scripts, or Fireball Editor itself.
 Fireball Editor通过不同的颜色对不同级别的控制台输出信息进行区分，严重级别从低到高分别为：
-* **Log**（灰色）: 通常为仅用于调试的跟踪信息。
-* **Info**（蓝色）: 通常用于指明运行状态或进行通知的信息。
-* **Warn**（黄色）: 通常用于表明有不正常的运行状态，但尚不会导致程序无法运行。
-* **Error**（红色）: 通常用于告知遇到了严重的、影响程序正常运行的错误，如未被捕获的异常等。
+Fireball Editor distinguish different levels of information by colors. The severities are ordered from the lowest to the highest as:
+* **Log** (grey): information usually for tracking or debugging.
+* **Info**（blue）: information usually for notification or notes.
+* **Warn**（yellow）: information usually for indicating that there is an abnormal situation, but won't crash the game.
+* **Error**（red）: information for fatal errors which will crash the game, such as uncaught exceptions.
 
 当程序的控制台输出很多时，可以通过**Console面板**工具栏中提供的工具进行管理：
-* **清空所有信息** ![console-clear](/manual/start/editor-overview/console-clear.png): 清空控制台输出信息列表。
-* **筛选框** ![console-filter](/manual/start/editor-overview/console-filter.png): 通过关键字对控制台信息进行筛选。当勾选后面的**Regex**复选框时，筛选文本框中的文本将被认为是正则表达式。
-* **级别筛选下拉框** ![console-level](/manual/start/editor-overview/console-level.png): 只显示某一严重级别的控制台输出。当选择**All**时将显示所有级别的控制台输出。
-* **Collapse复选框**: 当勾选此复选框时，相同内容的控制台输出信息将被合并，并在被合并的信息前显示一个数字，以指明该信息已被重复显示了多少次。当输出大量重复信息，且信息的输出顺序不重要时，使用折叠功能能够有效节省**Console面板**的使用空间。
+You can manage information in the **Console Panel** when there is too many:
+* **Clear** ![console-clear](/manual/start/editor-overview/console-clear.png): Clear all console outputs.
+* **Filter box** ![console-filter](/manual/start/editor-overview/console-filter.png): 
+Filter console information by keywords. When **Regex** checkbox is ticked, content in the filter box is considered as a regular expression.
+* **Level filter combobox** ![console-level](/manual/start/editor-overview/console-level.png):
+Display information of only one severity level. All levels will be shown when **All** is selected.
+* **Collapse checkbox**: Ticking this checkbox will merge same outputs, with a leading number that tells how many times it has been repeated. This feature is rather useful and space economic when there are many outputs and their sequence don't matter.
 
-# 状态栏
-*施工中*
+# Status Bar
+*In construction*
 
-# 工具窗口 <a id="tool-windows"></a>
-*施工中*
+# Tool Windows <a id="tool-windows"></a>
+*In construction*
