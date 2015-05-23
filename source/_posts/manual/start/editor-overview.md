@@ -332,14 +332,13 @@ Game view in the **Game Panel** depends on your settings of the camera **Entity*
 # Console Panel
 ![console-panel](/manual/start/editor-overview/console-panel.png)
 The **Console Panel** is for monitoring game script running status and console output, in purpose of debugging. Information printed here can be from your scripts, or Fireball Editor itself.
-Fireball Editor通过不同的颜色对不同级别的控制台输出信息进行区分，严重级别从低到高分别为：
-Fireball Editor distinguish different levels of information by colors. The severities are ordered from the lowest to the highest as:
+
+Fireball Editor distinguishes different levels of information by colors. The severities are ordered from the lowest to the highest as:
 * **Log** (grey): information usually for tracking or debugging.
 * **Info**（blue）: information usually for notification or notes.
 * **Warn**（yellow）: information usually for indicating that there is an abnormal situation, but won't crash the game.
 * **Error**（red）: information for fatal errors which will crash the game, such as uncaught exceptions.
 
-当程序的控制台输出很多时，可以通过**Console面板**工具栏中提供的工具进行管理：
 You can manage information in the **Console Panel** when there is too many:
 * **Clear** ![console-clear](/manual/start/editor-overview/console-clear.png): Clear all console outputs.
 * **Filter box** ![console-filter](/manual/start/editor-overview/console-filter.png): 
