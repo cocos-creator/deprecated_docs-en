@@ -1,4 +1,4 @@
-title: 对象访问
+title: Component Access
 categories: manual
 permalinks: manual/scripting/component/access
 ---
