@@ -3,13 +3,13 @@ categories: manual
 permalinks: manual/scripting/component/access
 ---
 
-## 用脚本控制
+## Controlling By Script
 
-在 Inspector 面板，你可以对各个 Component 进行修改。当你修改了 Transform 的 Position，就等于设置了 Entity 的 Position。你也可以通过修改 SpriteRenderer 的 Color，来改变 Entity 的渲染颜色。但更多的，Component 的属性也能用脚本进行修改，两者区别在于，脚本能够在一段时间内连续地修改属性、过渡属性，实现渐变效果。脚本也能够响应玩家输入，能够修改、创建和销毁 Component 或 Entity，来实现各种各样的游戏逻辑。为此需要能够访问各个 Component 和 Entity。
+Components can be modified in the Inspector Panel. Say, changing the `position` of `Transform` component will changes the attached entity's position, and a different `Color` value of `SpriteRenderer` component determines in which color the entity is rendered. But such controlling can go further by script. The difference between two controlling methods is that script controlling is able to make a transition to the change, by modifying properties continuously during a time span. Scripts also response to players' input, create or destroy Components and Entities, which implements all kinds of gameplay logic.
+To make them happen, we'll need to talk about how to access Entities and Components in a script.
 
-## 访问所在的Entity
-
-获取 Component 所在的 Entity 是很常见的操作，只要在 Component 方法里访问 this.entity 变量：
+## Accessing Attached Entity
+Retrieving the Entity that a Component is attached to is a common action. All need to be done is to access the `this.entity` variable:
 
 ```js
     start: function () {
@@ -18,9 +18,11 @@ permalinks: manual/scripting/component/access
     }
 ```
 
-## 访问Component
+## Accessing Components
 
-访问同一个 Entity 上的其它 Component 是最简单最常用的操作。如前面所说，一个 Component 只是类的一个实例对象，因此你要做的第一件事就是获得这个对象的引用。你要调用的接口是 Component上的 **getComponent** ，它会返回 Component 所在的 Entity 的指定类型的 Component 实例，通常你会定义一个变量来保存这个引用。然后你就能通过这个变量直接访问 Component 里的任何属性了。
+Accessing other Components attached to the same Entity is one of the easiest and most commly used action.
+
+As mentioned in the previous chapter, a Component is merely an instance of the class. So step one, get the object reference. What you need is the Component interface `getComponent`, which returns the Component instance, attached to the Entity, of specified type. Usually this reference to instance is saved in a variable, which can be used for accessing any property in the Component.
 
 ```js
     start: function () {
@@ -31,7 +33,7 @@ permalinks: manual/scripting/component/access
     }
 ```
 
-Fire.SpriteRenderer 是 Fireball 内置的 Component，你也可以为 getComponent 传入一个字符串形式的类名。
+`Fire.SpriteRenderer` is a Fireball built-in Component. Alternatively, string-formed class name is also acceptable as the parameter:
 
 ```js
     start: function () {
@@ -41,7 +43,7 @@ Fire.SpriteRenderer 是 Fireball 内置的 Component，你也可以为 getCompon
     }
 ```
 
-你还能调用任意 Entity 上的 getComponent 的方法：
+In fact, you can call the member function `getComponent` of any Entity object:
 
 ```js
     start: function () {
@@ -52,7 +54,7 @@ Fire.SpriteRenderer 是 Fireball 内置的 Component，你也可以为 getCompon
     }
 ```
 
-Transform 用来控制一个 Entity 在游戏场景中的方位和缩放，是最常用的一个 Component。你可以使用 Entity.transform 或 Component.transform 来快速获取 Transform。于是上面的代码还可以优化成：
+`Transform`, the most common Component, is for controlling an Entity's position, rotation and scaling in the scene. Both `Entity.transform` and `Component.transform` can get you the `Transform`. In our example above, code can be simpler:
 
 ```js
     start: function () {
@@ -60,15 +62,15 @@ Transform 用来控制一个 Entity 在游戏场景中的方位和缩放，是�
     }
 ```
 
-如果在 Entity 上并没有你要的 Component，getComponent 将返回 null，如果你尝试访问 null 的值，将会在运行时抛出 'TypeError' 这个错误。
+`getComponent` returns `null` if the specified Component doesn't to an Entity. Accessing `null` will throw the `TypeError` exception in run-time.
 
-## 访问其它对象
+## Accessing Other Objects
 
-仅仅能访问 Entity 自己的 Component 还往往不够，脚本通常还需要进行多个物体之间的互操作。例如，一门自动瞄准玩家的大炮，就需要不断获取玩家的最新位置。Fireball 提供了几种不同的方法用来访问其它对象：
+Merely accessing Entities' Components is usually not enough - scripts needs to do interops often. For instance, a cannon aiming the player character automatically requires continuing accessing the character's position. That's why Fireball has several ways to access other objects.
 
-### 使用Inspector设置
+### Setting By Inspector
 
-最常用的方式就是直接在 Inspector 中预先设置你需要的对象。这只需要在脚本中声明一个 Entity 类型的属性：
+The easiest way is to set objects needed in advance in the Inspector Panel. It only needs an Entity typed property declared in script.
 
 ```js
 // Cannon.js
@@ -85,15 +87,15 @@ var Comp = Fire.Class({
 });
 ```
 
-这段代码在 **properties** 里面声明了一个 "player" 属性，默认值为 null，并且指定它的对象类型为 Entity。就像是其它语言里面的 `public Fire.Entity player = null;`。属性在 Inspector 中看起来是这样的：
+The code declares a `player` property in `properties`, having `null` as the default value, and specifies the object type as `Fire.Entity`. Consider it as the statement `public Fire.Entity player = null;` in other languages. This property look like this in the Inspector Panel:
 
 ![player-in-inspector-null](/manual/scripting/component/access/player-in-inspector-null.png)
 
-接着你就可以将 Hierarchy 上的任意一个 Entity 拖到 Inspector 的这个属性中。于是这个 Component 实例的 player 属性就会被设置成这个 Entity。
+Then you can drag any Entity from the Hierarchy Panel to the Inspector Panel, to set it as the `player` property of the editing Component instance.
 
 ![player-in-inspector](/manual/scripting/component/access/player-in-inspector.png)
 
-你可以直接访问 player：
+`player` can be accessed directly as:
 
 ```js
 var Comp = Fire.Class({
@@ -111,7 +113,7 @@ var Comp = Fire.Class({
 });
 ```
 
-更棒的是，如果你将属性声明为 Component 类型，当你拖动 Entity 到 Inspector，Entity 上指定类型的 Component 将会被设置给属性。这样就能直接获得你需要的 Component 而不仅仅是 Entity。
+Here is an exciting feature: if you declare a property as a Component type, and drag an Entity into the Inspector Panel, the Component of the specified type in that Entity, instead of the Entity itself, will be assigned to the target property.
 
 ```js
 var Comp = Fire.Class({
@@ -125,11 +127,13 @@ var Comp = Fire.Class({
 });
 ```
 
-当你要设置一些对象的关联，使用属性是最方便的。你甚至可以将属性的默认值由 `null` 改为数组`[]`，这样你就能在 Inspector 中关联任意多个对象。不过如果需要在运行时动态获取其它对象，还需要用到下面介绍的查找方法。
+It is the most convenient way to connect objects by properties. You can even set the property's default value to `[]`, an empty array, instead of `null`. Array makes it possible to assign multiple objects in the Inspector Panel.
 
-### 查找子物体
+However drag & drop would be not good enough if accessing objects needs to be done in run-time. That's why you'll need the find object function described below.
 
-有时候，游戏场景中会有很多个相同类型的对象，像是炮塔、敌人和特效，它们通常都有一个全局的脚本来统一管理。如果用 Inspector 来一个一个将它们关联到这个脚本上，那么工作将很繁冗乏味。为了更好地统一管理这些对象，我们一般会把它们放到一个单独的父物体下，然后通过父物体来获得所有的子物体。
+### Finding Child Objects
+
+Sometimes, multiple game objects of a same category, such as turrets, enemies and FXs, exist in the scene, and are managed altogether by a global script. Dragging and dropping every one of them into the Inspector Panel would be dull and stupid. A better practice is to gather them as child objects of a single parent, and accessing them via the parent.
 
 ```js
 // CannonManager.js
@@ -153,15 +157,16 @@ var Comp = Fire.Class({
 });
 ```
 
-**getChildren** 是 Entity 提供的一个方法，可以获得一个包含所有子 Entity 的数组。还可以使用 Entity 的名字来直接获取对应的子物体，只需要在 Entity 的实例上调用 **find** 方法：
+`getChildren` is an Entity's member function to get an array containing all child Entities.
+It is possible to get a particular child by name as well, by calling an Entity's `find` function.
 
 ```js
 this.entity.find('Main Cannon');
 ```
 
-### 全局名字查找
+### Global Finding By Name
 
-通过 Fire.Entity.find 这个静态方法就能在整个场景中查找指定的 Entity：
+The static function `Fire.Entity.find` allows you to find a particular Entity in the whole scene.
 
 ```js
 // CannonManager.js
@@ -178,6 +183,6 @@ var Comp = Fire.Class({
 });
 ```
 
-请注意：
-- find 既有对象上的实例方法又有类型上的静态方法，两者作用不同，实例方法用于查找子物体，静态方法用于从场景的最上层开始查找全局物体。  
-  查找子物体时路径不能以'/'开头，相反的查找全局物体时路径必须以'/'开头。
+Please note:
+- `find` can be an instance function or a static one. Instance function version is for finding a child object, while static function looks for the object globally, i.e. from the root of the scene and traverse all children until a value can be returned.
+- The find path should not start with `/` when looking for child objects, while it is essential to have `/` when doing global finding.
