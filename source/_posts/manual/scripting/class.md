@@ -1,19 +1,19 @@
-title: 类型定义
+title: Define Class
 categories: manual
 permalinks: manual/scripting/class
 ---
 
 ```
-所有“备注”都属于进阶内容，初学者不需要了解。
+All **Note** parts are advanced skills, which can be skipped if you are a beginner.
 ```
 
-`Fire.Class` 是一个很常用的 API，用于声明 Fireball 中的类，为了方便区分，我们把使用 Fire.Class 声明的类叫做 **FireClass**。相比其它 JavaScript 的类型系统，FireClass 的特别之处在于扩展性强，能够定义丰富的元数据。
+`Fire.Class` declares classes in Fireball. We call classes declared by `Fire.Class` as **FireClass**, in distinction from the rest classes in JavaScript. Comparing with other class systems in JavaScript, FireClass is highly extendable with massive metadata.
 
-## 概述
+## Overview
 
-### 创建Fire.Class
+### Creating FireClass
 
-调用 **Fire.Class** 方法，传入一个原型对象，在原型对象中以键值对的形式设定所需的类型参数，就能创建出所需要的类。
+A class is created by calling `Fire.Class` method, passing in a prototype object, and setting the type parameter by a key-value pair.
 
 ```js
     var Sprite = Fire.Class({
@@ -21,20 +21,20 @@ permalinks: manual/scripting/class
     });
 ```
 
-这段代码将创建好的类赋值给了 Sprite 变量，另外还提供了 `name` 参数来作为类名，类名用于序列化，一般可以省略。
-为了论述方便，本文将这里传入的这个 `{ name: 'Sprite' }` 对象统称为**原型对象**，本文重点介绍如何定义原型对象。
+The code above assigns the created class to `Sprite` variable, while using `name` parameter for setting class name. Class names are for serialization, and can be ignored usually.
+The `{name: 'Sprite'}' object, in our example, will be referred as a **Prototype Object** in this chapter for simplification. This chapter is mainly about how to define prototype objects.
 
-### 创建对象
+### Creating Object
 
-由于 FireClass 本身就是一个 JavaScript 构造函数，使用 new 就可以创建对象：
+An object is created by `new` since FireClass is a JavaScript constructor in essence.
 
 ```js
     var obj = new Sprite();
 ```
 
-### 构造函数
+### Constructor
 
-如果在原型对象中声明了 `constructor`，指定的构造函数就将在每个实例的创建过程中调用，FireClass 的构造函数**不允许**定义**构造参数**。
+Specified constructor is called during the creation of each instance if `constructor` is defined in the prototype object. **Construction parameters** are **NOT** allowed in FireClass constructors.
 
 ```js
     var Sprite = Fire.Class({
@@ -45,81 +45,81 @@ permalinks: manual/scripting/class
     var obj = new Sprite();
 ```
 
-### 判断类型
+### Testing Type
 
-`instanceof` 可以用来判断对象的类型：
+`instanceof` tests an object's type:
 
 ```js
     console.log(obj instanceof Sprite);     // true
 ```
 
-**备注**
+**Note**
 
-- 如果不需要序列化，类名可以省略。类名可以是任意字符串，但不允许重复。可以使用 Fire.getClassName 来获得类名，使用 Fire.getClassByName 来查找对应的类。
-- 专业开发者如果确实需要使用构造参数，可以在 constructor 的 arguments 里获取。但如果这个类需要序列化，必须保证构造参数都缺省的情况下仍然能 new 出对象。
+- Class names can be ignored if serialization is unnecessary. Class names can be any string and must be distinct. Use `Fire.getClassName` to get class name, and `Fire.getClassByName` to look for a particular class.
+- For professional developers who need to use construction parameters, they can be retrieved from `arguments` in `constructor`. In this case, serialization requires the class is able to `new` an instance with default parameter values.
 
-## 成员
+## Members
 
-### 实例变量
+### Instance Variables
 
-实例变量请统一在构造函数中声明：
+Instance variables should be declared in the constructor.
 
 ```js
     var Sprite = Fire.Class({
         constructor: function () {
-            // 声明实例变量并赋默认值
+            // Declare instance variables and assign default values
             this.url = "";
             this.id = 0;
         }
     });
     var obj = new Sprite();
-    // 赋值
+    // Assignment
     obj.url = 'img/fb.png';
     obj.id = 1;
 ```
 
-### 实例方法
+### Instance Methods
 
-实例方法请在原型对象中声明：
+Instance methods are defined in the prototype object.
 
 ```js
     var Sprite = Fire.Class({
         constructor: function () {
             // ...
         },
-        // 声明一个名叫"load"的实例方法
+        // Defining an instance method named "load"
         load: function () {
             // load this.url
         };
     });
     var obj = new Sprite();
-    // 调用实例方法
+    // Call the instance method
     obj.load();
 ```
 
-### 类变量和类方法
+### Static Variables and Static Methods
 
-静态的类变量或类方法可以直接添加到定义好的 Class：
+Static class variables and methods can be added directly to a defined Class:
 
 ```js
     var Sprite = Fire.Class({ ... });
 
-    // 声明类变量
+    // Declaring a static variable
     Sprite.count = 0;
-    // 声明类方法
+    // Defining a static method
     Sprite.getBounds = function (spriteList) {
         // ...
     };
 ```
 
-也可以在原型对象的 `statics` 中声明：
+Or, to be defined in the `statics` of a prototype object:
 
 ```js
     var Sprite = Fire.Class({
         statics: {
-            // 声明类变量
+            // Declaring a static variable
             count: 0,
-            // 声明类方法
+            // Defining a static method
             getBounds: function (spriteList) {
                 // ...
             }
@@ -127,86 +127,86 @@ permalinks: manual/scripting/class
     });
 ```
 
-**完整代码如下：**
+**The complete example code is as below: **
 
 ```js
     var Sprite = Fire.Class({
         name: 'Sprite',
         constructor: function () {
-            // 声明实例变量并赋默认值
+            // Declare instance variables and assign default values
             this.url = "";
             this.id = 0;
         },
-        // 声明一个名叫"load"的实例方法
+        // Defining an instance method named "load"
         load: function () {
             // load this.url
         };
     });
-    // 实例化
+    // Instantiation
     var obj = new Sprite();
-    // 访问实例变量
+    // Accessing instance variable
     obj.url = 'sprite.png';
-    // 调用实例方法
+    // Calling instance method
     obj.load();
 
-    // 声明类变量
+    // Declaring a static variable
     Sprite.count = 0;
-    // 声明类方法
+    // Defining a static method
     Sprite.getBounds = function (spriteList) {
         // ...
     };
 
-    // 调用类方法
+    // Calling static method
     Sprite.getBounds([obj]);
 ```
 
-**备注**
+**Note**
 
-- 如果是**私有**成员，建议在成员命名前面加上下划线"_"以示区分。
+- It is suggested to use "_" as naming prefix for **private** members.
 
     ```js
     var Sprite = Fire.Class({
         name: 'Sprite',
         constructor: function () {
-            // 私有实例变量
+            // Private instance variable
             this._myData = 0;
         },
-        // 私有实例方法
+        // Private instance method
         _load: function () {
             // ...
         };
     });
-    // 私有类变量
+    // Private class variable
     Sprite._list = [];
     ```
 
-- 如果是**私有**静态成员，也可以用闭包(Closure)实现。
+- **Private** static members can be implemeted by closure.
 
     ```js
-    // 私有静态方法
+    // Private static method
     var doLoad = function (sprite) {
         // do load ...
     };
-    // 私有静态变量
+    // Private static variable
     var url = 'foo.png';
 
     var Sprite = Fire.Class({
         load: function () {
-            // 调用局部作用域内的方法
+            // Calling local scoped method
             doLoad(this, url);
         };
     });
     ```
 
-- 这里所说的“实例成员”(instance member)包含了“实例变量”(member variable)和“实例方法”(instance method)。
-- 这里所说的“类成员”(static member)包含了“类变量”(static variable)和“类方法”(static method)。
-- 类变量的继承实现方式是将父类的静态变量**浅拷贝**给子类实现的。
+- "Instance members" include both member variables and member methods.
+- "Static members" include both static variables and static methods.
+- The implement of static variable inheritance is to assign shallow copies of base class static variables to inherit class.
 
-## 继承
+## Inheritance
 
-### 声明方式
+### How To Declare
 
-继承时请在原型对象里设置 `extends` 为父类：
+To inherit, define prototype object's `extends` as the base class:
 
 ```js
     // define base class
@@ -221,7 +221,7 @@ permalinks: manual/scripting/class
     var obj = new Sprite();
 ```
 
-`instanceof` 也可以用来判断对象所在的类型是否继承自某个父类：
+`instanceof` can also test if an object inherits from a specified base class:
 
 ```js
     var sub = new Sprite();
@@ -230,9 +230,9 @@ permalinks: manual/scripting/class
     console.log(base instanceof Sprite);    // false
 ```
 
-### 父构造函数
+### Constructor of Base Class
 
-请注意，不论子类的构造函数是否提供，子类实例化前父类的构造函数都会先被自动调用。
+Please note that no matter a constructor is provided in a inherited class, the constructor of its base class is always called before inherited class's instantiation.
 
 ```js
     var Node = Fire.Class({
@@ -243,9 +243,9 @@ permalinks: manual/scripting/class
     var Sprite = Fire.Class({
         extends: Node,
         constructor: function () {
-            // 子构造函数被调用前，父构造函数已经被调用过，所以 this.name 已经被初始化过了
+            // Consturctor of base class is called already, so this.name has been initialized.
             console.log(this.name);    // "node"
-            // 重新设置 this.name
+            // Reassigning this.name
             this.name = "sprite";
         }
     });
@@ -253,9 +253,9 @@ permalinks: manual/scripting/class
     console.log(obj.name);    // "sprite"
 ```
 
-### 重载
+### Overriding
 
-所有实例方法都是虚方法，子类方法可以直接重载父类方法：
+All instance methods are virtual methods, and can be overrided in its inherited classes:
 
 ```js
     var Node = Fire.Class({
@@ -272,7 +272,7 @@ permalinks: manual/scripting/class
     console.log(obj.getName());    // "sprite"
 ```
 
-如果想要调用父类方法，必须直接通过父类的 prototype，并且以 call 或 apply 的形式调用：
+To call the base class's method, it has to be called through the prototype of base class, by `call` or `apply`:
 
 ```js
     var Node = Fire.Class({
@@ -290,7 +290,7 @@ permalinks: manual/scripting/class
     console.log(obj.getName());    // "node>sprite"
 ```
 
-使用 `Fire.isChildClassOf` 来判断两个类的继承关系：
+You can use `Fire.isChildClassOf` to test the inheritance between two classes:
 
 ```js
     var Texture = Fire.Class();
@@ -300,13 +300,13 @@ permalinks: manual/scripting/class
     console.log(Fire.isChildClassOf(Texture2D, Texture));   // true
 ```
 
-请注意，两个传入参数都必须是类的构造函数，而不是类的对象实例。如果传入的两个类相等，`isChildClassOf` 也会返回 true。
+Please note that both parameters have to be class constructors (i.e. prototype objects). `isChildClassOf` returns `true` if two class are equal.
 
-**备注**
+**Note**
 
-- 可以通过子类的静态变量 `$super` 来访问父类。
-- 所有实例成员和类成员都将被子类继承。
-- 如果不希望类成员被子类继承，可以用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 声明：
+- You can use the static variable `$super` to access base class.
+- All instance members and static members are inherited by the inherited class.
+- In case there are members that shouldn't be inherited, declare them with [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty):
 
     ```js
         Object.defineProperty(Sprite, 'getBounds', {
@@ -316,7 +316,7 @@ permalinks: manual/scripting/class
             enumerable: false
         });
     ```
-- 如果你想实现原生的 JavaScript 继承，也就是说你的父类和子类都不是 FireClass，那你可以通过 Fire.JS.extend 方法来继承。
+- If the original JavaScript inheritance is required, i.e. both the base class and inherited class are not FireClass, implement it by `Fire.JS.extend` method.
 
 ## 属性
 
