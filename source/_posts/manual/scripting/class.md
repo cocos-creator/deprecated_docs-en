@@ -318,13 +318,13 @@ Please note that both parameters have to be class constructors (i.e. prototype o
     ```
 - If the original JavaScript inheritance is required, i.e. both the base class and inherited class are not FireClass, implement it by `Fire.JS.extend` method.
 
-## 属性
+## Properties
 
-### 属性定义和访问
+### Defining and Accessing Property
 
-属性(Property)是特殊的实例变量，能够显示在 Inspector 中，也能被序列化。属性不在构造函数里定义，而是声明在原型对象的 `properties` 字典里。
+Properties are special instance members, which can be shown in the Inspector Panel and serialized. Properties are not defined in constructor, but in the `properties` dictionary of prototype object.
 
-**下面在 Player 类定义一个 playerName 属性：**
+**Here we define a playerName property in Player class: **
 
 ```js
     var Player = Fire.Class({
@@ -338,16 +338,16 @@ Please note that both parameters have to be class constructors (i.e. prototype o
     });
 ```
 
-这个示例也可在教程[创建和使用脚本](/manual/scripting/component#show-in-inspector)中看到，这样定义后，playerName 就能显示在 Inspector 面板里，并且在场景里保留用户输入的值。
+The example above was also used in the [Component Overview](/manual/scripting/component#show-in-inspector) chapter. Defining like this makes `playerName` shown in the Inspector Panel for storing user's value.
 
-这里的 `default` 用来声明属性的默认值，同时也定义了值类型是字符串。default 可以接受任意类型的参数，但默认值只有在第一次创建对象的时候才会用到，如果是反序列化出来的对象，属性值将会还原为上次序列化前设置的值。
+The `default` attribute is for declaring the default value of a property. In our example, it tells the compiler that the value is a string as well. `default` can take parameters of any type, however it's only used when the object is created for the first time. A deserialized object uses the stored value when serialized, so might not be the default value.
 
-**属性本身也是实例变量，可以直接访问：**
+**Properties are instance members in essence, so can be accessed like:**
 
 ```js
     var Sprite = Fire.Class({
         constructor: function () {
-            console.log(this.width);    // 读取默认 width
+            console.log(this.width);    // Read the default width
         },
 
         properties: {
@@ -362,11 +362,11 @@ Please note that both parameters have to be class constructors (i.e. prototype o
     });
 ```
 
-在构造函数被调用前，属性已经被定义好了，可以在构造函数内访问或者重新给属性赋值。
+Properties are defined before the constructor is called, so they are able to be accessed or reassigned in the constructor.
 
-### 属性参数
+### Property Attributes
 
-每个属性可附带任意多个参数(Attribute)，用于指定在 Inspector 中的显示方式、序列化方式等。
+Multiple attributes can be assgined to a property, to determine how the property is displayed in the Inspector Panel, or the way it's serialized.
 
 ```js
     properties {
@@ -378,22 +378,22 @@ Please note that both parameters have to be class constructors (i.e. prototype o
     }
 ```
 
-以上代码规定了 score 在 Inspector 里只能输入整数，并且当鼠标移到参数上时，显示对应说明。
+The code above constrains user can only input integer value for `score` in the Inspector Panel, with a tip shown when mouse hovering on the input control.
 
-下面是常用参数，详细用法请参阅[属性参数](/manual/scripting/attributes)。
+Here are some useful parameters. For more details please refer to [Property Attributes](/manual/scripting/attributes) in Scripting API documentation.
 
-- type: 限定属性的数据类型
-- visible: 设为 false 则不在 Inspector 面板中显示该属性
-- serializable: 设为 false 则不序列化该属性
-- displayName: 在 Inspector 面板中显示成指定名字
-- tooltip: 在 Inspector 面板中添加属性的 Tooltip
-- multiline: 在 Inspector 面板中使用多行文本框
+- type: Constrains the value type.
+- visible: Hide the property in the Inspector Panel if set to `false`.
+- serializable: Don't serialize the property if set to `false`.
+- displayName: Show the value text as the label for the property in the Inspector Panel.
+- tooltip: Add a tooltip to the property in the Inspector Panel.
+- multiline: Use multi-line text input control in the Inspector Panel.
 
-#### <a name="visible参数"></a>visible参数
+#### <a name="visible参数"></a>`visible` Attribute
 
-默认情况下，是否显示在 Inspector 取决于属性名是否以下划线"_"开头。如果以下划线开头，则默认不显示在 Inspector，否则默认显示。
+Whether a property is shwon in the Inspector Panel depends on, by default, if the property name starts with a "_"(underscore). If so, the property will not be seen in the Inspector Panel, vice versa.
 
-如果要显示在 Inspector，可以设置`visible`参数为 true:
+To make such a property visible in the Inspector Panel, set the `visible` attribute to `true`:
 
 ```js
     properties {
@@ -404,7 +404,7 @@ Please note that both parameters have to be class constructors (i.e. prototype o
     }
 ```
 
-如果要在 Inspector 中隐藏，可以设置`visible`参数为 false:
+Or to hide it, set `visible` to `false`:
 
 ```js
     properties {
@@ -415,9 +415,9 @@ Please note that both parameters have to be class constructors (i.e. prototype o
     }
 ```
 
-#### <a name="serializable"></a>serializable参数
+#### <a name="serializable"></a>`serializable` Attribute
 
-属性默认情况下都会被序列化，如果不想序列化，可以设置`serializable: false`。
+By default properties will be serialized. Set `serializable: false` for prevention.
 
 ```js
     temp_url: {
@@ -426,11 +426,11 @@ Please note that both parameters have to be class constructors (i.e. prototype o
     }
 ```
 
-#### <a name="type"></a>type参数
+#### <a name="type"></a>`type` Attribute
 
-当`default`不能提供足够详细的类型信息时，如果想要在 Inspector 里编辑属性，则需要用`type`显式声明具体的类型：
+It would be necessary to declare the type of value explicitly, by setting `type` attribute, when `default` value is not self-explained enough to tell the type:
 
-- 当默认值为 null 时，将 type 设置为指定类型(构造函数)，这样才能在 Inspector 中给属性正确赋值。
+- When `default` is `null`,  set `type` to a class type (constructor) to make the property assignable in the Inspector Panel.
 
     ```js
         enemy: {
@@ -438,35 +438,35 @@ Please note that both parameters have to be class constructors (i.e. prototype o
             type: Fire.Entity
         }
     ```
-- 当默认值为数值(Number)类型时，将 type 设置为 `Fire.Integer`，用来表示这是一个整数，这样属性在 Inspector 里就不能输入小数点。
+- When `default` is a Number type, set `type` to `Fire.Integer` to declare the value as an integer, which makes it's not possible to input decimal in the Inspector Panel.
     ```js
         score: {
             default: 0,
             type: Fire.Integer
         }
     ```
-- 将 type 设置为枚举类型，就能在 Inspector 中显示枚举选项框。
+- Setting `type` as an enumerative type makes the Inspector Panel show an enumerator combobox.
     ```js
         wrap: {
             default: Fire.Texture.WrapMode.Clamp,
             type: Fire.Texture.WrapMode
         }
     ```
-- 当 default 设置为**数组**`[]`时，如果要在 Inspector 中编辑数组元素，可以设置 type 为以上提到的构造函数、`Fire.Integer`、枚举，或者设置成字符串`Fire.Float`, `Fire.Boolean`, `Fire.String`的其中一个，。
+- If `default` is an **array**`[]`, the `type` attribute can be assgined with one of these values: constructor, `Fire.Integer`, enumerator, `Fire.Float`, `Fire.Boolean`, or `Fire.String`. This creates the value type constraint for each elements in the array.
     ```js
         nameList: {
             default: [],
-            type: Fire.String      // 指定数组的每个元素都是字符串类型
+            type: Fire.String      // Every element in the array is of String type
         },
         enemyList: {
             default: [],
-            type: Fire.Entity   // 指定数组的每个元素都是 Entity 类型
+            type: Fire.Entity   // Every element in the array is of Entity type
         }
     ```
 
-### 属性快捷定义
+### Shortcut of Property Definition
 
-如果属性不带任何参数，则可以直接写成：
+Property definition can be like this, if it holds no attributes:
 
 ```js
     // 完整形式
@@ -477,7 +477,7 @@ Please note that both parameters have to be class constructors (i.e. prototype o
     }
 ```
 
-但**默认值不能是对象类型**，如果默认值是对象，还是只能用完整的写法：
+But **the default value MUST NOT be an object type**. Properties with an object value can only be defined with the complete syntax:
 
 ```js
     properties: {
@@ -487,10 +487,10 @@ Please note that both parameters have to be class constructors (i.e. prototype o
     }
 ```
 
-**备注**
+**Note**
 
-- 属性都能被子类继承，但子类和父类的属性不能重名。
-- 如果属性的默认值需要调用其它方法才能获得，可以在构造函数里重新赋值。
+- Properties can be inherited, but those defined in inherited class must choose a name unused in base class.
+- If the property default value cannot be retrieved without calling other methods, think about assigning them in the constructor.
 
     ```js
     var Sprite = Fire.Class({
@@ -503,13 +503,13 @@ Please note that both parameters have to be class constructors (i.e. prototype o
     });
     ```
 
-## GetSet方法
+## GetSet Methods
 
-在属性中设置了 get 或 set 以后，访问属性的时候，就能触发预定义的 get 或 set 方法。
+Once `get` or `set` is set in a property, the pre-defined methods will be called as soon as the property is accessed.
 
 ### get
 
-在属性中设置 get 方法：
+To define the `get` method of a property:
 
 ```js
     properties: {
@@ -521,8 +521,8 @@ Please note that both parameters have to be class constructors (i.e. prototype o
     }
 ```
 
-get 方法可以返回任意类型的值。
-这个属性同样能显示在 Inspector 中，并且可以在包括构造函数内的所有代码里直接访问。
+`get` can return any type of value.
+Property with `get` is displayed as well in the Inspector Panel, and is accessible anywhere, including the constructor.
 
 ```js
     var Sprite = Fire.Class({
@@ -540,9 +540,8 @@ get 方法可以返回任意类型的值。
     });
 ```
 
-请注意：
-
-- 设定了 get 以后，这个属性就不能被序列化，也不能指定默认值，但仍然可附带除了 "default", "serializable" 以外的任意参数。
+Please note:
+- Once `get` is assgined, the property will not be able to serialize, nor to use a default value. The good new is that it can use any attribute besides `default` and `serializable`.
 
     ```js
         width: {
@@ -554,7 +553,7 @@ get 方法可以返回任意类型的值。
         }
     ```
 
-- get 属性本身是只读的，但返回的对象并不是只读的。用户使用代码依然可以修改对象内部的属性，例如：
+- `get` is a read-only property, not the object it returns. User can modify properties inside the returned object by code. For instance:
 
     ```js
     var Sprite = Fire.Class({
@@ -567,13 +566,13 @@ get 方法可以返回任意类型的值。
         ...
     });
     var obj = new Sprite();
-    obj.position = new Fire.Vec2(10, 20);   // 错误！position 是只读的！
-    obj.position.x = 100;                   // 允许！position 对象本身可以修改！
+    obj.position = new Fire.Vec2(10, 20);   // Error! The position property is read-only!
+    obj.position.x = 100;                   // Ok! The object position itself can be modified!
     ```
 
 ### set
 
-在属性中设置 set 方法：
+To define the `set` method in a property:
 
 ```js
     width: {
@@ -583,9 +582,8 @@ get 方法可以返回任意类型的值。
     }
 ```
 
-set 方法接收一个传入参数，这个参数可以是任意类型。
-
-set 可以和 get 一起使用：
+`set` accepts a parameter, which can be of any type.
+`set` can be used with `get` together:
 
 ```js
     width: {
@@ -600,6 +598,6 @@ set 可以和 get 一起使用：
     }
 ```
 
-请注意：
-- 如果没有和 get 一起定义，则 set 自身不能附带任何参数。
-- 和 get 一样，设定了 set 以后，这个属性就不能被序列化，也不能指定默认值。
+Please note:
+- If `set` is defined without a `get`, the property cannot have any other attributes.
+- A property with `set` cannot be serialized nor have default value, as well as having `get` attribute.
