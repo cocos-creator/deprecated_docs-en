@@ -3,11 +3,11 @@ categories: manual
 permalinks: manual/scripting/create-destroy-entities
 ---
 
-如果你需要创建一个动态的游戏场景，那么通过脚本创建和销毁 Entity 是必不可少的。
+It is inevitable to create and destroy Entities by script in dynamic scene building.
 
-## 创建空的Entity
+## Creating An Empty Entity
 
-你只需要直接 new Entity() 就能在当前场景中添加一个空的 Entity：
+To add an empty Entity in the scene only needs to call `new Entity()`:
 
 ```js
     start: function () {
@@ -18,9 +18,9 @@ permalinks: manual/scripting/create-destroy-entities
     }
 ```
 
-## <a name="instantiate"></a>复制已有Entity
+## <a name="instantiate"></a>Copying An Entity
 
-使用 Fire.instantiate 来复制指定的 Entity，该 Entity 所有的子物体及 Component 都会被一起复制：
+`Fire.instantiate` is for creating a copy of a specified Entity. All child objects and Components are duplicated as well:
 
 ```js
 var Comp = Fire.Class({
@@ -47,9 +47,9 @@ var Comp = Fire.Class({
 });
 ```
 
-## 销毁Entity
+## Destroying An Entity
 
-使用 destroy 方法来销毁 Entity：
+To destroy an Entity requires the `destroy` method:
 
 ```js
     lateUpdate: function () {
@@ -59,11 +59,11 @@ var Comp = Fire.Class({
     }
 ```
 
-这段代码销毁了 Component 自己所在的整个 Entity，实际上 Entity 将会在这一帧结束后才被真正销毁，在这一帧结束前仍然可以正常使用。当 Entity 被销毁后，所有子物体及连带的 Component 也会被一并销毁。
+The code above destroys the whole Entity to that the Component belongs. Actually, the Entity will not be destroyed until the frame ends, which means it's still available until then. Once an Entity is destroyed, all child objects and attached Components are destroyed as well.
 
-## 添加Component
+## Adding A Component
 
-除了通过 Inspector 面板来添加 Component，你也可以在脚本动态进行：
+Beside of the Inspector Panel, scripts are able to add Components as well:
 
 ```js
     start: function () {
@@ -76,8 +76,7 @@ var Comp = Fire.Class({
     }
 ```
 
-这段代码在创建一个新 Entity 后，会接着添加一个类型叫做 "MyBullet" 的 Component。（项目里需要有 MyBullet.js 这个脚本）
-你也可以直接将 Component 类型传入 addComponent：
+The code above creates an Entity, and adds a Component called "MyBullet" afterwards (MyBullet.js is required in the project). Or, you can pass the type of Component into `addComponent` as parameter:
 
 ```js
     start: function () {
@@ -86,9 +85,9 @@ var Comp = Fire.Class({
     }
 ```
 
-## 移除Component
+## Removing A Component
 
-使用脚本移除 Component 的方法，其实就是调用它的 destroy()，效果和在 Inspector 中点击移除按钮是一样的：
+To remove a Component by script is to call its `destroy()`, which gets exactly the same result as clicking remove button in the Inspector Panel.
 
 ```js
     start: function () {
@@ -96,8 +95,3 @@ var Comp = Fire.Class({
         bullet.destroy();
     }
 ```
-
-
-
-
-
