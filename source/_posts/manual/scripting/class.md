@@ -507,7 +507,7 @@ But **the default value MUST NOT be an object type**. Properties with an object 
 
 Once `get` or `set` is set in a property, the pre-defined methods will be called as soon as the property is accessed.
 
-### get
+### `get`
 
 To define the `get` method of a property:
 
@@ -570,7 +570,7 @@ Please note:
     obj.position.x = 100;                   // Ok! The object position itself can be modified!
     ```
 
-### set
+### `set`
 
 To define the `set` method in a property:
 
