@@ -1,4 +1,4 @@
-title: 创建和销毁对象
+title: Create and Destroy
 categories: manual
 permalinks: manual/scripting/create-destroy-entities
 ---
