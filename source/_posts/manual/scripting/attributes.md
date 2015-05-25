@@ -19,7 +19,7 @@ nullable | Attach a checkbox in front of the property's edit control | { propNam
 watch | Watch other properties' status to refresh this UI control | { "prop names": function (this, uiCtrl) {} } | undefined
 range | Constrain the min and max values for the property by a slider control | [min, max] | undefined
 
-(1) The default value of `visible` depends on the property name. The default value is `false` if the property name starts with an underscore("_"), while being `true` if not.
+*(1) The default value of `visible` depends on the property name. The default value is `false` if the property name starts with an underscore("_"), while being `true` if not.*
 
 ## Serialization-related Attributes
 
