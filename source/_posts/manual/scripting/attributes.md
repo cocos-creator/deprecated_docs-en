@@ -1,33 +1,32 @@
-title: 属性参数
+title: Attributes
 categories: manual
 permalinks: manual/scripting/attributes
 ---
 
-## Inspector 相关属性
+## Inspector-related Attributes
 
-这些属性允许用于 get 方法
+The following attributes are allowed to be used with `get` method.
 
-参数名 | 说明 | 类型 | 默认值
+Attribute Name | Description | Type | Default Value
 --- | --- |:---:|:---:
-[type](/manual/scripting/class#type) | 限定属性的数据类型（[点击范例](/manual/scripting/class#type)） | (Any) | undefined
-[visible](/manual/scripting/class#visible) | 在 Inspector 面板中显示或隐藏 | boolean | (注1)
-displayName  | 在 Inspector 面板中显示为另一个名字 | string | undefined
-tooltip | 在 Inspector 面板中添加属性的 Tooltip | string | undefined
-multiline | 在 Inspector 面板中使用多行文本框 | boolean | false
-readonly | 在 Inspector 面板中只读 | boolean | false
-nullable | 在该属性的控件前附加一个单选框 | { propName: string, default: boolean } | undefined
-watch | 监听其它属性的状态，来刷新本控件 | { "prop names": function (this, uiCtrl) {} } | undefined
-range | 以滑动条的形式限定数值的最大最小值 | [min, max] | undefined
+[type](/manual/scripting/class#type) | Constrain the value type of the property（[Example](/manual/scripting/class#type)） | (Any) | undefined
+[visible](/manual/scripting/class#visible) | Show/hide the property in the Inspector Panel | boolean | (1)
+displayName  | Use a specified name for the property in the Inspector Panel | string | undefined
+tooltip | Display a tooltip for the property in the Inspector Panel | string | undefined
+multiline | Edit the property with a multi-line text input control in the Inspector Panel | boolean | false
+readonly | Make the property read-only in the Inspector Panel | boolean | false
+nullable | Attach a checkbox in front of the property's edit control | { propName: string, default: boolean } | undefined
+watch | Watch other properties' status to refresh this UI control | { "prop names": function (this, uiCtrl) {} } | undefined
+range | Constrain the min and max values for the property by a slider control | [min, max] | undefined
 
-注：
- 1. visible 的默认值取决于属性名。当属性名以下划线"_"开头时，默认隐藏，否则默认显示。
+(1) The default value of `visible` depends on the property name. The default value is `false` if the property name starts with an underscore("_"), while being `true` if not.
 
-## 序列化相关属性
+## Serialization-related Attributes
 
-这些属性不能用于 get 方法
+The following attributes are not allowed to be used with `get` method
 
-参数名 | 说明 | 类型 | 默认值
+Attribute Name | Description | Type | Default Value
 --- | --- |:---:|:---:
-[serializable](/manual/scripting/class#serializable) | 序列化该属性 | boolean | true
-editorOnly | 在导出项目前剔除该属性 | boolean | false
-rawType | 该属性的类型是宿主平台上的原生对象 | string | undefined
+[serializable](/manual/scripting/class#serializable) | Decide if the property is allowed to serialize | boolean | true
+editorOnly | Remove the property before exporting the project | boolean | false
+rawType | The property is of a raw type of the hosting platform | string | undefined
