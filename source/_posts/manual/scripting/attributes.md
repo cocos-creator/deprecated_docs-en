@@ -29,4 +29,4 @@ Attribute Name | Description | Type | Default Value
 --- | --- |:---:|:---:
 [serializable](/manual/scripting/class#serializable) | Decide if the property is allowed to serialize | boolean | true
 editorOnly | Remove the property before exporting the project | boolean | false
-rawType | The property is of a raw type of the hosting platform | string | undefined
+rawType | The property is of a native type of the hosting platform | string | undefined
