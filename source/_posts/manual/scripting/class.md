@@ -380,7 +380,7 @@ Multiple attributes can be assgined to a property, to determine how the property
 
 The code above constrains user can only input integer value for `score` in the Inspector Panel, with a tip shown when mouse hovering on the input control.
 
-Here are some useful parameters. For more details please refer to [Property Attributes](/manual/scripting/attributes) in Scripting API documentation.
+Here are some useful parameters. For more details please refer to the [Property Attributes](/manual/scripting/attributes) chapter.
 
 - type: Constrains the value type.
 - visible: Hide the property in the Inspector Panel if set to `false`.
