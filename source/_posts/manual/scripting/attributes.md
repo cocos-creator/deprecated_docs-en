@@ -10,7 +10,7 @@ The following attributes are allowed to be used with `get` method.
 Attribute Name | Description | Type | Default Value
 --- | --- |:---:|:---:
 [type](/manual/scripting/class#type) | Constrain the value type of the property（[Example](/manual/scripting/class#type)） | (Any) | undefined
-[visible](/manual/scripting/class#visible) | Show/hide the property in the Inspector Panel | boolean | (1)
+[visible](/manual/scripting/class#visible) | Show/hide the property in the Inspector Panel | boolean | *(1)*
 displayName  | Use a specified name for the property in the Inspector Panel | string | undefined
 tooltip | Display a tooltip for the property in the Inspector Panel | string | undefined
 multiline | Edit the property with a multi-line text input control in the Inspector Panel | boolean | false
