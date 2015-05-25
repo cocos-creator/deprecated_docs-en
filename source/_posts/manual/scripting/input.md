@@ -1,70 +1,70 @@
-title: 输入
+title: Input
 categories: manual
 permalinks: manual/scripting/input
 ---
 
 ```
-本文介绍的用于获取玩家输入的 API 还未定型，将来会有计划的逐步升级这些接口。
+User input APIs introduced in this chapter is not the final version. They will be upgraded gradually in a planned future.
 ```
 
-## 概述
+## Overview
 
-目前 Fireball 使用类 web 开发的注册机制来响应玩家输入，分为全局和 Entity 两种注册途径。能够获得的输入有键盘、鼠标和触摸操作，触摸操作实现了模拟鼠标(Mouse Simulation)的效果，只要注册鼠标事件就能接收到触摸操作。
+Fireball currently adopts a web-dev-like mechanism based on event registering for user input handling. There are two ways of registering: global register and Entity register. Detectable inputs include keyboard, mouse and touch, where touch input is implemented by mouse simulation, so would be detected as long as mouse input events are registered.
 
-## 全局注册
+## Global Register
 
-全局注册方法能够获得游戏内的全局输入事件，需要注册和反注册才能使用。下面的代码监听鼠标按下事件，一旦事件发生就调用 jump 方法，不论在哪个屏幕区域按下。
+Global registered methods response to global input events in the game. To make such a method work, it has to be registered and unregistered. The following code listens to mouse button down event. Method `jump` is called once the event happens, no matter which part of the screen is pressed.
 
 ```js
 var Sheep = Fire.Class({
     extends: Fire.Component,
     constructor: function () {
-        // 定义获取输入事件的回调方法，保存到 bindedMouseDown 变量以便之后反注册
+        // Define the event callback method, and save it to the bindedMouseDown variable for unregistering later.
         this.bindedMouseDown = this.onMouseDown.bind(this);
     },
     onMouseDown: function (event) {
         this.jump();
     },
     onLoad: function () {
-        // 注册回调
+        // Register the callback
         Fire.Input.on('mousedown', this.bindedMouseDown);
     },
     onDestroy: function () {
-        // 反注册回调，防止内存泄漏
+        // Unregister the callback in avoid of memory leaking
         Fire.Input.off('mousedown', this.bindedMouseDown);
     }
 });
 ```
 
-注册时使用 `Fire.Input.on`，传入的第一个参数用来指定事件类型，更多类型请查阅[输入事件列表](/manual/scripting/input-events)。第二个参数是对应的回调函数，这里一般需要通过 bind 方法来绑定 this 对象，否则在回调函数触发时 this 将为 null。
+Here we use `Fire.Input.on` to register a callback. The first parameter indicates the event type. For more event types please refer to [Input Events](/manual/scripting/input-events). The second one is the callback method, which usually needs to bind `this` object with `bind` method, or the `this` variable within the callback method would be `null`.
 
-反注册时传入的事件类型和回调函数必须和注册时一致。
+When unregistering, the parameter event type and callback method must be exactly identical as the ones during registering.
 
-## Entity注册
+## Entity Register
 
-Entity 注册用于获取位于单个 Entity 上的鼠标或触摸事件，Entity 需要有 SpriteRenderer 等渲染组件才能响应输入操作。下面的代码监听该 Component 所在 Entity 的鼠标事件，当鼠标在 Entity 上按下时，才调用 jump 方法。
+Entity register is to listen to the mouse/touch input events that happen on a single entity. An entity requires renderer components (e.g. `SpriteRenderer`) for event listening. The following code listens to all mouse input events happening on the entity to which the component attached. `jump` method is called only when mouse button is pressed **on** the entity.
 
 ```js
 var Sheep = Fire.Class({
     extends: Fire.Component,
     constructor: function () {
-        // 定义获取输入事件的回调方法，保存到 bindedMouseDown 变量以便之后反注册
+        // Define the event callback method, and save it to the bindedMouseDown variable for unregistering later.
         this.bindedMouseDown = this.onMouseDown.bind(this);
     },
     onMouseDown: function (event) {
         this.jump();
     },
     onLoad: function () {
-        // 注册回调
+        // Register callback
         this.entity.on('mousedown', this.bindedMouseDown);
     },
     onDestroy: function () {
-        // 反注册回调
+        // Unregister callback
         this.entity.off('mousedown', this.bindedMouseDown);
     }
 });
 ```
 
-注册和反注册时，和全局事件唯一区别的地方在于事件是注册在某个 Entity 上，而不是 Fire.Input 上。
+The only difference between entity register and global register is the event handlers are registered on a particular entity, not on `Fire.Input`.
 
-和所有 Entity 事件一样，输入事件本身也会使用冒泡(Bubble)等派发机制在 Entity 的 Hierarchy 上进行传递。
+Like other entity events, input events is dispatched through the entity hierarchy as well in certain route, such as Bubble mechanism.
