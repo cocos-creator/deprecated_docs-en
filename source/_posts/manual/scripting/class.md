@@ -469,15 +469,15 @@ It would be necessary to declare the type of value explicitly, by setting `type`
 Property definition can be like this, if it holds no attributes:
 
 ```js
-    // 完整形式
-    properties: {                   // 快捷形式
+    // Complete form
+    properties: {                   // Shortcut form
         width: {            =>      properties: {
             default: 128    =>          width: 128
         }                   =>      }
     }
 ```
 
-But **the default value MUST NOT be an object type**. Properties with an object value can only be defined with the complete syntax:
+But **the default value MUST NOT be an object type**. Properties with an object value can only be defined with the complete form:
 
 ```js
     properties: {
