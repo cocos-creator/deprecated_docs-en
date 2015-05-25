@@ -1,51 +1,49 @@
-title: 模块化
+title: Module
 categories: manual
 permalinks: manual/scripting/module
 ---
 
-Fireball 允许你将代码拆分成多个脚本文件，并且让它们相互引用。要实现这点，你需要了解如何在 Fireball 中定义和使用模块，这个步骤简称为**模块化**。
+It is allowed to seperate code into several script files, and inter-reference among them. To make it happen, you'll need to understand how to define and use modules in Fireball. This is often referred as  **Modulization**
 
-```
-在本文中，“模块”和“脚本”这两个术语通常是等价的。所有“备注”都属于进阶内容，一开始不需要了解。
-```
+> In this chapter, the terms of 'module' and 'script' are usually of the same meaning. All **Note** contents are advanced skills, and are not required to be understood for beginners.
 
-## 概述
+## Overview
 
-如果你还不确定模块化究竟能做什么，模块化相当于：
-- C/C++ 中的 include
-- C# 中的 using
-- Java 和 Python 中的 import
-- HTML 中的 link
+If you are still not sure what modulization is for, consider it as:
+- `include` in C/C++
+- `using` in C#
+- `import` in Java & Python
+- `link` in HTML
 
-模块化使你可以在 Fireball 中引用其它脚本文件：  
-- 访问其它文件公开的参数
-- 调用其它文件公开的方法
-- 使用其它文件公开的类型
-- 使用或继承其它文件公开的Component
+Modulization allows you to refer other scripts in Fireball. For instance, you can:
+- Access public variables in other scripts
+- Call public methods in other scripts
+- Use public types in other scripts
+- Utilize or inherit public components in other scripts
 
-Fireball 中的 JavaScript 使用和 node.js 几乎相同的方式来实现模块化：
-- 每一个单独的脚本文件就构成一个模块。
-- 每个模块都是一个单独的作用域（在该模块内使用`var`定义的局部变量，无法被其它模块读取）。
-- 以**同步**的 `require` 方法来引用其它模块。
-- 设置 `module.exports` 为导出的变量。
+Fireball JavaScript implements modulization almost in the same way as node.js:
+- A single script is a module
+- Each module has its own scope (i.e. local variables declared with `var` cannot be accessed in other modules)
+- Refer other modules **synchronously** by `require` method.
+- Export variables by setting `module.exports`
 
-不论模块如何定义，所有用户代码最终会由 Fireball 编译为原生的 JavaScript，可直接在手机浏览器中运行。
+All user code will be compiled by Fireball into native JavaScript, which can be executed in mobile browsers, no matter how the modules are defined.
 
-## 引用模块
+## Module Reference
 
-### require
+### `require`
 
-除了 Fireball 提供的接口，所有用户定义的模块都需要使用 **require** 来访问。假设我们要访问的是其它脚本里定义的 Component，叫做 Rotate：
+All modules defined by user, i.e. not Fireball built-in modules, need `require` to access. Assuming we're trying to access a component named `Rotate` defined in another script:
 
 ```js
 var Rotate = require('rotate');
 ```
 
-require 返回的就是被模块导出的对象，通常我们都会将结果存到一个变量。传进 require 的字符串就是模块的**文件名**，这个名字不包含路径也不包含后缀，而且大小写敏感。
+The return value of `require` is an object exported by module, and is usually saved in a variable for futher use. The string passed into `require` is the **file name** of the module. The file name has no path or suffix, and is case sensitive.
 
-### require完整范例
+### A Complete Example of `require`
 
-接着我们就可以使用 Rotate 派生一个子类，新建一个脚本 `sinRotate.js`：
+Next we can create an inherited class from `Rotate`. Create a new script named `sinRotate.js`:
 
 ```js
 var Rotate = require('rotate');
@@ -58,12 +56,12 @@ var SinRotate = Fire.Class({
 });
 ```
 
-这里我们定义了一个新的 Component 叫 SinRotate，它继承自 Rotate，并对 update 方法进行了重写。当然这个 Component 也可以被其它脚本接着访问，只要用 require('sinRotate')。
+We define a new component named `SinRotate`, which extends from `Rotate` and override the `update` method. The new component is available to other scripts as well, as long as there is a `require('sinRotate')`.
 
-备注：
-  - require 可以在脚本的任何地方任意时刻进行调用。
-  - 每个脚本只有第一次在项目里被 require 时，它内部定义的代码才会被执行，所以之后无论又被 require 几次，始终返回的都是同一份实例。
-  - 调试时，可以随时在 Developer Tools 中 require 项目里的任意模块。
+**Note**
+  - `require` can be called anywhere, at any moment.
+  - A script doesn't execute until it's required in the project for the first time, which means `require` always returns the same instance no matter how many times called.
+  - When debugging, you can `require` any project module in the Developer Tools.
 
 ## <a name="define"></a>定义模块
 
