@@ -5,6 +5,7 @@ var Lang   = Y.Lang,
 
     APIList = Y.namespace('APIList'),
 
+    enumsNode      = Y.one('#api-enums'),
     classesNode    = Y.one('#api-classes'),
     inputNode      = Y.one('#api-filter'),
     modulesNode    = Y.one('#api-modules'),
@@ -47,9 +48,15 @@ var Lang   = Y.Lang,
         keys       : {next: 'down:40', previous: 'down:38'}
     }).focusManager,
 
-    LIST_ITEM_TEMPLATE =
+    LIST_ITEM_TEMPLATE = 
         '<li class="api-list-item {typeSingular}">' +
             '<a href="{rootPath}{typePlural}/{name}.html">{displayName}</a>' +
+        '</li>',
+
+    LIST_ITEM_TEMPLATE_WITH_MODULE =
+        '<li class="api-list-item {typeSingular}">' +
+            '<a href="{rootPath}{typePlural}/{name}.html">{displayName}</a>' +
+            '<a href="{rootPath}modules/{module}.html" class="api-list-item-module">@{module}</a>' +
         '</li>';
 
 // -- Init ---------------------------------------------------------------------
@@ -97,7 +104,14 @@ tabview.get('panelNode').all('a').each(function (link) {
 
 // -- Private Functions --------------------------------------------------------
 function getFilterResultNode() {
-    return filter.get('queryType') === 'classes' ? classesNode : modulesNode;
+    var type = filter.get('queryType');
+    if (type === 'enums') {
+        return enumsNode;
+    } else if (type === 'classes') {
+        return classesNode;
+    } else {
+        return modulesNode;
+    }
 }
 
 // -- Event Handlers -----------------------------------------------------------
@@ -105,14 +119,24 @@ function onFilterResults(e) {
     var frag         = Y.one(Y.config.doc.createDocumentFragment()),
         resultNode   = getFilterResultNode(),
         typePlural   = filter.get('queryType'),
-        typeSingular = typePlural === 'classes' ? 'class' : 'module';
+        typeSingular;
+
+    if (typePlural === 'enums') {
+        typeSingular = 'enum';
+    } else if (typePlural === 'classes') {
+        typeSingular = 'class';
+    } else {
+        typeSingular = 'module';
+    }
 
     if (e.results.length) {
         YArray.each(e.results, function (result) {
-            frag.append(Lang.sub(LIST_ITEM_TEMPLATE, {
+            var tmpl = result.raw.module ? LIST_ITEM_TEMPLATE_WITH_MODULE : LIST_ITEM_TEMPLATE;
+            frag.append(Lang.sub(tmpl, {
                 rootPath    : APIList.rootPath,
-                displayName : filter.getDisplayName(result.highlighted),
-                name        : result.text,
+                displayName : filter.getDisplayName(result.raw.name),
+                name        : result.raw.name,
+                module      : result.raw.module,
                 typePlural  : typePlural,
                 typeSingular: typeSingular
             }));
@@ -181,6 +205,7 @@ function onTabSelectionChange(e) {
     };
 
     switch (name) {
+    case 'enums':   // fallthru
     case 'classes': // fallthru
     case 'modules':
         filter.setAttrs({

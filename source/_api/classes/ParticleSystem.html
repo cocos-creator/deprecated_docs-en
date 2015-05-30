@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ParticleSystem - fireball-build</title>
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="../assets/vendor/yui-min.js"></script>
+</head>
+<body>
+
+<div id="doc">
+    <header class="main-header">
+        <div class="content">
+            <div class="project-title">
+                <a href="http://docs-zh.fireball-x.com">
+                        <img class="logo" src="http://docs-zh.fireball-x.com/images/logo.png" title="fireball-build">
+                </a>
+                    <h1 class="project-name">fireball-build</h1> <span class="project-version">0.4.0</span>
+                    <p class="description">Fireball is the game engine for the future.</p>
+            </div>
+            <ul class="jump-links">
+                <li><a href="#index" class="index-jump-link">index</a></li>
+                <li><a href="#top" class="top-jump-link">top</a></li>
+            </ul>
+        </div>
+    </header>
+    <div id="bd" class="main-body">
+
+        <div id="docs-sidebar" class="sidebar apidocs"><div id="api-list">
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+            <li><a href="#api-enums">Enums</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+
+            <ul id="api-classes" class="apis classes">
+                <li>
+                    <a class="class" href="../classes/_CallbacksHandler.html">_CallbacksHandler</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/_DeserializeInfo.html">_DeserializeInfo</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/_ObjectFlags.html">_ObjectFlags</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/_Runtime.RenderContext.html">_Runtime.RenderContext</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Animation.html">Animation</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/AnimationNode.html">AnimationNode</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/AnimationNodeBase.html">AnimationNodeBase</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/AnimationState.html">AnimationState</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Array.html">Array</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Asset.html">Asset</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/AssetBundleBase.html">AssetBundleBase</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/AssetLibrary.html">AssetLibrary</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/AtlasAsset.html">AtlasAsset</a>
+                    <a href="../modules/Fire.Spine.html" class="api-list-item-module">@Fire.Spine</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/AudioClip.html">AudioClip</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/AudioSource.html">AudioSource</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/BitmapFont.html">BitmapFont</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/BitmapText.html">BitmapText</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/CallbacksInvoker.html">CallbacksInvoker</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Camera.html">Camera</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Color.html">Color</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Component.html">Component</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/ContentStrategyType.html">ContentStrategyType</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/EmitterMode.html">EmitterMode</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Engine.html">Engine</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Entity.html">Entity</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/EqualToFrame.html">EqualToFrame</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Event.html">Event</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/EventTarget.html">EventTarget</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/FixedHeight.html">FixedHeight</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/FObject.html">FObject</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/FontFlagType.html">FontFlagType</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/HashObject.html">HashObject</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Input.html">Input</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/InputField.html">InputField</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Intersection.html">Intersection</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/KeyboardEvent.html">KeyboardEvent</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/LoadManager.html">LoadManager</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Matrix23.html">Matrix23</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/ModifierKeyStates.html">ModifierKeyStates</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/MouseEvent.html">MouseEvent</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/NoScale.html">NoScale</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/ParticleSystem.html">ParticleSystem</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Path.html">Path</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Playable.html">Playable</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/PositionType.html">PositionType</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Rect.html">Rect</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Renderer.html">Renderer</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Resources.html">Resources</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/ResourcesBundle.html">ResourcesBundle</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Screen.html">Screen</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Screen.ContainerStrategy.html">Screen.ContainerStrategy</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Screen.ContentStrategy.html">Screen.ContentStrategy</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Skeleton.html">Skeleton</a>
+                    <a href="../modules/Fire.Spine.html" class="api-list-item-module">@Fire.Spine</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/SkeletonDataAsset.html">SkeletonDataAsset</a>
+                    <a href="../modules/Fire.Spine.html" class="api-list-item-module">@Fire.Spine</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/SkeletonRenderer.html">SkeletonRenderer</a>
+                    <a href="../modules/Fire.Spine.html" class="api-list-item-module">@Fire.Spine</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Sprite.html">Sprite</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/SpriteAnimation.html">SpriteAnimation</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/SpriteAnimationClip.html">SpriteAnimationClip</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/SpriteAnimationState.html">SpriteAnimationState</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/SpriteRenderer.html">SpriteRenderer</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Text.html">Text</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Texture.FilterMode.html">Texture.FilterMode</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Texture.Texture.html">Texture.Texture</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Texture.WrapMode.html">Texture.WrapMode</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Time.html">Time</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Transform.html">Transform</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/ValueType.html">ValueType</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a class="class" href="../classes/Vec2.html">Vec2</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+                <li><a class="module" href="../modules/Editor.html">Editor</a></li>
+                <li><a class="module" href="../modules/Fire.html">Fire</a></li>
+                <li><a class="module" href="../modules/Fire.JS.html">Fire.JS</a></li>
+                <li><a class="module" href="../modules/Fire.Spine.html">Fire.Spine</a></li>
+                <li><a class="module" href="../modules/Math.html">Math</a></li>
+            </ul>
+
+            <ul id="api-enums" class="apis enums">
+                <li>
+                    <a href="../enums/Fire.KeyCode.html">Fire.KeyCode</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a href="../enums/FontType.html">FontType</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a href="../enums/ImageType.html">ImageType</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a href="../enums/SpriteAnimationClip.StopAction.html">SpriteAnimationClip.StopAction</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a href="../enums/SpriteAnimationClip.WrapMode.html">SpriteAnimationClip.WrapMode</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a href="../enums/TextAlign.html">TextAlign</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a href="../enums/TextAnchor.html">TextAnchor</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+                <li>
+                    <a href="../enums/WrapMode.html">WrapMode</a>
+                    <a href="../modules/Fire.html" class="api-list-item-module">@Fire</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+
+        <div id="docs-main" class="apidocs">
+            <div class="content container"><h1>ParticleSystem Class</h1>
+<div class="box meta">
+
+        <div class="extends">
+            Extends <a href="../classes/Renderer.html" class="crosslink">Renderer</a>
+        </div>
+
+        <div class="foundat">
+            Defined in: <a href="../files/utils_api_engine_particle-system.js.html#l48"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:48</code></a>
+        </div>
+
+            Module: <a href="../modules/Fire.html">Fire</a>
+
+</div>
+
+
+<div class="box intro">
+    <p>The Particle System component.</p>
+
+</div>
+
+<!-- Class member index -->
+
+
+<a name="index" class="anchor-link"></a>
+<div class="index">
+    <h2>Index</h2>
+    <div id="api-options">
+        Show:
+    
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+    
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+    
+    </div>
+
+<div class="index-section properties">
+    <h3>Property</h3>
+    <ul class="index-list properties">
+        <li class="index-item property">
+            <a href="#property_angle">angle</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_angleVar">angleVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_baseSprite">baseSprite</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_duration">duration</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_emissionRate">emissionRate</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_emitterMode">emitterMode</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_endColor">endColor</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_endColorVar">endColorVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_endRadius">endRadius</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_endRadiusVar">endRadiusVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_endSize">endSize</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_endSizeVar">endSizeVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_endSpin">endSpin</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_endSpinVar">endSpinVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_gravity">gravity</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_isAutoRemoveOnFinish">isAutoRemoveOnFinish</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_life">life</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_lifeVar">lifeVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_loop">loop</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_maxParticles">maxParticles</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_playOnLoad">playOnLoad</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_positionType">positionType</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_positionVar">positionVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_radialAccel">radialAccel</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_radialAccelVar">radialAccelVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_rotatePerSecond">rotatePerSecond</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_rotatePerSecondVar">rotatePerSecondVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_speed">speed</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_speedVar">speedVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_startColor">startColor</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_startColorVar">startColorVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_startRadius">startRadius</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_startRadiusVar">startRadiusVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_startSize">startSize</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_startSizeVar">startSizeVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_startSpin">startSpin</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_startSpinVar">startSpinVar</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_tangentialAccel">tangentialAccel</a>
+        </li>
+        <li class="index-item property">
+            <a href="#property_tangentialAccelVar">tangentialAccelVar</a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="index-section methods">
+    <h3>Method</h3>
+    <ul class="index-list methods">
+        <li class="index-item method constructor">
+            <a href="#method_ParticleSystem">ParticleSystem</a>
+            <span class="flag constructor">constructor</span>
+        </li>
+
+        <li class="index-item method">
+            <a href="#method_calculateEmissionRate">calculateEmissionRate</a>
+        </li>
+        <li class="index-item method">
+            <a href="#method_play">play</a>
+        </li>
+        <li class="index-item method">
+            <a href="#method_stop">stop</a>
+        </li>
+    </ul>
+</div>
+
+
+    <div class="index-section inherits-members">
+        <h3>Inherited Members</h3>
+        
+        <h4>Property</h4>
+        <ul class="index-list properties">
+            <li class="index-item property private">
+                <a href="HashObject.html#property__hashCode">_hashCode</a>
+            </li>
+            <li class="index-item property private">
+                <a href="HashObject.html#property__id">_id</a>
+            </li>
+            <li class="index-item property">
+                <a href="HashObject.html#property_hashCode">hashCode</a>
+            </li>
+            <li class="index-item property">
+                <a href="HashObject.html#property_id">id</a>
+            </li>
+            <li class="index-item property private">
+                <a href="FObject.html#property__name">_name</a>
+            </li>
+            <li class="index-item property private">
+                <a href="FObject.html#property__objFlags">_objFlags</a>
+            </li>
+            <li class="index-item property">
+                <a href="FObject.html#property_name">name</a>
+            </li>
+            <li class="index-item property">
+                <a href="FObject.html#property_isValid">isValid</a>
+            </li>
+        </ul>
+        
+        <h4>Attribute</h4>
+        <ul class="index-list attrs">
+        </ul>
+
+        <h4>Method</h4>
+        <ul class="index-list methods">
+            <li class="index-item method">
+                <a href="Renderer.html#method_getWorldBounds">getWorldBounds</a>
+            </li>
+            <li class="index-item method">
+                <a href="Renderer.html#method_getWorldOrientedBounds">getWorldOrientedBounds</a>
+            </li>
+            <li class="index-item method">
+                <a href="Renderer.html#method_getSelfMatrix">getSelfMatrix</a>
+            </li>
+            <li class="index-item method">
+                <a href="Renderer.html#method_getWorldSize">getWorldSize</a>
+            </li>
+            <li class="index-item method">
+                <a href="Renderer.html#method_onPreRender">onPreRender</a>
+            </li>
+            <li class="index-item method">
+                <a href="FObject.html#method_destroy">destroy</a>
+            </li>
+            <li class="index-item method private">
+                <a href="FObject.html#method__destruct">_destruct</a>
+            </li>
+            <li class="index-item method private">
+                <a href="FObject.html#method__onPreDestroy">_onPreDestroy</a>
+            </li>
+            <li class="index-item method private">
+                <a href="FObject.html#method__serialize">_serialize</a>
+            </li>
+            <li class="index-item method private">
+                <a href="FObject.html#method__deserialize">_deserialize</a>
+            </li>
+            <li class="index-item method">
+                <a href="FObject.html#method_isValid">isValid</a>
+            </li>
+        </ul>
+
+        <h4>Event</h4>
+        <ul class="index-list events">
+        </ul>
+
+    </div>
+
+
+</div>
+<div class="class-detail">
+
+    <div class="properties-detail">
+        <h2>Properties</h2>
+        <a name="property_angle" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>angle</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l269"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:269</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Angle of each particle setter.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">90</span></p>
+
+
+    </div>
+</div>
+<a name="property_angleVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>angleVar</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l286"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:286</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of angle of each particle setter.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">20</span></p>
+
+
+    </div>
+</div>
+<a name="property_baseSprite" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>baseSprite</code>
+    <span class="type"><a href="../classes/Sprite.html" class="crosslink">Sprite</a></span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l64"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:64</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>The baseSprite of Particle System.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">null</span></p>
+
+
+    </div>
+</div>
+<a name="property_duration" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>duration</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l117"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:117</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>How many seconds the emitter wil run. -1 means 'forever'.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">-1</span></p>
+
+
+    </div>
+</div>
+<a name="property_emissionRate" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>emissionRate</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l143"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:143</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Emission rate of the particles.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">10</span></p>
+
+
+    </div>
+</div>
+<a name="property_emitterMode" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>emitterMode</code>
+    <span class="type">Fire.ParticleSystem.EmitterMode</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l484"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:484</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Emitter modes:
+Gravity: uses gravity, speed, radial and tangential acceleration;
+Radius: uses radius movement + rotation.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">EmitterMode.Gravity</span></p>
+
+
+    </div>
+</div>
+<a name="property_endColor" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>endColor</code>
+    <span class="type">color</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l340"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:340</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Ending color of each particle.</p>
+</div>
+
+
+
+    </div>
+</div>
+<a name="property_endColorVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>endColorVar</code>
+    <span class="type">color</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l357"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:357</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of the end color.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">new Fire.Color(0, 0, 0, 0)</span></p>
+
+
+    </div>
+</div>
+<a name="property_endRadius" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>endRadius</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l751"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:751</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Ending radius of the particles. Only available in 'Radius' mode.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_endRadiusVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>endRadiusVar</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l773"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:773</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of the ending radius.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_endSize" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>endSize</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l233"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:233</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>End size in pixels of each particle.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">-1</span></p>
+
+
+    </div>
+</div>
+<a name="property_endSizeVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>endSizeVar</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l250"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:250</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of end size in pixels.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_endSpin" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>endSpin</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l449"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:449</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>End angle of each particle.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_endSpinVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>endSpinVar</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l466"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:466</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of end angle.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_gravity" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>gravity</code>
+    <span class="type"><a href="../classes/Vec2.html" class="crosslink">Vec2</a></span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l505"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:505</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Gravity of the emitter.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">Fire.Vec2(0, 0)</span></p>
+
+
+    </div>
+</div>
+<a name="property_isAutoRemoveOnFinish" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>isAutoRemoveOnFinish</code>
+    <span class="type">boolean</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l797"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:797</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Indicate whether the node will be auto-removed when it has no particles left.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">false</span></p>
+
+
+    </div>
+</div>
+<a name="property_life" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>life</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l163"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:163</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Life of each particle setter.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">1</span></p>
+
+
+    </div>
+</div>
+<a name="property_lifeVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>lifeVar</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l180"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:180</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of life.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_loop" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>loop</code>
+    <span class="type">boolean</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l100"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:100</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>If set to true, the particle system will loop play.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">true</span></p>
+
+
+    </div>
+</div>
+<a name="property_maxParticles" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>maxParticles</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l82"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:82</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Maximum particles of the system.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">100</span></p>
+
+
+    </div>
+</div>
+<a name="property_playOnLoad" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>playOnLoad</code>
+    <span class="type">boolean</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l813"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:813</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>If set to true, the particle system will automatically start playing on onLoad.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">true</span></p>
+
+
+    </div>
+</div>
+<a name="property_positionType" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>positionType</code>
+    <span class="type">Fire.ParticleSystem.PositionType</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l377"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:377</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Particles movement type: Free | Grouped.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">Free</span></p>
+
+
+    </div>
+</div>
+<a name="property_positionVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>positionVar</code>
+    <span class="type"><a href="../classes/Vec2.html" class="crosslink">Vec2</a></span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l395"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:395</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of source position.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">Fire.Vec2(0, 0)</span></p>
+
+
+    </div>
+</div>
+<a name="property_radialAccel" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>radialAccel</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l572"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:572</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Radial acceleration of each particle. Only available in 'Gravity' mode.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_radialAccelVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>radialAccelVar</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l594"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:594</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of the radial acceleration.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_rotatePerSecond" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>rotatePerSecond</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l706"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:706</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Number of degress to rotate a particle around the source pos per second.
+Only available in 'Radius' mode.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_rotatePerSecondVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>rotatePerSecondVar</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l729"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:729</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of the degress to rotate a particle around the source pos per second.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_speed" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>speed</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l528"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:528</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Speed of the emitter.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">180</span></p>
+
+
+    </div>
+</div>
+<a name="property_speedVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>speedVar</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l550"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:550</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of the speed.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">50</span></p>
+
+
+    </div>
+</div>
+<a name="property_startColor" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>startColor</code>
+    <span class="type">color</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l305"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:305</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Start color of each particle.</p>
+</div>
+
+
+
+    </div>
+</div>
+<a name="property_startColorVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>startColorVar</code>
+    <span class="type">color</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l322"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:322</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of the start color.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">new Fire.Color(0, 0, 0, 0)</span></p>
+
+
+    </div>
+</div>
+<a name="property_startRadius" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>startRadius</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l662"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:662</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Starting radius of the particles. Only available in 'Radius' mode.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_startRadiusVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>startRadiusVar</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l684"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:684</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of the starting radius.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_startSize" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>startSize</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l199"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:199</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Start size in pixels of each particle.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">50</span></p>
+
+
+    </div>
+</div>
+<a name="property_startSizeVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>startSizeVar</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l216"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:216</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of start size in pixels.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_startSpin" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>startSpin</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l415"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:415</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Start angle of each particle.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_startSpinVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>startSpinVar</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l432"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:432</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of start angle.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+<a name="property_tangentialAccel" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>tangentialAccel</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l616"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:616</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Tangential acceleration of each particle. Only available in 'Gravity' mode.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">80</span></p>
+
+
+    </div>
+</div>
+<a name="property_tangentialAccelVar" class="anchor-link"></a>
+<div class="property item">
+    <h3 class="name"><code>tangentialAccelVar</code>
+    <span class="type">number</span>
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l638"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:638</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="extended-detail">
+        <div class="description"><p>Variation of the tangential acceleration.</p>
+</div>
+
+            <p class="default"><strong>Default:</strong> <span class="default-value">0</span></p>
+
+
+    </div>
+</div>
+
+        <div class="no-visible-items-message">
+            <p>There are no properties that match your current filter settings. You can change your filter settings in the index section on this page. <a href="#index" class="index-jump-link">index</a></p>
+        </div>
+    </div>
+
+
+    <div class="constructor"><h2>Constructor</h2><a name="method_ParticleSystem" class="anchor-link"></a>
+<div class="method item">
+    <h3 class="name"><code>ParticleSystem</code>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l48"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:48</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="extended-detail">
+
+        <div class="description">
+            
+        </div>
+
+
+
+    </div>
+</div>
+</div>
+
+    <div class="methods-detail">
+        <h2>Methods</h2>
+        <a name="method_calculateEmissionRate" class="anchor-link"></a>
+<div class="method item">
+    <h3 class="name"><code>calculateEmissionRate</code>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l823"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:823</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="extended-detail">
+
+        <div class="description">
+            <p>calculate emission rate</p>
+
+        </div>
+
+
+
+    </div>
+</div>
+<a name="method_play" class="anchor-link"></a>
+<div class="method item">
+    <h3 class="name"><code>play</code>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l832"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:832</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="extended-detail">
+
+        <div class="description">
+            <p>play the particle system</p>
+
+        </div>
+
+
+
+    </div>
+</div>
+<a name="method_stop" class="anchor-link"></a>
+<div class="method item">
+    <h3 class="name"><code>stop</code>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    </h3>
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/utils_api_engine_particle-system.js.html#l841"><code>utils&#x2F;api&#x2F;engine&#x2F;particle-system.js:841</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="extended-detail">
+
+        <div class="description">
+            <p>stop the particle system</p>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+        <div class="no-visible-items-message">
+            <p>There are no methods that match your current filter settings. You can change your filter settings in the index section on this page. <a href="#index" class="index-jump-link">index</a></p>
+        </div>
+
+    </div>
+
+
+</div>
+
+</div>
+        </div>
+
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/vendor/jquery.min.js"></script>
+<script src="../assets/js/jquery-offscreen-trigger.js"></script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
