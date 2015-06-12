@@ -3,7 +3,6 @@ categories: manual
 permalinks: manual/scripting/reserved-words
 ---
 
-除了类已经定义的变量外，以下是其它 Fireball-x 中已经内部占用的变量名，请避免冲突。这些变量有一些只有特殊情况才会用到，有一些是将来可能会用到。
 Following are variables used by Fireball-x beside of variables declared in classes. Some of them are used in uncommon situations, others are reserved for future extension. You should avoid to use them in your code.
 
 ### Global Variables
