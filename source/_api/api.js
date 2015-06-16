@@ -14,7 +14,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "_CallbacksHandler",
             "namespace": "",
             "module": "Fire",
-            "description": "The CallbacksHandler is an abstract class that can register and unregister callbacks by key.\nSubclasses should implement their own methods about how to invoke the callbacks.",
+            "description": "<p><p>The CallbacksHandler is an abstract class that can register and unregister callbacks by key.\nSubclasses should implement their own methods about how to invoke the callbacks.</p></p>\n",
             "access": "private"
         },
         {
@@ -22,7 +22,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "_ObjectFlags",
             "namespace": "",
             "module": "Fire",
-            "description": "Bit mask that controls object states.",
+            "description": "<p>Bit mask that controls object states.</p>\n",
             "access": "private"
         },
         {
@@ -30,7 +30,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "_Runtime.RenderContext",
             "namespace": "_Runtime",
             "module": "Fire",
-            "description": "The abstract renderer class which will be totally replaced with runtime implementation.\nhere just used as the mocker for unit tests.",
+            "description": "<p><p>The abstract renderer class which will be totally replaced with runtime implementation.\nhere just used as the mocker for unit tests.</p></p>\n",
             "access": "private"
         },
         {
@@ -46,7 +46,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "AnimationNode",
             "namespace": "",
             "module": "Fire",
-            "description": "The collection and instance of playing animations created by entity.animate.",
+            "description": "<p><p>The collection and instance of playing animations created by entity.animate.</p></p>\n",
             "access": "public"
         },
         {
@@ -54,7 +54,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "AnimationNodeBase",
             "namespace": "",
             "module": "Fire",
-            "description": "The abstract interface for all playing animation.",
+            "description": "<p><p>The abstract interface for all playing animation.</p></p>\n",
             "access": "public"
         },
         {
@@ -62,7 +62,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "AnimationState",
             "namespace": "",
             "module": "Fire",
-            "description": "The AnimationState gives full control over animation playback process.\nIn most cases the Animation Component is sufficient and easier to use. Use the AnimationState if you need full control.",
+            "description": "<p><p>The AnimationState gives full control over animation playback process.\nIn most cases the Animation Component is sufficient and easier to use. Use the AnimationState if you need full control.</p></p>\n",
             "access": "public"
         },
         {
@@ -78,7 +78,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Asset",
             "namespace": "",
             "module": "Fire",
-            "description": "Base class for asset handling.",
+            "description": "<p><p>Base class for asset handling.</p></p>\n",
             "access": "public"
         },
         {
@@ -86,7 +86,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "AssetBundleBase",
             "namespace": "",
             "module": "Fire",
-            "description": "AssetBundleBase 为 Resources 提供了上层接口，用于加载资源包里的资源。",
+            "description": "<p><p>AssetBundleBase 为 Resources 提供了上层接口，用于加载资源包里的资源。</p></p>\n",
             "access": "public"
         },
         {
@@ -94,7 +94,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "AssetLibrary",
             "namespace": "",
             "module": "Fire",
-            "description": "The asset library which managing loading/unloading assets in project.",
+            "description": "<p>The asset library which managing loading/unloading assets in project.</p>\n",
             "access": "public"
         },
         {
@@ -110,7 +110,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "AudioClip",
             "namespace": "",
             "module": "Fire",
-            "description": "The audio clip is an audio source data.",
+            "description": "<p>The audio clip is an audio source data.</p>\n",
             "access": "public"
         },
         {
@@ -118,7 +118,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "AudioSource",
             "namespace": "",
             "module": "Fire",
-            "description": "The audio source component.",
+            "description": "<p><p>The audio source component.</p></p>\n",
             "access": "public"
         },
         {
@@ -134,7 +134,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "BitmapText",
             "namespace": "",
             "module": "Fire",
-            "description": "The bitmap font renderer component.",
+            "description": "<p><p>The bitmap font renderer component.</p></p>\n",
             "access": "public"
         },
         {
@@ -142,7 +142,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "CallbacksInvoker",
             "namespace": "",
             "module": "Fire",
-            "description": "The callbacks invoker to handle and invoke callbacks by key",
+            "description": "<p><p>The callbacks invoker to handle and invoke callbacks by key</p></p>\n",
             "access": "public"
         },
         {
@@ -158,7 +158,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Color",
             "namespace": "",
             "module": "Fire",
-            "description": "Representation of RGBA colors.\n\nEach color component is a floating point value with a range from 0 to 1.\n\nYou can also use the convenience method <% crosslink Fire.color Fire.color %> to create a new Color.",
+            "description": "<p><p>Representation of RGBA colors.</p>\n<p>Each color component is a floating point value with a range from 0 to 1.</p>\n<p>You can also use the convenience method <% crosslink Fire.color Fire.color %> to create a new Color.</p></p>\n",
             "access": "public"
         },
         {
@@ -166,7 +166,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Component",
             "namespace": "",
             "module": "Fire",
-            "description": "Base class for everything attached to Entity.\n\nNOTE: Not allowed to use construction parameters for Component's subclasses,\n      because Component is created by the engine.",
+            "description": "<p>&lt;p&gt;&lt;p&gt;Base class for everything attached to Entity.&lt;/p&gt;\n&lt;p&gt;NOTE: Not allowed to use construction parameters for Component's subclasses,\nbecause Component is created by the engine.&lt;/p&gt;&lt;/p&gt;</p>\n",
             "access": "public"
         },
         {
@@ -190,7 +190,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Engine",
             "namespace": "",
             "module": "Fire",
-            "description": "Access to engine runtime data.\nThis class contains static methods for looking up information about and controlling the runtime data.",
+            "description": "<p>Access to engine runtime data.\nThis class contains static methods for looking up information about and controlling the runtime data.</p>\n",
             "access": "public"
         },
         {
@@ -198,7 +198,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Entity",
             "namespace": "",
             "module": "Fire",
-            "description": "Class of all entities in scenes.",
+            "description": "<p><p>Class of all entities in scenes.</p></p>\n",
             "access": "public"
         },
         {
@@ -206,7 +206,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "EqualToFrame",
             "namespace": "",
             "module": "Fire",
-            "description": "Strategy that makes the container's size equals to the frame's size",
+            "description": "<p><p>Strategy that makes the container's size equals to the frame's size</p></p>\n",
             "access": "public"
         },
         {
@@ -214,7 +214,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Event",
             "namespace": "",
             "module": "Fire",
-            "description": "An event allows for signaling that something has occurred. E.g. that an asset has completed downloading.",
+            "description": "<p><p>An event allows for signaling that something has occurred. E.g. that an asset has completed downloading.</p></p>\n",
             "access": "public"
         },
         {
@@ -222,7 +222,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "EventTarget",
             "namespace": "",
             "module": "Fire",
-            "description": "EventTarget is an object to which an event is dispatched when something has occurred.\nEntity are the most common event targets, but other objects can be event targets too.\n\nEvent targets are an important part of the Fireball event model.\nThe event target serves as the focal point for how events flow through the scene graph.\nWhen an event such as a mouse click or a keypress occurs, Fireball dispatches an event object\ninto the event flow from the root of the hierarchy. The event object then makes its way through\nthe scene graph until it reaches the event target, at which point it begins its return trip through\nthe scene graph. This round-trip journey to the event target is conceptually divided into three phases:\n- The capture phase comprises the journey from the root to the last node before the event target's node\n- The target phase comprises only the event target node\n- The bubbling phase comprises any subsequent nodes encountered on the return trip to the root of the tree\nSee also: http://www.w3.org/TR/DOM-Level-3-Events/#event-flow\n\nEvent targets can implement the following methods:\n - _getCapturingTargets\n - _getBubblingTargets",
+            "description": "<p><p>EventTarget is an object to which an event is dispatched when something has occurred.\nEntity are the most common event targets, but other objects can be event targets too.</p>\n<p>Event targets are an important part of the Fireball event model.\nThe event target serves as the focal point for how events flow through the scene graph.\nWhen an event such as a mouse click or a keypress occurs, Fireball dispatches an event object\ninto the event flow from the root of the hierarchy. The event object then makes its way through\nthe scene graph until it reaches the event target, at which point it begins its return trip through\nthe scene graph. This round-trip journey to the event target is conceptually divided into three phases:</p>\n<ul>\n<li>The capture phase comprises the journey from the root to the last node before the event target's node</li>\n<li>The target phase comprises only the event target node</li>\n<li>The bubbling phase comprises any subsequent nodes encountered on the return trip to the root of the tree\nSee also: http://www.w3.org/TR/DOM-Level-3-Events/#event-flow</li>\n</ul>\n<p>Event targets can implement the following methods:</p>\n<ul>\n<li>_getCapturingTargets</li>\n<li>_getBubblingTargets</li>\n</ul></p>\n",
             "access": "public"
         },
         {
@@ -230,7 +230,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "FixedHeight",
             "namespace": "",
             "module": "Fire",
-            "description": "Strategy to scale the content's height to container's height and proportionally scale its width.",
+            "description": "<p><p>Strategy to scale the content's height to container's height and proportionally scale its width.</p></p>\n",
             "access": "public"
         },
         {
@@ -238,7 +238,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "FObject",
             "namespace": "",
             "module": "Fire",
-            "description": "The base class of most of all the objects in Fireball.",
+            "description": "<p><p>The base class of most of all the objects in Fireball.</p></p>\n",
             "access": "public"
         },
         {
@@ -254,7 +254,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "HashObject",
             "namespace": "",
             "module": "Fire",
-            "description": "Provides object id, this id is unique globally.",
+            "description": "<p><p>Provides object id, this id is unique globally.</p></p>\n",
             "access": "public"
         },
         {
@@ -262,7 +262,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Input",
             "namespace": "",
             "module": "Fire",
-            "description": "Interface into the Input system.",
+            "description": "<p>Interface into the Input system.</p>\n",
             "access": "public"
         },
         {
@@ -270,7 +270,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "InputField",
             "namespace": "",
             "module": "Fire",
-            "description": "The Input Field renderer component.",
+            "description": "<p>The Input Field renderer component.</p>\n",
             "access": "public"
         },
         {
@@ -286,7 +286,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "KeyboardEvent",
             "namespace": "",
             "module": "Fire",
-            "description": "KeyboardEvent objects describe a user interaction with the keyboard. Each event describes a key; the event type (keydown, keypress, or keyup) identifies what kind of activity was performed.\nThis class is just an alias to the Web [KeyboardEvent](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent)",
+            "description": "<p><p>KeyboardEvent objects describe a user interaction with the keyboard. Each event describes a key; the event type (keydown, keypress, or keyup) identifies what kind of activity was performed.\nThis class is just an alias to the Web <a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent&quot;>KeyboardEvent</a></p></p>\n",
             "access": "public"
         },
         {
@@ -294,7 +294,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "LoadManager",
             "namespace": "",
             "module": "Fire",
-            "description": "The manager scheduling resources loading\n- It will:\n  - select registered loader\n  - merge same url request\n  - limit the max concurrent request\n- It will NOT:\n  - cache what has being loaded\n  - load depends of resource",
+            "description": "<p>The manager scheduling resources loading</p>\n<ul>\n<li>It will:\n<ul>\n<li>select registered loader</li>\n<li>merge same url request</li>\n<li>limit the max concurrent request</li>\n</ul>\n</li>\n<li>It will NOT:\n<ul>\n<li>cache what has being loaded</li>\n<li>load depends of resource</li>\n</ul>\n</li>\n</ul>\n",
             "access": "public"
         },
         {
@@ -302,7 +302,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Matrix23",
             "namespace": "",
             "module": "Fire",
-            "description": "Simple matrix to do 2D affine transformations.\nIt is actually 3x3 but the last row is [0 0 1].",
+            "description": "<p><p>Simple matrix to do 2D affine transformations.\nIt is actually 3x3 but the last row is [0 0 1].</p></p>\n",
             "access": "public"
         },
         {
@@ -318,7 +318,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "MouseEvent",
             "namespace": "",
             "module": "Fire",
-            "description": "The MouseEvent interface represents events that occur due to the user interacting with a pointing device (such as a mouse). Common events using this interface include click, dblclick, mouseup, mousedown.\n\nSee\n- https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent\n- http://www.quirksmode.org/dom/w3c_events.html#mousepos",
+            "description": "<p><p>The MouseEvent interface represents events that occur due to the user interacting with a pointing device (such as a mouse). Common events using this interface include click, dblclick, mouseup, mousedown.</p>\n<p>See</p>\n<ul>\n<li>https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent</li>\n<li>http://www.quirksmode.org/dom/w3c_events.html#mousepos</li>\n</ul></p>\n",
             "access": "public"
         },
         {
@@ -334,7 +334,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "ParticleSystem",
             "namespace": "",
             "module": "Fire",
-            "description": "The Particle System component.",
+            "description": "<p><p>The Particle System component.</p></p>\n",
             "access": "public"
         },
         {
@@ -342,7 +342,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Path",
             "namespace": "",
             "module": "Fire",
-            "description": "The utils for path operation",
+            "description": "<p>The utils for path operation</p>\n",
             "access": "public"
         },
         {
@@ -366,7 +366,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Rect",
             "namespace": "",
             "module": "Fire",
-            "description": "A 2D rectangle defined by x, y position and width, height.\n\nsee {% crosslink Fire.rect Fire.rect %}",
+            "description": "<p><p>A 2D rectangle defined by x, y position and width, height.</p>\n<p>see {% crosslink Fire.rect Fire.rect %}</p></p>\n",
             "access": "public"
         },
         {
@@ -374,7 +374,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Renderer",
             "namespace": "",
             "module": "Fire",
-            "description": "The base for all renderer",
+            "description": "<p><p>The base for all renderer</p></p>\n",
             "access": "public"
         },
         {
@@ -382,7 +382,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Resources",
             "namespace": "",
             "module": "Fire",
-            "description": "Resources 模块允许你在运行时动态加载资源。资源以路径的形式标识，路径不能包含文件后缀名。\nResources 能够使用路径加载项目里所有 `Resources` 目录下的资源，例如 `sprites/npc/001`。",
+            "description": "<p>Resources 模块允许你在运行时动态加载资源。资源以路径的形式标识，路径不能包含文件后缀名。\nResources 能够使用路径加载项目里所有 <code>Resources</code> 目录下的资源，例如 <code>sprites/npc/001</code>。</p>\n",
             "access": "public"
         },
         {
@@ -390,7 +390,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "ResourcesBundle",
             "namespace": "",
             "module": "Fire",
-            "description": "这个加载类用于在运行时访问项目里的 Resources 目录",
+            "description": "<p><p>这个加载类用于在运行时访问项目里的 Resources 目录</p></p>\n",
             "access": "public"
         },
         {
@@ -398,7 +398,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Screen",
             "namespace": "",
             "module": "Fire",
-            "description": "Screen class can be used to access display information.",
+            "description": "<p>Screen class can be used to access display information.</p>\n",
             "access": "public"
         },
         {
@@ -406,7 +406,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Screen.ContainerStrategy",
             "namespace": "",
             "module": "Fire",
-            "description": "ContainerStrategy class is the root strategy class of container's scale strategy,\nit controls the behavior of how to scale the container and canvas.",
+            "description": "<p><p>ContainerStrategy class is the root strategy class of container's scale strategy,\nit controls the behavior of how to scale the container and canvas.</p></p>\n",
             "access": "public"
         },
         {
@@ -414,7 +414,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Screen.ContentStrategy",
             "namespace": "",
             "module": "Fire",
-            "description": "ContentStrategy class is the root strategy class of content's scale strategy,\nit controls the behavior of how to scale the scene and setup the viewport for the game.",
+            "description": "<p><p>ContentStrategy class is the root strategy class of content's scale strategy,\nit controls the behavior of how to scale the scene and setup the viewport for the game.</p></p>\n",
             "access": "public"
         },
         {
@@ -422,7 +422,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Skeleton",
             "namespace": "",
             "module": "Fire.Spine",
-            "description": "The skeleton animation of spine.",
+            "description": "<p><p>The skeleton animation of spine.</p></p>\n",
             "access": "public"
         },
         {
@@ -438,7 +438,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "SkeletonRenderer",
             "namespace": "",
             "module": "Fire.Spine",
-            "description": "The base class of Skeleton.",
+            "description": "<p><p>The base class of Skeleton.</p></p>\n",
             "access": "public"
         },
         {
@@ -446,7 +446,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Sprite",
             "namespace": "",
             "module": "Fire",
-            "description": "Represents a Sprite object which obtained from Texture.",
+            "description": "<p><p>Represents a Sprite object which obtained from Texture.</p></p>\n",
             "access": "public"
         },
         {
@@ -454,7 +454,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "SpriteAnimation",
             "namespace": "",
             "module": "Fire",
-            "description": "The sprite animation Component.",
+            "description": "<p><p>The sprite animation Component.</p></p>\n",
             "access": "public"
         },
         {
@@ -462,7 +462,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "SpriteAnimationClip",
             "namespace": "",
             "module": "Fire",
-            "description": "The sprite animation clip.",
+            "description": "<p><p>The sprite animation clip.</p></p>\n",
             "access": "public"
         },
         {
@@ -470,7 +470,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "SpriteAnimationState",
             "namespace": "",
             "module": "Fire",
-            "description": "The sprite animation state.",
+            "description": "<p><p>The sprite animation state.</p></p>\n",
             "access": "public"
         },
         {
@@ -478,7 +478,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "SpriteRenderer",
             "namespace": "",
             "module": "Fire",
-            "description": "Renders a sprite in the scene.",
+            "description": "<p><p>Renders a sprite in the scene.</p></p>\n",
             "access": "public"
         },
         {
@@ -486,7 +486,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Text",
             "namespace": "",
             "module": "Fire",
-            "description": "The text renderer component.",
+            "description": "<p><p>The text renderer component.</p></p>\n",
             "access": "public"
         },
         {
@@ -502,7 +502,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Texture.Texture",
             "namespace": "Texture",
             "module": "Fire",
-            "description": "Class for texture handling.\nUse this to create textures on the fly or to modify existing texture assets.",
+            "description": "<p><p>Class for texture handling.\nUse this to create textures on the fly or to modify existing texture assets.</p></p>\n",
             "access": "public"
         },
         {
@@ -518,7 +518,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Time",
             "namespace": "",
             "module": "Fire",
-            "description": "The interface to get time information from Fireball.\n\nSee [Time](/en/scripting/time/)",
+            "description": "<p>The interface to get time information from Fireball.</p>\n<p>See <a href=\"/en/scripting/time/\">Time</a></p>\n",
             "access": "public"
         },
         {
@@ -526,7 +526,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Transform",
             "namespace": "",
             "module": "Fire",
-            "description": "Defines position, rotation and scale of an entity.",
+            "description": "<p><p>Defines position, rotation and scale of an entity.</p></p>\n",
             "access": "public"
         },
         {
@@ -534,7 +534,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "ValueType",
             "namespace": "",
             "module": "Fire",
-            "description": "The base class of all value types.",
+            "description": "<p>&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;&lt;p&gt;The base class of all value types.&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;&lt;/p&gt;</p>\n",
             "access": "public"
         },
         {
@@ -542,7 +542,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Vec2",
             "namespace": "",
             "module": "Fire",
-            "description": "Representation of 2D vectors and points.\n\nsee {% crosslink Fire.v2 Fire.v2 %}",
+            "description": "<p><p>Representation of 2D vectors and points.</p>\n<p>see {% crosslink Fire.v2 Fire.v2 %}</p></p>\n",
             "access": "public"
         }
     ],
@@ -552,7 +552,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "Fire.KeyCode",
             "namespace": "",
             "module": "Fire",
-            "description": "Key codes returned by Event.keyCode. These map directly to a physical key on the keyboard.",
+            "description": "<p>Key codes returned by Event.keyCode. These map directly to a physical key on the keyboard.</p>\n",
             "access": "public"
         },
         {
@@ -568,7 +568,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "ImageType",
             "namespace": "",
             "module": "Fire",
-            "description": "Image Type",
+            "description": "<p>Image Type</p>\n",
             "access": "public"
         },
         {
@@ -592,7 +592,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "TextAlign",
             "namespace": "",
             "module": "Fire",
-            "description": "Text alignment",
+            "description": "<p>Text alignment</p>\n",
             "access": "public"
         },
         {
@@ -608,7 +608,7 @@ YUI.add("yuidoc-meta", function(Y) {
             "name": "WrapMode",
             "namespace": "",
             "module": "Fire",
-            "description": "Specifies how time is treated when it is outside of the keyframe range of an Animation.",
+            "description": "<p>Specifies how time is treated when it is outside of the keyframe range of an Animation.</p>\n",
             "access": "public"
         }
     ],
@@ -643,27 +643,27 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "Editor",
             "name": "Editor",
-            "description": "Global object with classes, properties and methods you can access from anywhere."
+            "description": "<p>Global object with classes, properties and methods you can access from anywhere.</p>\n"
         },
         {
             "displayName": "Fire",
             "name": "Fire",
-            "description": "Global object with runtime classes, properties and methods you can access from anywhere.\nSubmodules:\n- [JS](./Fire.JS.html)\n- [Spine](./Fire.Spine.html)"
+            "description": "<p>Global object with runtime classes, properties and methods you can access from anywhere.\nSubmodules:</p>\n<ul>\n<li><a href=\"./Fire.JS.html\">JS</a></li>\n<li><a href=\"./Fire.Spine.html\">Spine</a></li>\n</ul>\n"
         },
         {
             "displayName": "Fire.JS",
             "name": "Fire.JS",
-            "description": "This module provides some JavaScript utilities."
+            "description": "<p>This module provides some JavaScript utilities.</p>\n"
         },
         {
             "displayName": "Fire.Spine",
             "name": "Fire.Spine",
-            "description": "The namespace of Spine, all classes, functions, properties and constants of Spine are defined in this\nmodule."
+            "description": "<p>The namespace of Spine, all classes, functions, properties and constants of Spine are defined in this\nmodule.</p>\n"
         },
         {
             "displayName": "Math",
             "name": "Math",
-            "description": "Extends the JavaScript built-in object that has properties and methods for mathematical constants and functions.\nSee [Global_Objects/Math on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math)"
+            "description": "<p>Extends the JavaScript built-in object that has properties and methods for mathematical constants and functions.\nSee <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math\">Global_Objects/Math on MDN</a></p>\n"
         }
     ]
 } };
