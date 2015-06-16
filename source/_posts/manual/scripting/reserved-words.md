@@ -1,11 +1,11 @@
-title: 附录：保留字
+title: Appendix - Reserved Keywords
 categories: manual
 permalinks: manual/scripting/reserved-words
 ---
 
-除了类已经定义的变量外，以下是其它 Fireball-x 中已经内部占用的变量名，请避免冲突。这些变量有一些只有特殊情况才会用到，有一些是将来可能会用到。
+Following are variables used by Fireball-x beside of variables declared in classes. Some of them are used in uncommon situations, others are reserved for future extension. You should avoid to use them in your code.
 
-### 全局变量
+### Global Variables
 
 - `Fire`
 - `Editor`
@@ -13,20 +13,20 @@ permalinks: manual/scripting/reserved-words
 - `PIXI`
 - `require`
 
-### 可能定义在任意对象上的变量
+### Variables Possibly Defined In Any Object
 
 - `__id__`
 - `__type__`
 - `_iN$t`
 - `_rawext`
 
-### 可能定义在任意类型或 prototype 上的变量
+### Variables Possibly Defined In Any Type or Prototype
 
-- 任何以 `_attrs$` 开头的变量
+- All variables starts with `_attrs$`
 - `__classname__`
 - `__cid__`
 
-### FireClass 上的静态变量
+### FireClass Static Variables
 
 - `get`
 - `set`
@@ -36,11 +36,11 @@ permalinks: manual/scripting/reserved-words
 - `__props__`
 - `__ctors__`
 
-### FireClass 上的实例变量
+### FireClass Instance Variables
 
 - `_observing`
 - `_$erialized`
 
-### 枚举定义上的变量
+### Variables In Enumeration Definition
 
 - `__enums__`

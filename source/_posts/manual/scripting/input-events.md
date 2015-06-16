@@ -1,21 +1,21 @@
-title: 附录：输入事件列表
+title: Appendix - Input Events
 categories: manual
 permalinks: manual/scripting/input-events
 ---
 
-### 鼠标事件(触摸操作也会触发鼠标事件)
+### Mouse Events(Triggered by touching as well)
 
-事件名 | 事件类型 | 说明 | 允许冒泡(Bubbles)
+Event Name | Event Type | Description | Allow Bubbling?
 :--- |:---:|:--- |:---:
-click | [Fire.MouseEvent](/api/classes/MouseEvent) | 单击鼠标 | true
-dblclick | [Fire.MouseEvent](/api/classes/MouseEvent) | 双击鼠标 | true
-mousedown | [Fire.MouseEvent](/api/classes/MouseEvent) | 按下鼠标 | true
-mouseup | [Fire.MouseEvent](/api/classes/MouseEvent) | 抬起鼠标 | true
-mousemove | [Fire.MouseEvent](/api/classes/MouseEvent) | 移动鼠标 | true
+click | [Fire.MouseEvent](/api/classes/MouseEvent) | Single clicking | true
+dblclick | [Fire.MouseEvent](/api/classes/MouseEvent) | Double clicking | true
+mousedown | [Fire.MouseEvent](/api/classes/MouseEvent) | Pressing mouse button | true
+mouseup | [Fire.MouseEvent](/api/classes/MouseEvent) | Releasing mouse button | true
+mousemove | [Fire.MouseEvent](/api/classes/MouseEvent) | Moving mouse cursor | true
 
-### 键盘事件
+### Keyboard Events
 
-事件名 | 事件类型 | 说明 | 允许冒泡(Bubbles)
+Event Name | Event Type | Description | Allow Bubbling?
 :--- |:---:|:--- |:---:
-keydown | [Fire.KeyboardEvent](/api/classes/KeyboardEvent) | 键盘按下 | true
-keyup | [Fire.KeyboardEvent](/api/classes/KeyboardEvent) | 键盘抬起 | true
+keydown | [Fire.KeyboardEvent](/api/classes/KeyboardEvent) | Pressing keys | true
+keyup | [Fire.KeyboardEvent](/api/classes/KeyboardEvent) | Releasing keys | true
