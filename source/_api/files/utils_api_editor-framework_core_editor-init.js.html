@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>utils/api/editor-framework/core/editor-init.js</title>
+  <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+  <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+  <link rel="shortcut icon" type="image/ico" href="../assets/favicon.ico">
+  <link rel="stylesheet" href="../assets/css/solarized_light.css">
+  <script src="../assets/vendor/yui-min.js"></script>
+</head>
+<body>
+
+<div id="doc">
+  <header class="main-header">
+    <div class="content">
+      <div class="project-title">
+        <a href="http://docs-zh.fireball-x.com">
+          <img class="logo" src="http://docs.fireball-x.com/images/logo.png" title="fireball">
+        </a>
+          <h1 class="project-name">fireball</h1>
+          <span class="project-version">0.5.0</span>
+          <p class="description">Fireball is the Html5 game engine for the future.</p>
+        </div>
+        <ul class="jump-links">
+          <li><a href="#index" class="index-jump-link">index</a></li>
+          <li><a href="#top" class="top-jump-link">top</a></li>
+        </ul>
+    </div>
+  </header>
+  <div id="bd" class="main-body">
+    <div id="docs-sidebar" class="sidebar apidocs"><div id="api-list" style="height:100%">
+  <div id="api-tabview" class="tabview" style="height:100%">
+    <div id="api-tabview-filter">
+      <input type="search" id="api-filter" placeholder="Type to filter APIs">
+    </div>
+    <div id="api-tabview-panel">
+      <ul id="api-items" class="apis items">
+        <li>
+          <div class="api-list-item-clickable wave-btn">
+            <a class="module" href="../modules/Editor.html">Editor</a>
+            <i class="flag">module</i>
+          </div>
+          <div class="members-list hidden">
+            
+              
+                <h3>properties</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_selfExcluded">
+                        selfExcluded
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_requireIpcEvent">
+                        requireIpcEvent
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_isNode">
+                        isNode
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_isElectron">
+                        isElectron
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_isNative">
+                        isNative
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_isPureWeb">
+                        isPureWeb
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_isPageLevel">
+                        isPageLevel
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_isCoreLevel">
+                        isCoreLevel
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_isDarwin">
+                        isDarwin
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_isWin32">
+                        isWin32
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_isRetina">
+                        isRetina
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_App">
+                        App
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_cwd">
+                        cwd
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_name">
+                        name
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_versions">
+                        versions
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_mainEntry">
+                        mainEntry
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_frameworkPath">
+                        frameworkPath
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#property_appHome">
+                        appHome
+                      </a>
+                    </li>
+                </ul>
+            
+            
+            
+                <h3>methods</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_log">
+                        log
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_success">
+                        success
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_failed">
+                        failed
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_info">
+                        info
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_warn">
+                        warn
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_error">
+                        error
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_fatal">
+                        fatal
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_connectToConsole">
+                        connectToConsole
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_clearLog">
+                        clearLog
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_loadProfile">
+                        loadProfile
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_quit">
+                        quit
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_loadAllPackages">
+                        loadAllPackages
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_watchPackages">
+                        watchPackages
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_registerProfilePath">
+                        registerProfilePath
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_registerPackagePath">
+                        registerPackagePath
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_registerDefaultLayout">
+                        registerDefaultLayout
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_">
+                        
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_sendToWindowsExclude">
+                        sendToWindowsExclude
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_sendToWindows">
+                        sendToWindows
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_sendToCore">
+                        sendToCore
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_sendToAll">
+                        sendToAll
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_sendToPanel">
+                        sendToPanel
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_sendToMainWindow">
+                        sendToMainWindow
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_url">
+                        url
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_require">
+                        require
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_registerProtocol">
+                        registerProtocol
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_require">
+                        require
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_log">
+                        log
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_sendToCoreSync">
+                        sendToCoreSync
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_sendToCore">
+                        sendToCore
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_sendToWindows">
+                        sendToWindows
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_sendToMainWindow">
+                        sendToMainWindow
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_sendToAll">
+                        sendToAll
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_sendToPanel">
+                        sendToPanel
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_sendRequestToCore">
+                        sendRequestToCore
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_cancelRequestToCore">
+                        cancelRequestToCore
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.html#method_KeyCode">
+                        KeyCode
+                      </a>
+                    </li>
+                </ul>
+            
+          </div>
+        </li>
+        <li>
+          <div class="api-list-item-clickable wave-btn">
+            <a class="module" href="../modules/Editor.Debugger.html">Editor.Debugger</a>
+            <i class="flag">module</i>
+          </div>
+          <div class="members-list hidden">
+            
+              
+            
+            
+            
+                <h3>methods</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../modules/Editor.Debugger.html#method_toggle">
+                        toggle
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Debugger.html#method_open">
+                        open
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Debugger.html#method_close">
+                        close
+                      </a>
+                    </li>
+                </ul>
+            
+          </div>
+        </li>
+        <li>
+          <div class="api-list-item-clickable wave-btn">
+            <a class="module" href="../modules/Editor.JS.html">Editor.JS</a>
+            <i class="flag">module</i>
+          </div>
+          <div class="members-list hidden">
+            
+              
+            
+            
+            
+                <h3>methods</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../modules/Editor.JS.html#method_copyprop">
+                        copyprop
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.JS.html#method_addon">
+                        addon
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.JS.html#method_extract">
+                        extract
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.JS.html#method_mixin">
+                        mixin
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.JS.html#method_extend">
+                        extend
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.JS.html#method_clear">
+                        clear
+                      </a>
+                    </li>
+                </ul>
+            
+          </div>
+        </li>
+        <li>
+          <div class="api-list-item-clickable wave-btn">
+            <a class="module" href="../modules/Editor.MainMenu.html">Editor.MainMenu</a>
+            <i class="flag">module</i>
+          </div>
+          <div class="members-list hidden">
+            
+              
+            
+            
+            
+                <h3>methods</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../modules/Editor.MainMenu.html#method_apply">
+                        apply
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.MainMenu.html#method_reset">
+                        reset
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.MainMenu.html#method_add">
+                        add
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.MainMenu.html#method_remove">
+                        remove
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.MainMenu.html#method_set">
+                        set
+                      </a>
+                    </li>
+                </ul>
+            
+          </div>
+        </li>
+        <li>
+          <div class="api-list-item-clickable wave-btn">
+            <a class="module" href="../modules/Editor.Package.html">Editor.Package</a>
+            <i class="flag">module</i>
+          </div>
+          <div class="members-list hidden">
+            
+              
+            
+            
+            
+                <h3>methods</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../modules/Editor.Package.html#method_load">
+                        load
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Package.html#method_unload">
+                        unload
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Package.html#method_reload">
+                        reload
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Package.html#method_panelInfo">
+                        panelInfo
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Package.html#method_widgetInfo">
+                        widgetInfo
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Package.html#method_packageInfo">
+                        packageInfo
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Package.html#method_packagePath">
+                        packagePath
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Package.html#method_build">
+                        build
+                      </a>
+                    </li>
+                </ul>
+            
+          </div>
+        </li>
+        <li>
+          <div class="api-list-item-clickable wave-btn">
+            <a class="module" href="../modules/Editor.Panel.html">Editor.Panel</a>
+            <i class="flag">module</i>
+          </div>
+          <div class="members-list hidden">
+            
+              
+            
+            
+            
+                <h3>methods</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../modules/Editor.Panel.html#method_open">
+                        open
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Panel.html#method_close">
+                        close
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Panel.html#method_findWindow">
+                        findWindow
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Panel.html#method_findWindows">
+                        findWindows
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Panel.html#method_findPanels">
+                        findPanels
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Panel.html#method_closeAll">
+                        closeAll
+                      </a>
+                    </li>
+                </ul>
+            
+          </div>
+        </li>
+        <li>
+          <div class="api-list-item-clickable wave-btn">
+            <a class="module" href="../modules/Editor.Selection.html">Editor.Selection</a>
+            <i class="flag">module</i>
+          </div>
+          <div class="members-list hidden">
+            
+              
+            
+            
+            
+                <h3>methods</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../modules/Editor.Selection.html#method_confirm">
+                        confirm
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Selection.html#method_cancel">
+                        cancel
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Selection.html#method_select">
+                        select
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Selection.html#method_unselect">
+                        unselect
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Selection.html#method_hover">
+                        hover
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Selection.html#method_setContext">
+                        setContext
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Selection.html#method_clear">
+                        clear
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Selection.html#method_hovering">
+                        hovering
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Selection.html#method_contexts">
+                        contexts
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Selection.html#method_curActivate">
+                        curActivate
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Selection.html#method_curSelection">
+                        curSelection
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Selection.html#method_filter">
+                        filter
+                      </a>
+                    </li>
+                </ul>
+            
+          </div>
+        </li>
+        <li>
+          <div class="api-list-item-clickable wave-btn">
+            <a class="module" href="../modules/Editor.Utils.html">Editor.Utils</a>
+            <i class="flag">module</i>
+          </div>
+          <div class="members-list hidden">
+            
+              
+            
+            
+            
+                <h3>methods</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../modules/Editor.Utils.html#method_padLeft">
+                        padLeft
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Utils.html#method_formatFrame">
+                        formatFrame
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Utils.html#method_smoothScale">
+                        smoothScale
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Editor.Utils.html#method_wrapError">
+                        wrapError
+                      </a>
+                    </li>
+                </ul>
+            
+          </div>
+        </li>
+        <li>
+          <div class="api-list-item-clickable wave-btn">
+            <a class="module" href="../modules/Math.html">Math</a>
+            <i class="flag">module</i>
+          </div>
+          <div class="members-list hidden">
+            
+              
+                <h3>properties</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../modules/Math.html#property_TWO_PI">
+                        TWO_PI
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#property_HALF_PI">
+                        HALF_PI
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#property_D">
+                        D
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#property_R">
+                        R
+                      </a>
+                    </li>
+                </ul>
+            
+            
+            
+                <h3>methods</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../modules/Math.html#method_deg2rad">
+                        deg2rad
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#method_rad2deg">
+                        rad2deg
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#method_rad180">
+                        rad180
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#method_rad360">
+                        rad360
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#method_deg180">
+                        deg180
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#method_deg360">
+                        deg360
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#method_randomRange">
+                        randomRange
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#method_randomRangeInt">
+                        randomRangeInt
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#method_clamp">
+                        clamp
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#method_clamp01">
+                        clamp01
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#method_calculateMaxRect">
+                        calculateMaxRect
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../modules/Math.html#method_lerp">
+                        lerp
+                      </a>
+                    </li>
+                </ul>
+            
+          </div>
+        </li>
+        <li>
+          <div class="api-list-item-clickable wave-btn">
+              <a class="class" 
+                href="../classes/IpcListener.html" 
+                title="Editor.IpcListener">Editor.IpcListener</a>
+              <i class="flag">class</i>
+          </div>
+          <div class="members-list hidden">
+            
+              
+            
+            
+            
+                <h3>methods</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../classes/IpcListener.html#method_on">
+                        on
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/IpcListener.html#method_once">
+                        once
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/IpcListener.html#method_clear">
+                        clear
+                      </a>
+                    </li>
+                </ul>
+            
+          </div>
+        </li>
+        <li>
+          <div class="api-list-item-clickable wave-btn">
+              <a class="class" 
+                href="../classes/Menu.html" 
+                title="Editor.Menu">Editor.Menu</a>
+              <i class="flag">class</i>
+          </div>
+          <div class="members-list hidden">
+            
+              
+            
+            
+            
+                <h3>methods</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../classes/Menu.html#method_dispose">
+                        dispose
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Menu.html#method_reset">
+                        reset
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Menu.html#method_clear">
+                        clear
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Menu.html#method_add">
+                        add
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Menu.html#method_remove">
+                        remove
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Menu.html#method_set">
+                        set
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Menu.html#method_parseTemplate">
+                        parseTemplate
+                      </a>
+                    </li>
+                </ul>
+            
+          </div>
+        </li>
+        <li>
+          <div class="api-list-item-clickable wave-btn">
+              <a class="class" 
+                href="../classes/Window.html" 
+                title="Editor.Window">Editor.Window</a>
+              <i class="flag">class</i>
+          </div>
+          <div class="members-list hidden">
+            
+              
+                <h3>properties</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../classes/Window.html#property_isMainWindo">
+                        isMainWindo
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#property_isFocuse">
+                        isFocuse
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#property_isMinimize">
+                        isMinimize
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#property_isLoade">
+                        isLoade
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#property_window">
+                        window
+                      </a>
+                    </li>
+                </ul>
+            
+            
+            
+                <h3>methods</h3>
+                <ul class="apis members api-members">
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_load">
+                        load
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_show">
+                        show
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_close">
+                        close
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_focus">
+                        focus
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_minimize">
+                        minimize
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_restore">
+                        restore
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_openDevTools">
+                        openDevTools
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_adjust">
+                        adjust
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_commitWindowState">
+                        commitWindowState
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_restorePositionAndSize">
+                        restorePositionAndSize
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_find">
+                        find
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_addWindow">
+                        addWindow
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_removeWindow">
+                        removeWindow
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_commitWindowStates">
+                        commitWindowStates
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_saveWindowStates">
+                        saveWindowStates
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_sendToPage">
+                        sendToPage
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_sendRequestToPage">
+                        sendRequestToPage
+                      </a>
+                    </li>
+                    <li>
+                      <a class="name" href="../classes/Window.html#method_cancelRequestToPage">
+                        cancelRequestToPage
+                      </a>
+                    </li>
+                </ul>
+            
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+    <div id="docs-main" class="apidocs">
+      <div class="content container"><h1 class="file-heading">File: utils/api/editor-framework/core/editor-init.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+var Ipc = require(&#x27;ipc&#x27;);
+var Util = require(&#x27;util&#x27;);
+var Fs = require(&#x27;fire-fs&#x27;);
+var Path = require(&#x27;fire-path&#x27;);
+var Winston = require(&#x27;winston&#x27;);
+var Globby = require(&#x27;globby&#x27;);
+var Chokidar = require(&#x27;chokidar&#x27;);
+var Async = require(&#x27;async&#x27;);
+
+// ==========================
+// console log API
+// ==========================
+
+var _consoleConnected = false;
+var _logs = [];
+
+/**
+ * @module Editor
+ */
+
+/**
+ * Log the normal message and show on the console.
+ * The method will send ipc message &#x60;console:log&#x60; to all windows.
+ * @method log
+ * @param {...*} [args] - whatever arguments the message needs
+ */
+Editor.log = function () {
+    var text = Util.format.apply(Util, arguments);
+
+    if ( _consoleConnected )
+        _logs.push({ type: &#x27;log&#x27;, message: text });
+
+    Winston.normal(text);
+    Editor.sendToWindows(&#x27;console:log&#x27;,text);
+};
+
+/**
+ * Log the success message and show on the console
+ * The method will send ipc message &#x60;console:success&#x60; to all windows.
+ * @method success
+ * @param {...*} [args] - whatever arguments the message needs
+ */
+Editor.success = function () {
+    var text = Util.format.apply(Util, arguments);
+
+    if ( _consoleConnected )
+        _logs.push({ type: &#x27;success&#x27;, message: text });
+
+    Winston.success(text);
+    Editor.sendToWindows(&#x27;console:success&#x27;,text);
+};
+
+/**
+ * Log the failed message and show on the console
+ * The method will send ipc message &#x60;console:failed&#x60; to all windows.
+ * @method failed
+ * @param {...*} [args] - whatever arguments the message needs
+ */
+Editor.failed = function () {
+    var text = Util.format.apply(Util, arguments);
+
+    if ( _consoleConnected )
+        _logs.push({ type: &#x27;failed&#x27;, message: text });
+
+    Winston.failed(text);
+    Editor.sendToWindows(&#x27;console:failed&#x27;,text);
+};
+
+/**
+ * Log the info message and show on the console
+ * The method will send ipc message &#x60;console:info&#x60; to all windows.
+ * @method info
+ * @param {...*} [args] - whatever arguments the message needs
+ */
+Editor.info = function () {
+    var text = Util.format.apply(Util, arguments);
+
+    if ( _consoleConnected )
+        _logs.push({ type: &#x27;info&#x27;, message: text });
+
+    Winston.info(text);
+    Editor.sendToWindows(&#x27;console:info&#x27;,text);
+};
+
+/**
+ * Log the warnning message and show on the console,
+ * it also shows the call stack start from the function call it.
+ * The method will send ipc message &#x60;console:warn&#x60; to all windows.
+ * @method warn
+ * @param {...*} [args] - whatever arguments the message needs
+ */
+Editor.warn = function () {
+    var text = Util.format.apply(Util, arguments);
+
+    var e = new Error(&#x27;dummy&#x27;);
+    var lines = e.stack.split(&#x27;\n&#x27;);
+    text = text + &#x27;\n&#x27; + lines.splice(2).join(&#x27;\n&#x27;);
+
+    if ( _consoleConnected )
+        _logs.push({ type: &#x27;warn&#x27;, message: text });
+
+    Winston.warn(text);
+    Editor.sendToWindows(&#x27;console:warn&#x27;,text);
+};
+
+/**
+ * Log the error message and show on the console,
+ * it also shows the call stack start from the function call it.
+ * The method will sends ipc message &#x60;console:error&#x60; to all windows.
+ * @method error
+ * @param {...*} [args] - whatever arguments the message needs
+ */
+Editor.error = function () {
+    var text = Util.format.apply(Util, arguments);
+
+    var e = new Error(&#x27;dummy&#x27;);
+    var lines = e.stack.split(&#x27;\n&#x27;);
+    text = text + &#x27;\n&#x27; + lines.splice(2).join(&#x27;\n&#x27;);
+
+    if ( _consoleConnected )
+        _logs.push({ type: &#x27;error&#x27;, message: text });
+
+    Winston.error(text);
+    Editor.sendToWindows(&#x27;console:error&#x27;,text);
+};
+
+/**
+ * Log the fatal message and show on the console,
+ * the app will quit immediately after that.
+ * @method fatal
+ * @param {...*} [args] - whatever arguments the message needs
+ */
+Editor.fatal = function () {
+    var text = Util.format.apply(Util, arguments);
+
+    var e = new Error(&#x27;dummy&#x27;);
+    var lines = e.stack.split(&#x27;\n&#x27;);
+    text = text + &#x27;\n&#x27; + lines.splice(2).join(&#x27;\n&#x27;);
+
+    if ( _consoleConnected )
+        _logs.push({ type: &#x27;fatal&#x27;, message: text });
+
+    Winston.fatal(text);
+    // NOTE: fatal error will close app immediately, no need for ipc.
+};
+
+/**
+ * Connect to console panel. Once the console connected, all logs will kept in &#x60;core-level&#x60; and display
+ * on the console panel in &#x60;page-level&#x60;.
+ * @method connectToConsole
+ */
+Editor.connectToConsole = function () {
+    _consoleConnected = true;
+};
+
+/**
+ * Clear the logs
+ * @method clearLog
+ */
+Editor.clearLog = function () {
+    _logs = [];
+};
+
+Ipc.on ( &#x27;console:log&#x27;, function () { Editor.log.apply(Editor,arguments); } );
+Ipc.on ( &#x27;console:success&#x27;, function () { Editor.success.apply(Editor,arguments); } );
+Ipc.on ( &#x27;console:failed&#x27;, function () { Editor.failed.apply(Editor,arguments); } );
+Ipc.on ( &#x27;console:info&#x27;, function () { Editor.info.apply(Editor,arguments); } );
+Ipc.on ( &#x27;console:warn&#x27;, function () { Editor.warn.apply(Editor,arguments); } );
+Ipc.on ( &#x27;console:error&#x27;, function () { Editor.error.apply(Editor,arguments); } );
+Ipc.on ( &#x27;console:clear&#x27;, function () { Editor.clearLog(); } );
+Ipc.on ( &#x27;console:query&#x27;, function ( reply ) {
+    reply(_logs);
+});
+
+// ==========================
+// pre-require modules
+// ==========================
+
+require(&#x27;../share/platform&#x27;) ;
+Editor.JS = require(&#x27;../share/js-utils&#x27;) ;
+Editor.Utils = require(&#x27;../share/editor-utils&#x27;);
+require(&#x27;../share/math&#x27;);
+require(&#x27;./ipc-init&#x27;);
+Editor.Selection = require(&#x27;../share/selection&#x27;);
+Editor.KeyCode = require(&#x27;../share/keycode&#x27;);
+
+// ==========================
+// profiles API
+// ==========================
+
+var _path2profiles = {};
+function _saveProfile ( path, profile ) {
+    var json = JSON.stringify(profile, null, 2);
+    Fs.writeFileSync(path, json, &#x27;utf8&#x27;);
+}
+
+/**
+ * Load profile via &#x60;name&#x60; and &#x60;type&#x60;, if no profile found, it will use the &#x60;defaultProfile&#x60; and save it to the disk.
+ * You must register your profile path with &#x60;type&#x60; via {@link Editor.registerProfilePath} before you
+ * can use it. The Editor Framework will search a profile under your register path with the &#x60;name&#x60;.
+ * @method loadProfile
+ * @param {string} name - The name of the profile.
+ * @param {string} type - The type of the profile, make sure you register the type via {@link Editor.registerProfilePath}.
+ * @param {object} defaultProfile - The default profile to use if the profile is not found.
+ * @return {object} A profile object with two additional function:
+ *  - save: save the profile.
+ *  - clear: clear all properties in the profile.
+ * @see Editor.registerProfilePath
+ * @example
+ * &#x60;&#x60;&#x60;js
+ * // register a project profile
+ * Editor.registerProfilePath( &#x27;project&#x27;, &#x27;~/foo/bar&#x27;);
+ *
+ * // load the profile at ~/foo/bar/foobar.json
+ * var foobarProfile = Editor.loadProfile( &#x27;foobar&#x27;, &#x27;project&#x27;, {
+ *   foo: &#x27;foo&#x27;,
+ *   bar: &#x27;bar&#x27;,
+ * });
+ *
+ * // change and save your profile
+ * foobarProfile.foo = &#x27;hello foo&#x27;;
+ * foobarProfile.save();
+ * &#x60;&#x60;&#x60;
+ */
+Editor.loadProfile = function ( name, type, defaultProfile ) {
+    var path = Editor._type2profilepath[type];
+    if ( !path ) {
+        Editor.error( &#x27;Failed to load profile by type %s, please register it first.&#x27;, type );
+        return null;
+    }
+    path = Path.join(path, name+&#x27;.json&#x27;);
+
+    var profile = _path2profiles[path];
+    if ( profile ) {
+        return profile;
+    }
+
+    var profileProto = {
+        save: function () {
+            _saveProfile( path, this );
+        },
+        clear: function () {
+            for ( var p in this ) {
+                if ( p !== &#x27;save&#x27; &amp;&amp; p !== &#x27;clear&#x27; ) {
+                    delete this[p];
+                }
+            }
+        },
+    };
+
+    profile = defaultProfile || {};
+
+    if ( !Fs.existsSync(path) ) {
+        Fs.writeFileSync(path, JSON.stringify(profile, null, 2));
+    }
+    else {
+        try {
+            profile = JSON.parse(Fs.readFileSync(path));
+
+            var p;
+            if ( defaultProfile ) {
+                for ( p in profile ) {
+                    if ( defaultProfile[p] === undefined )
+                        delete profile[p];
+                }
+                for ( p in defaultProfile ) {
+                    if ( profile[p] === undefined ||
+                         typeof(profile[p]) !== typeof(defaultProfile[p]) )
+                    {
+                        profile[p] = defaultProfile[p];
+                    }
+                }
+                // save again
+                Fs.writeFileSync(path, JSON.stringify(profile, null, 2));
+            }
+        }
+        catch ( err ) {
+            if ( err ) {
+                Editor.warn( &#x27;Failed to load profile %s, error message: %s&#x27;, name, err.message );
+                profile = {};
+            }
+        }
+    }
+
+    profile = Editor.JS.mixin( profile, profileProto );
+    _path2profiles[path] = profile;
+
+    return profile;
+};
+
+// ==========================
+// misc API
+// ==========================
+
+var _packageWatcher;
+
+/**
+ * Quit the App
+ * @method quit
+ */
+Editor.quit = function () {
+    if ( _packageWatcher ) {
+        _packageWatcher.close();
+    }
+
+    var winlist = Editor.Window.windows;
+    for ( var i = 0; i &lt; winlist.length; ++i ) {
+        winlist[i].close();
+    }
+};
+
+Editor.loadPackagesAt = function ( path, cb ) {
+    var idx = Editor._packagePathList.indexOf(path);
+    if ( idx === -1 ) {
+        Editor.warn( &#x27;The package path %s is not registerred&#x27;, path );
+        return;
+    }
+
+    var paths = Globby.sync( path + &#x27;/*/package.json&#x27; );
+
+    Async.eachSeries( paths, function ( path, done ) {
+        var packagePath = Path.dirname(path);
+        Editor.Package.load( packagePath, function ( err ) {
+            if ( err ) {
+                Editor.failed(&#x27;Failed to load package at %s&#x27;, packagePath );
+            }
+            done();
+        });
+    }, function () {
+        if ( cb ) cb ();
+    });
+};
+
+/**
+ * Search and load all packages from the path you registerred
+ * {{#crossLink &quot;Editor.registerPackagePath&quot;}}{{/crossLink}}
+ * @method loadAllPackages
+ */
+Editor.loadAllPackages = function ( cb ) {
+    var i, src = [];
+    for ( i = 0; i &lt; Editor._packagePathList.length; ++i ) {
+        src.push( Editor._packagePathList[i] + &#x27;/*/package.json&#x27; );
+    }
+
+    var paths = Globby.sync( src );
+
+    Async.eachSeries( paths, function ( path, done ) {
+        var packagePath = Path.dirname(path);
+        Editor.Package.load( packagePath, function ( err ) {
+            if ( err ) {
+                Editor.failed(&#x27;Failed to load package at %s&#x27;, packagePath );
+            }
+            done();
+        });
+    }, function () {
+        if ( cb ) cb ();
+    });
+};
+
+/**
+ * Watch packages
+ * @method watchPackages
+ */
+Editor.watchPackages = function ( cb ) {
+    //
+    if ( Editor._packagePathList.length === 0 ) {
+        if ( cb ) cb ();
+        return;
+    }
+
+    var src = [];
+    for ( i = 0; i &lt; Editor._packagePathList.length; ++i ) {
+        var packagePath = Editor._packagePathList[i];
+        if ( Fs.existsSync(packagePath) ) {
+            src.push( packagePath );
+        }
+    }
+    _packageWatcher = Chokidar.watch(src, {
+        ignored: [/[\/\\]\./, /[\/\\]bin/],
+        ignoreInitial: true,
+        persistent: true,
+    });
+
+    _packageWatcher
+    .on(&#x27;add&#x27;, function(path) {
+        _packageWatcher.add(path);
+    })
+    .on(&#x27;addDir&#x27;, function(path) {
+        _packageWatcher.add(path);
+    })
+    .on(&#x27;unlink&#x27;, function(path) {
+        _packageWatcher.unwatch(path);
+    })
+    .on(&#x27;unlinkDir&#x27;, function(path) {
+        _packageWatcher.unwatch(path);
+    })
+    .on(&#x27;change&#x27;, function (path) {
+        var packageInfo = Editor.Package.packageInfo(path);
+        if ( packageInfo ) {
+            Async.series([
+                function ( next ) {
+                    if ( packageInfo.build ) {
+                        Editor.log( &#x27;Rebuilding &#x27; + packageInfo.name );
+                        Editor.Package.build( packageInfo._path, next );
+                    }
+                    else {
+                        next ();
+                    }
+                },
+
+                function ( next ) {
+                    var testerWin = Editor.Panel.findWindow(&#x27;tester.panel&#x27;);
+
+                    // reload test
+                    var testPath = Path.join(packageInfo._path, &#x27;test&#x27;);
+                    if ( Path.contains(testPath , path) ) {
+                        if ( testerWin ) {
+                            testerWin.sendToPage(&#x27;tester:run-tests&#x27;, packageInfo.name);
+                        }
+                        next();
+                        return;
+                    }
+
+                    // reload page
+                    var pageFolders = [&#x27;page&#x27;, &#x27;panel&#x27;, &#x27;widget&#x27;];
+                    if (pageFolders.some( function ( name ) {
+                        return Path.contains( Path.join(packageInfo._path, name), path );
+                    })) {
+                        for ( var panelName in packageInfo.panels ) {
+                            var panelID = packageInfo.name + &#x27;.&#x27; + panelName;
+                            Editor.sendToWindows( &#x27;panel:out-of-date&#x27;, panelID );
+                        }
+
+                        if ( testerWin ) {
+                            testerWin.sendToPage(&#x27;tester:run-tests&#x27;, packageInfo.name);
+                        }
+                        next();
+                        return;
+                    }
+
+                    // reload core
+                    Editor.Package.reload(packageInfo._path, {
+                        rebuild: false
+                    });
+                    next();
+                },
+            ], function ( err ) {
+                if ( err )
+                    Editor.error( &#x27;Failed to reload package %s: %s&#x27;, packageInfo.name, err.message );
+            });
+        }
+    })
+    .on(&#x27;error&#x27;, function (error) {
+        Editor.error(&#x27;Package Watcher Error: %s&#x27;, error.message);
+    })
+    .on(&#x27;ready&#x27;, function() {
+        if ( cb ) cb ();
+    })
+    // .on(&#x27;raw&#x27;, function(event, path, details) { Editor.log(&#x27;Raw event info:&#x27;, event, path, details); })
+    ;
+};
+
+// ==========================
+// extends
+// ==========================
+
+Editor._type2profilepath = {};
+Editor._packagePathList = [];
+Editor._defaultLayout = &#x27;&#x27;;
+
+/**
+ * Register profile type with the path you provide.
+ * {{#crossLink &quot;Editor.loadProfile&quot;}}{{/crossLink}}
+ * @method registerProfilePath
+ * @param {string} type - The type of the profile you want to register.
+ * @param {string} path - The path for the register type.
+ */
+Editor.registerProfilePath = function ( type, path ) {
+    Editor._type2profilepath[type] = path;
+};
+
+/**
+ * Register a path, when loading packages, it will search the path you registerred.
+ * {{#crossLink &quot;Editor.loadPackages&quot;}}{{/crossLink}}
+ * @method registerPackagePath
+ * @param {string} path - A absolute path for searching your packages.
+ */
+Editor.registerPackagePath = function ( path ) {
+    Editor._packagePathList.push(path);
+};
+
+/**
+ * Unregister a package path
+ */
+Editor.unregisterPackagePath = function ( path ) {
+    var idx = Editor._packagePathList.indexOf(path);
+    if ( idx !== -1 ) {
+        Editor._packagePathList.splice(idx,1);
+    }
+};
+
+/**
+ * Register a path, when loading packages, it will search the path you registerred.
+ * {{#crossLink &quot;Editor.loadPackages&quot;}}{{/crossLink}}
+ * @method registerDefaultLayout
+ * @param {string} path - A absolute path for searching your packages.
+ */
+Editor.registerDefaultLayout = function ( path ) {
+    Editor._defaultLayout = path;
+};
+
+/**
+ * register default main menu template function
+ * @method
+ * @param {function} tmplFn
+ */
+Editor.registerDefaultMainMenu = function ( tmplFn ) {
+    Editor._defaultMainMenu = tmplFn;
+};
+
+// ==========================
+// load modules
+// ==========================
+
+Editor.Menu = require(&#x27;./editor-menu&#x27;);
+Editor.Window = require(&#x27;./editor-window&#x27;);
+Editor.Panel = require(&#x27;./editor-panel&#x27;);
+Editor.Package = require(&#x27;./editor-package&#x27;);
+Editor.Debugger = require(&#x27;./debugger&#x27;);
+
+Editor.MainMenu = require(&#x27;./main-menu&#x27;);
+
+    </pre>
+</div>
+</div>
+    </div>
+  </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/vendor/jquery.min.js"></script>
+<script src="../assets/js/jquery-offscreen-trigger.js"></script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

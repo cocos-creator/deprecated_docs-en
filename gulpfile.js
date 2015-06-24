@@ -7,10 +7,20 @@ gulp.task('generate', function(cb) {
         console.log(data.toString());
     });
     child.on('exit', function() {
-        var stream = gulp.src('source/_api/**/*')
+        var stream1 = gulp.src('source/_api/**/*')
                         .pipe(gulp.dest('public/api'));
-        stream.on('exit', function() {
-            return cb();
+        var stream2 = gulp.src('source/_oldapi/**/*')
+                        .pipe(gulp.dest('public/old-api'));
+        var count = 2;
+        stream1.on('exit', function() {
+            if (--count <= 0) {
+                return cb();
+            }
+        });
+        stream2.on('exit', function() {
+            if (--count <= 0) {
+                return cb();
+            }
         });
     });
 });
