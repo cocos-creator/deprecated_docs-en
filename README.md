@@ -20,10 +20,18 @@ npm install -g hexo-cli
 npm install
 ```
 
+## Get Doc Files from Fireball and modules
+
+```bash
+gulp copy-doc-src
+```
+
 ## Preview Documentation
 
-```
-hexo g
+```bash
+# use gulp task to copy over api reference pages.
+gulp generate
+# start hexo server
 hexo s
 ```
 
@@ -63,7 +71,7 @@ We can use two ways to insert images:
                               |--document.pdf
 ```  
 
-You need to create a folder with the same name of the doc's filename, and they should be in the same parent folder. If the permalinks of the doc is `category/subcategory/my-title`, the link to the image should be  `category/subcategory/my-title/screenshot.png`. 
+You need to create a folder with the same name of the doc's filename, and they should be in the same parent folder. If the permalinks of the doc is `category/subcategory/my-title`, the link to the image should be  `category/subcategory/my-title/screenshot.png`.
 
 ## Troubleshooting
 

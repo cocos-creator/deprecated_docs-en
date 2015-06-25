@@ -1,20 +1,20 @@
 Get-Started:
-  Get Fireball: manual/start/get-fireball
-  New Project: manual/start/new-project
-  Meet Editor: manual/start/editor-overview
-  From Unity: manual/start/from-unity
+    Get Fireball: manual/start/get-fireball
+    New Project: manual/start/new-project
+    Meet Editor: manual/start/editor-overview
+    From Unity: manual/start/from-unity
 Scripting:
-  JavaScript Primer: manual/scripting/javascript-primer
-  Component Overview: manual/scripting/component
-  Component Access: manual/scripting/component/access
-  Component Callbacks: manual/scripting/component/callbacks
-  Create and Destroy: manual/scripting/create-destroy-entities
-  Time and Framerate: manual/scripting/time
-  Define Class: manual/scripting/class
-  Attributes: manual/scripting/attributes
-  Input: manual/scripting/input
-  Module: manual/scripting/module
-  Appendix - Input Events: manual/scripting/input-events
-  Appendix - Reserved-Words: manual/scripting/reserved-words
+    JavaScript Primer: manual/scripting/javascript-primer
+    Component Overview: manual/scripting/component
+    Component Access: manual/scripting/component/access
+    Component Callbacks: manual/scripting/component/callbacks
+    Create and Destroy: manual/scripting/create-destroy-entities
+    Time and Framerate: manual/scripting/time
+    Define Class: manual/scripting/class
+    Attributes: manual/scripting/attributes
+    Input: manual/scripting/input
+    Module: manual/scripting/module
+    Appendix - Input Events: manual/scripting/input-events
+    Appendix - Reserved-Words: manual/scripting/reserved-words
 Plugin:
-  Plugin Configuration: manual/plugin/config-package-json
+    Plugin Configuration: manual/plugin/config-package-json

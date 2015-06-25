@@ -27,7 +27,7 @@
         <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
             <aside id="article-toc" role="navigation" class="fixed">
                 <div id="article-toc-inner">
-                    <strong class="sidebar-title">内容索引</strong>
+                    <strong class="sidebar-title">TOC</strong>
                     {{ toc(page.content, {list_number: false}) }}
                     <a href="#top" id="article-toc-top">back to top</a>
                 </div>

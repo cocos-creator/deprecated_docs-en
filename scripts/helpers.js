@@ -25,7 +25,7 @@ hexo.extend.helper.register('category_link', function() {
     for (var title in menu) {
         var link = menu[title];
         if (link === cat) {
-            return link ;
+            return link + '/index' ;
         }
     }
     return "";

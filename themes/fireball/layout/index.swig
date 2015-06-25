@@ -3,7 +3,8 @@
 </div>
 
 <div class="index">
-    <div class="row">
+    {{ page.content }}
+    {# <div class="row">
         <div class="col-lg-9">
             {{ page.content }}
             <div class="row">
@@ -22,7 +23,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> #}
 
     <div class="footer">
         {{ partial('partial/footer') }}
