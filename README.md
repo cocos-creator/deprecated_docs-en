@@ -22,6 +22,13 @@ npm install
 
 ## Get Doc Files from Fireball and modules
 
+Fireball documentation source is managed in the following repo:
+
+- [Fireball Docs](https://github.com/fireball-x/fireball/tree/master/docs)
+- [Editor Framework](https://github.com/fireball-x/editor-framework/tree/master/docs)
+
+This documentation site will grab docs source file from repos above using this task:
+
 ```bash
 gulp copy-doc-src
 ```
@@ -35,18 +42,26 @@ gulp generate
 hexo s
 ```
 
+## Continuous Integration
+
+Once you push any commit to the master branch of this repo, Circle CI will go through the above process and deploy generated hexo site to github pages.
+
+Then you can see the result at http://docs.fireball-x.com
+
 ## Contributing
 
 ### Structure
 
-We have 3 categories at the moment: tutorial，manual, api. Each resides in `source/_post` as a sub folder.
-You can create new category by adding a folder at [source/_post], and populate it with markdown files.
+We have 2 doc source at the moment: [Fireball Docs](https://github.com/fireball-x/fireball/tree/master/docs) and [Editor Framework](https://github.com/fireball-x/editor-framework/tree/master/docs). Each resides in `source/_post/fireball` and `source/_post/editor`.
+
+If you want to add new doc or edit existing one, please go to the doc source and submit a PR.
 
 ### Front-matter
 
 Each markdown file should start with a YAML front-matter section to define key information of the doc:
 
 ```yaml
+---
 title: My Title
 categories: manual
 permalinks: manual/subfolder/my-doc-link
@@ -72,6 +87,7 @@ We can use two ways to insert images:
 ```  
 
 You need to create a folder with the same name of the doc's filename, and they should be in the same parent folder. If the permalinks of the doc is `category/subcategory/my-title`, the link to the image should be  `category/subcategory/my-title/screenshot.png`.
+
 
 ## Troubleshooting
 
