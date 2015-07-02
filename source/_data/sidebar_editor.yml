@@ -1,4 +1,4 @@
-Editor:
+Extending Editor:
     Editor Module: editor/editor-module
     Ipc Channel: editor/ipc-channel
 Packages:
