@@ -11,7 +11,7 @@ hexo.extend.helper.register('category_name', function() {
     var cat = this.page.path.split('/')[0];
     var menu = this.site.data.menu;
     for (var title in menu) {
-        var link = menu[title];
+        var link = menu[title].split('/')[0];
         if (link === cat) {
             return title ;
         }
@@ -23,7 +23,7 @@ hexo.extend.helper.register('category_link', function() {
     var cat = this.page.path.split('/')[0];
     var menu = this.site.data.menu;
     for (var title in menu) {
-        var link = menu[title];
+        var link = menu[title].split('/')[0];
         if (link === cat) {
             return link + '/index' ;
         }
@@ -74,4 +74,19 @@ hexo.extend.helper.register('doc_category', function(){
     result += '<li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_' + cat + '.yml">Edit Sidebar</a></li></ul>';
 
     return result;
+});
+
+hexo.extend.helper.register('edit_link', function() {
+    var src = this.page.source;
+    if (src) {
+        if (src.indexOf('_posts/editor') !== -1) {
+            return 'https://github.com/fireball-x/editor-framework/edit/master/docs/' + src.split('/').slice(2).join('/');
+        } else if (src.indexOf('_posts/fireball') !== -1) {
+            return 'https://github.com/fireball-x/fireball/edit/dev/docs/' + src.split('/').slice(2).join('/');
+        } else {
+            return "#";
+        }
+    } else {
+        return "#";
+    }
 });
