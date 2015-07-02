@@ -31,12 +31,12 @@ gulp.task('generate', function(cb) {
 
 gulp.task('download-doc-src', function(cb){
     var count = 2;
-    downloadRepoToCache('fireball', function(folder) {
+    downloadRepoToCache('fireball', 'dev', function() {
         if (--count <= 0) {
             cb();
         }
     });
-    downloadRepoToCache('editor-framework', function() {
+    downloadRepoToCache('editor-framework', 'master', function() {
         if (--count <= 0) {
             cb();
         }
@@ -56,12 +56,12 @@ gulp.task('copy-doc-src', ['download-doc-src'], function(cb) {
         var count = 2;
         stream1.on('exit', function() {
             if (--count <= 0) {
-                return cb();
+                cb();
             }
         });
         stream2.on('exit', function() {
             if (--count <= 0) {
-                return cb();
+                cb();
             }
         });
     });
@@ -71,7 +71,7 @@ function getCacheFolder(repoName) {
     return path.join(os.tmpDir(), 'fireball-doc-src', repoName);
 }
 
-function downloadRepoToCache(repoName, callback) {
+function downloadRepoToCache(repoName, branch, callback) {
     var Download = require('download');
     var cacheFolder = getCacheFolder(repoName);
     del(cacheFolder, {force: true}, function(err) {
@@ -82,7 +82,7 @@ function downloadRepoToCache(repoName, callback) {
                 extract: true,
                 strip: 1
             })
-                .get('https://github.com/fireball-x/' + repoName + '/archive/master.zip')
+                .get('https://github.com/fireball-x/' + repoName + '/archive/' + branch + '.zip')
                 .dest(cacheFolder)
                 .run(function(err,files){
                     if (err) throw err;
