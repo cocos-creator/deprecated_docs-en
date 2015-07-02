@@ -10,10 +10,11 @@ Users can create HTML5 and native mobile games with JavaScript scripting and pow
 
 ## Documentation
 
+- [User Manual](/manual/index)
 - [Extending Editor](/editor/index)
 - [API](/api)
 
-## Fireball 0.4
+## Fireball 0.4 (Deprecated)
 
 Current version of Fireball is 0.5.0-alpha, due to large scale of refactoring it's incompatible to Fireball 0.4. To read Fireball 0.4 documentations, checkout the following:
 
