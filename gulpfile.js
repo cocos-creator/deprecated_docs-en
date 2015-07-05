@@ -15,7 +15,7 @@ gulp.task('copy-api-src', function(cb) {
     });
 });
 
-gulp.task('generate', ['copy-api-src'], function(cb) {
+gulp.task('generate', function(cb) {
     var child = spawn('hexo', ['generate']);
     child.on('data', function(data) {
         console.log(data.toString());
