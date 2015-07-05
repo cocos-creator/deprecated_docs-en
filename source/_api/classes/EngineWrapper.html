@@ -328,6 +328,11 @@
                       </a>
                     </li>
                     <li class="">
+                      <a class="name" href="/modules/Editor.html#method_getNodeDump">
+                        getNodeDump
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_serialize">
                         serialize
                       </a>
@@ -725,16 +730,6 @@
                         String
                       </a>
                     </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#property_HideInInspector">
-                        HideInInspector
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#property_ReadOnly">
-                        ReadOnly
-                      </a>
-                    </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#property_isNode">
                         isNode
@@ -827,28 +822,8 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Enum">
-                        Enum
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method_RawType">
                         RawType
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Custom">
-                        Custom
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Fire.DisplayName">
-                        Fire.DisplayName
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Tooltip">
-                        Tooltip
                       </a>
                     </li>
                     <li class="private">
@@ -969,16 +944,6 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_padLeft">
                         padLeft
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_fitRatio">
-                        fitRatio
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_fitSize">
-                        fitSize
                       </a>
                     </li>
                     <li class="private">
@@ -1431,11 +1396,6 @@
             
                 <h3>methods</h3>
                 <ul class="apis members api-members">
-                    <li class="">
-                      <a class="name" href="/classes/Asset.html#method_validateAsset">
-                        validateAsset
-                      </a>
-                    </li>
                     <li class="private">
                       <a class="name" href="/classes/Asset.html#method_deserialize">
                         deserialize
@@ -1794,6 +1754,16 @@
                     <li class="">
                       <a class="name" href="/classes/EngineWrapper.html#method_stopRuntime">
                         stopRuntime
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/EngineWrapper.html#method_pauseRuntime">
+                        pauseRuntime
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/EngineWrapper.html#method_resumeRuntime">
+                        resumeRuntime
                       </a>
                     </li>
                     <li class="">
@@ -2435,6 +2405,11 @@
                       </a>
                     </li>
                     <li class="">
+                      <a class="name" href="/classes/NodeWrapper.html#method_attached">
+                        attached
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/classes/NodeWrapper.html#method_getSiblingIndex">
                         getSiblingIndex
                       </a>
@@ -2870,6 +2845,11 @@
                     <li class="">
                       <a class="name" href="/classes/NodeWrapper.html#method_onAfterDeserialize">
                         onAfterDeserialize
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/NodeWrapper.html#method_attached">
+                        attached
                       </a>
                     </li>
                     <li class="">
@@ -3531,6 +3511,8 @@ This class contains methods for looking up information about and controlling the
 <li>initRuntime</li>
 <li>playRuntime</li>
 <li>stopRuntime</li>
+<li>pauseRuntime</li>
+<li>resumeRuntime</li>
 <li>getCurrentSceneNode</li>
 <li>_setCurrentSceneNode</li>
 <li>tick (if useDefaultMainLoop)</li>
@@ -3549,7 +3531,7 @@ This class contains methods for looking up information about and controlling the
 <div class="property item private">
     <h3 class="name">_requestId
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-    <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l45"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:45</code></a>
+    <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l47"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:47</code></a>
 
 
         <i class="badge badge-access">private</i>
@@ -3582,7 +3564,7 @@ last ticker will not cancel correctly.</p>
 <div class="property item">
     <h3 class="name">isInitialized
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a></span>
-    <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l70"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:70</code></a>
+    <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l72"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:72</code></a>
 
 
 
@@ -3613,7 +3595,7 @@ last ticker will not cancel correctly.</p>
 <div class="property item">
     <h3 class="name">loadingScene
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">boolean</a></span>
-    <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l80"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:80</code></a>
+    <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l82"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:82</code></a>
 
 
 
@@ -3643,7 +3625,7 @@ last ticker will not cancel correctly.</p>
 <div class="property item">
     <h3 class="name">canvasSize
     <span class="type">Fire.Vec2</span>
-    <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l90"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:90</code></a>
+    <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l92"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:92</code></a>
 
 
 
@@ -3799,7 +3781,7 @@ This property is just the result of (this.isPlaying == true && this.isPaused == 
 
 
 
-            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l103"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:103</code></a>
+            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l105"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:105</code></a>
 
     </h3>
 
@@ -3922,7 +3904,7 @@ This property is just the result of (this.isPlaying == true && this.isPaused == 
 
 
 
-            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l117"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:117</code></a>
+            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l119"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:119</code></a>
 
     </h3>
 
@@ -3954,7 +3936,7 @@ This property is just the result of (this.isPlaying == true && this.isPaused == 
 
 
 
-            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l123"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:123</code></a>
+            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l125"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:125</code></a>
 
     </h3>
 
@@ -3967,6 +3949,70 @@ This property is just the result of (this.isPlaying == true && this.isPaused == 
     <div class="extended-detail">
 
         <div class="description"><p>Stops playback.</p>
+</div>
+
+
+
+    </div>
+</div>
+<a name="method_pauseRuntime" class="anchor-link"></a>
+<div class="method item">
+    <h3 class="name">pauseRuntime
+
+            <span class="paren">()</span>
+
+
+
+
+
+
+
+
+            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l131"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:131</code></a>
+
+    </h3>
+
+    <div class="meta">
+
+
+
+    </div>
+
+    <div class="extended-detail">
+
+        <div class="description"><p>Pauses playback.</p>
+</div>
+
+
+
+    </div>
+</div>
+<a name="method_resumeRuntime" class="anchor-link"></a>
+<div class="method item">
+    <h3 class="name">resumeRuntime
+
+            <span class="paren">()</span>
+
+
+
+
+
+
+
+
+            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l137"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:137</code></a>
+
+    </h3>
+
+    <div class="meta">
+
+
+
+    </div>
+
+    <div class="extended-detail">
+
+        <div class="description"><p>Resumes playback.</p>
 </div>
 
 
@@ -3991,7 +4037,7 @@ This property is just the result of (this.isPlaying == true && this.isPaused == 
 
 
 
-            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l129"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:129</code></a>
+            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l149"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:149</code></a>
 
     </h3>
 
@@ -4041,7 +4087,7 @@ This property is just the result of (this.isPlaying == true && this.isPaused == 
 
 
 
-            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l136"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:136</code></a>
+            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l156"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:156</code></a>
 
     </h3>
 
@@ -4114,7 +4160,7 @@ This property is just the result of (this.isPlaying == true && this.isPaused == 
 
 
 
-            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l143"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:143</code></a>
+            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l163"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:163</code></a>
 
     </h3>
 
@@ -4195,7 +4241,7 @@ This property is just the result of (this.isPlaying == true && this.isPaused == 
 
 
 
-            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l151"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:151</code></a>
+            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l171"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:171</code></a>
 
     </h3>
 
@@ -4278,7 +4324,7 @@ This property is just the result of (this.isPlaying == true && this.isPaused == 
 
 
 
-            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l171"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:171</code></a>
+            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l191"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:191</code></a>
 
     </h3>
 
@@ -4388,7 +4434,7 @@ This property is just the result of (this.isPlaying == true && this.isPaused == 
 
 
 
-            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l266"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:266</code></a>
+            <a class="foundat" href="../files/utils_api_engine-framework_runtime_wrappers_engine.js.html#l288"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;runtime&#x2F;wrappers&#x2F;engine.js:288</code></a>
 
     </h3>
 
@@ -5112,12 +5158,12 @@ This property is just the result of (this.isPlaying == true && this.isPaused == 
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
 <script>prettyPrint();</script>
 <script src="../assets/vendor/jquery.min.js"></script>
-<script src="../assets/js/jquery-offscreen-trigger.js"></script>
+<script src="../assets/vendor/jquery-scrollto.js"></script>
+<script src="../assets/vendor/highlight.min.js"></script>
 <script src="../assets/js/yui-prettify.js"></script>
 <script src="../assets/../api.js"></script>
 <script src="../assets/js/api-list.js"></script>
 <script src="../assets/js/apidocs.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

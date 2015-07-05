@@ -328,6 +328,11 @@
                       </a>
                     </li>
                     <li class="">
+                      <a class="name" href="/modules/Editor.html#method_getNodeDump">
+                        getNodeDump
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_serialize">
                         serialize
                       </a>
@@ -725,16 +730,6 @@
                         String
                       </a>
                     </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#property_HideInInspector">
-                        HideInInspector
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#property_ReadOnly">
-                        ReadOnly
-                      </a>
-                    </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#property_isNode">
                         isNode
@@ -827,28 +822,8 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Enum">
-                        Enum
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method_RawType">
                         RawType
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Custom">
-                        Custom
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Fire.DisplayName">
-                        Fire.DisplayName
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Tooltip">
-                        Tooltip
                       </a>
                     </li>
                     <li class="private">
@@ -969,16 +944,6 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_padLeft">
                         padLeft
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_fitRatio">
-                        fitRatio
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_fitSize">
-                        fitSize
                       </a>
                     </li>
                     <li class="private">
@@ -1431,11 +1396,6 @@
             
                 <h3>methods</h3>
                 <ul class="apis members api-members">
-                    <li class="">
-                      <a class="name" href="/classes/Asset.html#method_validateAsset">
-                        validateAsset
-                      </a>
-                    </li>
                     <li class="private">
                       <a class="name" href="/classes/Asset.html#method_deserialize">
                         deserialize
@@ -1794,6 +1754,16 @@
                     <li class="">
                       <a class="name" href="/classes/EngineWrapper.html#method_stopRuntime">
                         stopRuntime
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/EngineWrapper.html#method_pauseRuntime">
+                        pauseRuntime
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/EngineWrapper.html#method_resumeRuntime">
+                        resumeRuntime
                       </a>
                     </li>
                     <li class="">
@@ -2435,6 +2405,11 @@
                       </a>
                     </li>
                     <li class="">
+                      <a class="name" href="/classes/NodeWrapper.html#method_attached">
+                        attached
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/classes/NodeWrapper.html#method_getSiblingIndex">
                         getSiblingIndex
                       </a>
@@ -2870,6 +2845,11 @@
                     <li class="">
                       <a class="name" href="/classes/NodeWrapper.html#method_onAfterDeserialize">
                         onAfterDeserialize
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/NodeWrapper.html#method_attached">
+                        attached
                       </a>
                     </li>
                     <li class="">
@@ -3516,11 +3496,11 @@ var nicifySerialized = require(&#x27;./serialize-nicify&#x27;);
 function _getType (obj) {
     var p = obj.constructor.prototype;
     if (p.hasOwnProperty(&#x27;__cid__&#x27;)) {
-        return obj.__cid__;
+        return p.__cid__;
     }
-    if (p.hasOwnProperty(&#x27;__classname__&#x27;)) {
-        return obj.__classname__;
-    }
+    //if (p.hasOwnProperty(&#x27;__classname__&#x27;)) {
+    //    return p.__classname__;
+    //}
     return &#x27;&#x27;;
 }
 
@@ -3747,17 +3727,19 @@ var _Serializer = (function () {
             return { __id__: id }; // no need to parse again
         }
 
-        if (obj instanceof FObject) {
+        var isFObj = obj instanceof FObject;
+        if (isFObj) {
             // FObject
-            if ( !obj.isValid ) {
+            if (!obj.isValid) {
                 return null;
             }
             var uuid = obj._uuid;
             if (uuid) {
                 // Asset
-                return { __uuid__: uuid };
+                return {__uuid__: uuid};
             }
-
+        }
+        if (isFObj || Fire._isFireClass(obj.constructor)) {
             // assign id for FObject
             id = self.serializedList.length;
             obj.__id__ = id;        // we add this prop dynamically to simply lookup whether an obj has been serialized.
@@ -3774,10 +3756,14 @@ var _Serializer = (function () {
             }
             if (! obj._serialize) {
                 _enumerateObject(self, obj, data);
-                data._objFlags &amp;= PersistentMask;
+                if (isFObj) {
+                    data._objFlags &amp;= PersistentMask;
+                }
             }
             else {
-                //obj._objFlags &amp;= PersistentMask;
+                //if (isFObj) {
+                //    obj._objFlags &amp;= PersistentMask;
+                //}
                 data.content = obj._serialize(self._exporting);
             }
 
@@ -3812,7 +3798,7 @@ var _Serializer = (function () {
     // * @param {object} obj - The object to serialize
     // */
     var _serializeMainObj = function (self, obj) {
-        if (obj instanceof FObject) {
+        if (obj instanceof FObject || Fire._isFireClass(obj.constructor)) {
             var uuid = obj._uuid;
             if (typeof uuid !== &#x27;undefined&#x27;) {
                 // force Asset serializable, or _serializeObj will just return { __uuid__: ... }
@@ -3931,12 +3917,12 @@ module.exports = Editor.serialize;
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
 <script>prettyPrint();</script>
 <script src="../assets/vendor/jquery.min.js"></script>
-<script src="../assets/js/jquery-offscreen-trigger.js"></script>
+<script src="../assets/vendor/jquery-scrollto.js"></script>
+<script src="../assets/vendor/highlight.min.js"></script>
 <script src="../assets/js/yui-prettify.js"></script>
 <script src="../assets/../api.js"></script>
 <script src="../assets/js/api-list.js"></script>
 <script src="../assets/js/apidocs.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

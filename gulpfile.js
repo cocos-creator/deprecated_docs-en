@@ -5,7 +5,17 @@ var del = require('del');
 var path = require('path');
 var docSrcs = [];
 
-gulp.task('generate', function(cb) {
+gulp.task('copy-api-src', function(cb) {
+    del('source/_api', function() {
+        var stream = gulp.src('../fireball/apidocs/**/*')
+        .pipe(gulp.dest('source/_api'));
+        stream.on('finish', function() {
+            cb();
+        });
+    });
+});
+
+gulp.task('generate', ['copy-api-src'], function(cb) {
     var child = spawn('hexo', ['generate']);
     child.on('data', function(data) {
         console.log(data.toString());
@@ -16,12 +26,12 @@ gulp.task('generate', function(cb) {
         var stream2 = gulp.src('source/_oldapi/**/*')
                         .pipe(gulp.dest('public/api-0.4'));
         var count = 2;
-        stream1.on('exit', function() {
+        stream1.on('finish', function() {
             if (--count <= 0) {
                 return cb();
             }
         });
-        stream2.on('exit', function() {
+        stream2.on('finish', function() {
             if (--count <= 0) {
                 return cb();
             }

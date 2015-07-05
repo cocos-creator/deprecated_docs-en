@@ -328,6 +328,11 @@
                       </a>
                     </li>
                     <li class="">
+                      <a class="name" href="/modules/Editor.html#method_getNodeDump">
+                        getNodeDump
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_serialize">
                         serialize
                       </a>
@@ -725,16 +730,6 @@
                         String
                       </a>
                     </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#property_HideInInspector">
-                        HideInInspector
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#property_ReadOnly">
-                        ReadOnly
-                      </a>
-                    </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#property_isNode">
                         isNode
@@ -827,28 +822,8 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Enum">
-                        Enum
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method_RawType">
                         RawType
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Custom">
-                        Custom
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Fire.DisplayName">
-                        Fire.DisplayName
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Tooltip">
-                        Tooltip
                       </a>
                     </li>
                     <li class="private">
@@ -969,16 +944,6 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_padLeft">
                         padLeft
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_fitRatio">
-                        fitRatio
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_fitSize">
-                        fitSize
                       </a>
                     </li>
                     <li class="private">
@@ -1431,11 +1396,6 @@
             
                 <h3>methods</h3>
                 <ul class="apis members api-members">
-                    <li class="">
-                      <a class="name" href="/classes/Asset.html#method_validateAsset">
-                        validateAsset
-                      </a>
-                    </li>
                     <li class="private">
                       <a class="name" href="/classes/Asset.html#method_deserialize">
                         deserialize
@@ -1794,6 +1754,16 @@
                     <li class="">
                       <a class="name" href="/classes/EngineWrapper.html#method_stopRuntime">
                         stopRuntime
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/EngineWrapper.html#method_pauseRuntime">
+                        pauseRuntime
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/EngineWrapper.html#method_resumeRuntime">
+                        resumeRuntime
                       </a>
                     </li>
                     <li class="">
@@ -2435,6 +2405,11 @@
                       </a>
                     </li>
                     <li class="">
+                      <a class="name" href="/classes/NodeWrapper.html#method_attached">
+                        attached
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/classes/NodeWrapper.html#method_getSiblingIndex">
                         getSiblingIndex
                       </a>
@@ -2870,6 +2845,11 @@
                     <li class="">
                       <a class="name" href="/classes/NodeWrapper.html#method_onAfterDeserialize">
                         onAfterDeserialize
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/NodeWrapper.html#method_attached">
+                        attached
                       </a>
                     </li>
                     <li class="">
@@ -3650,19 +3630,12 @@ Fire.EditorOnly = {
  */
 Fire.Integer = &#x27;Integer&#x27;;
 
-Fire.Integer_Obsoleted = { type: &#x27;int&#x27; };
-
 /**
  * Indicates that the type of elements in array or the type of value in dictionary is double.
  * @property Float
  * @type object
  */
 Fire.Float = &#x27;Float&#x27;;
-
-Fire.Float_Obsoleted = { type: &#x27;float&#x27; };
-
-Fire.SingleText = { textMode: &#x27;single&#x27; };
-Fire.MultiText = { textMode: &#x27;multi&#x27; };
 
 function getTypeChecker (type, attrName, objectTypeCtor) {
     if (FIRE_DEV) {
@@ -3685,8 +3658,9 @@ function getTypeChecker (type, attrName, objectTypeCtor) {
                 return;
             }
             var defaultType = typeof defaultVal;
-            if (defaultType === type) {
-                if (type === &#x27;object&#x27;) {
+            var type_lowerCase = type.toLowerCase();
+            if (defaultType === type_lowerCase) {
+                if (type_lowerCase === &#x27;object&#x27;) {
                     if (defaultVal &amp;&amp; !(defaultVal instanceof objectTypeCtor)) {
                         Fire.warn(&#x27;The default value of %s.%s is not instance of %s.&#x27;,
                             JS.getClassName(constructor), mainPropName, JS.getClassName(objectTypeCtor));
@@ -3716,22 +3690,12 @@ function getTypeChecker (type, attrName, objectTypeCtor) {
  */
 Fire.Boolean = &#x27;Boolean&#x27;;
 
-Fire.Boolean_Obsoleted = {
-    type: &#x27;boolean&#x27;,
-    _onAfterProp: getTypeChecker(&#x27;boolean&#x27;, &#x27;Fire.Boolean&#x27;)
-};
-
 /**
  * Indicates that the type of elements in array or the type of value in dictionary is string.
  * @property String
  * @type object
  */
 Fire.String = &#x27;String&#x27;;
-
-Fire.String_Obsoleted = {
-    type: &#x27;string&#x27;,
-    _onAfterProp: getTypeChecker(&#x27;string&#x27;, &#x27;Fire.String&#x27;)
-};
 
 // the value will be represented as a uuid string
 Fire._ScriptUuid = {};
@@ -3757,12 +3721,12 @@ Fire.ObjectType = function (typeCtor) {
         }
     }
     return {
-        type: &#x27;object&#x27;,
+        type: &#x27;Object&#x27;,
         ctor: typeCtor,
         _onAfterProp: (function () {
-            if (FIRE_EDITOR) {
+            if (FIRE_DEV) {
                 return function (classCtor, mainPropName) {
-                    var check = getTypeChecker(&#x27;object&#x27;, &#x27;Fire.ObjectType&#x27;, typeCtor);
+                    var check = getTypeChecker(&#x27;Object&#x27;, &#x27;Fire.ObjectType&#x27;, typeCtor);
                     check(classCtor, mainPropName);
                     // check ValueType
                     var mainPropAttrs = Fire.attr(classCtor, mainPropName) || {};
@@ -3787,18 +3751,6 @@ Fire.ObjectType = function (typeCtor) {
             }
         })()
     };
-};
-
-/**
- * Makes a property show up as a enum in Inspector.
- *
- * @method Enum
- * @param {object} enumType
- * @return {object} the enum attribute
- * @private
- */
-Fire.Enum = function (enumType) {
-    return { type: &#x27;enum&#x27;, enumList: Fire.getEnumList(enumType) };
 };
 
 /**
@@ -3851,60 +3803,6 @@ Fire.RawType = function (typename) {
 };
 
 /**
- * Makes a custom property
- *
- * @method Custom
- * @param {string} name
- * @return {object}
- * @private
- */
-Fire.Custom = function (type) {
-    return { custom: type };
-};
-
-/**
- * Makes a property not show up in the Inspector but be serialized.
- * @property HideInInspector
- * @type object
- * @private
- */
-Fire.HideInInspector = { hideInInspector: true };
-
-/**
- * Set a custom property name for display in the editor
- *
- * @method Fire.DisplayName
- * @param {string} name
- * @return {object} the attribute
- * @private
- */
-Fire.DisplayName = function (name) {
-    return { displayName: name };
-};
-
-/**
- * The ReadOnly attribute indicates that the property field is disabled in Inspector.
- * @property ReadOnly
- * @type object
- * @private
- */
-Fire.ReadOnly = {
-    readOnly: true
-};
-
-/**
- * Specify a tooltip for a property
- *
- * @method Tooltip
- * @param {string} tooltip
- * @return {object} the attribute
- * @private
- */
-Fire.Tooltip = function (tooltip) {
-    return { tooltip: tooltip };
-};
-
-/**
  * @method Nullable
  * @param {string} boolPropName
  * @param {Boolean} hasValueByDefault
@@ -3917,7 +3815,7 @@ Fire.Nullable = function (boolPropName, hasValueByDefault) {
 
         _onAfterProp: function (constructor, mainPropName) {
             // declare boolean
-            constructor.prop(boolPropName, hasValueByDefault, Fire.HideInInspector);
+            constructor.prop(boolPropName, hasValueByDefault, { visible: false });
             // copy attributes from main property
             var mainPropAttr = Fire.attr(constructor, mainPropName) || {};
             if (mainPropAttr.serializable === false) {
@@ -3956,6 +3854,10 @@ Fire.Watch = function (names, callback) {
 Fire.Range = function (min, max) {
    return { min: min, max: max };
 };
+
+module.exports = {
+    getTypeChecker: getTypeChecker
+};
 </pre>
 </div>
 </div>
@@ -3965,12 +3867,12 @@ Fire.Range = function (min, max) {
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
 <script>prettyPrint();</script>
 <script src="../assets/vendor/jquery.min.js"></script>
-<script src="../assets/js/jquery-offscreen-trigger.js"></script>
+<script src="../assets/vendor/jquery-scrollto.js"></script>
+<script src="../assets/vendor/highlight.min.js"></script>
 <script src="../assets/js/yui-prettify.js"></script>
 <script src="../assets/../api.js"></script>
 <script src="../assets/js/api-list.js"></script>
 <script src="../assets/js/apidocs.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

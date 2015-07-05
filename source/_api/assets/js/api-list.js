@@ -15,7 +15,7 @@ $(document).ready(function () {
   var inputing = false;
   var searchBox = $('#api-tabview-filter>input[type=search]');
   searchBox.on(
-    'keyup',
+    'input',
     function (e) {
       clearTimeout(inputing);
       inputing = setTimeout(function () {
@@ -95,13 +95,6 @@ $(document).ready(function () {
       r.this.show().addClass('visible');
       if (r.ns.search(keyword.toLowerCase()) === -1) {
         r.this.hide().removeClass('visible');
-        if (r.type === 'member') {
-          if (r.$ul.children('.visible').length > 0) {
-            r.$h3.show();
-          } else {
-            r.$h3.hide();
-          }
-        }
       } else {
         if (keyword) {
           if (r.type !== 'member') {

@@ -328,6 +328,11 @@
                       </a>
                     </li>
                     <li class="">
+                      <a class="name" href="/modules/Editor.html#method_getNodeDump">
+                        getNodeDump
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_serialize">
                         serialize
                       </a>
@@ -725,16 +730,6 @@
                         String
                       </a>
                     </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#property_HideInInspector">
-                        HideInInspector
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#property_ReadOnly">
-                        ReadOnly
-                      </a>
-                    </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#property_isNode">
                         isNode
@@ -827,28 +822,8 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Enum">
-                        Enum
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method_RawType">
                         RawType
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Custom">
-                        Custom
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Fire.DisplayName">
-                        Fire.DisplayName
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Tooltip">
-                        Tooltip
                       </a>
                     </li>
                     <li class="private">
@@ -969,16 +944,6 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_padLeft">
                         padLeft
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_fitRatio">
-                        fitRatio
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_fitSize">
-                        fitSize
                       </a>
                     </li>
                     <li class="private">
@@ -1431,11 +1396,6 @@
             
                 <h3>methods</h3>
                 <ul class="apis members api-members">
-                    <li class="">
-                      <a class="name" href="/classes/Asset.html#method_validateAsset">
-                        validateAsset
-                      </a>
-                    </li>
                     <li class="private">
                       <a class="name" href="/classes/Asset.html#method_deserialize">
                         deserialize
@@ -1794,6 +1754,16 @@
                     <li class="">
                       <a class="name" href="/classes/EngineWrapper.html#method_stopRuntime">
                         stopRuntime
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/EngineWrapper.html#method_pauseRuntime">
+                        pauseRuntime
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/EngineWrapper.html#method_resumeRuntime">
+                        resumeRuntime
                       </a>
                     </li>
                     <li class="">
@@ -2435,6 +2405,11 @@
                       </a>
                     </li>
                     <li class="">
+                      <a class="name" href="/classes/NodeWrapper.html#method_attached">
+                        attached
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/classes/NodeWrapper.html#method_getSiblingIndex">
                         getSiblingIndex
                       </a>
@@ -2870,6 +2845,11 @@
                     <li class="">
                       <a class="name" href="/classes/NodeWrapper.html#method_onAfterDeserialize">
                         onAfterDeserialize
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/NodeWrapper.html#method_attached">
+                        attached
                       </a>
                     </li>
                     <li class="">
@@ -3509,7 +3489,8 @@
  */
 require(&#x27;./attribute&#x27;);
 require(&#x27;./class&#x27;);
-var FObject = require(&#x27;./fobject&#x27;);
+//var FObject = require(&#x27;./fobject&#x27;);
+var getTypeChecker = require(&#x27;./attribute&#x27;).getTypeChecker;
 
 // 不能使用于get方法的属性
 var _propertyNotForGet = [
@@ -3582,7 +3563,7 @@ Fire.Class = function (options) {
     }
 
     var name = options.name;
-    var base = options.extends || FObject;
+    var base = options.extends/* || FObject*/;
     var ctor = (options.hasOwnProperty(&#x27;constructor&#x27;) &amp;&amp; options.constructor) || undefined;
 
     // create constructor
@@ -3769,16 +3750,22 @@ function parseAttributes (attrs, className, propName) {
             }
         }
         if (type === Fire.Integer) {
-            result.push(Fire.Integer_Obsoleted);
+            result.push( { type: Fire.Integer } );
         }
         else if (type === Fire.Float || type === Number) {
-            result.push(Fire.Float_Obsoleted);
+            result.push( { type: Fire.Float } );
         }
         else if (type === Fire.Boolean || type === Boolean) {
-            result.push(Fire.Boolean_Obsoleted);
+            result.push({
+                type: Fire.Boolean,
+                _onAfterProp: getTypeChecker(Fire.Boolean, &#x27;Fire.Boolean&#x27;)
+            });
         }
         else if (type === Fire.String || type === String) {
-            result.push(Fire.String_Obsoleted);
+            result.push({
+                type: Fire.String,
+                _onAfterProp: getTypeChecker(Fire.String, &#x27;Fire.String&#x27;)
+            });
         }
         else if (type === &#x27;Object&#x27; || type === Object) {
             if (FIRE_EDITOR) {
@@ -3787,13 +3774,16 @@ function parseAttributes (attrs, className, propName) {
         }
         else if (type === Fire._ScriptUuid) {
             var attr = Fire.ObjectType(Fire.ScriptAsset);
-            attr.type = &#x27;script-uuid&#x27;;
+            attr.type = &#x27;Script&#x27;;
             result.push(attr);
         }
         else {
             if (typeof type === &#x27;object&#x27;) {
-                if (type.hasOwnProperty(&#x27;__enums__&#x27;)) {
-                    result.push(Fire.Enum(type));
+                if (Fire.isEnumType(type)) {
+                    result.push({
+                        type: &#x27;Enum&#x27;,
+                        enumList: Fire.getEnumList(type)
+                    });
                 }
                 else if (FIRE_EDITOR) {
                     Fire.error(&#x27;Please define &quot;type&quot; parameter of %s.%s as the constructor of %s.&#x27;, className, propName, type);
@@ -3812,7 +3802,14 @@ function parseAttributes (attrs, className, propName) {
         var val = attrs[attrName];
         if (val) {
             if (typeof val === expectType) {
-                result.push(typeof attrCreater === &#x27;function&#x27; ? attrCreater(val) : attrCreater);
+                if (typeof attrCreater === &#x27;undefined&#x27;) {
+                    var attr = {};
+                    attr[attrName] = val;
+                    result.push(attr);
+                }
+                else {
+                    result.push(typeof attrCreater === &#x27;function&#x27; ? attrCreater(val) : attrCreater);
+                }
             }
             else if (FIRE_EDITOR) {
                 Fire.error(&#x27;The %s of %s.%s must be type %s&#x27;, attrName, className, propName, expectType);
@@ -3822,10 +3819,10 @@ function parseAttributes (attrs, className, propName) {
 
     parseSimpleAttr(&#x27;rawType&#x27;, &#x27;string&#x27;, Fire.RawType);
     parseSimpleAttr(&#x27;editorOnly&#x27;, &#x27;boolean&#x27;, Fire.EditorOnly);
-    parseSimpleAttr(&#x27;displayName&#x27;, &#x27;string&#x27;, Fire.DisplayName);
-    parseSimpleAttr(&#x27;multiline&#x27;, &#x27;boolean&#x27;, Fire.MultiText);
-    parseSimpleAttr(&#x27;readonly&#x27;, &#x27;boolean&#x27;, Fire.ReadOnly);
-    parseSimpleAttr(&#x27;tooltip&#x27;, &#x27;string&#x27;, Fire.Tooltip);
+    parseSimpleAttr(&#x27;displayName&#x27;, &#x27;string&#x27;);
+    parseSimpleAttr(&#x27;multiline&#x27;, &#x27;boolean&#x27;, { multiline: true });
+    parseSimpleAttr(&#x27;readonly&#x27;, &#x27;boolean&#x27;, { readOnly: true });
+    parseSimpleAttr(&#x27;tooltip&#x27;, &#x27;string&#x27;);
 
     if (attrs.serializable === false) {
         result.push(Fire.NonSerialized);
@@ -3834,18 +3831,18 @@ function parseAttributes (attrs, className, propName) {
     var visible = attrs.visible;
     if (typeof visible !== &#x27;undefined&#x27;) {
         if ( !attrs.visible ) {
-            result.push(Fire.HideInInspector);
+            result.push({ visible: false });
         }
     }
     else {
         var startsWithUS = (propName.charCodeAt(0) === 95);
         if (startsWithUS) {
-            result.push(Fire.HideInInspector);
+            result.push({ visible: false });
         }
     }
 
     //if (attrs.custom) {
-    //    result.push(Fire.Custom(attrs.custom));
+    //    result.push( { custom: attrs.custom });
     //}
 
     var range = attrs.range;
@@ -3914,12 +3911,12 @@ function parseAttributes (attrs, className, propName) {
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
 <script>prettyPrint();</script>
 <script src="../assets/vendor/jquery.min.js"></script>
-<script src="../assets/js/jquery-offscreen-trigger.js"></script>
+<script src="../assets/vendor/jquery-scrollto.js"></script>
+<script src="../assets/vendor/highlight.min.js"></script>
 <script src="../assets/js/yui-prettify.js"></script>
 <script src="../assets/../api.js"></script>
 <script src="../assets/js/api-list.js"></script>
 <script src="../assets/js/apidocs.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

@@ -35,7 +35,7 @@ window.apimeta = {
       "name": "EngineWrapper",
       "namespace": "Fire.Runtime.EngineWrapper",
       "module": "Fire.Runtime",
-      "description": "<p><p>Access to engine runtime data.\nThis class contains methods for looking up information about and controlling the runtime data.</p>\n<p>You should override:</p>\n<ul>\n<li>initRuntime</li>\n<li>playRuntime</li>\n<li>stopRuntime</li>\n<li>getCurrentSceneNode</li>\n<li>_setCurrentSceneNode</li>\n<li>tick (if useDefaultMainLoop)</li>\n<li>canvasSize</li>\n<li>getInstanceById</li>\n</ul></p>\n"
+      "description": "<p><p>Access to engine runtime data.\nThis class contains methods for looking up information about and controlling the runtime data.</p>\n<p>You should override:</p>\n<ul>\n<li>initRuntime</li>\n<li>playRuntime</li>\n<li>stopRuntime</li>\n<li>pauseRuntime</li>\n<li>resumeRuntime</li>\n<li>getCurrentSceneNode</li>\n<li>_setCurrentSceneNode</li>\n<li>tick (if useDefaultMainLoop)</li>\n<li>canvasSize</li>\n<li>getInstanceById</li>\n</ul></p>\n"
     },
     {
       "name": "EventTarget",
@@ -77,7 +77,7 @@ window.apimeta = {
       "name": "NodeWrapper",
       "namespace": "Fire.Runtime.NodeWrapper",
       "module": "Fire.Runtime",
-      "description": "<p>&lt;p&gt;&lt;p&gt;&lt;p&gt;这个类用来封装编辑器针对节点的操作。\nNote: 接口中包含 &quot;Node&quot; 的使用的都是 Runtime 的原生 Node 类型。&lt;/p&gt;\n&lt;p&gt;You should override:&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;createEmpty (static)&lt;/li&gt;\n&lt;li&gt;name&lt;/li&gt;\n&lt;li&gt;parentNode&lt;/li&gt;\n&lt;li&gt;childNodes&lt;/li&gt;\n&lt;li&gt;position&lt;/li&gt;\n&lt;li&gt;worldPosition&lt;/li&gt;\n&lt;li&gt;rotation&lt;/li&gt;\n&lt;li&gt;worldRotation&lt;/li&gt;\n&lt;li&gt;scale&lt;/li&gt;\n&lt;li&gt;worldScale&lt;/li&gt;\n&lt;li&gt;getWorldBounds&lt;/li&gt;\n&lt;li&gt;getWorldOrientedBounds&lt;/li&gt;\n&lt;li&gt;onBeforeSerialize (so that the node's properties can be serialized in wrapper)&lt;/li&gt;\n&lt;li&gt;createNode&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;You may want to override:&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;setSiblingIndex&lt;/li&gt;\n&lt;li&gt;getSiblingIndex&lt;/li&gt;\n&lt;li&gt;x&lt;/li&gt;\n&lt;li&gt;y&lt;/li&gt;\n&lt;li&gt;worldX&lt;/li&gt;\n&lt;li&gt;worldY&lt;/li&gt;\n&lt;li&gt;scaleX&lt;/li&gt;\n&lt;li&gt;scaleY&lt;/li&gt;\n&lt;/ul&gt;&lt;/p&gt;&lt;/p&gt;</p>\n"
+      "description": "<p>&lt;p&gt;&lt;p&gt;&lt;p&gt;这个类用来封装编辑器针对节点的操作。\nNote: 接口中包含 &quot;Node&quot; 的使用的都是 Runtime 的原生 Node 类型。&lt;/p&gt;\n&lt;p&gt;You should override:&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;createEmpty (static)&lt;/li&gt;\n&lt;li&gt;name&lt;/li&gt;\n&lt;li&gt;parentNode&lt;/li&gt;\n&lt;li&gt;childNodes&lt;/li&gt;\n&lt;li&gt;position&lt;/li&gt;\n&lt;li&gt;worldPosition&lt;/li&gt;\n&lt;li&gt;rotation&lt;/li&gt;\n&lt;li&gt;worldRotation&lt;/li&gt;\n&lt;li&gt;scale&lt;/li&gt;\n&lt;li&gt;worldScale&lt;/li&gt;\n&lt;li&gt;getWorldBounds&lt;/li&gt;\n&lt;li&gt;getWorldOrientedBounds&lt;/li&gt;\n&lt;li&gt;onBeforeSerialize (so that the node's properties can be serialized in wrapper)&lt;/li&gt;\n&lt;li&gt;createNode&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;You may want to override:&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;setSiblingIndex&lt;/li&gt;\n&lt;li&gt;getSiblingIndex&lt;/li&gt;\n&lt;li&gt;x&lt;/li&gt;\n&lt;li&gt;y&lt;/li&gt;\n&lt;li&gt;worldX&lt;/li&gt;\n&lt;li&gt;worldY&lt;/li&gt;\n&lt;li&gt;scaleX&lt;/li&gt;\n&lt;li&gt;scaleY&lt;/li&gt;\n&lt;li&gt;attached&lt;/li&gt;\n&lt;/ul&gt;&lt;/p&gt;&lt;/p&gt;</p>\n"
     },
     {
       "name": "Path",

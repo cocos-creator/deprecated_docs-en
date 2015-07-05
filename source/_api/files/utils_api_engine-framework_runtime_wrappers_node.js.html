@@ -328,6 +328,11 @@
                       </a>
                     </li>
                     <li class="">
+                      <a class="name" href="/modules/Editor.html#method_getNodeDump">
+                        getNodeDump
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_serialize">
                         serialize
                       </a>
@@ -725,16 +730,6 @@
                         String
                       </a>
                     </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#property_HideInInspector">
-                        HideInInspector
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#property_ReadOnly">
-                        ReadOnly
-                      </a>
-                    </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#property_isNode">
                         isNode
@@ -827,28 +822,8 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Enum">
-                        Enum
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method_RawType">
                         RawType
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Custom">
-                        Custom
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Fire.DisplayName">
-                        Fire.DisplayName
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Tooltip">
-                        Tooltip
                       </a>
                     </li>
                     <li class="private">
@@ -969,16 +944,6 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_padLeft">
                         padLeft
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_fitRatio">
-                        fitRatio
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_fitSize">
-                        fitSize
                       </a>
                     </li>
                     <li class="private">
@@ -1431,11 +1396,6 @@
             
                 <h3>methods</h3>
                 <ul class="apis members api-members">
-                    <li class="">
-                      <a class="name" href="/classes/Asset.html#method_validateAsset">
-                        validateAsset
-                      </a>
-                    </li>
                     <li class="private">
                       <a class="name" href="/classes/Asset.html#method_deserialize">
                         deserialize
@@ -1794,6 +1754,16 @@
                     <li class="">
                       <a class="name" href="/classes/EngineWrapper.html#method_stopRuntime">
                         stopRuntime
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/EngineWrapper.html#method_pauseRuntime">
+                        pauseRuntime
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/EngineWrapper.html#method_resumeRuntime">
+                        resumeRuntime
                       </a>
                     </li>
                     <li class="">
@@ -2435,6 +2405,11 @@
                       </a>
                     </li>
                     <li class="">
+                      <a class="name" href="/classes/NodeWrapper.html#method_attached">
+                        attached
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/classes/NodeWrapper.html#method_getSiblingIndex">
                         getSiblingIndex
                       </a>
@@ -2870,6 +2845,11 @@
                     <li class="">
                       <a class="name" href="/classes/NodeWrapper.html#method_onAfterDeserialize">
                         onAfterDeserialize
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/NodeWrapper.html#method_attached">
+                        attached
                       </a>
                     </li>
                     <li class="">
@@ -3553,6 +3533,7 @@ var ERR_NaN = &#x27;The %s must not be NaN&#x27;;
  * - worldY
  * - scaleX
  * - scaleY
+ * - attached
  *
  * @class NodeWrapper
  * @constructor
@@ -3560,6 +3541,8 @@ var ERR_NaN = &#x27;The %s must not be NaN&#x27;;
  */
 var NodeWrapper = Fire.Class({
     name: &#x27;Fire.Runtime.NodeWrapper&#x27;,
+    extends: Fire.FObject,
+
     constructor: function () {
         /**
          * The target node to wrap.
@@ -3567,6 +3550,9 @@ var NodeWrapper = Fire.Class({
          * @type {RuntimeNode}
          */
         this.target = arguments[0];
+        if (this.target) {
+            this.attached();
+        }
 
         //if (FIRE_EDITOR &amp;&amp; !this.target) {
         //    Fire.warn(&#x27;target of %s must be non-nil&#x27;, JS.getClassName(this));
@@ -3852,6 +3838,14 @@ var NodeWrapper = Fire.Class({
         var node = this.createNode();
         this.target = node;
         node._FB_wrapper = this;
+        this.attached();
+    },
+
+    /**
+     * Invoked after the wrapper&#x27;s target is assigned. Override this method if you need to initialize your node.
+     * @method attached
+     */
+    attached: function () {
     },
 
     ///**
@@ -4017,12 +4011,12 @@ module.exports = NodeWrapper;
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
 <script>prettyPrint();</script>
 <script src="../assets/vendor/jquery.min.js"></script>
-<script src="../assets/js/jquery-offscreen-trigger.js"></script>
+<script src="../assets/vendor/jquery-scrollto.js"></script>
+<script src="../assets/vendor/highlight.min.js"></script>
 <script src="../assets/js/yui-prettify.js"></script>
 <script src="../assets/../api.js"></script>
 <script src="../assets/js/api-list.js"></script>
 <script src="../assets/js/apidocs.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

@@ -328,6 +328,11 @@
                       </a>
                     </li>
                     <li class="">
+                      <a class="name" href="/modules/Editor.html#method_getNodeDump">
+                        getNodeDump
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_serialize">
                         serialize
                       </a>
@@ -725,16 +730,6 @@
                         String
                       </a>
                     </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#property_HideInInspector">
-                        HideInInspector
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#property_ReadOnly">
-                        ReadOnly
-                      </a>
-                    </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#property_isNode">
                         isNode
@@ -827,28 +822,8 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Enum">
-                        Enum
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method_RawType">
                         RawType
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Custom">
-                        Custom
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Fire.DisplayName">
-                        Fire.DisplayName
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_Tooltip">
-                        Tooltip
                       </a>
                     </li>
                     <li class="private">
@@ -969,16 +944,6 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_padLeft">
                         padLeft
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_fitRatio">
-                        fitRatio
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_fitSize">
-                        fitSize
                       </a>
                     </li>
                     <li class="private">
@@ -1431,11 +1396,6 @@
             
                 <h3>methods</h3>
                 <ul class="apis members api-members">
-                    <li class="">
-                      <a class="name" href="/classes/Asset.html#method_validateAsset">
-                        validateAsset
-                      </a>
-                    </li>
                     <li class="private">
                       <a class="name" href="/classes/Asset.html#method_deserialize">
                         deserialize
@@ -1794,6 +1754,16 @@
                     <li class="">
                       <a class="name" href="/classes/EngineWrapper.html#method_stopRuntime">
                         stopRuntime
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/EngineWrapper.html#method_pauseRuntime">
+                        pauseRuntime
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/EngineWrapper.html#method_resumeRuntime">
+                        resumeRuntime
                       </a>
                     </li>
                     <li class="">
@@ -2435,6 +2405,11 @@
                       </a>
                     </li>
                     <li class="">
+                      <a class="name" href="/classes/NodeWrapper.html#method_attached">
+                        attached
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/classes/NodeWrapper.html#method_getSiblingIndex">
                         getSiblingIndex
                       </a>
@@ -2870,6 +2845,11 @@
                     <li class="">
                       <a class="name" href="/classes/NodeWrapper.html#method_onAfterDeserialize">
                         onAfterDeserialize
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/NodeWrapper.html#method_attached">
+                        attached
                       </a>
                     </li>
                     <li class="">
@@ -3681,91 +3661,7 @@ it will returns an empty array.</p>
 
     <div class="methods-detail">
       <h3 class="section-title">Methods</h3>
-      <a name="method_validateAsset" class="anchor-link"></a>
-<div class="method item">
-    <h3 class="name">validateAsset
-
-            <div class="args">
-                <span class="paren">(</span>
-                <ul class="args-list inline commas">
-                        <li class="arg">
-                                <span>fsPath</span>
-                        </li>
-                </ul>
-                <span class="paren">)</span>
-            </div>
-
-            <span class="returns-inline">
-                <span class="type">
-                    <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a>
-                </span>
-            </span>
-
-
-
-
-
-
-
-            <a class="foundat" href="../files/utils_api_engine-framework_core_asset_asset.js.html#l106"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;core&#x2F;asset&#x2F;asset.js:106</code></a>
-
-    </h3>
-
-    <div class="meta">
-
-
-
-    </div>
-
-    <div class="extended-detail">
-
-        <div class="description"><p>Checks if this type asset can be created from given asset file. (Without actually creating the asset).</p>
-</div>
-
-            <div class="params">
-                <!-- <h4>Parameters:</h4> -->
-                <table class="params-list">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th class="last">Description</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                            <tr>
-                                <td class="name">
-                                        <code class="param-name">fsPath</code>
-                                </td>
-                                <td class="type">
-                                    <span class="type">
-                                        <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">string</a>
-                                    </span>
-                                </td>
-                                <td valign="middle" class="description last">
-                                    <p>file system path of the asset file in asset database</p>
-
-                                </td>
-                            </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="returns">
-                <h4>Returns:</h4>
-
-                <div class="returns-description">
-                        <span>Type:</span>
-                        <span class="type">
-                            <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a>
-                        </span>
-                </div>
-            </div>
-
-    </div>
-</div>
-<a name="method_deserialize" class="anchor-link"></a>
+      <a name="method_deserialize" class="anchor-link"></a>
 <div class="method item private">
     <h3 class="name">deserialize
 
@@ -3792,7 +3688,7 @@ it will returns an empty array.</p>
 
 
 
-            <a class="foundat" href="../files/utils_api_engine-framework_core_asset_asset.js.html#l116"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;core&#x2F;asset&#x2F;asset.js:116</code></a>
+            <a class="foundat" href="../files/utils_api_engine-framework_core_asset_asset.js.html#l106"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;core&#x2F;asset&#x2F;asset.js:106</code></a>
 
     </h3>
 
@@ -3868,7 +3764,7 @@ it will returns an empty array.</p>
 
 
 
-            <a class="foundat" href="../files/utils_api_engine-framework_core_asset_asset.js.html#l140"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;core&#x2F;asset&#x2F;asset.js:140</code></a>
+            <a class="foundat" href="../files/utils_api_engine-framework_core_asset_asset.js.html#l132"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;core&#x2F;asset&#x2F;asset.js:132</code></a>
 
     </h3>
 
@@ -3918,7 +3814,7 @@ it will returns an empty array.</p>
 
 
 
-            <a class="foundat" href="../files/utils_api_engine-framework_core_asset_asset.js.html#l150"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;core&#x2F;asset&#x2F;asset.js:150</code></a>
+            <a class="foundat" href="../files/utils_api_engine-framework_core_asset_asset.js.html#l142"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;core&#x2F;asset&#x2F;asset.js:142</code></a>
 
     </h3>
 
@@ -4012,7 +3908,7 @@ If this type of asset dont have corresponding type of node, this method should b
 
 
 
-            <a class="foundat" href="../files/utils_api_engine-framework_core_asset_asset.js.html#l160"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;core&#x2F;asset&#x2F;asset.js:160</code></a>
+            <a class="foundat" href="../files/utils_api_engine-framework_core_asset_asset.js.html#l152"><code>utils&#x2F;api&#x2F;engine-framework&#x2F;core&#x2F;asset&#x2F;asset.js:152</code></a>
 
     </h3>
 
@@ -4074,12 +3970,12 @@ If this type of asset dont have corresponding type of node, this method should b
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
 <script>prettyPrint();</script>
 <script src="../assets/vendor/jquery.min.js"></script>
-<script src="../assets/js/jquery-offscreen-trigger.js"></script>
+<script src="../assets/vendor/jquery-scrollto.js"></script>
+<script src="../assets/vendor/highlight.min.js"></script>
 <script src="../assets/js/yui-prettify.js"></script>
 <script src="../assets/../api.js"></script>
 <script src="../assets/js/api-list.js"></script>
 <script src="../assets/js/apidocs.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
