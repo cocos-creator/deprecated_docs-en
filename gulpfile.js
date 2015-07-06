@@ -28,12 +28,12 @@ gulp.task('generate', function(cb) {
         var count = 2;
         stream1.on('finish', function() {
             if (--count <= 0) {
-                return cb();
+                cb();
             }
         });
         stream2.on('finish', function() {
             if (--count <= 0) {
-                return cb();
+                cb();
             }
         });
     });
@@ -64,12 +64,12 @@ gulp.task('copy-doc-src', ['download-doc-src'], function(cb) {
         var stream2 = gulp.src(path.join(getCacheFolder('editor-framework'), 'docs', '**/*'))
                         .pipe(gulp.dest('source/_posts/editor'));
         var count = 2;
-        stream1.on('exit', function() {
+        stream1.on('finish', function() {
             if (--count <= 0) {
                 cb();
             }
         });
-        stream2.on('exit', function() {
+        stream2.on('finish', function() {
             if (--count <= 0) {
                 cb();
             }

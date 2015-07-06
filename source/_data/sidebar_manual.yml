@@ -4,4 +4,7 @@ Get Started:
     Editor Overview: manual/editor-overview
 Scripting:
     JavaScript Primer: manual/scripting/javascript-primer
-    Attach Script to Scene: manual/scripting/attach-script
+    Nodes in Scene: manual/scripting/nodes-in-scene
+    Attachable Script (FireClass): manual/scripting/attachable-script
+    Script Accessibility: manual/scripting/access-script
+    Cocos2d-js Scripting Guide: manual/scripting/runtimes/cocos2d-js
