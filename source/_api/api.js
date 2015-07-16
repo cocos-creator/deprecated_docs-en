@@ -35,7 +35,13 @@ window.apimeta = {
       "name": "EngineWrapper",
       "namespace": "Fire.Runtime.EngineWrapper",
       "module": "Fire.Runtime",
-      "description": "<p><p>Access to engine runtime data.\nThis class contains methods for looking up information about and controlling the runtime data.</p>\n<p>You should override:</p>\n<ul>\n<li>initRuntime</li>\n<li>playRuntime</li>\n<li>stopRuntime</li>\n<li>pauseRuntime</li>\n<li>resumeRuntime</li>\n<li>getCurrentSceneNode</li>\n<li>_setCurrentSceneNode</li>\n<li>tick (if useDefaultMainLoop)</li>\n<li>canvasSize</li>\n<li>getInstanceById</li>\n</ul></p>\n"
+      "description": "<p><p>Access to engine runtime data.\nThis class contains methods for looking up information about and controlling the runtime data.</p>\n<p>You should override:</p>\n<ul>\n<li>initRuntime</li>\n<li>playRuntime</li>\n<li>stopRuntime</li>\n<li>pauseRuntime</li>\n<li>resumeRuntime</li>\n<li>updateRuntime</li>\n<li>animateRuntime</li>\n<li>renderRuntime</li>\n<li>getCurrentRuntimeScene</li>\n<li>_setCurrentRuntimeScene</li>\n<li>canvasSize</li>\n<li>getRuntimeInstanceById</li>\n<li>getIntersectionList</li>\n</ul>\n<p>You may want to override:</p>\n<ul>\n<li>tick (if useDefaultMainLoop)</li>\n<li>tickInEditMode</li>\n</ul></p>\n"
+    },
+    {
+      "name": "Event",
+      "namespace": "Fire.Event",
+      "module": "Fire",
+      "description": "<p><p>An event allows for signaling that something has occurred. E.g. that an asset has completed downloading.</p></p>\n"
     },
     {
       "name": "EventTarget",
@@ -48,6 +54,12 @@ window.apimeta = {
       "namespace": "Fire.FObject",
       "module": "Fire",
       "description": "<p><p>The base class of most of all the objects in Fireball.</p></p>\n"
+    },
+    {
+      "name": "Intersection",
+      "namespace": "Fire.Intersection",
+      "module": "Fire",
+      "description": ""
     },
     {
       "name": "IpcListener",
@@ -77,7 +89,7 @@ window.apimeta = {
       "name": "NodeWrapper",
       "namespace": "Fire.Runtime.NodeWrapper",
       "module": "Fire.Runtime",
-      "description": "<p>&lt;p&gt;&lt;p&gt;&lt;p&gt;这个类用来封装编辑器针对节点的操作。\nNote: 接口中包含 &quot;Node&quot; 的使用的都是 Runtime 的原生 Node 类型。&lt;/p&gt;\n&lt;p&gt;You should override:&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;createEmpty (static)&lt;/li&gt;\n&lt;li&gt;name&lt;/li&gt;\n&lt;li&gt;parentNode&lt;/li&gt;\n&lt;li&gt;childNodes&lt;/li&gt;\n&lt;li&gt;position&lt;/li&gt;\n&lt;li&gt;worldPosition&lt;/li&gt;\n&lt;li&gt;rotation&lt;/li&gt;\n&lt;li&gt;worldRotation&lt;/li&gt;\n&lt;li&gt;scale&lt;/li&gt;\n&lt;li&gt;worldScale&lt;/li&gt;\n&lt;li&gt;getWorldBounds&lt;/li&gt;\n&lt;li&gt;getWorldOrientedBounds&lt;/li&gt;\n&lt;li&gt;onBeforeSerialize (so that the node's properties can be serialized in wrapper)&lt;/li&gt;\n&lt;li&gt;createNode&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;You may want to override:&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;setSiblingIndex&lt;/li&gt;\n&lt;li&gt;getSiblingIndex&lt;/li&gt;\n&lt;li&gt;x&lt;/li&gt;\n&lt;li&gt;y&lt;/li&gt;\n&lt;li&gt;worldX&lt;/li&gt;\n&lt;li&gt;worldY&lt;/li&gt;\n&lt;li&gt;scaleX&lt;/li&gt;\n&lt;li&gt;scaleY&lt;/li&gt;\n&lt;li&gt;attached&lt;/li&gt;\n&lt;/ul&gt;&lt;/p&gt;&lt;/p&gt;</p>\n"
+      "description": "<p>&lt;p&gt;&lt;p&gt;&lt;p&gt;这个类用来封装编辑器针对节点的操作。\nNote: 接口中包含 &quot;Node&quot; 的使用的都是 Runtime 的原生 Node 类型。&lt;/p&gt;\n&lt;p&gt;You should override:&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;createEmpty (static)&lt;/li&gt;\n&lt;li&gt;name&lt;/li&gt;\n&lt;li&gt;runtimeParent&lt;/li&gt;\n&lt;li&gt;runtimeChildren&lt;/li&gt;\n&lt;li&gt;position&lt;/li&gt;\n&lt;li&gt;worldPosition&lt;/li&gt;\n&lt;li&gt;rotation&lt;/li&gt;\n&lt;li&gt;worldRotation&lt;/li&gt;\n&lt;li&gt;scale&lt;/li&gt;\n&lt;li&gt;worldScale&lt;/li&gt;\n&lt;li&gt;getWorldBounds&lt;/li&gt;\n&lt;li&gt;getWorldOrientedBounds&lt;/li&gt;\n&lt;li&gt;transformPoints&lt;/li&gt;\n&lt;li&gt;inverseTransformPoints&lt;/li&gt;\n&lt;li&gt;onBeforeSerialize (so that the node's properties can be serialized in wrapper)&lt;/li&gt;\n&lt;li&gt;createRuntimeNode&lt;/li&gt;\n&lt;/ul&gt;\n&lt;p&gt;You may want to override:&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;animatableInEditor (static)&lt;/li&gt;\n&lt;li&gt;setSiblingIndex&lt;/li&gt;\n&lt;li&gt;getSiblingIndex&lt;/li&gt;\n&lt;li&gt;x&lt;/li&gt;\n&lt;li&gt;y&lt;/li&gt;\n&lt;li&gt;worldX&lt;/li&gt;\n&lt;li&gt;worldY&lt;/li&gt;\n&lt;li&gt;scaleX&lt;/li&gt;\n&lt;li&gt;scaleY&lt;/li&gt;\n&lt;li&gt;scenePosition&lt;/li&gt;\n&lt;li&gt;attached&lt;/li&gt;\n&lt;li&gt;onFocusInEditor&lt;/li&gt;\n&lt;li&gt;onLostFocusInEditor&lt;/li&gt;\n&lt;/ul&gt;&lt;/p&gt;&lt;/p&gt;</p>\n"
     },
     {
       "name": "Path",
@@ -101,7 +113,7 @@ window.apimeta = {
       "name": "SceneWrapper",
       "namespace": "Fire.Runtime.SceneWrapper",
       "module": "Fire.Runtime",
-      "description": "<p><p>You should override:</p>\n<ul>\n<li>childNodes</li>\n<li>createNode</li>\n<li>position</li>\n<li>scale</li>\n</ul>\n<p>You may want to override:</p>\n<ul>\n<li>onBeforeSerialize (so that the scene's properties can be serialized in wrapper)</li>\n<li>preloadAssets (so that scene can load synchronously)</li>\n</ul></p>\n"
+      "description": "<p><p>You should override:</p>\n<ul>\n<li>runtimeChildren</li>\n<li>createRuntimeNode</li>\n<li>position</li>\n<li>scale</li>\n</ul>\n<p>You may want to override:</p>\n<ul>\n<li>onBeforeSerialize (so that the scene's properties can be serialized in wrapper)</li>\n<li>preloadAssets (so that scene can load synchronously)</li>\n</ul></p>\n"
     },
     {
       "name": "String",
