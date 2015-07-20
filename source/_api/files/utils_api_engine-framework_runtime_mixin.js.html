@@ -143,56 +143,6 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
-                      <a class="name" href="/modules/Editor.html#method_require">
-                        require
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_log">
-                        log
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
-                        sendToCoreSync
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCore">
-                        sendToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
-                        sendToWindows
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
-                        sendToMainWindow
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToAll">
-                        sendToAll
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
-                        sendToPanel
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
-                        sendRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
-                        cancelRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_log">
                         log
                       </a>
@@ -320,6 +270,56 @@
                     <li class="">
                       <a class="name" href="/modules/Editor.html#method_registerProtocol">
                         registerProtocol
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_require">
+                        require
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_log">
+                        log
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
+                        sendToCoreSync
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCore">
+                        sendToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
+                        sendToWindows
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
+                        sendToMainWindow
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToAll">
+                        sendToAll
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
+                        sendToPanel
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
+                        sendRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
+                        cancelRequestToCore
                       </a>
                     </li>
                     <li class="">
@@ -834,6 +834,11 @@
                     <li class="private">
                       <a class="name" href="/modules/Fire.html#method_Range">
                         Range
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_onLoad">
+                        onLoad
                       </a>
                     </li>
                     <li class="">
@@ -3821,7 +3826,7 @@ var mixin = {
             return;
         }
 
-        if (FIRE_EDITOR &amp;&amp; node._mixinClasses &amp;&amp; node._mixinClasses.indexOf(newMixinClassId) !== -1) {
+        if (FIRE_EDITOR &amp;&amp; node._mixinClasses &amp;&amp; node._mixinClasses.indexOf(classToMix) !== -1) {
             Fire.warn(&quot;Fire.mixin: The class has already mixined.&quot;);
             return;
         }
@@ -3833,8 +3838,8 @@ var mixin = {
 
         // mixin prototype
         //var nodeProto = nodeClass.prototype;
-        var clsProto = classToMix.prototype;
-        JS.mixin(node, clsProto);  // 这里也会 mixin cls 的父类的 prototype
+        var classToMixProto = classToMix.prototype;
+        JS.mixin(node, classToMixProto);  // 这里也会 mixin cls 的父类的 prototype
 
         // restore overrided properties
         node.constructor = nodeClass;
@@ -3850,9 +3855,20 @@ var mixin = {
         }
         else {
             node._mixinClasses = [classToMix];
+            node._mixinContexts = [];
         }
+        node._mixinContexts.push({
+            _objFlags: 0,
+        });
 
         // TODO - behaviours
+
+        if (Fire.engine._isPlaying &amp;&amp; !Fire.engine._isCloning) {
+            // invoke onLoad
+            if (classToMixProto.onLoad) {
+                classToMixProto.onLoad.call(node);
+            }
+        }
     },
 
     hasMixin: function (node, typeOrTypename) {

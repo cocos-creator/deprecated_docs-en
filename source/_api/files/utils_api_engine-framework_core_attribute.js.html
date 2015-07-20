@@ -143,56 +143,6 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
-                      <a class="name" href="/modules/Editor.html#method_require">
-                        require
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_log">
-                        log
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
-                        sendToCoreSync
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCore">
-                        sendToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
-                        sendToWindows
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
-                        sendToMainWindow
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToAll">
-                        sendToAll
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
-                        sendToPanel
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
-                        sendRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
-                        cancelRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_log">
                         log
                       </a>
@@ -320,6 +270,56 @@
                     <li class="">
                       <a class="name" href="/modules/Editor.html#method_registerProtocol">
                         registerProtocol
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_require">
+                        require
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_log">
+                        log
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
+                        sendToCoreSync
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCore">
+                        sendToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
+                        sendToWindows
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
+                        sendToMainWindow
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToAll">
+                        sendToAll
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
+                        sendToPanel
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
+                        sendRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
+                        cancelRequestToCore
                       </a>
                     </li>
                     <li class="">
@@ -834,6 +834,11 @@
                     <li class="private">
                       <a class="name" href="/modules/Fire.html#method_Range">
                         Range
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_onLoad">
+                        onLoad
                       </a>
                     </li>
                     <li class="">
@@ -4012,33 +4017,33 @@ Fire.ObjectType = function (typeCtor) {
     return {
         type: &#x27;Object&#x27;,
         ctor: typeCtor,
-        _onAfterProp: (function () {
-            if (FIRE_DEV) {
-                return function (classCtor, mainPropName) {
-                    var check = getTypeChecker(&#x27;Object&#x27;, &#x27;Fire.ObjectType&#x27;, typeCtor);
-                    check(classCtor, mainPropName);
-                    // check ValueType
-                    var mainPropAttrs = Fire.attr(classCtor, mainPropName) || {};
-                    if (!Array.isArray(mainPropAttrs.default) &amp;&amp; typeof typeCtor.prototype.clone === &#x27;function&#x27;) {
-                        var typename = JS.getClassName(typeCtor);
-                        var hasDefault = mainPropAttrs.default === null || mainPropAttrs.default === undefined;
-                        if (hasDefault) {
-                            Fire.warn(&#x27;%s is a ValueType, no need to specify the &quot;type&quot; of &quot;%s.%s&quot;, &#x27; +
-                                      &#x27;because the type information can obtain from its default value directly.&#x27;,
-                                typename, JS.getClassName(classCtor), mainPropName, typename);
-                        }
-                        else {
-                            Fire.warn(&#x27;%s is a ValueType, no need to specify the &quot;type&quot; of &quot;%s.%s&quot;, &#x27; +
-                                      &#x27;just set the default value to &quot;new %s()&quot; and it will be handled properly.&#x27;,
-                                typename, JS.getClassName(classCtor), mainPropName, typename);
-                        }
-                    }
-                };
-            }
-            else {
-                return undefined;
-            }
-        })()
+        // _onAfterProp: (function () {
+        //     if (FIRE_DEV) {
+        //         return function (classCtor, mainPropName) {
+        //             var check = getTypeChecker(&#x27;Object&#x27;, &#x27;Fire.ObjectType&#x27;, typeCtor);
+        //             check(classCtor, mainPropName);
+        //             // check ValueType
+        //             var mainPropAttrs = Fire.attr(classCtor, mainPropName) || {};
+        //             if (!Array.isArray(mainPropAttrs.default) &amp;&amp; typeof typeCtor.prototype.clone === &#x27;function&#x27;) {
+        //                 var typename = JS.getClassName(typeCtor);
+        //                 var hasDefault = mainPropAttrs.default === null || mainPropAttrs.default === undefined;
+        //                 if (hasDefault) {
+        //                     Fire.warn(&#x27;%s is a ValueType, no need to specify the &quot;type&quot; of &quot;%s.%s&quot;, &#x27; +
+        //                               &#x27;because the type information can obtain from its default value directly.&#x27;,
+        //                         typename, JS.getClassName(classCtor), mainPropName, typename);
+        //                 }
+        //                 else {
+        //                     Fire.warn(&#x27;%s is a ValueType, no need to specify the &quot;type&quot; of &quot;%s.%s&quot;, &#x27; +
+        //                               &#x27;just set the default value to &quot;new %s()&quot; and it will be handled properly.&#x27;,
+        //                         typename, JS.getClassName(classCtor), mainPropName, typename);
+        //                 }
+        //             }
+        //         };
+        //     }
+        //     else {
+        //         return undefined;
+        //     }
+        // })()
     };
 };
 

@@ -143,56 +143,6 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
-                      <a class="name" href="/modules/Editor.html#method_require">
-                        require
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_log">
-                        log
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
-                        sendToCoreSync
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCore">
-                        sendToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
-                        sendToWindows
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
-                        sendToMainWindow
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToAll">
-                        sendToAll
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
-                        sendToPanel
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
-                        sendRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
-                        cancelRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_log">
                         log
                       </a>
@@ -320,6 +270,56 @@
                     <li class="">
                       <a class="name" href="/modules/Editor.html#method_registerProtocol">
                         registerProtocol
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_require">
+                        require
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_log">
+                        log
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
+                        sendToCoreSync
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCore">
+                        sendToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
+                        sendToWindows
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
+                        sendToMainWindow
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToAll">
+                        sendToAll
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
+                        sendToPanel
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
+                        sendRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
+                        cancelRequestToCore
                       </a>
                     </li>
                     <li class="">
@@ -834,6 +834,11 @@
                     <li class="private">
                       <a class="name" href="/modules/Fire.html#method_Range">
                         Range
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_onLoad">
+                        onLoad
                       </a>
                     </li>
                     <li class="">
@@ -3809,6 +3814,7 @@ function SelectionUnit(type) {
     this.ipc_deactivated = &#x27;selection:deactivated&#x27;; // argument is an id
     this.ipc_hoverin = &#x27;selection:hoverin&#x27;;         // argument is an id
     this.ipc_hoverout = &#x27;selection:hoverout&#x27;;       // argument is an id
+    this.ipc_context = &#x27;selection:context&#x27;;
     this.ipc_changed = &#x27;selection:changed&#x27;;
 }
 
@@ -3957,6 +3963,7 @@ SelectionUnit.prototype.hover = function (id) {
 
 SelectionUnit.prototype.setContext = function (id) {
     this._context = id;
+    _sendToAll(this.ipc_context, this.type, id);
 };
 
 Object.defineProperty(SelectionUnit.prototype, &#x27;contexts&#x27;, {
@@ -4392,6 +4399,16 @@ Ipc.on( &#x27;_selection:hoverout&#x27;, function ( type, id ) {
     }
 
     selectionUnit.lastHover = null;
+});
+
+Ipc.on( &#x27;_selection:context&#x27;, function ( type, id ) {
+    var selectionUnit = _units[type];
+    if ( !selectionUnit ) {
+        Editor.error(&#x27;Can not find the type %s for selection, please register it first&#x27;, type);
+        return;
+    }
+
+    selectionUnit._context = id;
 });
 
 // ==========================
