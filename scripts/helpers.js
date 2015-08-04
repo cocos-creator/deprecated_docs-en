@@ -70,8 +70,8 @@ hexo.extend.helper.register('doc_category', function(){
             result += '<li role="presentation" ' + currentClass + '><a href="' + self.url_for(link) + '" class="' + itemClass + '">' + text + '</a></li>';
         })
     });
-    result += '<li role="presentation"><a role="button" href="#top">back to top</a></li>';
-    result += '<li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_' + cat + '.yml">Edit Sidebar</a></li></ul>';
+    result += '<li role="presentation" class="sidebar-title"><strong class="sidebar-title">Navigation</strong></li><li role="presentation"><a role="button" href="#top">back to top</a></li>';
+    result += '<li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_' + cat + '.yml">edit sidebar</a></li></ul>';
 
     return result;
 });
