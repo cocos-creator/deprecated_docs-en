@@ -15,7 +15,7 @@ gulp.task('copy-api-src', function(cb) {
     });
 });
 
-gulp.task('generate', function(cb) {
+gulp.task('generate', ['copy-api-src'], function(cb) {
     var child = spawn('hexo', ['generate']);
     child.on('data', function(data) {
         console.log(data.toString());
@@ -59,7 +59,7 @@ gulp.task('copy-doc-src', ['download-doc-src'], function(cb) {
         'source/_posts/fireball',
         'source/_posts/editor'
     ],function() {
-        var stream1 = gulp.src(path.join(getCacheFolder('fireball'), 'docs', '**/*'))
+        var stream1 = gulp.src(path.join(getCacheFolder('fireball'), 'docs', 'en', '**/*'))
                         .pipe(gulp.dest('source/_posts/fireball'));
         var stream2 = gulp.src(path.join(getCacheFolder('editor-framework'), 'docs', '**/*'))
                         .pipe(gulp.dest('source/_posts/editor'));

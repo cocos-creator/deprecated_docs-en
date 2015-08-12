@@ -11,7 +11,7 @@ window.apimeta = {
       "name": "Asset",
       "namespace": "Fire.Asset",
       "module": "Fire",
-      "description": "<p><p>Base class for asset handling.</p>\n<p>You should override:</p>\n<ul>\n<li>validateAsset (static)</li>\n</ul>\n<p>You may want to override:</p>\n<ul>\n<li>createNode</li>\n<li>Fire.FObject._serialize</li>\n<li>Fire.FObject._deserialize</li>\n</ul></p>\n"
+      "description": "<p><p>Base class for handling assets used in Fireball. This class can be instantiate.</p>\n<p>You may want to override:</p>\n<ul>\n<li>createNode</li>\n<li>Fire.FObject._serialize</li>\n<li>Fire.FObject._deserialize</li>\n</ul></p>\n"
     },
     {
       "name": "AssetLibrary",
@@ -41,7 +41,7 @@ window.apimeta = {
       "name": "EngineWrapper",
       "namespace": "Fire.Runtime.EngineWrapper",
       "module": "Fire.Runtime",
-      "description": "<p><p>Access to engine runtime data.\nThis class contains methods for looking up information about and controlling the runtime data.</p>\n<p>You should override:</p>\n<ul>\n<li>initRuntime</li>\n<li>playRuntime</li>\n<li>stopRuntime</li>\n<li>pauseRuntime</li>\n<li>resumeRuntime</li>\n<li>updateRuntime</li>\n<li>animateRuntime</li>\n<li>renderRuntime</li>\n<li>getCurrentSceneN</li>\n<li>_setCurrentSceneN</li>\n<li>canvasSize</li>\n<li>getIntersectionList</li>\n</ul>\n<p>You may want to override:</p>\n<ul>\n<li>tick (if useDefaultMainLoop)</li>\n<li>tickInEditMode</li>\n</ul></p>\n"
+      "description": "<p><p>Access to engine runtime data.\nThis class contains methods for looking up information about and controlling the runtime data.\nYou can access this class using <code>Fire.engine</code>.</p>\n<p>You should override:</p>\n<ul>\n<li>initRuntime</li>\n<li>playRuntime</li>\n<li>stopRuntime</li>\n<li>pauseRuntime</li>\n<li>resumeRuntime</li>\n<li>updateRuntime</li>\n<li>animateRuntime</li>\n<li>renderRuntime</li>\n<li>getCurrentSceneN</li>\n<li>_setCurrentSceneN</li>\n<li>canvasSize</li>\n<li>getIntersectionList</li>\n</ul>\n<p>You may want to override:</p>\n<ul>\n<li>tick (if useDefaultMainLoop)</li>\n<li>tickInEditMode</li>\n</ul></p>\n"
     },
     {
       "name": "Event",
@@ -108,6 +108,12 @@ window.apimeta = {
       "namespace": "Fire.Playable",
       "module": "Fire",
       "description": ""
+    },
+    {
+      "name": "RawAsset",
+      "namespace": "Fire.RawAsset",
+      "module": "Fire",
+      "description": "<p>The base class for registering asset types. This is a static class.</p>\n<p>You may want to override:</p>\n<ul>\n<li>createNode (static)</li>\n</ul>\n"
     },
     {
       "name": "Rect",

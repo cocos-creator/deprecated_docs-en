@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>utils_api_asset-db_page_asset-db.js</title>
+  <title>utils_api_engine-framework_core_instantiate.js</title>
   <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
   <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
   <link rel="shortcut icon" type="image/ico" href="../assets/favicon.ico">
@@ -4168,275 +4168,216 @@
 </div>
 </div>
     <div id="docs-main" class="apidocs">
-      <div class="content container"><h1 class="file-heading">File: utils_api_asset-db_page_asset-db.js</h1>
+      <div class="content container"><h1 class="file-heading">File: utils_api_engine-framework_core_instantiate.js</h1>
 
 <div class="file">
   <pre class="code prettyprint linenums">/**
- * @module Editor
+ * @module Fire
  */
+var FObject = Fire.FObject;
+var Def = require(&#x27;../core/definition&#x27;);
+var PersistentMask = Def.PersistentMask;
+var _isDomNode = require(&#x27;../core/utils&#x27;).isDomNode;
+
 
 /**
- * The AssetDB instance
- * @property assetdb
- * @type {AssetDB}
+ * !#en Clones the object original and returns the clone.
+ *
+ * See [Clone exists Entity](/en/scripting/create-destroy-entities/#instantiate)
+ *
+ * !#zh 复制给定的对象
+ *
+ * 详细用法可参考[复制已有Entity](/zh/scripting/create-destroy-entities/#instantiate)
+ *
+ * Instantiate 时，function, dom 和 runtime 对象会直接设为 null，Asset 会直接进行浅拷贝。
+ * 其它类型的对象进行深拷贝，不考虑引用是否该和现有场景共享，但能保证实例化后的对象间能共享一份引用。
+ * &lt;del&gt;对于 Entity / Component 等 Scene Object，如果对方也会被一起 Instantiate，则重定向到新的引用，否则设置为原来的引用。&lt;/del&gt;
+ *
+ * @method instantiate
+ * @param {object} original - An existing object that you want to make a copy of.
+ * @return {object} the newly instantiated object
  */
-Editor.assetdb = (function () {
-    /**
-     * @module AssetDB
-     * @process page
-     */
-    var AssetDB = {};
+function instantiate (original) {
+    if (typeof original !== &#x27;object&#x27; || Array.isArray(original)) {
+        Fire.error(&#x27;The thing you want to instantiate must be an object&#x27;);
+        return null;
+    }
+    if (!original) {
+        Fire.error(&#x27;The thing you want to instantiate is nil&#x27;);
+        return null;
+    }
+    if (original instanceof FObject &amp;&amp; !original.isValid) {
+        Fire.error(&#x27;The thing you want to instantiate is destroyed&#x27;);
+        return null;
+    }
 
-    /**
-     * The remote AssetDB instance
-     * @property remote
-     * @type object
-     */
-    AssetDB.remote = Editor.remote.assetdb;
+    var clone;
+    if (original instanceof FObject) {
+        // invoke _instantiate method if supplied
+        if (original._instantiate) {
+            Fire.engine._isCloning = true;
+            clone = original._instantiate();
+            Fire.engine._isCloning = false;
+            return clone;
+        }
+        else if (original instanceof Fire.Asset) {
+            // 不允许用通用方案实例化资源
+            Fire.error(&#x27;The instantiate method for given asset do not implemented&#x27;);
+            return null;
+        }
+    }
 
-    /**
-     * The library path
-     * @property library
-     * @type string
-     */
-    AssetDB.library = AssetDB.remote.library;
+    Fire.engine._isCloning = true;
+    clone = doInstantiate(original);
+    Fire.engine._isCloning = false;
+    return clone;
+}
 
-    // ipc
+var objsToClearTmpVar = [];   // 用于重设临时变量
 
-    /**
-     * Reveal given url in native file system
-     * @method explore
-     * @param {string} url
-     */
-    AssetDB.explore = function ( url ) {
-        Editor.sendToCore( &#x27;asset-db:explore&#x27;, url );
-    };
+///**
+// * Do instantiate object, the object to instantiate must be non-nil.
+// * 这是一个通用的 instantiate 方法，可能效率比较低。
+// * 之后可以给各种类型重载快速实例化的特殊实现，但应该在单元测试中将结果和这个方法的结果进行对比。
+// * 值得注意的是，这个方法不可重入，不支持 mixin。
+// *
+// * @param {object} obj - 该方法仅供内部使用，用户需负责保证参数合法。什么参数是合法的请参考 Fire.instantiate 的实现.
+// * @return {object}
+// * @private
+// */
+function doInstantiate (obj) {
+    if (Array.isArray(obj)) {
+        Fire.error(&#x27;Can not instantiate array&#x27;);
+        return null;
+    }
+    if (_isDomNode &amp;&amp; _isDomNode(obj)) {
+        Fire.error(&#x27;Can not instantiate DOM element&#x27;);
+        return null;
+    }
 
-    /**
-     * Reveal given url&#x27;s library file in native file system
-     * @method exploreLib
-     * @param {string} url
-     */
-    AssetDB.exploreLib = function ( url ) {
-        Editor.sendToCore( &#x27;asset-db:explore-lib&#x27;, url );
-    };
+    var isRuntimeNode = Fire.getWrapperType(obj);
+    if (isRuntimeNode) {
+        var wrapper = Fire.instantiate(Fire(obj));
+        return wrapper.targetN;
+    }
 
-    /**
-     * Get native file path by url
-     * @method queryPathByUrl
-     * @param {string} url
-     * @param {function} cb - The callback function
-     * @param {string} cb.path
-     */
-    AssetDB.queryPathByUrl = function ( url, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-path-by-url&#x27;, url, cb );
-    };
+    var clone = enumerateObject(obj);
 
-    /**
-     * Get native file path by uuid
-     * @method queryPathByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {string} cb.path
-     */
-    AssetDB.queryPathByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-path-by-uuid&#x27;, uuid, cb );
-    };
+    for (var i = 0, len = objsToClearTmpVar.length; i &lt; len; ++i) {
+        objsToClearTmpVar[i]._iN$t = null;
+    }
+    objsToClearTmpVar.length = 0;
 
-    /**
-     * Get asset url by uuid
-     * @method queryUrlByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {string} cb.url
-     */
-    AssetDB.queryUrlByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-url-by-uuid&#x27;, uuid, cb );
-    };
+    return clone;
+}
 
-    /**
-     * Get asset info by uuid
-     * @method queryInfoByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {object} cb.info
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.queryInfoByUuid( uuid, function ( info ) {
-     *     // info.path
-     *     // info.url
-     *     // info.type
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.queryInfoByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-info-by-uuid&#x27;, uuid, cb );
-    };
+///**
+// * @param {object} obj - The object to instantiate, typeof must be &#x27;object&#x27; and should not be an array.
+// * @return {object} - the instantiated instance
+// */
+var enumerateObject = function (obj) {
+    var value, type, key;
+    var klass = obj.constructor;
+    var clone = new klass();
+    obj._iN$t = clone;
+    objsToClearTmpVar.push(obj);
+    if (Fire._isFireClass(klass)) {
+        var props = klass.__props__;
+        if (props) {
+            for (var p = 0; p &lt; props.length; p++) {
+                key = props[p];
+                var attrs = Fire.attr(klass, key);
+                if (attrs.serializable !== false) {
+                    value = obj[key];
+                    // instantiate field
+                    type = typeof value;
+                    if (type === &#x27;object&#x27;) {
+                        clone[key] = value ? instantiateObj(value) : value;
+                    }
+                    else {
+                        clone[key] = (type !== &#x27;function&#x27;) ? value : null;
+                    }
+                }
+            }
+        }
+    }
+    else {
+        // primitive javascript object
+        for (key in obj) {
+            //Fire.log(key);
+            if (!obj.hasOwnProperty(key) || (key.charCodeAt(0) === 95 &amp;&amp; key.charCodeAt(1) === 95)) {  // starts with __
+                continue;
+            }
+            value = obj[key];
+            if (value === clone) {
+                continue;   // value is obj._iN$t
+            }
+            // instantiate field
+            type = typeof value;
+            if (type === &#x27;object&#x27;) {
+                clone[key] = value ? instantiateObj(value) : value;
+            }
+            else {
+                clone[key] = (type !== &#x27;function&#x27;) ? value : null;
+            }
+        }
+    }
+    if (obj instanceof FObject) {
+        clone._objFlags &amp;= PersistentMask;
+    }
+    return clone;
+};
 
-    /**
-     * Get meta info by uuid
-     * @method queryMetaInfoByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {object} cb.info
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.queryMetaInfoByUuid( uuid, function ( info ) {
-     *     // info.assetPath
-     *     // info.metaPath
-     *     // info.assetMtime
-     *     // info.metaMtime
-     *     // info.json
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.queryMetaInfoByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-meta-info-by-uuid&#x27;, uuid, cb );
-    };
+///**
+// * @return {object} - the original non-nil object, typeof must be &#x27;object&#x27;
+// */
+function instantiateObj (obj) {
+    // 目前使用“_iN$t”这个特殊字段来存实例化后的对象，这样做主要是为了防止循环引用
+    // 注意，为了避免循环引用，所有新创建的实例，必须在赋值前被设为源对象的_iN$t
+    var clone = obj._iN$t;
+    if (clone) {
+        // has been instantiated
+        return clone;
+    }
 
-    /**
-     * Query all assets from asset-db
-     * @method deepQuery
-     * @param {function} cb - The callback function
-     * @param {array} cb.results
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.deepQuery(function ( results ) {
-     *     results.forEach(function ( result ) {
-     *         // result.name
-     *         // result.extname
-     *         // result.uuid
-     *         // result.type
-     *         // result.children - the array of children result
-     *     });
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.deepQuery = function ( cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:deep-query&#x27;, cb );
-    };
+    if (obj instanceof Fire.Asset) {
+        // 所有资源直接引用，不需要拷贝
+        return obj;
+    }
+    else if (Array.isArray(obj)) {
+        var len = obj.length;
+        clone = new Array(len);
+        obj._iN$t = clone;
+        for (var i = 0; i &lt; len; ++i) {
+            var value = obj[i];
+            // instantiate field
+            var type = typeof value;
+            if (type === &#x27;object&#x27;) {
+                clone[i] = value ? instantiateObj(value) : value;
+            }
+            else {
+                clone[i] = (type !== &#x27;function&#x27;) ? value : null;
+            }
+        }
+        objsToClearTmpVar.push(obj);
+        return clone;
+    }
+    else if (_isDomNode &amp;&amp; _isDomNode(obj)) {
+        return null;
+    }
+    else {
+        var isRuntimeNode = Fire.getWrapperType(obj);
+        if (isRuntimeNode) {
+            return null;
+        }
+    }
+    // instantiate common object
+    return enumerateObject(obj);
+}
 
-    /**
-     * Query assets by url pattern and asset-type
-     * @method queryAssets
-     * @param {string} pattern - The url pattern
-     * @param {string} type - The asset type
-     * @param {function} cb - The callback function
-     * @param {array} cb.results
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.queryAssets( &#x27;assets://**\/*&#x27;, &#x27;texture&#x27;, function ( results ) {
-     *     results.forEach(function ( result ) {
-     *         // result.url
-     *         // result.path
-     *         // result.uuid
-     *         // result.type
-     *     });
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.queryAssets = function ( url, assetType, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-assets&#x27;, url, assetType, cb );
-    };
-
-    /**
-     * Import files outside asset-db to specific url folder.
-     * The import result will be sent through ipc message &#x60;asset-db:assets-created&#x60;
-     * @method import
-     * @param {array} rawfiles - Rawfile path list
-     * @param {string} destUrl - The url of dest folder
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.import( [
-     *      &#x27;/file/to/import/01.png&#x27;,
-     *      &#x27;/file/to/import/02.png&#x27;,
-     *      &#x27;/file/to/import/03.png&#x27;,
-     * ], &#x27;assets://foobar&#x27; );
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.import = function ( rawfiles, destUrl ) {
-        Editor.sendToCore( &#x27;asset-db:import-assets&#x27;, rawfiles, destUrl );
-    };
-
-    /**
-     * Create asset in specific url by sending string data to it.
-     * The created result will be sent through by ipc message &#x60;asset-db:assets-created&#x60;
-     * @method create
-     * @param {string} url
-     * @param {string} data
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.create( &#x27;assets://foo/bar/foobar.js&#x27;, &#x27;var foobar = 0;&#x27;);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.create = function ( url, data ) {
-        Editor.sendToCore( &#x27;asset-db:create-asset&#x27;, url, data );
-    };
-
-    /**
-     * Move asset from src to dest
-     * The moved result will be sent through by ipc message &#x60;asset-db:assets-moved&#x60;
-     * @method move
-     * @param {string} srcUrl
-     * @param {string} destUrl
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.move( &#x27;assets://foo/bar/foobar.js&#x27;, &#x27;assets://foo/bar/foobar02.js&#x27;);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.move = function ( srcUrl, destUrl ) {
-        Editor.sendToCore( &#x27;asset-db:move-asset&#x27;, srcUrl, destUrl );
-    };
-
-    /**
-     * Delete assets by url list
-     * The deleted results will be sent through by ipc message &#x60;asset-db:assets-deleted&#x60;
-     * @method delete
-     * @param {array} urls
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.delete([
-     *   &#x27;assets://foo/bar/foobar.js&#x27;,
-     *   &#x27;assets://foo/bar/foobar02.js&#x27;,
-     * ]);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.delete = function ( urls ) {
-        Editor.sendToCore( &#x27;asset-db:delete-assets&#x27;, urls );
-    };
-
-    /**
-     * Save specific asset by sending string data
-     * The saved results will be sent through by ipc message &#x60;asset-db:asset-changed&#x60;
-     * @method save
-     * @param {string} url
-     * @param {string} data
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.save( &#x27;assets://foo/bar/foobar.js&#x27;, &#x27;var foobar = 0;&#x27;);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.save = function ( url, data ) {
-        Editor.sendToCore( &#x27;asset-db:save&#x27;, url, data );
-    };
-
-    /**
-     * Save specific meta by sending meta&#x27;s json string
-     * The saved results will be sent through by ipc message &#x60;asset-db:asset-changed&#x60;
-     * @method saveMeta
-     * @param {string} uuid
-     * @param {string} metaJson
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.save( meta.uuid, JSON.stringify(meta, null, 2));
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.saveMeta = function ( uuid, metaJson ) {
-        Editor.sendToCore( &#x27;asset-db:save-meta&#x27;, uuid, metaJson );
-    };
-
-    return AssetDB;
-})();
+Fire.instantiate = instantiate;
+Fire._doInstantiate = doInstantiate;
+module.exports = instantiate;
 </pre>
 </div>
 </div>

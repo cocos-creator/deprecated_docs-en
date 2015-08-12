@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>utils_api_asset-db_page_asset-db.js</title>
+  <title>utils_api_engine-framework_editor_uuid-utils.js</title>
   <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
   <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
   <link rel="shortcut icon" type="image/ico" href="../assets/favicon.ico">
@@ -4168,275 +4168,69 @@
 </div>
 </div>
     <div id="docs-main" class="apidocs">
-      <div class="content container"><h1 class="file-heading">File: utils_api_asset-db_page_asset-db.js</h1>
+      <div class="content container"><h1 class="file-heading">File: utils_api_engine-framework_editor_uuid-utils.js</h1>
 
 <div class="file">
   <pre class="code prettyprint linenums">/**
- * @module Editor
+ * @module Fire
  */
+(function (exports) {
+    var Base64KeyChars = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;;
 
-/**
- * The AssetDB instance
- * @property assetdb
- * @type {AssetDB}
- */
-Editor.assetdb = (function () {
-    /**
-     * @module AssetDB
-     * @process page
-     */
-    var AssetDB = {};
+    var AsciiTo64 = new Array(128);
+    for (var i = 0; i &lt; 128; ++i) { AsciiTo64[i] = 0; }
+    for (i = 0; i &lt; 64; ++i) { AsciiTo64[Base64KeyChars.charCodeAt(i)] = i; }
 
-    /**
-     * The remote AssetDB instance
-     * @property remote
-     * @type object
-     */
-    AssetDB.remote = Editor.remote.assetdb;
+    var Reg_RemoveDash = /-/g;
 
-    /**
-     * The library path
-     * @property library
-     * @type string
-     */
-    AssetDB.library = AssetDB.remote.library;
-
-    // ipc
-
-    /**
-     * Reveal given url in native file system
-     * @method explore
-     * @param {string} url
-     */
-    AssetDB.explore = function ( url ) {
-        Editor.sendToCore( &#x27;asset-db:explore&#x27;, url );
+    // 将 uuid 的后面 27 位压缩成 18 位，前 5 位保留下来，方便调试。
+    // 压缩后的 uuid 可以减小保存时的尺寸，但不能做为文件名。
+    exports.compressUuid = function (uuid) {
+        // fc991dd7-0033-4b80-9d41-c8a86a702e59
+        var striped = uuid.replace(Reg_RemoveDash, &#x27;&#x27;);
+        var head = striped.slice(0, 5);
+        // encode base64
+        var base64Chars = [];
+        for (var i = 5; i &lt; 32; i += 3) {
+            var hexVal1 = parseInt(striped[i], 16);
+            var hexVal2 = parseInt(striped[i + 1], 16);
+            var hexVal3 = parseInt(striped[i + 2], 16);
+            base64Chars.push(Base64KeyChars[(hexVal1 &lt;&lt; 2) | (hexVal2 &gt;&gt; 2)]);
+            base64Chars.push(Base64KeyChars[((hexVal2 &amp; 3) &lt;&lt; 4) | hexVal3]);
+        }
+        //
+        return head + base64Chars.join(&#x27;&#x27;);
     };
 
-    /**
-     * Reveal given url&#x27;s library file in native file system
-     * @method exploreLib
-     * @param {string} url
-     */
-    AssetDB.exploreLib = function ( url ) {
-        Editor.sendToCore( &#x27;asset-db:explore-lib&#x27;, url );
+    exports.decompressUuid = function (str) {
+        if (str.length === 23) {
+            // decode base64
+            var hexChars = [];
+            for (var i = 5; i &lt; 23; i += 2) {
+                var lhs = AsciiTo64[str.charCodeAt(i)];
+                var rhs = AsciiTo64[str.charCodeAt(i + 1)];
+                hexChars.push((lhs &gt;&gt; 2).toString(16));
+                hexChars.push((((lhs &amp; 3) &lt;&lt; 2) | rhs &gt;&gt; 4).toString(16));
+                hexChars.push((rhs &amp; 0xF).toString(16));
+            }
+            //
+            str = str.slice(0, 5) + hexChars.join(&#x27;&#x27;);
+        }
+        return [str.slice(0, 8), str.slice(8, 12), str.slice(12, 16), str.slice(16, 20), str.slice(20)].join(&#x27;-&#x27;);
     };
 
-    /**
-     * Get native file path by url
-     * @method queryPathByUrl
-     * @param {string} url
-     * @param {function} cb - The callback function
-     * @param {string} cb.path
-     */
-    AssetDB.queryPathByUrl = function ( url, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-path-by-url&#x27;, url, cb );
-    };
+    var Reg_Uuid = /^[0-9a-fA-F]{32}$/;
+    var Reg_CompressedUuid = /^[0-9a-zA-Z+/]{23}$/;
 
-    /**
-     * Get native file path by uuid
-     * @method queryPathByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {string} cb.path
-     */
-    AssetDB.queryPathByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-path-by-uuid&#x27;, uuid, cb );
+    exports.isUuid = function (str) {
+        if (str.length === 36) {
+            str = str.replace(Reg_RemoveDash, &#x27;&#x27;);
+        }
+        return Reg_CompressedUuid.test(str) || Reg_Uuid.test(str);
     };
+})(Editor);
 
-    /**
-     * Get asset url by uuid
-     * @method queryUrlByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {string} cb.url
-     */
-    AssetDB.queryUrlByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-url-by-uuid&#x27;, uuid, cb );
-    };
-
-    /**
-     * Get asset info by uuid
-     * @method queryInfoByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {object} cb.info
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.queryInfoByUuid( uuid, function ( info ) {
-     *     // info.path
-     *     // info.url
-     *     // info.type
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.queryInfoByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-info-by-uuid&#x27;, uuid, cb );
-    };
-
-    /**
-     * Get meta info by uuid
-     * @method queryMetaInfoByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {object} cb.info
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.queryMetaInfoByUuid( uuid, function ( info ) {
-     *     // info.assetPath
-     *     // info.metaPath
-     *     // info.assetMtime
-     *     // info.metaMtime
-     *     // info.json
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.queryMetaInfoByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-meta-info-by-uuid&#x27;, uuid, cb );
-    };
-
-    /**
-     * Query all assets from asset-db
-     * @method deepQuery
-     * @param {function} cb - The callback function
-     * @param {array} cb.results
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.deepQuery(function ( results ) {
-     *     results.forEach(function ( result ) {
-     *         // result.name
-     *         // result.extname
-     *         // result.uuid
-     *         // result.type
-     *         // result.children - the array of children result
-     *     });
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.deepQuery = function ( cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:deep-query&#x27;, cb );
-    };
-
-    /**
-     * Query assets by url pattern and asset-type
-     * @method queryAssets
-     * @param {string} pattern - The url pattern
-     * @param {string} type - The asset type
-     * @param {function} cb - The callback function
-     * @param {array} cb.results
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.queryAssets( &#x27;assets://**\/*&#x27;, &#x27;texture&#x27;, function ( results ) {
-     *     results.forEach(function ( result ) {
-     *         // result.url
-     *         // result.path
-     *         // result.uuid
-     *         // result.type
-     *     });
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.queryAssets = function ( url, assetType, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-assets&#x27;, url, assetType, cb );
-    };
-
-    /**
-     * Import files outside asset-db to specific url folder.
-     * The import result will be sent through ipc message &#x60;asset-db:assets-created&#x60;
-     * @method import
-     * @param {array} rawfiles - Rawfile path list
-     * @param {string} destUrl - The url of dest folder
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.import( [
-     *      &#x27;/file/to/import/01.png&#x27;,
-     *      &#x27;/file/to/import/02.png&#x27;,
-     *      &#x27;/file/to/import/03.png&#x27;,
-     * ], &#x27;assets://foobar&#x27; );
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.import = function ( rawfiles, destUrl ) {
-        Editor.sendToCore( &#x27;asset-db:import-assets&#x27;, rawfiles, destUrl );
-    };
-
-    /**
-     * Create asset in specific url by sending string data to it.
-     * The created result will be sent through by ipc message &#x60;asset-db:assets-created&#x60;
-     * @method create
-     * @param {string} url
-     * @param {string} data
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.create( &#x27;assets://foo/bar/foobar.js&#x27;, &#x27;var foobar = 0;&#x27;);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.create = function ( url, data ) {
-        Editor.sendToCore( &#x27;asset-db:create-asset&#x27;, url, data );
-    };
-
-    /**
-     * Move asset from src to dest
-     * The moved result will be sent through by ipc message &#x60;asset-db:assets-moved&#x60;
-     * @method move
-     * @param {string} srcUrl
-     * @param {string} destUrl
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.move( &#x27;assets://foo/bar/foobar.js&#x27;, &#x27;assets://foo/bar/foobar02.js&#x27;);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.move = function ( srcUrl, destUrl ) {
-        Editor.sendToCore( &#x27;asset-db:move-asset&#x27;, srcUrl, destUrl );
-    };
-
-    /**
-     * Delete assets by url list
-     * The deleted results will be sent through by ipc message &#x60;asset-db:assets-deleted&#x60;
-     * @method delete
-     * @param {array} urls
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.delete([
-     *   &#x27;assets://foo/bar/foobar.js&#x27;,
-     *   &#x27;assets://foo/bar/foobar02.js&#x27;,
-     * ]);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.delete = function ( urls ) {
-        Editor.sendToCore( &#x27;asset-db:delete-assets&#x27;, urls );
-    };
-
-    /**
-     * Save specific asset by sending string data
-     * The saved results will be sent through by ipc message &#x60;asset-db:asset-changed&#x60;
-     * @method save
-     * @param {string} url
-     * @param {string} data
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.save( &#x27;assets://foo/bar/foobar.js&#x27;, &#x27;var foobar = 0;&#x27;);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.save = function ( url, data ) {
-        Editor.sendToCore( &#x27;asset-db:save&#x27;, url, data );
-    };
-
-    /**
-     * Save specific meta by sending meta&#x27;s json string
-     * The saved results will be sent through by ipc message &#x60;asset-db:asset-changed&#x60;
-     * @method saveMeta
-     * @param {string} uuid
-     * @param {string} metaJson
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.save( meta.uuid, JSON.stringify(meta, null, 2));
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.saveMeta = function ( uuid, metaJson ) {
-        Editor.sendToCore( &#x27;asset-db:save-meta&#x27;, uuid, metaJson );
-    };
-
-    return AssetDB;
-})();
+module.exports = Editor;
 </pre>
 </div>
 </div>

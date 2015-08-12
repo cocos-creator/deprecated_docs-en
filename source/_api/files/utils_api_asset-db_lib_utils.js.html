@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>utils_api_asset-db_page_asset-db.js</title>
+  <title>utils_api_asset-db_lib_utils.js</title>
   <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
   <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
   <link rel="shortcut icon" type="image/ico" href="../assets/favicon.ico">
@@ -4168,275 +4168,345 @@
 </div>
 </div>
     <div id="docs-main" class="apidocs">
-      <div class="content container"><h1 class="file-heading">File: utils_api_asset-db_page_asset-db.js</h1>
+      <div class="content container"><h1 class="file-heading">File: utils_api_asset-db_lib_utils.js</h1>
 
 <div class="file">
-  <pre class="code prettyprint linenums">/**
- * @module Editor
- */
+  <pre class="code prettyprint linenums">var Path = require(&#x27;fire-path&#x27;);
+var Fs = require(&#x27;fire-fs&#x27;);
+var Chalk = require(&#x27;chalk&#x27;);
+var Util = require(&#x27;util&#x27;);
+var Del = require(&#x27;del&#x27;);
+
+var chalk_success = Chalk.green;
+var chalk_warn = Chalk.yellow;
+var chalk_error = Chalk.red;
+var chalk_info = Chalk.cyan;
+
+var AssetDB = {};
+module.exports = AssetDB;
+
+var ED = global.Editor;
+var _log, _success, _failed, _info, _warn, _error;
+
+// log
+if ( ED &amp;&amp; ED.log ) {
+    _log = ED.log;
+} else {
+    _log = console.log;
+}
+
+// success
+if ( ED &amp;&amp; ED.log ) {
+    _success = ED.success;
+} else {
+    _success = function () {
+        var text = Util.format.apply(Util, arguments);
+        console.log( chalk_success(text) );
+    };
+}
+
+// failed
+if ( ED &amp;&amp; ED.log ) {
+    _failed = ED.failed;
+} else {
+    _failed = function () {
+        var text = Util.format.apply(Util, arguments);
+        console.log( chalk_error(text) );
+    };
+}
+
+// info
+if ( ED &amp;&amp; ED.info ) {
+    _info = ED.info;
+} else {
+    _info = function () {
+        var text = Util.format.apply(Util, arguments);
+        console.info( chalk_info(text) );
+    };
+}
+
+// warn
+if ( ED &amp;&amp; ED.warn ) {
+    _warn = ED.warn;
+} else {
+    _warn = function () {
+        var text = Util.format.apply(Util, arguments);
+
+        var e = new Error(&#x27;dummy&#x27;);
+        var lines = e.stack.split(&#x27;\n&#x27;);
+        text = text + &#x27;\n&#x27; + lines.splice(2).join(&#x27;\n&#x27;);
+
+        console.warn( chalk_warn(text) );
+    };
+}
+
+// error
+if ( ED &amp;&amp; ED.error ) {
+    _error = ED.error;
+} else {
+    _error = function () {
+        var text = Util.format.apply(Util, arguments);
+
+        var e = new Error(&#x27;dummy&#x27;);
+        var lines = e.stack.split(&#x27;\n&#x27;);
+        text = text + &#x27;\n&#x27; + lines.splice(2).join(&#x27;\n&#x27;);
+
+        console.error( chalk_error(text) );
+    };
+}
+
+if ( ED &amp;&amp; ED.throw ) {
+    AssetDB.throw = ED.throw;
+}
+else {
+    AssetDB.throw = function ( type ) {
+        var args = [].slice.call( arguments, 1 );
+        var text = Util.format.apply(Util, args);
+        if ( type === &#x27;type&#x27; ) {
+            throw new TypeError(text);
+        }
+        throw new Error(text);
+    };
+}
+
+AssetDB.log = function () {
+    if ( this._curTask ) {
+        var args = [].slice.call( arguments, 1 );
+        args.unshift( &#x27;[db-task][%s] &#x27; + arguments[0], this._curTask.name );
+
+        _log.apply( this, args );
+        return;
+    }
+    _log.apply( this, arguments );
+};
+
+AssetDB.success = function () {
+    if ( this._curTask ) {
+        var args = [].slice.call( arguments, 1 );
+        args.unshift( &#x27;[db-task][%s] &#x27; + arguments[0], this._curTask.name );
+
+        _success.apply( this, args );
+        return;
+    }
+    _success.apply( this, arguments );
+};
+
+AssetDB.failed = function () {
+    if ( this._curTask ) {
+        var args = [].slice.call( arguments, 1 );
+        args.unshift( &#x27;[db-task][%s] &#x27; + arguments[0], this._curTask.name );
+
+        _failed.apply( this, args );
+        return;
+    }
+    _failed.apply( this, arguments );
+};
+
+AssetDB.info = function () {
+    if ( this._curTask ) {
+        var args = [].slice.call( arguments, 1 );
+        args.unshift( &#x27;[db-task][%s] &#x27; + arguments[0], this._curTask.name );
+
+        _info.apply( this, args );
+        return;
+    }
+    _info.apply( this, arguments );
+};
+
+AssetDB.warn = function () {
+    if ( this._curTask ) {
+        var args = [].slice.call( arguments, 1 );
+        args.unshift( &#x27;[db-task][%s] &#x27; + arguments[0], this._curTask.name );
+
+        _warn.apply( this, args );
+        return;
+    }
+    _warn.apply( this, arguments );
+};
+
+AssetDB.error = function () {
+    if ( this._curTask ) {
+        var args = [].slice.call( arguments, 1 );
+        args.unshift( &#x27;[db-task][%s] &#x27; + arguments[0], this._curTask.name );
+
+        _error.apply( this, args );
+        return;
+    }
+    _error.apply( this, arguments );
+};
+
+AssetDB.mkdirForAsset = function ( uuid ) {
+    if ( !uuid || uuid === &#x27;&#x27; ) {
+        this.throw( &#x27;normal&#x27;, &#x27;Invalid uuid&#x27; );
+    }
+
+    // get importPath and create it if not exists
+    var folder = uuid.substring(0,2);
+    var dest = Path.join(this._importPath,folder);
+
+    if ( !Fs.existsSync ( dest ) ) {
+        Fs.mkdirSync(dest);
+    }
+
+    return dest;
+};
+
+// DELME
+// AssetDB.mkdirForRawfile = function ( uuid ) {
+//     var dest = this.mkdirForAsset(uuid);
+
+//     dest = Path.join(dest, uuid);
+
+//     if ( !Fs.existsSync ( dest ) ) {
+//         Fs.mkdirSync(dest);
+//     }
+
+//     return dest;
+// };
+
+// var _reg = /[\\/]/;
+
+AssetDB.copyAssetToLibrary = function ( uuid, fspath ) {
+    var dest = this._uuidToImportPathNoExt(uuid) + Path.extname(fspath);
+
+    this.mkdirForAsset(uuid);
+    Fs.copySync( fspath, dest );
+
+    return dest;
+};
+
+AssetDB.saveAssetToLibrary = function ( uuid, asset, ext ) {
+    var data;
+    if ( typeof asset === &#x27;string&#x27; || asset instanceof Buffer ) {
+        data = asset;
+    }
+    else {
+        if ( asset.serialize ) {
+            data = asset.serialize();
+        }
+        if ( !data ) {
+            data = JSON.stringify( asset, null, 2 );
+        }
+    }
+
+    ext = ext ? ext : &#x27;.json&#x27;;
+    var dest = this.mkdirForAsset(uuid);
+    dest = Path.join(dest, uuid+ext);
+    Fs.writeFileSync( dest, data );
+
+    return dest;
+};
+
+var _updateMtimeDebounceID = null;
+AssetDB.updateMtime = function ( uuid ) {
+    if ( uuid ) {
+        var assetpath = this._uuid2path[uuid];
+        if ( Fs.existsSync(assetpath) ) {
+            var assetMtime = Fs.statSync(assetpath).mtime.getTime();
+            var metaMtime = Fs.statSync(assetpath+&#x27;.meta&#x27;).mtime.getTime();
+
+            //
+            this._uuid2mtime[uuid] = {
+                asset: assetMtime,
+                meta: metaMtime,
+            };
+        } else {
+            delete this._uuid2mtime[uuid];
+        }
+    }
+
+    // debounce write for 50ms
+    if ( _updateMtimeDebounceID ) {
+        clearTimeout(_updateMtimeDebounceID);
+        _updateMtimeDebounceID = null;
+    }
+    _updateMtimeDebounceID = setTimeout(function () {
+        var json = JSON.stringify(this._uuid2mtime, null, 2);
+        // NOTE: it is possible before we wrote, library has been deleted.
+        if ( Fs.existsSync( this.library ) ) {
+            Fs.writeFileSync(this._uuid2mtimePath, json, &#x27;utf8&#x27;);
+        }
+    }.bind(this), 50);
+};
 
 /**
- * The AssetDB instance
- * @property assetdb
- * @type {AssetDB}
+ * Create thumbnail by uuid
+ * @param {string} uuid
+ * @param {number} size
+ * @param {object} imageOrFn
+ * @param {function} [cb]
  */
-Editor.assetdb = (function () {
-    /**
-     * @module AssetDB
-     * @process page
-     */
-    var AssetDB = {};
+AssetDB.createThumbnail = function ( uuid, size, imageOrFn, cb ) {
+    var Lwip = require(&#x27;lwip&#x27;);
+    var Async = require(&#x27;async&#x27;);
 
-    /**
-     * The remote AssetDB instance
-     * @property remote
-     * @type object
-     */
-    AssetDB.remote = Editor.remote.assetdb;
+    if ( typeof imageOrFn === &#x27;function&#x27; )
+        cb = imageOrFn;
 
-    /**
-     * The library path
-     * @property library
-     * @type string
-     */
-    AssetDB.library = AssetDB.remote.library;
+    var assetdb = this;
+    Async.waterfall([
+        function ( next ) {
+            if ( typeof imageOrFn !== &#x27;function&#x27; ) {
+                next ( null, imageOrFn );
+                return;
+            }
 
-    // ipc
+            var fspath = assetdb.uuidToFspath(uuid);
+            Lwip.open( fspath, next );
+        },
 
-    /**
-     * Reveal given url in native file system
-     * @method explore
-     * @param {string} url
-     */
-    AssetDB.explore = function ( url ) {
-        Editor.sendToCore( &#x27;asset-db:explore&#x27;, url );
-    };
+        function ( lwipImage, next ) {
+            lwipImage.contain( size, size, {r: 255, g: 255, b: 255, a: 0} , &#x27;grid&#x27;, next );
+        },
 
-    /**
-     * Reveal given url&#x27;s library file in native file system
-     * @method exploreLib
-     * @param {string} url
-     */
-    AssetDB.exploreLib = function ( url ) {
-        Editor.sendToCore( &#x27;asset-db:explore-lib&#x27;, url );
-    };
+        function ( lwipImage, next ) {
+            var dest = assetdb.mkdirForAsset(uuid);
+            lwipImage.writeFile( Path.join(dest, uuid + &#x27;.thumb.png&#x27;), next );
+        },
 
-    /**
-     * Get native file path by url
-     * @method queryPathByUrl
-     * @param {string} url
-     * @param {function} cb - The callback function
-     * @param {string} cb.path
-     */
-    AssetDB.queryPathByUrl = function ( url, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-path-by-url&#x27;, url, cb );
-    };
+    ], function ( err ) {
+        if ( cb ) cb ( err );
+    });
+};
 
-    /**
-     * Get native file path by uuid
-     * @method queryPathByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {string} cb.path
-     */
-    AssetDB.queryPathByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-path-by-uuid&#x27;, uuid, cb );
-    };
+/**
+ * Delete thumbnail by uuid
+ * @param {string} uuid
+ * @param {function} [cb]
+ */
+// AssetDB.deleteThumbnail = function ( uuid, cb ) {
+//     var folder = uuid.substring(0,2);
+//     folder = Path.join(this._thumbnailPath, folder);
+//     var path = Path.join(folder, uuid + &#x27;.png&#x27;);
 
-    /**
-     * Get asset url by uuid
-     * @method queryUrlByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {string} cb.url
-     */
-    AssetDB.queryUrlByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-url-by-uuid&#x27;, uuid, cb );
-    };
+//     if ( !Fs.existsSync(path) ) {
+//         if (cb) cb();
+//         return;
+//     }
 
-    /**
-     * Get asset info by uuid
-     * @method queryInfoByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {object} cb.info
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.queryInfoByUuid( uuid, function ( info ) {
-     *     // info.path
-     *     // info.url
-     *     // info.type
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.queryInfoByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-info-by-uuid&#x27;, uuid, cb );
-    };
+//     Async.series([
+//         // delete thumbnail
+//         function (next) {
+//             console.log(&#x27;delete thumbnail : &#x27;, path);
+//             Del(path, {force: true}, next);
+//         },
+//         // if folder is empty then delete folder
+//         function (next) {
+//             var pattern = Path.join(folder, &#x27;**/*&#x27;);
+//             Globby( pattern, function ( err, paths ) {
 
-    /**
-     * Get meta info by uuid
-     * @method queryMetaInfoByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {object} cb.info
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.queryMetaInfoByUuid( uuid, function ( info ) {
-     *     // info.assetPath
-     *     // info.metaPath
-     *     // info.assetMtime
-     *     // info.metaMtime
-     *     // info.json
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.queryMetaInfoByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-meta-info-by-uuid&#x27;, uuid, cb );
-    };
-
-    /**
-     * Query all assets from asset-db
-     * @method deepQuery
-     * @param {function} cb - The callback function
-     * @param {array} cb.results
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.deepQuery(function ( results ) {
-     *     results.forEach(function ( result ) {
-     *         // result.name
-     *         // result.extname
-     *         // result.uuid
-     *         // result.type
-     *         // result.children - the array of children result
-     *     });
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.deepQuery = function ( cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:deep-query&#x27;, cb );
-    };
-
-    /**
-     * Query assets by url pattern and asset-type
-     * @method queryAssets
-     * @param {string} pattern - The url pattern
-     * @param {string} type - The asset type
-     * @param {function} cb - The callback function
-     * @param {array} cb.results
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.queryAssets( &#x27;assets://**\/*&#x27;, &#x27;texture&#x27;, function ( results ) {
-     *     results.forEach(function ( result ) {
-     *         // result.url
-     *         // result.path
-     *         // result.uuid
-     *         // result.type
-     *     });
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.queryAssets = function ( url, assetType, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-assets&#x27;, url, assetType, cb );
-    };
-
-    /**
-     * Import files outside asset-db to specific url folder.
-     * The import result will be sent through ipc message &#x60;asset-db:assets-created&#x60;
-     * @method import
-     * @param {array} rawfiles - Rawfile path list
-     * @param {string} destUrl - The url of dest folder
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.import( [
-     *      &#x27;/file/to/import/01.png&#x27;,
-     *      &#x27;/file/to/import/02.png&#x27;,
-     *      &#x27;/file/to/import/03.png&#x27;,
-     * ], &#x27;assets://foobar&#x27; );
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.import = function ( rawfiles, destUrl ) {
-        Editor.sendToCore( &#x27;asset-db:import-assets&#x27;, rawfiles, destUrl );
-    };
-
-    /**
-     * Create asset in specific url by sending string data to it.
-     * The created result will be sent through by ipc message &#x60;asset-db:assets-created&#x60;
-     * @method create
-     * @param {string} url
-     * @param {string} data
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.create( &#x27;assets://foo/bar/foobar.js&#x27;, &#x27;var foobar = 0;&#x27;);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.create = function ( url, data ) {
-        Editor.sendToCore( &#x27;asset-db:create-asset&#x27;, url, data );
-    };
-
-    /**
-     * Move asset from src to dest
-     * The moved result will be sent through by ipc message &#x60;asset-db:assets-moved&#x60;
-     * @method move
-     * @param {string} srcUrl
-     * @param {string} destUrl
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.move( &#x27;assets://foo/bar/foobar.js&#x27;, &#x27;assets://foo/bar/foobar02.js&#x27;);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.move = function ( srcUrl, destUrl ) {
-        Editor.sendToCore( &#x27;asset-db:move-asset&#x27;, srcUrl, destUrl );
-    };
-
-    /**
-     * Delete assets by url list
-     * The deleted results will be sent through by ipc message &#x60;asset-db:assets-deleted&#x60;
-     * @method delete
-     * @param {array} urls
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.delete([
-     *   &#x27;assets://foo/bar/foobar.js&#x27;,
-     *   &#x27;assets://foo/bar/foobar02.js&#x27;,
-     * ]);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.delete = function ( urls ) {
-        Editor.sendToCore( &#x27;asset-db:delete-assets&#x27;, urls );
-    };
-
-    /**
-     * Save specific asset by sending string data
-     * The saved results will be sent through by ipc message &#x60;asset-db:asset-changed&#x60;
-     * @method save
-     * @param {string} url
-     * @param {string} data
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.save( &#x27;assets://foo/bar/foobar.js&#x27;, &#x27;var foobar = 0;&#x27;);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.save = function ( url, data ) {
-        Editor.sendToCore( &#x27;asset-db:save&#x27;, url, data );
-    };
-
-    /**
-     * Save specific meta by sending meta&#x27;s json string
-     * The saved results will be sent through by ipc message &#x60;asset-db:asset-changed&#x60;
-     * @method saveMeta
-     * @param {string} uuid
-     * @param {string} metaJson
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.save( meta.uuid, JSON.stringify(meta, null, 2));
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.saveMeta = function ( uuid, metaJson ) {
-        Editor.sendToCore( &#x27;asset-db:save-meta&#x27;, uuid, metaJson );
-    };
-
-    return AssetDB;
-})();
+//                 if (paths.length === 0) {
+//                     Del(folder, {force: true}, next);
+//                 }
+//                 else {
+//                     next();
+//                 }
+//             });
+//         }
+//     ], function (err) {
+//         if (cb) cb(err);
+//     });
+// };
 </pre>
 </div>
 </div>

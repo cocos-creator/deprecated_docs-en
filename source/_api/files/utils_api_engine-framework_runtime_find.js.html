@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>utils_api_asset-db_page_asset-db.js</title>
+  <title>utils_api_engine-framework_runtime_find.js</title>
   <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
   <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
   <link rel="shortcut icon" type="image/ico" href="../assets/favicon.ico">
@@ -4168,275 +4168,66 @@
 </div>
 </div>
     <div id="docs-main" class="apidocs">
-      <div class="content container"><h1 class="file-heading">File: utils_api_asset-db_page_asset-db.js</h1>
+      <div class="content container"><h1 class="file-heading">File: utils_api_engine-framework_runtime_find.js</h1>
 
 <div class="file">
   <pre class="code prettyprint linenums">/**
- * @module Editor
+ * @module Fire
  */
+var NodeWrapper = require(&#x27;./wrappers/node&#x27;);
 
 /**
- * The AssetDB instance
- * @property assetdb
- * @type {AssetDB}
+ * Finds a node by hierarchy path, the path is case-sensitive.
+ * It will traverse the hierarchy by splitting the path using &#x27;/&#x27; character.
+ * It is recommended to not use this function every frame instead cache the result at startup.
+ *
+ * @method find
+ * @param {string} path
+ * @param {RuntimeNode} referenceNode
+ * @return {RuntimeNode} the node or null if not found
  */
-Editor.assetdb = (function () {
-    /**
-     * @module AssetDB
-     * @process page
-     */
-    var AssetDB = {};
+module.exports = function (path, referenceNode) {
+    if (path == null) {
+        Fire.error(&#x27;Argument must be non-nil&#x27;);
+        return null;
+    }
+    if (!referenceNode) {
+        var scene = Fire.engine.getCurrentScene();
+        if (!scene) {
+            Fire.warn(&#x27;Can not get current scene.&#x27;);
+            return null;
+        }
+        referenceNode = scene;
+    }
+    else if (!(referenceNode instanceof NodeWrapper)) {
+        referenceNode = Fire(referenceNode)
+    }
 
-    /**
-     * The remote AssetDB instance
-     * @property remote
-     * @type object
-     */
-    AssetDB.remote = Editor.remote.assetdb;
+    var matchWrapper = referenceNode;
+    var startIndex = (path[0] !== &#x27;/&#x27;) ? 0 : 1; // skip first &#x27;/&#x27;
+    var nameList = path.split(&#x27;/&#x27;);
+    var name = nameList[startIndex];
 
-    /**
-     * The library path
-     * @property library
-     * @type string
-     */
-    AssetDB.library = AssetDB.remote.library;
+    // parse path
+    for (var n = startIndex; n &lt; nameList.length; n++) {
+        name = nameList[n];
+        // visit sub nodes
+        var children = matchWrapper.childrenN;
+        matchWrapper = null;
+        for (var t = 0, len = children.length; t &lt; len; ++t) {
+            var subWrapper = Fire(children[t]);
+            if (subWrapper.name === name) {
+                matchWrapper = subWrapper;
+                break;
+            }
+        }
+        if (!matchWrapper) {
+            return null;
+        }
+    }
 
-    // ipc
-
-    /**
-     * Reveal given url in native file system
-     * @method explore
-     * @param {string} url
-     */
-    AssetDB.explore = function ( url ) {
-        Editor.sendToCore( &#x27;asset-db:explore&#x27;, url );
-    };
-
-    /**
-     * Reveal given url&#x27;s library file in native file system
-     * @method exploreLib
-     * @param {string} url
-     */
-    AssetDB.exploreLib = function ( url ) {
-        Editor.sendToCore( &#x27;asset-db:explore-lib&#x27;, url );
-    };
-
-    /**
-     * Get native file path by url
-     * @method queryPathByUrl
-     * @param {string} url
-     * @param {function} cb - The callback function
-     * @param {string} cb.path
-     */
-    AssetDB.queryPathByUrl = function ( url, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-path-by-url&#x27;, url, cb );
-    };
-
-    /**
-     * Get native file path by uuid
-     * @method queryPathByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {string} cb.path
-     */
-    AssetDB.queryPathByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-path-by-uuid&#x27;, uuid, cb );
-    };
-
-    /**
-     * Get asset url by uuid
-     * @method queryUrlByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {string} cb.url
-     */
-    AssetDB.queryUrlByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-url-by-uuid&#x27;, uuid, cb );
-    };
-
-    /**
-     * Get asset info by uuid
-     * @method queryInfoByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {object} cb.info
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.queryInfoByUuid( uuid, function ( info ) {
-     *     // info.path
-     *     // info.url
-     *     // info.type
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.queryInfoByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-info-by-uuid&#x27;, uuid, cb );
-    };
-
-    /**
-     * Get meta info by uuid
-     * @method queryMetaInfoByUuid
-     * @param {string} uuid
-     * @param {function} cb - The callback function
-     * @param {object} cb.info
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.queryMetaInfoByUuid( uuid, function ( info ) {
-     *     // info.assetPath
-     *     // info.metaPath
-     *     // info.assetMtime
-     *     // info.metaMtime
-     *     // info.json
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.queryMetaInfoByUuid = function ( uuid, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-meta-info-by-uuid&#x27;, uuid, cb );
-    };
-
-    /**
-     * Query all assets from asset-db
-     * @method deepQuery
-     * @param {function} cb - The callback function
-     * @param {array} cb.results
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.deepQuery(function ( results ) {
-     *     results.forEach(function ( result ) {
-     *         // result.name
-     *         // result.extname
-     *         // result.uuid
-     *         // result.type
-     *         // result.children - the array of children result
-     *     });
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.deepQuery = function ( cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:deep-query&#x27;, cb );
-    };
-
-    /**
-     * Query assets by url pattern and asset-type
-     * @method queryAssets
-     * @param {string} pattern - The url pattern
-     * @param {string} type - The asset type
-     * @param {function} cb - The callback function
-     * @param {array} cb.results
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.queryAssets( &#x27;assets://**\/*&#x27;, &#x27;texture&#x27;, function ( results ) {
-     *     results.forEach(function ( result ) {
-     *         // result.url
-     *         // result.path
-     *         // result.uuid
-     *         // result.type
-     *     });
-     * });
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.queryAssets = function ( url, assetType, cb ) {
-        return Editor.sendRequestToCore( &#x27;asset-db:query-assets&#x27;, url, assetType, cb );
-    };
-
-    /**
-     * Import files outside asset-db to specific url folder.
-     * The import result will be sent through ipc message &#x60;asset-db:assets-created&#x60;
-     * @method import
-     * @param {array} rawfiles - Rawfile path list
-     * @param {string} destUrl - The url of dest folder
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.import( [
-     *      &#x27;/file/to/import/01.png&#x27;,
-     *      &#x27;/file/to/import/02.png&#x27;,
-     *      &#x27;/file/to/import/03.png&#x27;,
-     * ], &#x27;assets://foobar&#x27; );
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.import = function ( rawfiles, destUrl ) {
-        Editor.sendToCore( &#x27;asset-db:import-assets&#x27;, rawfiles, destUrl );
-    };
-
-    /**
-     * Create asset in specific url by sending string data to it.
-     * The created result will be sent through by ipc message &#x60;asset-db:assets-created&#x60;
-     * @method create
-     * @param {string} url
-     * @param {string} data
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.create( &#x27;assets://foo/bar/foobar.js&#x27;, &#x27;var foobar = 0;&#x27;);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.create = function ( url, data ) {
-        Editor.sendToCore( &#x27;asset-db:create-asset&#x27;, url, data );
-    };
-
-    /**
-     * Move asset from src to dest
-     * The moved result will be sent through by ipc message &#x60;asset-db:assets-moved&#x60;
-     * @method move
-     * @param {string} srcUrl
-     * @param {string} destUrl
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.move( &#x27;assets://foo/bar/foobar.js&#x27;, &#x27;assets://foo/bar/foobar02.js&#x27;);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.move = function ( srcUrl, destUrl ) {
-        Editor.sendToCore( &#x27;asset-db:move-asset&#x27;, srcUrl, destUrl );
-    };
-
-    /**
-     * Delete assets by url list
-     * The deleted results will be sent through by ipc message &#x60;asset-db:assets-deleted&#x60;
-     * @method delete
-     * @param {array} urls
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.delete([
-     *   &#x27;assets://foo/bar/foobar.js&#x27;,
-     *   &#x27;assets://foo/bar/foobar02.js&#x27;,
-     * ]);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.delete = function ( urls ) {
-        Editor.sendToCore( &#x27;asset-db:delete-assets&#x27;, urls );
-    };
-
-    /**
-     * Save specific asset by sending string data
-     * The saved results will be sent through by ipc message &#x60;asset-db:asset-changed&#x60;
-     * @method save
-     * @param {string} url
-     * @param {string} data
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.save( &#x27;assets://foo/bar/foobar.js&#x27;, &#x27;var foobar = 0;&#x27;);
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.save = function ( url, data ) {
-        Editor.sendToCore( &#x27;asset-db:save&#x27;, url, data );
-    };
-
-    /**
-     * Save specific meta by sending meta&#x27;s json string
-     * The saved results will be sent through by ipc message &#x60;asset-db:asset-changed&#x60;
-     * @method saveMeta
-     * @param {string} uuid
-     * @param {string} metaJson
-     * @example
-     * &#x60;&#x60;&#x60;js
-     * Editor.assetdb.save( meta.uuid, JSON.stringify(meta, null, 2));
-     * &#x60;&#x60;&#x60;
-     */
-    AssetDB.saveMeta = function ( uuid, metaJson ) {
-        Editor.sendToCore( &#x27;asset-db:save-meta&#x27;, uuid, metaJson );
-    };
-
-    return AssetDB;
-})();
+    return matchWrapper &amp;&amp; matchWrapper.targetN;
+};
 </pre>
 </div>
 </div>

@@ -5,6 +5,10 @@ Get Started:
 Scripting:
     JavaScript Primer: manual/scripting/javascript-primer
     Nodes in Scene: manual/scripting/nodes-in-scene
-    Attachable Script (FireClass): manual/scripting/attachable-script
+    Behavior (Attachable Script): manual/scripting/attachable-script
     Script Accessibility: manual/scripting/access-script
+    Mixin Mechanic: manual/scripting/mixin-mechanic
+    Advanced FireClass: manual/scripting/class
+    Attributes: manual/scripting/attributes
+    Module: manual/scripting/module
     Cocos2d-js Scripting Guide: manual/scripting/runtimes/cocos2d-js
