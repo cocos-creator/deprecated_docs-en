@@ -1022,43 +1022,13 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.prop">
-                        class.prop
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.get">
-                        class.get
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.set">
-                        class.set
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.getset">
-                        class.getset
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method__isFireClass">
                         _isFireClass
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method__convertToFireClass">
-                        _convertToFireClass
                       </a>
                     </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_isChildClassOf">
                         isChildClassOf
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_extend">
-                        extend
                       </a>
                     </li>
                     <li class="private">
@@ -1152,11 +1122,6 @@
                       </a>
                     </li>
                     <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_find">
                         find
                       </a>
@@ -1169,6 +1134,11 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_getMixinOptions">
                         getMixinOptions
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4056,6 +4026,16 @@
                         rawProp
                       </a>
                     </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodeObjList">
+                        nodeObjList
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodePropList">
+                        nodePropList
+                      </a>
+                    </li>
                 </ul>
             
             
@@ -4210,19 +4190,7 @@ JS.mixin(sceneProto, {
         // deserialize (create wrappers)
         var json = this._dataToDeserialize;
 
-        //
-        function doCreate (wrappers) {
-            // create scene node
-            self.createAndAttachNode();
-            // create remainder nodes
-            Fire.engine._isCloning = true;
-            initNodes(wrappers, self.targetN);
-            Fire.engine._isCloning = false;
-            callback();
-        }
-
         // 统计所有需要 preload 的 Asset
-        var recordAssets = true;
         var handle = Fire.AssetLibrary.loadJson(
             json,
             function (err, data) {
@@ -4232,18 +4200,39 @@ JS.mixin(sceneProto, {
                     // fallback to old format
                     wrappers = wrappers || data;
                 }
+                function doCreate () {
+                    // create scene node
+                    self.createAndAttachNode();
+                    // create remainder nodes
+                    Fire.engine._isCloning = true;
+                    initNodes(wrappers, self.targetN, handle.reassociateNode);
+                    Fire.engine._isCloning = false;
+                    // reassociate nodes
+                    var objList = handle.reassociateNode.nodeObjList;
+                    var propList = handle.reassociateNode.nodePropList;
+                    for (var i = 0; i &lt; objList.length; i++) {
+                        var obj = objList[i];
+                        var propName = propList[i];
+                        var wrapper = obj[propName];
+                        if (wrapper &amp;&amp; wrapper.targetN) {
+                            obj[propName] = wrapper.targetN;
+                        }
+                    }
+                    //
+                    callback();
+                }
                 var urls = Object.keys(handle.urlsNeedPreload);
                 if (handle.assetsNeedPostLoad.length &gt; 0 || urls.length &gt; 0) {
                     // preload
                     self.preloadAssets(handle.assetsNeedPostLoad, urls, function () {
-                        doCreate(wrappers);
+                        doCreate();
                     });
                 }
                 else {
-                    doCreate(wrappers);
+                    doCreate();
                 }
             },
-            true, recordAssets
+            true, true, true
         );
     },
 

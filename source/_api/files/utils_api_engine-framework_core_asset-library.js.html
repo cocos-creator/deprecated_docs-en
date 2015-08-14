@@ -1022,43 +1022,13 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.prop">
-                        class.prop
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.get">
-                        class.get
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.set">
-                        class.set
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.getset">
-                        class.getset
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method__isFireClass">
                         _isFireClass
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method__convertToFireClass">
-                        _convertToFireClass
                       </a>
                     </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_isChildClassOf">
                         isChildClassOf
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_extend">
-                        extend
                       </a>
                     </li>
                     <li class="private">
@@ -1152,11 +1122,6 @@
                       </a>
                     </li>
                     <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_find">
                         find
                       </a>
@@ -1169,6 +1134,11 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_getMixinOptions">
                         getMixinOptions
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4056,6 +4026,16 @@
                         rawProp
                       </a>
                     </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodeObjList">
+                        nodeObjList
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodePropList">
+                        nodePropList
+                      </a>
+                    </li>
                 </ul>
             
             
@@ -4203,7 +4183,7 @@ var _uuidToCallbacks = new Fire.CallbacksInvoker();
 var _tdInfo = new Fire._DeserializeInfo();
 
 // create a loading context which reserves all relevant parameters
-function LoadingHandle (readMainCache, writeMainCache, recordAssets) {
+function LoadingHandle (readMainCache, writeMainCache, recordAssets, reassociateNode) {
     //this.readMainCache = readMainCache;
     //this.writeMainCache = writeMainCache;
 
@@ -4218,6 +4198,8 @@ function LoadingHandle (readMainCache, writeMainCache, recordAssets) {
     this.assetsNeedPostLoad = recordAssets ? [] : null;
     // 需要让场景 preload 的 url
     this.urlsNeedPreload = {};
+
+    this.reassociateNode = reassociateNode ? new Fire._DeserializeInfo() : null;
 }
 LoadingHandle.prototype.readCache = function (uuid) {
     if (this.readMainCache &amp;&amp; this.writeMainCache) {
@@ -4455,13 +4437,14 @@ var AssetLibrary = {
      * @method loadJson
      * @param {string|object} json
      * @param {loadCallback} callback
-     * @param {Boolean} [dontCache=false] - If false, the result will cache to AssetLibrary, and MUST be unload by user manually.
-     * @param {Boolean} [recordAssets=false] - 是否统计新加载的需要让场景 preload 的 asset（所有包含 raw file 后缀名的 asset 并且不含 rawType 属性的 asset）
+     * @param {boolean} [dontCache=false] - If false, the result will cache to AssetLibrary, and MUST be unload by user manually.
+     * @param {boolean} [recordAssets=false] - 是否统计新加载的需要让场景 preload 的 asset（所有包含 raw file 后缀名的 asset 并且不含 rawType 属性的 asset）
+     * * @param {boolean} [reassociateNode=false] - 是否统计需要重新关联的节点数据
      * @return {LoadingHandle}
      * @private
      */
-    loadJson: function (json, callback, dontCache, recordAssets) {
-        var handle = new LoadingHandle(!dontCache, !dontCache, recordAssets);
+    loadJson: function (json, callback, dontCache, recordAssets, reassociateNode) {
+        var handle = new LoadingHandle(!dontCache, !dontCache, recordAssets, reassociateNode);
         var thisTick = true;
         this._deserializeWithDepends(json, &#x27;&#x27;, function (p1, p2) {
             if (thisTick) {
@@ -4496,12 +4479,16 @@ var AssetLibrary = {
             Fire.warn(&#x27;Can not get class &quot;%s&quot;&#x27;, id);
             return Object;
         };
-        //Fire.engine._canModifyCurrentScene = false;
+
         var asset = Fire.deserialize(json, _tdInfo, {
             classFinder: classFinder,
             target: existingAsset
         });
-        //Fire.engine._canModifyCurrentScene = true;
+
+        if (handle.reassociateNode &amp;&amp; _tdInfo.nodeObjList) {
+            handle.reassociateNode.nodeObjList = handle.reassociateNode.nodeObjList.concat(_tdInfo.nodeObjList);
+            handle.reassociateNode.nodePropList = handle.reassociateNode.nodePropList.concat(_tdInfo.nodePropList);
+        }
 
         // load depends
         var pendingCount = _tdInfo.uuidList.length;

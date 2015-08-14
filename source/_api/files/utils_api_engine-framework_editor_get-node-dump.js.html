@@ -1022,43 +1022,13 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.prop">
-                        class.prop
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.get">
-                        class.get
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.set">
-                        class.set
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.getset">
-                        class.getset
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method__isFireClass">
                         _isFireClass
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method__convertToFireClass">
-                        _convertToFireClass
                       </a>
                     </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_isChildClassOf">
                         isChildClassOf
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_extend">
-                        extend
                       </a>
                     </li>
                     <li class="private">
@@ -1152,11 +1122,6 @@
                       </a>
                     </li>
                     <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_find">
                         find
                       </a>
@@ -1169,6 +1134,11 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_getMixinOptions">
                         getMixinOptions
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4056,6 +4026,16 @@
                         rawProp
                       </a>
                     </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodeObjList">
+                        nodeObjList
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodePropList">
+                        nodePropList
+                      </a>
+                    </li>
                 </ul>
             
             
@@ -4192,6 +4172,9 @@ function getTypeId (obj) {
 function dumpAttrs (types, data, attrs) {
     var ctor = attrs.ctor;
     if (ctor) {
+        if (attrs.isRuntimeNode) {
+            ctor = Fire.getWrapperType(ctor);
+        }
         var type = getTypeId(ctor);
         data.type = type;
         if (!types[type]) {
@@ -4348,7 +4331,22 @@ function getExpectedTypeInClassDef (types, klass, propName) {
     }
 }
 
-function dumpObject (types, obj, expectedType) {
+function dumpWrapper (types, obj, expectedType) {
+    var res = {
+        uuid: obj.uuid,
+        name: obj.name
+    };
+    var actualType = getTypeId(obj);
+    if (expectedType !== actualType) {
+        if (!types[actualType]) {
+            dumpInheritanceChain(types, obj.constructor, actualType);
+        }
+        res.__type__ = actualType;
+    }
+    return res;
+}
+
+function dumpObject (types, obj, expectedType, attr) {
     if (!obj) {
         return null;
     }
@@ -4380,23 +4378,7 @@ function dumpObject (types, obj, expectedType) {
         }
 
         if (obj instanceof Fire.Runtime.NodeWrapper) {
-            actualType = getTypeId(obj);
-            if (expectedType !== actualType) {
-                if (!types[actualType]) {
-                    dumpInheritanceChain(types, ctor, actualType);
-                }
-                return {
-                    __type__: actualType,
-                    uuid: obj.uuid,
-                    name: obj.name
-                };
-            }
-            else {
-                return {
-                    uuid: obj.uuid,
-                    name: obj.name
-                };
-            }
+            return dumpWrapper(types, obj, expectedType);
         }
     }
     else if (obj instanceof Fire.ValueType) {
@@ -4419,6 +4401,11 @@ function dumpObject (types, obj, expectedType) {
         // TODO - 如果嵌套怎么办？考虑在下面这次 dumpByClass 时，只支持值类型。
         dumpByClass(types, data, obj, ctor);
         return data;
+    }
+
+    if (attr.isRuntimeNode &amp;&amp; Fire.getWrapperType(obj)) {
+        var wrapper = Fire(obj);
+        return dumpWrapper(types, wrapper, expectedType);
     }
 
     return null;
@@ -4451,7 +4438,7 @@ function dumpField (types, val, klass, propName) {
         }
         else {
             var expectedType = getExpectedTypeInClassDef(types, klass, propName);
-            return dumpObject(types, val, expectedType);
+            return dumpObject(types, val, expectedType, attr);
         }
     }
     else if (typeof val !== &#x27;function&#x27;) {

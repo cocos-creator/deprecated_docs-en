@@ -1022,43 +1022,13 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.prop">
-                        class.prop
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.get">
-                        class.get
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.set">
-                        class.set
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.getset">
-                        class.getset
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method__isFireClass">
                         _isFireClass
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method__convertToFireClass">
-                        _convertToFireClass
                       </a>
                     </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_isChildClassOf">
                         isChildClassOf
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_extend">
-                        extend
                       </a>
                     </li>
                     <li class="private">
@@ -1152,11 +1122,6 @@
                       </a>
                     </li>
                     <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_find">
                         find
                       </a>
@@ -1169,6 +1134,11 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_getMixinOptions">
                         getMixinOptions
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4056,6 +4026,16 @@
                         rawProp
                       </a>
                     </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodeObjList">
+                        nodeObjList
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodePropList">
+                        nodePropList
+                      </a>
+                    </li>
                 </ul>
             
             
@@ -4403,40 +4383,66 @@ JS.mixin(nodeProto, {
 
     _instantiate: function () {
         // TODO - 不拷贝 scene object
-        var dump = dumpNodeForSerialization(this.targetN);
-        dump = Fire._doInstantiate(dump);   // 拷贝 dump 里的 wrapper 和 target 属性的实例
+        var dump = dumpNodeForInstantiation(this.targetN);
+        dump = Fire._doInstantiate(dump);   // 拷贝 dump 里的 wrapper 和 mixin 的属性
 
-        initNodes([dump], this.parentN);
+        initNodes([dump], null);
 
         var clone = dump.w;
 
         // init
         if (Fire.engine.isPlaying) {
-            clone.name += &#x27;(Clone)&#x27;;
+            clone.name += &#x27; (Clone)&#x27;;
         }
 
-        //// activate components
-        //if (clone._active) {
-        //    clone._onActivatedInHierarchy(true);
-        //}
+        // invoke onLoad, note that the new node have not added to any parent yet
+        clone._onActivated();
 
         return clone;
     }
 });
 
-// dump for serialization or instantiation
 function dumpNodeForSerialization (node) {
+    if (FIRE_EDITOR) {
+        var wrapper = Fire(node);
+        wrapper.onBeforeSerialize();
+        var children;
+        var childrenN = wrapper.childrenN;
+        if (childrenN.length &gt; 0) {
+            children = childrenN.map(dumpNodeForSerialization);
+        }
+        var mixinClasses = node._mixinClasses;
+        var targetN = mixinClasses ? node : undefined;
+
+        var mixin;
+        if (mixinClasses) {
+            if (mixinClasses.length === 1) {
+                mixin = JS._getClassId(mixinClasses[0]);
+            }
+            else {
+                mixin = mixinClasses.map(JS._getClassId);
+            }
+        }
+        return {
+            w: wrapper,     // wrapper properties
+            t: targetN,     // target node if has mixin
+            m: mixin,       // mixin class list
+            c: children,    // children
+        };
+    }
+}
+
+function dumpNodeForInstantiation (node) {
     var wrapper = Fire(node);
     wrapper.onBeforeSerialize();
-    var children;
+
+    var children, targetN, mixin;
     var childrenN = wrapper.childrenN;
     if (childrenN.length &gt; 0) {
-        children = childrenN.map(dumpNodeForSerialization);
+        children = childrenN.map(dumpNodeForInstantiation);
     }
-    var mixinClasses = node._mixinClasses;
-    var targetN = mixinClasses ? node : undefined;
 
-    var mixin;
+    var mixinClasses = node._mixinClasses;
     if (mixinClasses) {
         if (mixinClasses.length === 1) {
             mixin = JS._getClassId(mixinClasses[0]);
@@ -4444,21 +4450,37 @@ function dumpNodeForSerialization (node) {
         else {
             mixin = mixinClasses.map(JS._getClassId);
         }
+
+        targetN = {};
+        for (var m = 0; m &lt; mixinClasses.length; m++) {
+            var mixinClass = mixinClasses[m];
+            var props = mixinClass.__props__;
+            for (var p = 0; p &lt; props.length; p++) {
+                var propName = props[p];
+                var attrs = Fire.attr(mixinClass, propName);
+                if (attrs.serializable === false) {
+                    continue;
+                }
+                targetN[propName] = node[propName];
+            }
+        }
     }
     return {
         w: wrapper,     // wrapper properties
-        t: targetN,     // target node
+        t: targetN,     // target node if has mixin
         m: mixin,       // mixin class list
         c: children,    // children
     };
 }
 
-function initNodes (datas, parentNode) {
+function initNodes (datas, parentNode, deserializeInfo) {
     for (var i = 0, len = datas.length; i &lt; len; i++) {
         var child = datas[i];
         var wrapper = child.w;
         wrapper.createAndAttachNode();
-        wrapper.parentN = parentNode;
+        if (parentNode) {
+            wrapper.parentN = parentNode;
+        }
         var classIdToMixin = child.m;
         var node = wrapper.targetN;
         if (classIdToMixin) {
@@ -4468,7 +4490,7 @@ function initNodes (datas, parentNode) {
                     classToMixin = JS._getClassById(classIdToMixin[j]);
                     if (classToMixin) {
                         mixin(node, classToMixin);
-                        Fire.deserialize.applyMixinProps(child.t, classToMixin, node);
+                        Fire.deserialize.applyMixinProps(child.t, classToMixin, node, deserializeInfo);
                     }
                     else {
                         Fire.error(&#x27;Failed to find class %s to mixin&#x27;, classIdToMixin[j]);
@@ -4479,7 +4501,7 @@ function initNodes (datas, parentNode) {
                 classToMixin = JS._getClassById(classIdToMixin);
                 if (classToMixin) {
                     mixin(node, classToMixin);
-                    Fire.deserialize.applyMixinProps(child.t, classToMixin, node);
+                    Fire.deserialize.applyMixinProps(child.t, classToMixin, node, deserializeInfo);
                 }
                 else {
                     var errorUuid = classIdToMixin;
@@ -4492,7 +4514,7 @@ function initNodes (datas, parentNode) {
         }
         var children = child.c;
         if (children) {
-            initNodes(children, node);
+            initNodes(children, node, deserializeInfo);
         }
     }
 }

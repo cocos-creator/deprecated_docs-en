@@ -1022,43 +1022,13 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.prop">
-                        class.prop
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.get">
-                        class.get
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.set">
-                        class.set
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.getset">
-                        class.getset
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method__isFireClass">
                         _isFireClass
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method__convertToFireClass">
-                        _convertToFireClass
                       </a>
                     </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_isChildClassOf">
                         isChildClassOf
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_extend">
-                        extend
                       </a>
                     </li>
                     <li class="private">
@@ -1152,11 +1122,6 @@
                       </a>
                     </li>
                     <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_find">
                         find
                       </a>
@@ -1169,6 +1134,11 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_getMixinOptions">
                         getMixinOptions
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4056,6 +4026,16 @@
                         rawProp
                       </a>
                     </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodeObjList">
+                        nodeObjList
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodePropList">
+                        nodePropList
+                      </a>
+                    </li>
                 </ul>
             
             
@@ -4218,7 +4198,14 @@ function setByUuid (obj, name, value, actualType) {
             setAsset(obj, name, uuid, type);
         }
         else if (Fire.isChildClassOf(type, Fire.Runtime.NodeWrapper)) {
-            obj[name] = Fire.engine.getInstanceById(uuid);
+            var instance = Fire.engine.getInstanceById(uuid);
+            var attrs = Fire.attr(obj, name);
+            if (instance &amp;&amp; attrs.isRuntimeNode) {
+                obj[name] = instance.targetN;
+            }
+            else {
+                obj[name] = instance;
+            }
         }
         else {
             // just a common primitive object
@@ -4227,6 +4214,50 @@ function setByUuid (obj, name, value, actualType) {
     }
     else {
         Fire.warn(&#x27;Unknown type to apply: &#x27; + actualType);
+    }
+}
+
+function fillDefaultValue (attr, array, start, end) {
+    var Def = {
+        &quot;Boolean&quot;: false,
+        &quot;String&quot;: &quot;&quot;,
+        &quot;Float&quot;: 0,
+        &quot;Integer&quot;: 0
+    };
+
+    var val, i;
+    val = Def[attr.type];
+    if (val !== undefined) {
+        for (i = start; i &lt; end; i++) {
+            array[i] = val;
+        }
+        return;
+    }
+
+    switch (attr.type) {
+        case &#x27;Enum&#x27;:
+            var list = attr.enumList;
+            val = (list[0] &amp;&amp; list[0].value) || 0;
+            for (i = start; i &lt; end; i++) {
+                array[i] = val;
+            }
+            break;
+        case &#x27;Object&#x27;:
+            var ctor = attr.ctor;
+            if (Fire.isChildClassOf(ctor, Fire.ValueType)) {
+                for (i = start; i &lt; end; i++) {
+                    array[i] = new ctor();
+                }
+                break;
+            }
+            else {
+                for (i = start; i &lt; end; i++) {
+                    array[i] = null;
+                }
+                break;
+            }
+        default:
+            break;
     }
 }
 
@@ -4240,24 +4271,39 @@ function setPropertyByPath (node, path, value, actualType) {
         }
     }
     else {
+        // parse embedded props
         var props = path.split(&#x27;.&#x27;);
         var mainPropName = props[0];
         var mainProp = node[mainPropName];
-        // parse embedded props
+        var attrProp = node;
+        var attrPropName = mainPropName;
         var subProp = mainProp;
+
         //if (subProp) {
             for (var i = 1; i &lt; props.length - 1; i++) {
                 var subPropName = props[i];
+                attrProp = subProp;
+                attrPropName = subPropName;
                 subProp = subProp[subPropName];
                 //if (subProp == null) {
                 //}
             }
             var propName = props[props.length - 1];
+
             if (actualType &amp;&amp; typeof value.uuid === &#x27;string&#x27;) {
                 setByUuid(subProp, propName, value, actualType);
             }
             else {
-                subProp[propName] = value;
+                if (propName === &#x27;length&#x27; &amp;&amp; Array.isArray(subProp)) {
+                    var oldLength = subProp.length;
+                    subProp.length = value;
+                    // create default array value
+                    var attr = Fire.attr(attrProp, attrPropName);
+                    fillDefaultValue(attr, subProp, oldLength, value);
+                }
+                else {
+                    subProp[propName] = value;
+                }
                 // invoke setter (for position)
                 node[mainPropName] = mainProp;
             }
@@ -4309,6 +4355,7 @@ function setDeepPropertyByPath (node, path, value, actualType) {
 
 Editor.setPropertyByPath = setPropertyByPath;
 Editor.setDeepPropertyByPath = setDeepPropertyByPath;
+Editor.fillDefaultValue = fillDefaultValue;
 
 module.exports = setPropertyByPath;
 </pre>

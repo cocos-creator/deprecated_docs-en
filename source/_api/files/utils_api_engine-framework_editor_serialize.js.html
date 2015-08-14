@@ -1022,43 +1022,13 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.prop">
-                        class.prop
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.get">
-                        class.get
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.set">
-                        class.set
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.getset">
-                        class.getset
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method__isFireClass">
                         _isFireClass
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method__convertToFireClass">
-                        _convertToFireClass
                       </a>
                     </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_isChildClassOf">
                         isChildClassOf
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_extend">
-                        extend
                       </a>
                     </li>
                     <li class="private">
@@ -1152,11 +1122,6 @@
                       </a>
                     </li>
                     <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_find">
                         find
                       </a>
@@ -1169,6 +1134,11 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_getMixinOptions">
                         getMixinOptions
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4056,6 +4026,16 @@
                         rawProp
                       </a>
                     </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodeObjList">
+                        nodeObjList
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodePropList">
+                        nodePropList
+                      </a>
+                    </li>
                 </ul>
             
             
@@ -4264,33 +4244,36 @@ var _Serializer = (function () {
 
         var props = fireClass.__props__;
 
-        if (props) {
-            for (var p = 0; p &lt; props.length; p++) {
-                var propName = props[p];
-                var attrs = Fire.attr(fireClass, propName);
+        for (var p = 0; p &lt; props.length; p++) {
+            var propName = props[p];
+            var attrs = Fire.attr(fireClass, propName);
 
-                // assume all prop in __props__ must have attr
-                if (attrs.serializable === false) {
-                    continue;
-                }
-                if (self._exporting &amp;&amp; attrs.editorOnly) {
-                    // skip editor only when exporting
-                    continue;
-                }
-                if (attrs.saveUrlAsAsset) {
-                    var url = obj[propName];
-                    if (Array.isArray(url)) {
-                        data[propName] = url.map(serializeUrlField);
-                    }
-                    else {
-                        data[propName] = serializeUrlField(url);
-                    }
-                    continue;
-                }
-
-                // undefined value (if dont save) will be stripped from JSON
-                data[propName] = _serializeField(self, obj[propName]);
+            // assume all prop in __props__ must have attr
+            if (attrs.serializable === false) {
+                continue;
             }
+            if (self._exporting &amp;&amp; attrs.editorOnly) {
+                // skip editor only when exporting
+                continue;
+            }
+            if (attrs.saveUrlAsAsset) {
+                var url = obj[propName];
+                if (Array.isArray(url)) {
+                    data[propName] = url.map(serializeUrlField);
+                }
+                else {
+                    data[propName] = serializeUrlField(url);
+                }
+                continue;
+            }
+            if (attrs.isRuntimeNode) {
+                var node = obj[propName];
+                data[propName] = _serializeField(self, Fire(node));
+                continue;
+            }
+
+            // undefined value (if dont save) will be stripped from JSON
+            data[propName] = _serializeField(self, obj[propName]);
         }
     }
 
@@ -4335,7 +4318,7 @@ var _Serializer = (function () {
                 //    obj.onBeforeSerialize();
                 //}
                 var props = klass.__props__;
-                if (props) {
+                if (props.length &gt; 0) {
                     if (props[props.length - 1] !== &#x27;_$erialized&#x27;) {
                         enumerateByFireClass(self, obj, data, klass);
                     }

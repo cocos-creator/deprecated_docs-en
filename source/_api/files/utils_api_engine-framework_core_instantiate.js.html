@@ -1022,43 +1022,13 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.prop">
-                        class.prop
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.get">
-                        class.get
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.set">
-                        class.set
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.getset">
-                        class.getset
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method__isFireClass">
                         _isFireClass
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method__convertToFireClass">
-                        _convertToFireClass
                       </a>
                     </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_isChildClassOf">
                         isChildClassOf
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_extend">
-                        extend
                       </a>
                     </li>
                     <li class="private">
@@ -1152,11 +1122,6 @@
                       </a>
                     </li>
                     <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_find">
                         find
                       </a>
@@ -1169,6 +1134,11 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_getMixinOptions">
                         getMixinOptions
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4056,6 +4026,16 @@
                         rawProp
                       </a>
                     </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodeObjList">
+                        nodeObjList
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodePropList">
+                        nodePropList
+                      </a>
+                    </li>
                 </ul>
             
             
@@ -4283,22 +4263,24 @@ var enumerateObject = function (obj) {
     objsToClearTmpVar.push(obj);
     if (Fire._isFireClass(klass)) {
         var props = klass.__props__;
-        if (props) {
-            for (var p = 0; p &lt; props.length; p++) {
-                key = props[p];
-                var attrs = Fire.attr(klass, key);
-                if (attrs.serializable !== false) {
-                    value = obj[key];
-                    // instantiate field
-                    type = typeof value;
-                    if (type === &#x27;object&#x27;) {
-                        clone[key] = value ? instantiateObj(value) : value;
-                    }
-                    else {
-                        clone[key] = (type !== &#x27;function&#x27;) ? value : null;
-                    }
+        for (var p = 0; p &lt; props.length; p++) {
+            key = props[p];
+            var attrs = Fire.attr(klass, key);
+            if (attrs.serializable !== false) {
+                value = obj[key];
+                // instantiate field
+                type = typeof value;
+                if (type === &#x27;object&#x27;) {
+                    clone[key] = value ? instantiateObj(value) : value;
+                }
+                else {
+                    clone[key] = (type !== &#x27;function&#x27;) ? value : null;
                 }
             }
+        }
+        if (clone instanceof Fire.Runtime.NodeWrapper) {
+            // HACK
+            clone._id = &#x27;&#x27;;
         }
     }
     else {

@@ -1022,43 +1022,13 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.prop">
-                        class.prop
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.get">
-                        class.get
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.set">
-                        class.set
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.getset">
-                        class.getset
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method__isFireClass">
                         _isFireClass
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method__convertToFireClass">
-                        _convertToFireClass
                       </a>
                     </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_isChildClassOf">
                         isChildClassOf
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_extend">
-                        extend
                       </a>
                     </li>
                     <li class="private">
@@ -1152,11 +1122,6 @@
                       </a>
                     </li>
                     <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_find">
                         find
                       </a>
@@ -1169,6 +1134,11 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_getMixinOptions">
                         getMixinOptions
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4056,6 +4026,16 @@
                         rawProp
                       </a>
                     </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodeObjList">
+                        nodeObjList
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodePropList">
+                        nodePropList
+                      </a>
+                    </li>
                 </ul>
             
             
@@ -4185,7 +4165,7 @@ require(&#x27;./attribute&#x27;);
 // * both getter and prop must register the name into __props__ array
 // * @param {string} name - prop name
 // */
-var _appendProp = function (name/*, isGetter*/) {
+var _appendProp = function (cls, name/*, isGetter*/) {
     if (FIRE_DEV) {
         //var JsVarReg = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
         //if (!JsVarReg.test(name)) {
@@ -4198,19 +4178,14 @@ var _appendProp = function (name/*, isGetter*/) {
         }
     }
 
-    if (!this.__props__) {
-        this.__props__ = [name];
+    var index = cls.__props__.indexOf(name);
+    if (index &lt; 0) {
+        cls.__props__.push(name);
     }
-    else {
-        var index = this.__props__.indexOf(name);
-        if (index &lt; 0) {
-            this.__props__.push(name);
-        }
-        // 这里不进行报错，因为重写 prop 可以是一个合法的行为，可以用于设置新的默认值。
-        //else {
-        //    Fire.error(Fire.getClassName(this) + &#x27;.&#x27; + name + &#x27; is already defined!&#x27;);
-        //}
-    }
+    // 这里不进行报错，因为重写 prop 可以是一个合法的行为，可以用于设置新的默认值。
+    //else {
+    //    Fire.error(Fire.getClassName(cls) + &#x27;.&#x27; + name + &#x27; is already defined!&#x27;);
+    //}
 };
 
 ///**
@@ -4219,23 +4194,6 @@ var _appendProp = function (name/*, isGetter*/) {
 // */
 var _metaClass = {
 
-    // string[]
-    __props__: null,
-
-    /**
-     * Add new instance field, propertie, or method made available on the class.
-     * 该方法定义的变量默认情况下都会被序列化，也会在inspector中显示。
-     * 如果传入属性包含Fire.HideInInspector则仍会序列化但不在inspector中显示。
-     * 如果传入属性包含Fire.NonSerialized则不会序列化并且不会在inspector中显示。
-     * 如果传入属性包含Fire.EditorOnly则只在编辑器下序列化，打包时不序列化。
-     *
-     * @method class.prop
-     * @param {string} name - the property name
-     * @param {*} defaultValue - the default value
-     * @param {...object} attribute - additional property attributes, any number of attributes can be added
-     * @return {function} the class itself
-     * @private
-     */
     prop: function (name, defaultValue, attribute) {
         &#x27;use strict&#x27;;
         if (FIRE_DEV) {
@@ -4244,8 +4202,8 @@ var _metaClass = {
                 if (Array.isArray(defaultValue)) {
                     // check array empty
                     if (defaultValue.length &gt; 0) {
-                        Fire.error(&#x27;Default array must be empty, set default value of %s.prop(&quot;%s&quot;, ...) to null or [], &#x27; +
-                                   &#x27;and initialize in constructor please. (just like &quot;this.%s = [...];&quot;)&#x27;,
+                        Fire.error(&#x27;Default array must be empty, set default value of %s.%s to [], &#x27; +
+                                   &#x27;and initialize in &quot;onLoad&quot; or &quot;constructor&quot; please. (just like &quot;this.%s = [...];&quot;)&#x27;,
                                     JS.getClassName(this), name, name);
                         return this;
                     }
@@ -4254,8 +4212,8 @@ var _metaClass = {
                     // check cloneable
                     if (!_cloneable_DEV(defaultValue)) {
                         Fire.error(&#x27;Do not set default value to non-empty object, &#x27; +
-        &#x27;unless the object defines its own &quot;clone&quot; function. Set default value of %s.prop(&quot;%s&quot;, ...) to null or {}, &#x27; +
-        &#x27;and initialize in constructor please. (just like &quot;this.%s = {foo: bar};&quot;)&#x27;,
+        &#x27;unless the object defines its own &quot;clone&quot; function. Set default value of %s.%s to null or {}, &#x27; +
+        &#x27;and initialize in &quot;onLoad&quot; or &quot;constructor&quot; please. (just like &quot;this.%s = {foo: bar};&quot;)&#x27;,
                             JS.getClassName(this), name, name);
                         return this;
                     }
@@ -4276,16 +4234,7 @@ var _metaClass = {
         // set default value
         Fire.attr(this, name, { &#x27;default&#x27;: defaultValue });
 
-        // register property
-        _appendProp.call(this, name);
-
-        // 禁用，因为getter/setter需要动态获得类型，所以类型统一由上层处理
-        //// apply default type (NOTE: if user provide type attribute, this one will be overwrote)
-        //var mytype = typeof defaultValue;
-        //if ( mytype === &#x27;number&#x27; ) {
-        //    mytype = &#x27;float&#x27;;
-        //}
-        //Fire.attr( this, name, { &#x27;type&#x27;: mytype } );
+        _appendProp(this, name);
 
         // apply attributes
         if (attribute) {
@@ -4310,17 +4259,6 @@ var _metaClass = {
         return this;
     },
 
-    /**
-     * 该方法定义的变量**不会**被序列化，默认会在inspector中显示。
-     * 如果传入参数包含Fire.HideInInspector则不在inspector中显示。
-     *
-     * @method class.get
-     * @param {string} name - the getter property
-     * @param {function} getter - the getter function which returns the real property
-     * @param {...object} attribute - additional property attributes, any number of attributes can be added
-     * @return {function} the class itself
-     * @private
-     */
     get: function (name, getter, attribute) {
         &#x27;use strict&#x27;;
 
@@ -4367,7 +4305,7 @@ var _metaClass = {
         }
         if (forceSerializable || FIRE_EDITOR) {
             // 不论是否 hide in inspector 都要添加到 props，否则 asset watcher 不能正常工作
-            _appendProp.call(this, name/*, true*/);
+            _appendProp(this, name/*, true*/);
         }
 
         if (Object.getOwnPropertyDescriptor(this.prototype, name)) {
@@ -4389,16 +4327,6 @@ var _metaClass = {
         return this;
     },
 
-    /**
-     * 该方法定义的变量**不会**被序列化，除非有对应的getter否则不在inspector中显示。
-     *
-     * @method class.set
-     * @static
-     * @param {string} name - the setter property
-     * @param {function} setter - the setter function
-     * @return {function} the class itself
-     * @private
-     */
     set: function (name, setter) {
         if (FIRE_DEV) {
             var d = Object.getOwnPropertyDescriptor(this.prototype, name);
@@ -4441,58 +4369,29 @@ var _metaClass = {
         }
 
         return this;
-    },
-
-    /**
-     * 该方法定义的变量**不会**被序列化，默认会在inspector中显示。
-     * 如果传入参数包含Fire.HideInInspector则不在inspector中显示。
-     *
-     * @method class.getset
-     * @static
-     * @param {string} name - the getter property
-     * @param {function} getter - the getter function which returns the real property
-     * @param {function} setter - the setter function
-     * @param {...object} attribute - additional property attributes, any number of attributes can be added
-     * @return {function} the class itself
-     * @private
-     */
-    getset: function (name, getter, setter, attribute) {
-        &#x27;use strict&#x27;;
-        if (attribute) {
-            var getterArgs = [].slice.call(arguments);
-            getterArgs.splice(2, 1);    // remove setter
-            this.get.apply(this, getterArgs);
-        }
-        else {
-            this.get(name, getter);
-        }
-        this.set(name, setter);
-        return this;
     }
 };
 
 function instantiateProps (instance, itsClass) {
     var propList = itsClass.__props__;
-    if (propList) {
-        for (var i = 0; i &lt; propList.length; i++) {
-            var prop = propList[i];
-            var attrs = Fire.attr(itsClass, prop);
-            if (attrs &amp;&amp; attrs.hasOwnProperty(&#x27;default&#x27;)) {  // getter does not have default, default maybe 0
-                var def = attrs.default;
-                if (typeof def === &#x27;object&#x27; &amp;&amp; def) {
-                    // 防止多个实例引用相同对象
-                    if (def.clone) {
-                        def = def.clone();
-                    }
-                    else if (Array.isArray(def)) {
-                        def = [];
-                    }
-                    else {
-                        def = {};
-                    }
+    for (var i = 0; i &lt; propList.length; i++) {
+        var prop = propList[i];
+        var attrs = Fire.attr(itsClass, prop);
+        if (attrs &amp;&amp; attrs.hasOwnProperty(&#x27;default&#x27;)) {  // getter does not have default, default maybe 0
+            var def = attrs.default;
+            if (typeof def === &#x27;object&#x27; &amp;&amp; def) {
+                // 防止多个实例引用相同对象
+                if (def.clone) {
+                    def = def.clone();
                 }
-                instance[prop] = def;
+                else if (Array.isArray(def)) {
+                    def = [];
+                }
+                else {
+                    def = {};
+                }
             }
+            instance[prop] = def;
         }
     }
 }
@@ -4509,14 +4408,14 @@ Fire._isFireClass = function (constructor) {
     return !!constructor &amp;&amp; (constructor.prop === _metaClass.prop);
 };
 
-/**
- * @method _convertToFireClass
- * @param {function} constructor
- * @private
- */
-Fire._convertToFireClass = function (constructor) {
-    constructor.prop = _metaClass.prop;
-};
+///**
+// * @method _convertToFireClass
+// * @param {function} constructor
+// * @private
+// */
+//Fire._convertToFireClass = function (constructor) {
+//    constructor.prop = _metaClass.prop;
+//};
 
 /**
  * Checks whether subclass is child of superclass or equals to superclass
@@ -4562,19 +4461,6 @@ Fire.isChildClassOf = function (subclass, superclass) {
     return false;
 };
 
-function _initClass(className, fireClass) {
-    // occupy some non-inherited static members
-    for (var staticMember in _metaClass) {
-        Object.defineProperty(fireClass, staticMember, {
-            value: _metaClass[staticMember],
-            // __props__ is writable
-            writable: staticMember === &#x27;__props__&#x27;,
-            // __props__ is enumerable so it can be inherited by Fire.extend
-            enumerable: staticMember === &#x27;__props__&#x27;
-        });
-    }
-}
-
 function _nicifyFireClass (fireClass, className) {
     if (FIRE_EDITOR) {
         if (className) {
@@ -4587,23 +4473,36 @@ function _nicifyFireClass (fireClass, className) {
 }
 
 function doDefine (className, baseClass, constructor) {
-    var useTryCatch = ! className.startsWith(&#x27;Fire.&#x27;);
+    var useTryCatch = ! (className &amp;&amp; className.startsWith(&#x27;Fire.&#x27;));
     var fireClass = _createCtor(constructor, baseClass, useTryCatch);
-    _initClass(className, fireClass);
+
+    // occupy some non-inherited static members
+    for (var staticMember in _metaClass) {
+        Object.defineProperty(fireClass, staticMember, {
+            value: _metaClass[staticMember]
+        });
+    }
 
     if (baseClass) {
         // inherit
-        JS.extend(fireClass, baseClass);
+        JS.extend(fireClass, baseClass);    // 这里会把父类的 __props__ 复制给子类
         fireClass.$super = baseClass;
-        if (baseClass.__props__) {
+
+        if (baseClass.__props__ &amp;&amp; baseClass.__props__.length &gt; 0) {
             // copy __props__
             fireClass.__props__ = baseClass.__props__.slice();
         }
+        else {
+            fireClass.__props__ = [];
+        }
+    }
+    else {
+        fireClass.__props__ = [];
     }
 
     JS.setClassName(className, fireClass);
 
-    if (FIRE_EDITOR) {
+    if (className &amp;&amp; FIRE_EDITOR) {
         _nicifyFireClass(fireClass, className);
     }
 
@@ -4642,43 +4541,6 @@ function define (className, baseClass, constructor) {
     // not project behavior
     return doDefine(className, baseClass, constructor);
 }
-
-/**
- * Creates a sub FireClass based on the specified baseClass parameter.
- *
- * @method extend
- * @param {string} [className] - the name of class that is used to deserialize this class
- * @param {function} baseClass - !#en The base class to inherit from
- *                               !#zh 继承的基类
- * @param {function} [constructor] - a constructor function that is used to instantiate this class,
- *                                   if not supplied, the constructor of baseClass will be called automatically.
- * @return {function} the constructor of newly defined class
- * @private
- */
-Fire.extend = function (className, baseClass, constructor) {
-    if (typeof className === &#x27;function&#x27;) {
-        if (FIRE_DEV) {
-            if (constructor) {
-                Fire.error(&#x27;[Fire.extend] invalid type of arguments&#x27;);
-                return null;
-            }
-        }
-        constructor = baseClass;
-        baseClass = className;
-        className = &#x27;&#x27;;
-    }
-    if (typeof className === &#x27;string&#x27;) {
-        return define(className, baseClass, constructor);
-    }
-    else if (typeof className === &#x27;undefined&#x27;) {
-        // 未传入任何参数
-        return define(&#x27;&#x27;, baseClass, constructor);
-    }
-    else if (FIRE_DEV &amp;&amp; className) {
-        Fire.error(&#x27;[Fire.extend] unknown typeof first argument:&#x27; + className);
-    }
-    return null;
-};
 
 function _checkCtor (ctor) {
     if (FIRE_DEV) {
@@ -4791,7 +4653,8 @@ Fire._fastDefine = function (className, constructor, serializableFields) {
 };
 
 module.exports = {
-    instantiateProps: instantiateProps
+    instantiateProps: instantiateProps,
+    define: define
 };
 </pre>
 </div>

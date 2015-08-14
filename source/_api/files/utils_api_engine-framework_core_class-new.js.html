@@ -1022,43 +1022,13 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.prop">
-                        class.prop
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.get">
-                        class.get
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.set">
-                        class.set
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.getset">
-                        class.getset
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method__isFireClass">
                         _isFireClass
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method__convertToFireClass">
-                        _convertToFireClass
                       </a>
                     </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_isChildClassOf">
                         isChildClassOf
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_extend">
-                        extend
                       </a>
                     </li>
                     <li class="private">
@@ -1152,11 +1122,6 @@
                       </a>
                     </li>
                     <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_find">
                         find
                       </a>
@@ -1169,6 +1134,11 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_getMixinOptions">
                         getMixinOptions
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4056,6 +4026,16 @@
                         rawProp
                       </a>
                     </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodeObjList">
+                        nodeObjList
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodePropList">
+                        nodePropList
+                      </a>
+                    </li>
                 </ul>
             
             
@@ -4175,7 +4155,7 @@
  * @module Fire
  */
 require(&#x27;./attribute&#x27;);
-require(&#x27;./class&#x27;);
+var define = require(&#x27;./class&#x27;).define;
 //var FObject = require(&#x27;./fobject&#x27;);
 var getTypeChecker = require(&#x27;./attribute&#x27;).getTypeChecker;
 var preprocessAttrs = require(&#x27;./preprocess-attrs&#x27;);
@@ -4236,11 +4216,11 @@ var preprocessAttrs = require(&#x27;./preprocess-attrs&#x27;);
  */
 Fire.Class = function (options) {
     if (arguments.length === 0) {
-        return Fire.extend();
+        return define();
     }
     if ( !options ) {
         Fire.error(&#x27;[Fire.Class] Option must be non-nil&#x27;);
-        return Fire.extend();
+        return define();
     }
 
     var name = options.name;
@@ -4249,24 +4229,10 @@ Fire.Class = function (options) {
 
     // create constructor
     var cls;
-    //if (base) {
-        if (name) {
-            cls = Fire.extend(name, base, ctor);
-        }
-        else {
-            cls = Fire.extend(base, ctor);
-            name = Fire.JS.getClassName(cls);
-        }
-    //}
-    //else {
-    //    if (name) {
-    //        cls = Fire.define(name, ctor);
-    //    }
-    //    else {
-    //        cls = Fire.define(ctor);
-    //        name = Fire.JS.getClassName(cls);
-    //    }
-    //}
+    cls = define(name, base, ctor);
+    if (!name) {
+        name = Fire.JS.getClassName(cls);
+    }
 
     // define properties
     var properties = options.properties;
@@ -4448,6 +4414,9 @@ function parseAttributes (attrs, className, propName) {
         parseSimpleAttr(&#x27;tooltip&#x27;, &#x27;string&#x27;);
     }
 
+    if (attrs.isRuntimeNode) {
+        result.push({ isRuntimeNode: true });
+    }
     if (attrs.url) {
         result.push({ saveUrlAsAsset: true });
         // force serializable

@@ -1022,43 +1022,13 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.prop">
-                        class.prop
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.get">
-                        class.get
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.set">
-                        class.set
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.getset">
-                        class.getset
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method__isFireClass">
                         _isFireClass
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method__convertToFireClass">
-                        _convertToFireClass
                       </a>
                     </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_isChildClassOf">
                         isChildClassOf
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_extend">
-                        extend
                       </a>
                     </li>
                     <li class="private">
@@ -1152,11 +1122,6 @@
                       </a>
                     </li>
                     <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_find">
                         find
                       </a>
@@ -1169,6 +1134,11 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_getMixinOptions">
                         getMixinOptions
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4056,6 +4026,16 @@
                         rawProp
                       </a>
                     </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodeObjList">
+                        nodeObjList
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodePropList">
+                        nodePropList
+                      </a>
+                    </li>
                 </ul>
             
             
@@ -4360,9 +4340,6 @@ var _Deserializer = (function () {
 
     function _deserializeFireClass(self, obj, serialized, klass, target) {
         var props = klass.__props__;
-        if (!props) {
-            return;
-        }
         for (var p = 0; p &lt; props.length; p++) {
             var propName = props[p];
             var attrs = Fire.attr(klass, propName);
@@ -4384,6 +4361,10 @@ var _Deserializer = (function () {
                 }
                 else {
                     if (prop) {
+                        if (attrs.isRuntimeNode) {
+                            self.result.nodeObjList.push(obj);
+                            self.result.nodePropList.push(propName);
+                        }
                         if (!prop.__uuid__ &amp;&amp; typeof prop.__id__ === &#x27;undefined&#x27;) {
                             if (ENABLE_TARGET) {
                                 obj[propName] = _deserializeObject(self, prop, target &amp;&amp; target[propName]);
@@ -4595,19 +4576,25 @@ Fire._DeserializeInfo = function () {
      */
     this.uuidPropList = [];
 
-    // raw objects need to load
-    // (不用存rawList因为它的uuid可以从asset上获得)
-
     /**
      * the corresponding field name which referenced to the raw object
      * @property rawProp
      * @type {string}
      */
     this.rawProp = &#x27;&#x27;;
-    // @property {Asset[]} rawObjList - the obj list whose corresponding raw object needs to load
-    //this.rawObjList = [];
-    //@property {string[]} rawPropList - the corresponding field name which referenced to the raw object
-    //this.rawPropList = [];
+
+    /**
+     * list of the nodes serialized as wrapper, should be convert to node after scene created
+     * @property nodeObjList
+     * @type {string[]}
+     */
+    this.nodeObjList = [];
+    /**
+     * the corresponding field name which serialized as wrapper
+     * @property nodePropList
+     * @type {string[]}
+     */
+    this.nodePropList = [];
 };
 
 /**
@@ -4661,29 +4648,39 @@ Fire._DeserializeInfo.prototype.assignAssetsBy = function (getter) {
 };
 
 // used after scene created
-Fire.deserialize.applyMixinProps = function (deserializedData, classToMix, target) {
+Fire.deserialize.applyMixinProps = function (deserializedData, classToMix, target, deserializeInfo) {
     var props = classToMix.__props__;
-    if (props) {
-        for (var p = 0; p &lt; props.length; p++) {
-            var propName = props[p];
-            var attrs = Fire.attr(classToMix, propName);
-            // assume all prop in __props__ must have attr
-            if (attrs.serializable === false) {
-                continue;   // skip nonSerialized
+    for (var p = 0; p &lt; props.length; p++) {
+        var propName = props[p];
+        var attrs = Fire.attr(classToMix, propName);
+        // assume all prop in __props__ must have attr
+        if (attrs.serializable === false) {
+            continue;   // skip nonSerialized
+        }
+        if (!FIRE_EDITOR &amp;&amp; attrs.editorOnly) {
+            continue;   // skip editor only if not editor
+        }
+        var prop = deserializedData[propName];
+        if (typeof prop !== &#x27;undefined&#x27;) {
+            if (prop &amp;&amp; attrs.isRuntimeNode) {
+                if (prop.targetN) {
+                    target[propName] = prop.targetN;
+                }
+                else {
+                    target[propName] = prop;
+                    deserializeInfo.nodeObjList.push(target);
+                    deserializeInfo.nodePropList.push(propName);
+                }
             }
-            if (!FIRE_EDITOR &amp;&amp; attrs.editorOnly) {
-                continue;   // skip editor only if not editor
-            }
-            var prop = deserializedData[propName];
-            if (typeof prop !== &#x27;undefined&#x27;) {
+            else {
                 target[propName] = prop;
             }
         }
-        //if (props[props.length - 1] === &#x27;_$erialized&#x27;) {
-        //    // save original serialized deserializedData
-        //    target._$erialized = deserializedData;
-        //}
     }
+    //if (props[props.length - 1] === &#x27;_$erialized&#x27;) {
+    //    // save original serialized deserializedData
+    //    target._$erialized = deserializedData;
+    //}
 };
 </pre>
 </div>

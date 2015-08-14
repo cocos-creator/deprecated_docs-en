@@ -1022,43 +1022,13 @@
                       </a>
                     </li>
                     <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.prop">
-                        class.prop
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.get">
-                        class.get
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.set">
-                        class.set
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_class.getset">
-                        class.getset
-                      </a>
-                    </li>
-                    <li class="private">
                       <a class="name" href="/modules/Fire.html#method__isFireClass">
                         _isFireClass
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method__convertToFireClass">
-                        _convertToFireClass
                       </a>
                     </li>
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_isChildClassOf">
                         isChildClassOf
-                      </a>
-                    </li>
-                    <li class="private">
-                      <a class="name" href="/modules/Fire.html#method_extend">
-                        extend
                       </a>
                     </li>
                     <li class="private">
@@ -1152,11 +1122,6 @@
                       </a>
                     </li>
                     <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
-                      </a>
-                    </li>
-                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_find">
                         find
                       </a>
@@ -1169,6 +1134,11 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_getMixinOptions">
                         getMixinOptions
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4056,6 +4026,16 @@
                         rawProp
                       </a>
                     </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodeObjList">
+                        nodeObjList
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/classes/_DeserializeInfo.html#property_nodePropList">
+                        nodePropList
+                      </a>
+                    </li>
                 </ul>
             
             
@@ -4175,6 +4155,8 @@
  * @module Fire
  */
 
+// 增加预处理属性这个步骤的目的是降低 FireClass 的实现难度，将比较稳定的通用逻辑和一些需求比较灵活的属性需求分隔开。
+
 // 不能使用于get方法的属性
 var _propertyNotForGet = [
     &#x27;default&#x27;,
@@ -4224,6 +4206,7 @@ function parseNotify (val, propName, notify, properties) {
 // auto set wrapper&#x27;s type
 function parseWrapper (val, propName, wrapperOf, classname) {
     if (FIRE_EDITOR) {
+        Fire.info(&#x27;The &quot;wrapper&quot; attribute of %s.%s is obsoleted, use &quot;type&quot; instead please.&#x27;, classname, propName);
         if (val.type) {
             Fire.warn(&#x27;The &quot;wrapper&quot; attribute of %s.%s can not be used with &quot;type&quot;&#x27;, classname, propName);
         }
@@ -4266,6 +4249,31 @@ function checkUrl (val, className, propName, url) {
     val.type = url;
 }
 
+function parseType (val, type, className, propName) {
+    if (Array.isArray(type)) {
+        if (type.length &gt; 0) {
+            val.type = type = type[0];
+        }
+        else {
+            return Fire.error(&#x27;Invalid type of %s.%s&#x27;, className, propName);
+        }
+    }
+    if (typeof type === &#x27;function&#x27;) {
+        if (FIRE_EDITOR) {
+            var isRaw = Fire.isChildClassOf(type, Fire.RawAsset) &amp;&amp; !Fire.isChildClassOf(type, Fire.Asset);
+            if (isRaw) {
+                Fire.warn(&#x27;The &quot;type&quot; attribute of &quot;%s.%s&quot; must be child class of Fire.Asset, &#x27; +
+                          &#x27;otherwise you should use &quot;url: %s&quot; instead&#x27;, className, propName,
+                    Fire.JS.getClassName(type));
+            }
+        }
+        var isRuntimeNode = Fire.getWrapperType(type);
+        if (isRuntimeNode) {
+            val.isRuntimeNode = true;
+        }
+    }
+}
+
 module.exports = function (properties, className) {
     for (var propName in properties) {
         var val = properties[propName];
@@ -4274,29 +4282,19 @@ module.exports = function (properties, className) {
             if (notify) {
                 parseNotify(val, propName, notify, properties);
             }
+
+            var type = val.type;
+            if (type) {
+                parseType(val, type, className, propName);
+            }
+
             if (FIRE_EDITOR) {
                 var wrapperOf = val.wrapper;
                 if (wrapperOf) {
                     parseWrapper(val, propName, wrapperOf, className);
                 }
-
-                var type = val.type;
-                if (Array.isArray(type)) {
-                    if (type.length &gt; 0) {
-                        type = type[0];
-                    }
-                    else {
-                        return Fire.error(&#x27;Invalid type of %s.%s&#x27;, className, propName);
-                    }
-                }
-                if (typeof type === &#x27;function&#x27;) {
-                    var isRaw = Fire.isChildClassOf(type, Fire.RawAsset) &amp;&amp; !Fire.isChildClassOf(type, Fire.Asset);
-                    if (isRaw) {
-                        Fire.warn(&#x27;The &quot;type&quot; attribute of &quot;%s.%s&quot; must be child class of Fire.Asset, &#x27; +
-                                  &#x27;otherwise you should use &quot;url: %s&quot; instead&#x27;, className, propName, Fire.JS.getClassName(type));
-                    }
-                }
             }
+
             var url = val.url;
             if (url) {
                 checkUrl(val, className, propName, url);
