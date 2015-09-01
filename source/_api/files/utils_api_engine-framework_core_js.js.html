@@ -308,6 +308,66 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
+                      <a class="name" href="/modules/Editor.html#method_require">
+                        require
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_log">
+                        log
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
+                        sendToCoreSync
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCore">
+                        sendToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
+                        sendToWindows
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
+                        sendToMainWindow
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToAll">
+                        sendToAll
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
+                        sendToPanel
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
+                        sendRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
+                        cancelRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_waitForReply">
+                        waitForReply
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelWaitForReply">
+                        cancelWaitForReply
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_log">
                         log
                       </a>
@@ -445,66 +505,6 @@
                     <li class="">
                       <a class="name" href="/modules/Editor.html#method_KeyCode">
                         KeyCode
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_require">
-                        require
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_log">
-                        log
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
-                        sendToCoreSync
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCore">
-                        sendToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
-                        sendToWindows
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
-                        sendToMainWindow
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToAll">
-                        sendToAll
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
-                        sendToPanel
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
-                        sendRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
-                        cancelRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_waitForReply">
-                        waitForReply
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelWaitForReply">
-                        cancelWaitForReply
                       </a>
                     </li>
                     <li class="">
@@ -992,6 +992,11 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_attr">
                         attr
                       </a>
@@ -1124,11 +1129,6 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_nextTick">
                         nextTick
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4138,8 +4138,8 @@
                 <h3>properties</h3>
                 <ul class="apis members api-members">
                     <li class="">
-                      <a class="name" href="/classes/url.html#property_rawUrl">
-                        rawUrl
+                      <a class="name" href="/classes/url.html#property__rawAssets">
+                        _rawAssets
                       </a>
                     </li>
                 </ul>
@@ -4339,6 +4339,18 @@ JS.getClassName = function (obj) {
     return null;
 };
 
+var TCID = &#x27;Fire.TmpCId.&#x27;;
+
+function getTempClassIdInEditor () {
+    if (FIRE_EDITOR) {
+        return TCID + Editor.uuid();
+    }
+}
+
+JS._isTempClassId = function (id) {
+    return FIRE_EDITOR &amp;&amp; id.startsWith(TCID);
+};
+
 // id 注册
 (function () {
     var _idToClass = {};
@@ -4393,8 +4405,11 @@ Fire.JS.unregisterClass to remove the id of unused class&#x27;;
     JS.setClassName = function (className, constructor) {
         doSetClassName(className, constructor);
         // auto set class id
-        if (className &amp;&amp; !constructor.prototype.hasOwnProperty(&#x27;__cid__&#x27;)) {
-            JS._setClassId(className, constructor);
+        if (!constructor.prototype.hasOwnProperty(&#x27;__cid__&#x27;)) {
+            var id = className || (FIRE_EDITOR &amp;&amp; getTempClassIdInEditor());
+            if (id) {
+                JS._setClassId(id, constructor);
+            }
         }
     };
 
@@ -4455,17 +4470,29 @@ Fire.JS.unregisterClass to remove the id of unused class&#x27;;
      * Get class id of the object
      * @method _getClassId
      * @param {object|function} obj - instance or constructor
+     * @param {boolean} [allowTempId=true] - can return temp id in editor
      * @return {string}
      * @private
      */
-    JS._getClassId = function (obj) {
+    JS._getClassId = function (obj, allowTempId) {
+        allowTempId = (typeof allowTempId !== &#x27;undefined&#x27; ? allowTempId: true) &amp;&amp; FIRE_EDITOR;
+
+        var res;
         if (typeof obj === &#x27;function&#x27; &amp;&amp; obj.prototype.hasOwnProperty(&#x27;__cid__&#x27;)) {
-            return obj.prototype.__cid__;
+            res = obj.prototype.__cid__;
+            if (!allowTempId &amp;&amp; JS._isTempClassId(res)) {
+                return &#x27;&#x27;;
+            }
+            return res;
         }
         if (obj &amp;&amp; obj.constructor) {
             var prototype = obj.constructor.prototype;
             if (prototype &amp;&amp; prototype.hasOwnProperty(&#x27;__cid__&#x27;)) {
-                return obj.__cid__;
+                res = obj.__cid__;
+                if (!allowTempId &amp;&amp; JS._isTempClassId(res)) {
+                    return &#x27;&#x27;;
+                }
+                return res;
             }
         }
         return &#x27;&#x27;;

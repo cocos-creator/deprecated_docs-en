@@ -308,6 +308,66 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
+                      <a class="name" href="/modules/Editor.html#method_require">
+                        require
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_log">
+                        log
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
+                        sendToCoreSync
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCore">
+                        sendToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
+                        sendToWindows
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
+                        sendToMainWindow
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToAll">
+                        sendToAll
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
+                        sendToPanel
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
+                        sendRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
+                        cancelRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_waitForReply">
+                        waitForReply
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelWaitForReply">
+                        cancelWaitForReply
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_log">
                         log
                       </a>
@@ -445,66 +505,6 @@
                     <li class="">
                       <a class="name" href="/modules/Editor.html#method_KeyCode">
                         KeyCode
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_require">
-                        require
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_log">
-                        log
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
-                        sendToCoreSync
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCore">
-                        sendToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
-                        sendToWindows
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
-                        sendToMainWindow
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToAll">
-                        sendToAll
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
-                        sendToPanel
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
-                        sendRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
-                        cancelRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_waitForReply">
-                        waitForReply
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelWaitForReply">
-                        cancelWaitForReply
                       </a>
                     </li>
                     <li class="">
@@ -992,6 +992,11 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_attr">
                         attr
                       </a>
@@ -1124,11 +1129,6 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_nextTick">
                         nextTick
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4138,8 +4138,8 @@
                 <h3>properties</h3>
                 <ul class="apis members api-members">
                     <li class="">
-                      <a class="name" href="/classes/url.html#property_rawUrl">
-                        rawUrl
+                      <a class="name" href="/classes/url.html#property__rawAssets">
+                        _rawAssets
                       </a>
                     </li>
                 </ul>
@@ -4432,10 +4432,14 @@ function dumpNodeForSerialization (node) {
         var mixin;
         if (mixinClasses) {
             if (mixinClasses.length === 1) {
-                mixin = JS._getClassId(mixinClasses[0]);
+                var originUuid = node._mixinContexts[0].originUuid;
+                mixin = originUuid || JS._getClassId(mixinClasses[0], false);
             }
             else {
-                mixin = mixinClasses.map(JS._getClassId);
+                mixin = mixinClasses.map(function (x, i) {
+                    var originUuid = node._mixinContexts[i].originUuid;
+                    return originUuid || JS._getClassId(x, false);
+                });
             }
         }
         return {
@@ -4489,6 +4493,18 @@ function dumpNodeForInstantiation (node) {
 }
 
 function initNodes (datas, parentNode, wrapperToNode) {
+    function notFoundBeh (node, classIdToMixin) {
+        if (FIRE_EDITOR) {
+            mixin(node, Editor.MissingBehavior);
+            var behCtx = node._mixinContexts[node._mixinContexts.length - 1];
+            behCtx.originUuid = classIdToMixin;
+        }
+        var errorUuid = classIdToMixin;
+        if (FIRE_EDITOR &amp;&amp; Editor.isUuid(errorUuid)) {
+            errorUuid = Editor.decompressUuid(errorUuid);
+        }
+        Fire.error(&#x27;Failed to find script %s to mixin&#x27;, errorUuid);
+    }
     for (var i = 0, len = datas.length; i &lt; len; i++) {
         var child = datas[i];
         var wrapper = child.w;
@@ -4500,6 +4516,7 @@ function initNodes (datas, parentNode, wrapperToNode) {
         var node = wrapper.targetN;
         if (classIdToMixin) {
             var classToMixin;
+            var behMissed = false;
             if (Array.isArray(classIdToMixin)) {
                 for (var j = 0; j &lt; classIdToMixin.length; j++) {
                     classToMixin = JS._getClassById(classIdToMixin[j]);
@@ -4508,7 +4525,8 @@ function initNodes (datas, parentNode, wrapperToNode) {
                         Fire.deserialize.applyMixinProps(child.t, classToMixin, node, wrapperToNode);
                     }
                     else {
-                        Fire.error(&#x27;Failed to find class %s to mixin&#x27;, classIdToMixin[j]);
+                        notFoundBeh(node, classIdToMixin[j]);
+                        behMissed = true;
                     }
                 }
             }
@@ -4519,12 +4537,12 @@ function initNodes (datas, parentNode, wrapperToNode) {
                     Fire.deserialize.applyMixinProps(child.t, classToMixin, node, wrapperToNode);
                 }
                 else {
-                    var errorUuid = classIdToMixin;
-                    if (FIRE_EDITOR &amp;&amp; Editor.isUuid(errorUuid)) {
-                        errorUuid = Editor.decompressUuid(errorUuid);
-                    }
-                    Fire.error(&#x27;Failed to find script %s to mixin&#x27;, errorUuid);
+                    notFoundBeh(node, classIdToMixin);
+                    behMissed = true;
                 }
+            }
+            if (behMissed &amp;&amp; FIRE_EDITOR) {
+                node._mixin.originNodeData = child.t;
             }
         }
         var children = child.c;

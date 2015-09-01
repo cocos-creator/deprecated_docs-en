@@ -308,6 +308,66 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
+                      <a class="name" href="/modules/Editor.html#method_require">
+                        require
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_log">
+                        log
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
+                        sendToCoreSync
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCore">
+                        sendToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
+                        sendToWindows
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
+                        sendToMainWindow
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToAll">
+                        sendToAll
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
+                        sendToPanel
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
+                        sendRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
+                        cancelRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_waitForReply">
+                        waitForReply
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelWaitForReply">
+                        cancelWaitForReply
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_log">
                         log
                       </a>
@@ -445,66 +505,6 @@
                     <li class="">
                       <a class="name" href="/modules/Editor.html#method_KeyCode">
                         KeyCode
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_require">
-                        require
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_log">
-                        log
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
-                        sendToCoreSync
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCore">
-                        sendToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
-                        sendToWindows
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
-                        sendToMainWindow
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToAll">
-                        sendToAll
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
-                        sendToPanel
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
-                        sendRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
-                        cancelRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_waitForReply">
-                        waitForReply
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelWaitForReply">
-                        cancelWaitForReply
                       </a>
                     </li>
                     <li class="">
@@ -992,6 +992,11 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_attr">
                         attr
                       </a>
@@ -1124,11 +1129,6 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_nextTick">
                         nextTick
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4138,8 +4138,8 @@
                 <h3>properties</h3>
                 <ul class="apis members api-members">
                     <li class="">
-                      <a class="name" href="/classes/url.html#property_rawUrl">
-                        rawUrl
+                      <a class="name" href="/classes/url.html#property__rawAssets">
+                        _rawAssets
                       </a>
                     </li>
                 </ul>
@@ -4349,20 +4349,21 @@ function setDeepPropertyByPath (node, path, value, actualType) {
     var isObj = typeof value === &#x27;object&#x27; &amp;&amp; !Array.isArray(value);
     var hasType = (value.constructor !== Object) &amp;&amp; !(value instanceof Fire.ValueType);
     var isAsset = actualType &amp;&amp; typeof value.uuid === &#x27;string&#x27;;
-    if (!isObj || isAsset || hasType) {
-        setPropertyByPath(node, path, value, actualType);
-    }
-    else {
+    if (!(!isObj || isAsset || hasType)) {
         var obj = getPropertyByPath(node, path);
-        // change current value
-        for (var subKey in value) {
-            var subVal = value[subKey];
-            // 不会发复合对象过来，所以不用把 type 传给子对象
-            setDeepPropertyByPath(obj, subKey, subVal);
+        if (obj) {
+            // change current value
+            for (var subKey in value) {
+                var subVal = value[subKey];
+                // 不会发复合对象过来，所以不用把 type 传给子对象
+                setDeepPropertyByPath(obj, subKey, subVal);
+            }
+            // apply changes
+            setPropertyByPath(node, path, obj);
+            return;
         }
-        // apply changes
-        setPropertyByPath(node, path, obj);
     }
+    setPropertyByPath(node, path, value, actualType);
 }
 
 Editor.setPropertyByPath = setPropertyByPath;

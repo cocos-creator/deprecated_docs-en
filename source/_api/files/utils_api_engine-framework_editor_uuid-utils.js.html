@@ -308,6 +308,66 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
+                      <a class="name" href="/modules/Editor.html#method_require">
+                        require
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_log">
+                        log
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
+                        sendToCoreSync
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCore">
+                        sendToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
+                        sendToWindows
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
+                        sendToMainWindow
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToAll">
+                        sendToAll
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
+                        sendToPanel
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
+                        sendRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
+                        cancelRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_waitForReply">
+                        waitForReply
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelWaitForReply">
+                        cancelWaitForReply
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_log">
                         log
                       </a>
@@ -445,66 +505,6 @@
                     <li class="">
                       <a class="name" href="/modules/Editor.html#method_KeyCode">
                         KeyCode
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_require">
-                        require
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_log">
-                        log
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
-                        sendToCoreSync
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCore">
-                        sendToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
-                        sendToWindows
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
-                        sendToMainWindow
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToAll">
-                        sendToAll
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
-                        sendToPanel
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
-                        sendRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
-                        cancelRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_waitForReply">
-                        waitForReply
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelWaitForReply">
-                        cancelWaitForReply
                       </a>
                     </li>
                     <li class="">
@@ -992,6 +992,11 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_attr">
                         attr
                       </a>
@@ -1124,11 +1129,6 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_nextTick">
                         nextTick
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4138,8 +4138,8 @@
                 <h3>properties</h3>
                 <ul class="apis members api-members">
                     <li class="">
-                      <a class="name" href="/classes/url.html#property_rawUrl">
-                        rawUrl
+                      <a class="name" href="/classes/url.html#property__rawAssets">
+                        _rawAssets
                       </a>
                     </li>
                 </ul>
@@ -4169,61 +4169,78 @@
   <pre class="code prettyprint linenums">/**
  * @module Fire
  */
-(function (exports) {
-    var Base64KeyChars = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;;
+var Base64KeyChars = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;;
 
-    var AsciiTo64 = new Array(128);
-    for (var i = 0; i &lt; 128; ++i) { AsciiTo64[i] = 0; }
-    for (i = 0; i &lt; 64; ++i) { AsciiTo64[Base64KeyChars.charCodeAt(i)] = i; }
+var AsciiTo64 = new Array(128);
+for (var i = 0; i &lt; 128; ++i) { AsciiTo64[i] = 0; }
+for (i = 0; i &lt; 64; ++i) { AsciiTo64[Base64KeyChars.charCodeAt(i)] = i; }
 
-    var Reg_RemoveDash = /-/g;
+var Reg_RemoveDash = /-/g;
 
-    // 将 uuid 的后面 27 位压缩成 18 位，前 5 位保留下来，方便调试。
-    // 压缩后的 uuid 可以减小保存时的尺寸，但不能做为文件名。
-    exports.compressUuid = function (uuid) {
-        // fc991dd7-0033-4b80-9d41-c8a86a702e59
-        var striped = uuid.replace(Reg_RemoveDash, &#x27;&#x27;);
-        var head = striped.slice(0, 5);
-        // encode base64
-        var base64Chars = [];
-        for (var i = 5; i &lt; 32; i += 3) {
-            var hexVal1 = parseInt(striped[i], 16);
-            var hexVal2 = parseInt(striped[i + 1], 16);
-            var hexVal3 = parseInt(striped[i + 2], 16);
-            base64Chars.push(Base64KeyChars[(hexVal1 &lt;&lt; 2) | (hexVal2 &gt;&gt; 2)]);
-            base64Chars.push(Base64KeyChars[((hexVal2 &amp; 3) &lt;&lt; 4) | hexVal3]);
+// 将 uuid 的后面 27 位压缩成 18 位，前 5 位保留下来，方便调试。
+// 压缩后的 uuid 可以减小保存时的尺寸，但不能做为文件名。
+Editor.compressUuid = function (uuid) {
+    // fc991dd7-0033-4b80-9d41-c8a86a702e59
+    var striped = uuid.replace(Reg_RemoveDash, &#x27;&#x27;);
+    var head = striped.slice(0, 5);
+    // encode base64
+    var base64Chars = [];
+    for (var i = 5; i &lt; 32; i += 3) {
+        var hexVal1 = parseInt(striped[i], 16);
+        var hexVal2 = parseInt(striped[i + 1], 16);
+        var hexVal3 = parseInt(striped[i + 2], 16);
+        base64Chars.push(Base64KeyChars[(hexVal1 &lt;&lt; 2) | (hexVal2 &gt;&gt; 2)]);
+        base64Chars.push(Base64KeyChars[((hexVal2 &amp; 3) &lt;&lt; 4) | hexVal3]);
+    }
+    //
+    return head + base64Chars.join(&#x27;&#x27;);
+};
+
+Editor.decompressUuid = function (str) {
+    if (str.length === 23) {
+        // decode base64
+        var hexChars = [];
+        for (var i = 5; i &lt; 23; i += 2) {
+            var lhs = AsciiTo64[str.charCodeAt(i)];
+            var rhs = AsciiTo64[str.charCodeAt(i + 1)];
+            hexChars.push((lhs &gt;&gt; 2).toString(16));
+            hexChars.push((((lhs &amp; 3) &lt;&lt; 2) | rhs &gt;&gt; 4).toString(16));
+            hexChars.push((rhs &amp; 0xF).toString(16));
         }
         //
-        return head + base64Chars.join(&#x27;&#x27;);
-    };
+        str = str.slice(0, 5) + hexChars.join(&#x27;&#x27;);
+    }
+    return [str.slice(0, 8), str.slice(8, 12), str.slice(12, 16), str.slice(16, 20), str.slice(20)].join(&#x27;-&#x27;);
+};
 
-    exports.decompressUuid = function (str) {
-        if (str.length === 23) {
-            // decode base64
-            var hexChars = [];
-            for (var i = 5; i &lt; 23; i += 2) {
-                var lhs = AsciiTo64[str.charCodeAt(i)];
-                var rhs = AsciiTo64[str.charCodeAt(i + 1)];
-                hexChars.push((lhs &gt;&gt; 2).toString(16));
-                hexChars.push((((lhs &amp; 3) &lt;&lt; 2) | rhs &gt;&gt; 4).toString(16));
-                hexChars.push((rhs &amp; 0xF).toString(16));
-            }
-            //
-            str = str.slice(0, 5) + hexChars.join(&#x27;&#x27;);
-        }
-        return [str.slice(0, 8), str.slice(8, 12), str.slice(12, 16), str.slice(16, 20), str.slice(20)].join(&#x27;-&#x27;);
-    };
+var Reg_Uuid = /^[0-9a-fA-F]{32}$/;
+var Reg_CompressedUuid = /^[0-9a-zA-Z+/]{23}$/;
 
-    var Reg_Uuid = /^[0-9a-fA-F]{32}$/;
-    var Reg_CompressedUuid = /^[0-9a-zA-Z+/]{23}$/;
+Editor.isUuid = function (str) {
+    if (str.length === 36) {
+        str = str.replace(Reg_RemoveDash, &#x27;&#x27;);
+    }
+    return Reg_CompressedUuid.test(str) || Reg_Uuid.test(str);
+};
 
-    exports.isUuid = function (str) {
-        if (str.length === 36) {
-            str = str.replace(Reg_RemoveDash, &#x27;&#x27;);
-        }
-        return Reg_CompressedUuid.test(str) || Reg_Uuid.test(str);
+if (FIRE_TEST) {
+    Editor.uuid = function () {
+        return &#x27;&#x27; + ((new Date()).getTime() + Math.random());
     };
-})(Editor);
+}
+else if (FIRE_EDITOR) {
+    var Uuid = require(&#x27;node-uuid&#x27;);
+    Editor.uuid = function () {
+        var uuid = Uuid.v4();
+        return Editor.compressUuid(uuid);
+    };
+}
+else {
+    Editor.uuid = function () {
+        Fire.error(&#x27;Can only use uuid inside editor.&#x27;);
+        return &#x27;&#x27;;
+    };
+}
 
 module.exports = Editor;
 </pre>

@@ -308,6 +308,66 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
+                      <a class="name" href="/modules/Editor.html#method_require">
+                        require
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_log">
+                        log
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
+                        sendToCoreSync
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCore">
+                        sendToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
+                        sendToWindows
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
+                        sendToMainWindow
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToAll">
+                        sendToAll
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
+                        sendToPanel
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
+                        sendRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
+                        cancelRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_waitForReply">
+                        waitForReply
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelWaitForReply">
+                        cancelWaitForReply
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_log">
                         log
                       </a>
@@ -445,66 +505,6 @@
                     <li class="">
                       <a class="name" href="/modules/Editor.html#method_KeyCode">
                         KeyCode
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_require">
-                        require
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_log">
-                        log
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
-                        sendToCoreSync
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCore">
-                        sendToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
-                        sendToWindows
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
-                        sendToMainWindow
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToAll">
-                        sendToAll
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
-                        sendToPanel
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
-                        sendRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
-                        cancelRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_waitForReply">
-                        waitForReply
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelWaitForReply">
-                        cancelWaitForReply
                       </a>
                     </li>
                     <li class="">
@@ -992,6 +992,11 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_attr">
                         attr
                       </a>
@@ -1124,11 +1129,6 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_nextTick">
                         nextTick
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4138,8 +4138,8 @@
                 <h3>properties</h3>
                 <ul class="apis members api-members">
                     <li class="">
-                      <a class="name" href="/classes/url.html#property_rawUrl">
-                        rawUrl
+                      <a class="name" href="/classes/url.html#property__rawAssets">
+                        _rawAssets
                       </a>
                     </li>
                 </ul>
@@ -4177,16 +4177,7 @@ var _isDomNode = require(&#x27;../core/utils&#x27;).isDomNode;
 var nicifySerialized = require(&#x27;./serialize-nicify&#x27;);
 var FObject = Fire.FObject;
 
-function _getType (obj) {
-    var p = obj.constructor.prototype;
-    if (p.hasOwnProperty(&#x27;__cid__&#x27;)) {
-        return p.__cid__;
-    }
-    //if (p.hasOwnProperty(&#x27;__classname__&#x27;)) {
-    //    return p.__classname__;
-    //}
-    return &#x27;&#x27;;
-}
+var _getType = Fire.JS._getClassId;
 
 var _Serializer = (function () {
 
@@ -4225,7 +4216,7 @@ var _Serializer = (function () {
             var data = self._parsingData[parsingIndex];
             if (Array.isArray(obj) === false) {
                 //data.__id__ = id;   // also save id in source data, just for debugging
-                var type = _getType(obj);
+                var type = _getType(obj, false);
                 if (type) {
                     data.__type__ = type;
                 }
@@ -4299,6 +4290,28 @@ var _Serializer = (function () {
         }
     }
 
+    // 将 MissingBehavior 的数据重新序列化到 target 里面
+    function saveMissingBehData (self, data, originNodeData) {
+        //Fire.JS.addon(data, obj._mixin.originNodeData);
+        for (var key in originNodeData) {
+            var value = originNodeData[key];
+            if (Array.isArray(value)) {
+                data[key] = value.map(function (x) {
+                    if (x &amp;&amp; typeof x === &#x27;object&#x27; &amp;&amp; Fire.getWrapperType(x)) {
+                        x = Fire(x);
+                    }
+                    return _serializeField(self, x);
+                });
+            }
+            else {
+                if (value &amp;&amp; typeof value === &#x27;object&#x27; &amp;&amp; Fire.getWrapperType(value)) {
+                    value = Fire(value);
+                }
+                data[key] = _serializeField(self, value);
+            }
+        }
+    }
+
     ///**
     // * @param {object} obj - The object to serialize
     // * @param {array|object} data - The array or dict where serialized data to store
@@ -4321,6 +4334,9 @@ var _Serializer = (function () {
                 for (var m = 0; m &lt; mixinClasses.length; m++) {
                     var mixinClass = mixinClasses[m];
                     enumerateByFireClass(self, obj, data, mixinClass);
+                }
+                if (obj._mixin.originNodeData) {
+                    saveMissingBehData(self, data, obj._mixin.originNodeData);
                 }
             }
             else if (! Fire._isFireClass(klass)) {
@@ -4391,7 +4407,7 @@ var _Serializer = (function () {
         }
         else {  // &#x27;object&#x27;
             data = {};
-            var type = _getType(obj);
+            var type = _getType(obj, false);
             if (type) {
                 data.__type__ = type;
             }
@@ -4461,7 +4477,7 @@ var _Serializer = (function () {
             var data = {};
             self.serializedList.push(data);
 
-            var type = _getType(obj);
+            var type = _getType(obj, false);
             if (type) {
                 data.__type__ = type;
             }
@@ -4480,7 +4496,7 @@ var _Serializer = (function () {
 
             return { __id__: id };
         }
-        else if (ctor !== Object &amp;&amp; !Array.isArray(obj) &amp;&amp; !(_getType(obj) || obj._mixinClasses)) {
+        else if (ctor !== Object &amp;&amp; !Array.isArray(obj) &amp;&amp; !(_getType(obj, false) || obj._mixinClasses)) {
             // unknown obj, not serializable
             //Fire.warn(&quot;&quot; + obj + &quot; won&#x27;t be serialized&quot;);
             return null;
@@ -4536,7 +4552,7 @@ var _Serializer = (function () {
             }
             else {
                 data = {};
-                var type = _getType(obj);
+                var type = _getType(obj, false);
                 if (type) {
                     data.__type__ = type;
                 }

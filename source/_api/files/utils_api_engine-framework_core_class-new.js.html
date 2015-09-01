@@ -308,6 +308,66 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
+                      <a class="name" href="/modules/Editor.html#method_require">
+                        require
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_log">
+                        log
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
+                        sendToCoreSync
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToCore">
+                        sendToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
+                        sendToWindows
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
+                        sendToMainWindow
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToAll">
+                        sendToAll
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
+                        sendToPanel
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
+                        sendRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
+                        cancelRequestToCore
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_waitForReply">
+                        waitForReply
+                      </a>
+                    </li>
+                    <li class="">
+                      <a class="name" href="/modules/Editor.html#method_cancelWaitForReply">
+                        cancelWaitForReply
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Editor.html#method_log">
                         log
                       </a>
@@ -445,66 +505,6 @@
                     <li class="">
                       <a class="name" href="/modules/Editor.html#method_KeyCode">
                         KeyCode
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_require">
-                        require
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_log">
-                        log
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCoreSync">
-                        sendToCoreSync
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToCore">
-                        sendToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToWindows">
-                        sendToWindows
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToMainWindow">
-                        sendToMainWindow
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToAll">
-                        sendToAll
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendToPanel">
-                        sendToPanel
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_sendRequestToCore">
-                        sendRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelRequestToCore">
-                        cancelRequestToCore
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_waitForReply">
-                        waitForReply
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Editor.html#method_cancelWaitForReply">
-                        cancelWaitForReply
                       </a>
                     </li>
                     <li class="">
@@ -992,6 +992,11 @@
                 <h3>methods</h3>
                 <ul class="apis members api-members">
                     <li class="">
+                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
+                        getHierarchyDump
+                      </a>
+                    </li>
+                    <li class="">
                       <a class="name" href="/modules/Fire.html#method_attr">
                         attr
                       </a>
@@ -1124,11 +1129,6 @@
                     <li class="">
                       <a class="name" href="/modules/Fire.html#method_nextTick">
                         nextTick
-                      </a>
-                    </li>
-                    <li class="">
-                      <a class="name" href="/modules/Fire.html#method_getHierarchyDump">
-                        getHierarchyDump
                       </a>
                     </li>
                     <li class="">
@@ -4138,8 +4138,8 @@
                 <h3>properties</h3>
                 <ul class="apis members api-members">
                     <li class="">
-                      <a class="name" href="/classes/url.html#property_rawUrl">
-                        rawUrl
+                      <a class="name" href="/classes/url.html#property__rawAssets">
+                        _rawAssets
                       </a>
                     </li>
                 </ul>
@@ -4339,53 +4339,68 @@ function parseAttributes (attrs, className, propName) {
     var result = tmpAttrs;
 
     var type = attrs.type;
-    if (type &amp;&amp; FIRE_EDITOR) {
-        if (type === Fire.Integer) {
-            result.push( { type: Fire.Integer } );
-        }
-        else if (type === Fire.Float || type === Number) {
-            result.push( { type: Fire.Float } );
-        }
-        else if (type === Fire.Boolean || type === Boolean) {
-            result.push({
-                type: Fire.Boolean,
-                _onAfterProp: getTypeChecker(Fire.Boolean, &#x27;Fire.Boolean&#x27;)
-            });
-        }
-        else if (type === Fire.String || type === String) {
-            result.push({
-                type: Fire.String,
-                _onAfterProp: getTypeChecker(Fire.String, &#x27;Fire.String&#x27;)
-            });
-        }
-        else if (type === &#x27;Object&#x27; || type === Object) {
-            if (FIRE_EDITOR) {
-                Fire.error(&#x27;Please define &quot;type&quot; parameter of %s.%s as the actual constructor.&#x27;, className, propName);
-            }
-        }
-        else if (type === Fire._ScriptUuid) {
-            var attr = Fire.ObjectType(Fire.ScriptAsset);
-            attr.type = &#x27;Script&#x27;;
-            result.push(attr);
-        }
-        else {
-            if (typeof type === &#x27;object&#x27;) {
-                if (Fire.isEnumType(type)) {
-                    result.push({
-                        type: &#x27;Enum&#x27;,
-                        enumList: Fire.getEnumList(type)
-                    });
+    if (type) {
+        switch (type) {
+            case &#x27;Integer&#x27;: // Fire.Integer
+                result.push( { type: Fire.Integer, expectedTypeOf: &#x27;number&#x27; } );
+                break;
+            case &#x27;Float&#x27;:   // Fire.Float
+                result.push( { type: Fire.Float, expectedTypeOf: &#x27;number&#x27; } );
+                break;
+            case &#x27;Boolean&#x27;: // Fire.Boolean
+                result.push({
+                    type: Fire.Boolean,
+                    expectedTypeOf: &#x27;number&#x27;,
+                    _onAfterProp: getTypeChecker(Fire.Boolean, &#x27;Fire.Boolean&#x27;)
+                });
+                break;
+            case &#x27;String&#x27;:  // Fire.String
+                result.push({
+                    type: Fire.String,
+                    expectedTypeOf: &#x27;number&#x27;,
+                    _onAfterProp: getTypeChecker(Fire.String, &#x27;Fire.String&#x27;)
+                });
+                break;
+            case &#x27;Object&#x27;:  // Fire.ObjectType
+                if (FIRE_EDITOR) {
+                    Fire.error(&#x27;Please define &quot;type&quot; parameter of %s.%s as the actual constructor.&#x27;, className, propName);
                 }
-                else if (FIRE_EDITOR) {
-                    Fire.error(&#x27;Please define &quot;type&quot; parameter of %s.%s as the constructor of %s.&#x27;, className, propName, type);
+                break;
+            default:
+                if (type === Fire._ScriptUuid) {
+                    var attr = Fire.ObjectType(Fire.ScriptAsset);
+                    attr.type = &#x27;Script&#x27;;
+                    result.push(attr);
                 }
-            }
-            else if (typeof type === &#x27;function&#x27;) {
-                result.push(Fire.ObjectType(type));
-            }
-            else if (FIRE_EDITOR) {
-                Fire.error(&#x27;Unknown &quot;type&quot; parameter of %s.%s：%s&#x27;, className, propName, type);
-            }
+                else {
+                    if (typeof type === &#x27;object&#x27;) {
+                        if (Fire.isEnumType(type)) {
+                            result.push({
+                                type: &#x27;Enum&#x27;,
+                                expectedTypeOf: &#x27;number&#x27;,
+                                enumList: Fire.getEnumList(type)
+                            });
+                        }
+                        else if (FIRE_EDITOR) {
+                            Fire.error(&#x27;Please define &quot;type&quot; parameter of %s.%s as the constructor of %s.&#x27;, className, propName, type);
+                        }
+                    }
+                    else if (typeof type === &#x27;function&#x27;) {
+                        result.push(Fire.ObjectType(type));
+                        result.push( { expectedTypeOf: &#x27;object&#x27; } );
+                    }
+                    else if (FIRE_EDITOR) {
+                        Fire.error(&#x27;Unknown &quot;type&quot; parameter of %s.%s：%s&#x27;, className, propName, type);
+                    }
+                }
+                break;
+        }
+    }
+    else {
+        if (attrs.default != null) {
+            result.push({
+                expectedTypeOf: typeof attrs.default,
+            });
         }
     }
 
