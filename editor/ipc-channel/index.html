@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Ipc Channel Between Core and Page Process | Fireball Docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.fireball-x.com/editor/ipc-channel/index.html">
+  <!-- Alternative links -->
+  
+    
+      
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+
+  
+  <link rel="stylesheet" href="/css/anchor.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/tomorrow.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!-- endbuild -->
+  <!-- RSS -->
+  <link rel="alternative" href="/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <!-- Open Graph -->
+  
+    
+    
+  
+  <!-- Swiftype -->
+  
+  <!-- Google Analytics -->
+  
+</head>
+
+
+  
+    <div id="full-wrap">
+      <div class="container-fluid">
+        <header>
+    <nav class="navbar navbar-inverse">
+        <div class="container navbar-wrapper">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/images/logo.png">
+                </a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li ><a href="/">Home</a></li>
+                    
+                    <li ><a href="/manual/index">Manual</a></li>
+                    
+                    <li ><a href="/editor/index">Extending Editor</a></li>
+                    
+                    <li ><a href="/api">API</a></li>
+                    
+                    <li ><a href="http://fireball-x.com/en">Fireball</a></li>
+                    
+                    <li ><a href="http://docs-zh.fireball-x.com">中文</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://github.com/fireball-x/editor-framework/edit/master/docs/editor/ipc-channel.md"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+      </div>
+      <div class="container">
+        <div class="container sidebar">
+    <aside id="sidebar" role="navigation">
+  <div class="inner">
+      <ul class="nav nav-pills nav-stacked"><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Extending Editor</strong></li><li role="presentation" ><a href="/editor/editor-module" class="sidebar-link">Editor Module</a></li><li role="presentation" class="active"><a href="/editor/ipc-channel" class="sidebar-link">Ipc Channel</a></li><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Packages</strong></li><li role="presentation" ><a href="/editor/packages/create-package" class="sidebar-link">Create Your Package</a></li><li role="presentation" ><a href="/editor/packages/create-panels" class="sidebar-link">Create Panels</a></li><li role="presentation" ><a href="/editor/packages/create-widgets" class="sidebar-link">Create Widgets</a></li><li role="presentation" ><a href="/editor/packages/register-shortcuts" class="sidebar-link">Register Shortcuts</a></li><li role="presentation" ><a href="/editor/packages/load-and-build" class="sidebar-link">Load And Rebuild</a></li><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Navigation</strong></li><li role="presentation"><a role="button" href="#top">back to top</a></li><li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_editor.yml">edit sidebar</a></li></ul>
+  </div>
+</aside>
+</div>
+<div class="container content-wrap">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-9">
+            <div class="title-header" id="top">
+                <h1>Ipc Channel Between Core and Page Process</h1>
+            </div>
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/editor/index">Extending Editor</a></li>
+                    <li class="active">Ipc Channel Between Core and Page Process</li>
+                </ol>
+            </div>
+            <h2 id="Core_and_Page_Process">Core and Page Process</h2><p>Editor framework (and Fireball) has two levels of processes:</p>
+<ul>
+<li>Core-level process: In charge of creating window and web pages, access to file system, run any task that iojs (or nodejs) are capable of.</li>
+<li>Page-level process: Render HTML web page and run client-side JavaScript. Each web page is rendered in a separated page-level process so they will not pollute each other’s DOM.</li>
+</ul>
+<p>To better understand these two type of processes, read <a href="https://github.com/atom/electron/blob/master/docs/tutorial/quick-start.md#introduction" target="_blank" rel="external">Electron’s introduction document</a>, core-level process is Electron’s main process, page-level process is Electron’s renderer process. If you’re still confused, think of core-level process as server JavaScript, and page-level process as client JavaScript, in a web development context.</p>
+<p>To allow communication between core and page processes. We enhanced <a href="https://github.com/atom/electron/blob/master/docs/api/ipc-renderer.md" target="_blank" rel="external">Electron’s ipc API</a> (ipc stands for Inter-process communication). Fireball and Editor Framework user will have much cleaner and easier API to build ipc communication channel between core and page level processes.</p>
+<h2 id="Ipc_Channel_Identifier">Ipc Channel Identifier</h2><p>An Ipc channel is a string to identify the message between processes. The message sender send the message with a specific channel identifier. And message handler in other process can specify which channel to “listen to”.</p>
+<p>We recommend the following pattern for an Ipc channel identifier:</p>
+<pre><code class="json">&#39;package-name-or-scope:channel-name&#39;
+</code></pre>
+<p>Basically you can use any string as channel identifier, but we strongly recommend you connect package name and descriptive channel name with a colon to make a channel identifier. Let’s see it in action:</p>
+<pre><code class="json">&#39;editor:reset-layout&#39;
+</code></pre>
+<p>Editor framework use this channel to send message for reseting editor layout. <code>editor</code> is the scope, <code>reset-layout</code> describe what the channel is for.</p>
+<pre><code class="json">&#39;demo-simple:open&#39;
+</code></pre>
+<p><code>demo-simple</code> is the name of an example package, you can see the code <a href="https://github.com/fireball-packages/package-examples/tree/master/simple" target="_blank" rel="external">here.</a> <code>open</code> is the action taken for message handler, usually this channel is for open a package panel, so we can use <code>sendToPanel</code> method like this:</p>
+<pre><code class="js">// first argument is panelID, second is channel id
+Editor.sendToPanel(&#39;demo-simple.panel&#39;, &#39;demo-simple:open&#39;);
+</code></pre>
+<p>To understand panelID, read <a href="register-panels.md#panel-id">panelID part in register panel docs</a>.</p>
+<p>Let’s see message sending methods:</p>
+<h2 id="Core_Level">Core Level</h2><p>In core-level script, you can use the following method to send messages:</p>
+<ul>
+<li><a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToWindows" target="_blank" rel="external">Editor.sendToWindows</a></li>
+<li><a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToMainWindow" target="_blank" rel="external">Editor.sendToMainWindow</a></li>
+<li><a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToAll" target="_blank" rel="external">Editor.sendToAll</a></li>
+<li><a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToCore" target="_blank" rel="external">Editor.sendToCore</a></li>
+<li><a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToPanel" target="_blank" rel="external">Editor.sendToPanel</a></li>
+<li><a href="http://docs.fireball-x.com/api/classes/Window.html#method_sendToPage" target="_blank" rel="external">windowInstance.sendToPage</a> you can use <code>Editor.Window.find</code> to get window instance</li>
+<li><a href="http://docs.fireball-x.com/api/classes/Window.html#method_sendRequestToPage" target="_blank" rel="external">windowInstance.sendRequestToPage</a> see also windowInstance.cancelRequestToPage</li>
+<li><a href="http://docs.fireball-x.com/api/classes/Window.html#method_cancelRequestToPage" target="_blank" rel="external">Editor.cancelRequestToPage</a></li>
+</ul>
+<h2 id="Page_Level">Page Level</h2><p>In page-level script, you can use the following method to send messages:</p>
+<ul>
+<li><a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToWindows" target="_blank" rel="external">Editor.sendToWindows</a></li>
+<li><a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToMainWindow" target="_blank" rel="external">Editor.sendToMainWindow</a></li>
+<li><a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToCore" target="_blank" rel="external">Editor.sendToCore</a></li>
+<li><a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToCoreSync" target="_blank" rel="external">Editor.sendToCoreSync</a> will get return value directly</li>
+<li><a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToPanel" target="_blank" rel="external">Editor.sendToPanel</a></li>
+<li><a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendRequestToCore" target="_blank" rel="external">Editor.sendRequestToCore</a></li>
+</ul>
+<p>See also <a href="http://docs.fireball-x.com/api/modules/Editor.html#method_cancelRequestToCore" target="_blank" rel="external">Editor.cancelRequestToCore</a> for cancel request.</p>
+<h2 id="Message_Handlers">Message Handlers</h2><h3 id="On_Core_Level">On Core Level</h3><p>Register a message handler in core-level script is easy, just add a property with the name of Ipc channel id to your core-level module:</p>
+<pre><code class="js">module.exports = {
+    // ...
+
+    &#39;demo-simple:open&#39;: function () {
+        // do your job in core level, such as open a panel
+        Editor.Panel.open(&#39;demo-simple.panel&#39;);
+    }
+};
+</code></pre>
+<h3 id="On_Page_Level">On Page Level</h3><p>Register the Ipc channel id you want to listen to in <code>panels.panel.messages</code> property of <code>package.json</code>:</p>
+<pre><code class="json">&quot;panels&quot;: {
+  &quot;panel&quot;: {
+    &quot;messages&quot;: [
+        &quot;demo-simple:run&quot;
+    ]
+  }
+}
+</code></pre>
+<p>Please notice <code>panel</code> is the name for panelID, you can register your panel with any name you like, see <a href="packages/create-panels.md">Create Panels</a>.</p>
+<p>Once Ipc channel id registered, you can add a property in your <code>Editor.registerPanel</code> object:</p>
+<pre><code class="js">Editor.registerPanel( &#39;demo-simple.panel&#39;, {
+    is: &#39;demo-simple&#39;,
+    // ...
+    // to receive IPC message on page-level, you need to register message in package.json
+    &quot;demo-simple:run&quot; : function () {
+        // run some tasks on page-level
+    }
+});
+</code></pre>
+<h2 id="Message_With_Arguments">Message With Arguments</h2><p>You can pass any number of parameters you like with a message:</p>
+<pre><code class="js">// on core-level
+Editor.sendToPanel(&#39;demo-simple.panel&#39;, &#39;demo-simple:log&#39;, someText);
+
+// on page-level
+Editor.registerPanel( &#39;demo-simple.panel&#39;, {
+    // log the text passed to editor console
+    &quot;demo-simple:log&quot; : function (text) {
+        Editor.log(text);
+    }
+}
+</code></pre>
+<h3 id="Pass_Event_Object_As_Argument">Pass Event Object As Argument</h3><p>When you use <a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToAll" target="_blank" rel="external">Editor.sendToAll</a> and <a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToCore" target="_blank" rel="external">Editor.sendToCore</a>, you can add <a href="http://docs.fireball-x.com/api/modules/Editor.html#property_requireIpcEvent" target="_blank" rel="external">Editor.requireIpcEvent</a> as the last argument.</p>
+<p>For example:</p>
+<p><code>Editor.sendToCore(&#39;foo:bar&#39;, &#39;say hello&#39;, Editor.requireIpcEvent )</code></p>
+<p>When you respond to the message in core level, the first parameter will be event object instead of ‘say hello’, for more details about event object read <a href="https://github.com/atom/electron/blob/master/docs/api/ipc-main-process.md#class-event" target="_blank" rel="external">class:event</a> of Electron docs.</p>
+<p>The message handler looks like this:</p>
+<pre><code class="js">    &#39;foo:bar&#39;:function ( event, text ) {
+      // the event is the ipc-event object
+      // the text is &#39;say hello&#39;
+    }
+</code></pre>
+<p>This is very useful if you want to known who send you this Ipc message by looking at <code>event.sender</code>.</p>
+<p>For example if we want to know from which editor window the message is sent, we can do it like this:</p>
+<pre><code class="js">// in the message handler above:
+
+// get browserWindow (or we call nativeWin) which is part of electron
+var win = BrowserWindow.fromWebContents( event.sender );
+
+// get our Editor.Window instance
+var editorWin = Editor.Window.find(win);
+</code></pre>
+<h2 id="Broadcast_Message">Broadcast Message</h2><p><a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToWindows" target="_blank" rel="external">Editor.sendToWindows</a> and <a href="http://docs.fireball-x.com/api/modules/Editor.html#method_sendToAll" target="_blank" rel="external">Editor.sendToAll</a> can be used to broadcast message. To prevent sending message to self, you can add <a href="http://docs.fireball-x.com/api/modules/Editor.html#property_selfExcluded" target="_blank" rel="external">Editor.selfExcluded</a> as the last argument. For example:</p>
+<p><code>Editor.sendToAll( &#39;foo:bar&#39;, Editor.selfExcluded )</code> will not send Ipc message to the script itself.</p>
+
+            <div>
+                <hr>
+                <a href="https://github.com/fireball-x/editor-framework/edit/master/docs/editor/ipc-channel.md">Edit This Page</a>
+            </div>
+            <div id="discourse-comments"></div>
+            <div class="footer">
+                <footer id="footer" class="wrapper">
+    <div id="footer-copyright">
+      &copy; 2015 <a href="http://fireball-x.com/" target="_blank">Fireball Developers</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+</footer>
+
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
+            <aside id="article-toc" role="navigation" class="fixed">
+                <div id="article-toc-inner">
+                    <strong class="sidebar-title">TOC</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Core_and_Page_Process"><span class="toc-text">Core and Page Process</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ipc_Channel_Identifier"><span class="toc-text">Ipc Channel Identifier</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Core_Level"><span class="toc-text">Core Level</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Page_Level"><span class="toc-text">Page Level</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Message_Handlers"><span class="toc-text">Message Handlers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#On_Core_Level"><span class="toc-text">On Core Level</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#On_Page_Level"><span class="toc-text">On Page Level</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Message_With_Arguments"><span class="toc-text">Message With Arguments</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pass_Event_Object_As_Argument"><span class="toc-text">Pass Event Object As Argument</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Broadcast_Message"><span class="toc-text">Broadcast Message</span></a></li></ol>
+                    <a href="#top" id="article-toc-top">back to top</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
+
+
+  
+  
+    
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+      
+      
+      
+        
+        
+        
+      
+      
+    
+    
+    
+  
+  
+
+
+      </div>
+    </div>
+    <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<!-- endbuild -->
+
+
+<!-- Plugin search -->
+
+
+
+<!--bootstrap -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/js/toc.js" type="text/javascript"></script>
+
+<script src="/js/anchor.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+  addAnchors('.content-wrap h1, .content-wrap h2, .content-wrap h3');
+</script>
+<!-- Swiftype -->
+
+  
+  
+  
+  
+
+  
+
+<!--discourse comment -->
+
+
+    
+    
+    
+
+    
+        
+        
+        
+    
+
+
+  </body>
+</html>

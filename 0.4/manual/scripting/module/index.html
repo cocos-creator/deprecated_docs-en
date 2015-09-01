@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Module | Fireball Docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.fireball-x.com/0.4/manual/scripting/module/index.html">
+  <!-- Alternative links -->
+  
+    
+      
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+
+  
+  <link rel="stylesheet" href="/css/anchor.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/tomorrow.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!-- endbuild -->
+  <!-- RSS -->
+  <link rel="alternative" href="/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <!-- Open Graph -->
+  
+    
+    
+  
+  <!-- Swiftype -->
+  
+  <!-- Google Analytics -->
+  
+</head>
+
+
+  
+    <div id="full-wrap">
+      <div class="container-fluid">
+        <header>
+    <nav class="navbar navbar-inverse">
+        <div class="container navbar-wrapper">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/images/logo.png">
+                </a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li ><a href="/">Home</a></li>
+                    
+                    <li ><a href="/manual/index">Manual</a></li>
+                    
+                    <li ><a href="/editor/index">Extending Editor</a></li>
+                    
+                    <li ><a href="/api">API</a></li>
+                    
+                    <li ><a href="http://fireball-x.com/en">Fireball</a></li>
+                    
+                    <li ><a href="http://docs-zh.fireball-x.com">中文</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+      </div>
+      <div class="container">
+        <div class="container sidebar">
+    <aside id="sidebar" role="navigation">
+  <div class="inner">
+      <ul class="nav nav-pills nav-stacked"><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Navigation</strong></li><li role="presentation"><a role="button" href="#top">back to top</a></li><li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_0.4.yml">edit sidebar</a></li></ul>
+  </div>
+</aside>
+</div>
+<div class="container content-wrap">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-9">
+            <div class="title-header" id="top">
+                <h1>Module</h1>
+            </div>
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/"></a></li>
+                    <li class="active">Module</li>
+                </ol>
+            </div>
+            <p>It is allowed to seperate code into several script files, and inter-reference among them. To make it happen, you’ll need to understand how to define and use modules in Fireball. This is often referred as  <strong>Modulization</strong></p>
+<blockquote>
+<p>In this chapter, the terms of ‘module’ and ‘script’ are usually of the same meaning. All <strong>Note</strong> contents are advanced skills, and are not required to be understood for beginners.</p>
+</blockquote>
+<h2 id="Overview">Overview</h2><p>If you are still not sure what modulization is for, consider it as:</p>
+<ul>
+<li><code>include</code> in C/C++</li>
+<li><code>using</code> in C#</li>
+<li><code>import</code> in Java &amp; Python</li>
+<li><code>link</code> in HTML</li>
+</ul>
+<p>Modulization allows you to refer other scripts in Fireball. For instance, you can:</p>
+<ul>
+<li>Access public variables in other scripts</li>
+<li>Call public methods in other scripts</li>
+<li>Use public types in other scripts</li>
+<li>Utilize or inherit public components in other scripts</li>
+</ul>
+<p>Fireball JavaScript implements modulization almost in the same way as node.js:</p>
+<ul>
+<li>A single script is a module</li>
+<li>Each module has its own scope (i.e. local variables declared with <code>var</code> cannot be accessed in other modules)</li>
+<li>Refer other modules <strong>synchronously</strong> by <code>require</code> method.</li>
+<li>Export variables by setting <code>module.exports</code></li>
+</ul>
+<p>All user code will be compiled by Fireball into native JavaScript, which can be executed in mobile browsers, no matter how the modules are defined.</p>
+<h2 id="Module_Reference">Module Reference</h2><h3 id="require"><code>require</code></h3><p>All modules defined by user, i.e. not Fireball built-in modules, need <code>require</code> to access. Assuming we’re trying to access a component named <code>Rotate</code> defined in another script:</p>
+<pre><code class="js">var Rotate = require(&#39;rotate&#39;);
+</code></pre>
+<p>The return value of <code>require</code> is an object exported by module, and is usually saved in a variable for futher use. The string passed into <code>require</code> is the <strong>file name</strong> of the module. The file name has no path or suffix, and is case sensitive.</p>
+<h3 id="A_Complete_Example_of_require">A Complete Example of <code>require</code></h3><p>Next we can create an inherited class from <code>Rotate</code>. Create a new script named <code>sinRotate.js</code>:</p>
+<pre><code class="js">var Rotate = require(&#39;rotate&#39;);
+
+var SinRotate = Fire.Class({
+    extends: Rotate,
+    update: function () {
+        this.transform.rotation += this.speed * Math.sin(Fire.Time.time);
+    }
+});
+</code></pre>
+<p>We define a new component named <code>SinRotate</code>, which extends from <code>Rotate</code> and override the <code>update</code> method. The new component is available to other scripts as well, as long as there is a <code>require(&#39;sinRotate&#39;)</code>.</p>
+<p><strong>Note</strong></p>
+<ul>
+<li><code>require</code> can be called anywhere, at any moment.</li>
+<li>A script doesn’t execute until it’s required in the project for the first time, which means <code>require</code> always returns the same instance no matter how many times called.</li>
+<li>When debugging, you can <code>require</code> any project module in the Developer Tools.</li>
+</ul>
+<h2 id="定义模块"><a name="define"></a>定义模块</h2><h3 id="定义Component">定义Component</h3><p>其实每一个单独的脚本文件就是一个模块，例如新建一个脚本 <code>rotate.js</code>，在里面定义一个 Component：</p>
+<pre><code class="js">var Rotate = Fire.Class({
+    extends: Fire.Component,
+    properties: {
+        speed: 1
+    },
+    update: function () {
+        this.transform.rotation += this.speed;
+    }
+});
+</code></pre>
+<p>当你在脚本中定义了一个 Component，Fireball 会自动将它设置为导出模块，其它脚本直接 require 这个模块就能使用这个 Component。</p>
+<h3 id="定义普通JavaScript模块">定义普通JavaScript模块</h3><p>模块里不单单能定义 Component，实际上你可以定义任意 JavaScript 对象。假设有个脚本 <code>config.js</code></p>
+<pre><code class="js">var config = {
+    moveSpeed: 10,
+    version: &#39;0.15&#39;,
+    showTutorial: true,
+
+    load: function () {
+        // ...
+    }
+};
+config.load();
+</code></pre>
+<p>现在如果我们要在其它脚本中访问 config 对象：</p>
+<pre><code class="js">// player.js
+var config = require(&#39;config&#39;);
+Fire.log(&#39;speed is&#39;, config.moveSpeed);
+</code></pre>
+<p>结果会有报错：<code>TypeError: Cannot read property &#39;moveSpeed&#39; of null</code>，这是因为 config 没有设置为导出对象。我们还需要在 <code>config.js</code> 的最后把 <strong>module.exports</strong> 设置成 config：</p>
+<pre><code class="js">module.exports = config;
+</code></pre>
+<p>这样做的原因是只要有其它脚本 require 它，获得的实际上就是这里的 module.exports 对象。</p>
+<blockquote>
+<p>那为什么定义 Component 时可以不用设置 exports ？<br>  因为 Component 是 Fireball 中的特殊类型，如果一个脚本定义了 Component 却没有声明 exports，Fireball 会自动将它设置为对应的 Component。</p>
+</blockquote>
+<p>完整代码如下：</p>
+<pre><code class="js">// config.js
+var config = {
+    moveSpeed: 10,
+    version: &#39;0.15&#39;,
+    showTutorial: true,
+
+    load: function () {
+        // ...
+    }
+};
+config.load();
+
+module.exports = config;
+</code></pre>
+<pre><code class="js">// player.js
+var config = require(&#39;config&#39;);
+Fire.log(&#39;speed is&#39;, config.moveSpeed);
+</code></pre>
+<p>这样便能正确输出：<code>speed is 10</code>。</p>
+<h2 id="更多示例">更多示例</h2><h3 id="导出变量">导出变量</h3><ul>
+<li><p>module.exports 默认就是 {}，可以直接往里面增加新的字段。</p>
+<pre><code class="js">  // foobar.js:
+  module.exports.foo = function () {
+      Fire.log(&quot;foo&quot;);
+  };
+  module.exports.bar = function () {
+      Fire.log(&quot;bar&quot;);
+  };
+  // test.js:
+  var foobar = require(&quot;foobar&quot;);
+  foobar.foo();    // &quot;foo&quot;
+  foobar.bar();    // &quot;bar&quot;
+</code></pre>
+</li>
+<li><p>module.exports 导出的对象的值可以是任意 JavaScript 类型。</p>
+<pre><code class="js">  // foobar.js:
+  module.exports = {
+      FOO: function () {
+          this.type = &quot;foo&quot;;
+      },
+      bar: &quot;bar&quot;
+  };
+  // test.js:
+  var foobar = require(&quot;foobar&quot;);
+  var foo = new foobar.FOO();
+  Fire.log(foo.type);      // &quot;foo&quot;
+  Fire.log(foobar.bar);    // &quot;bar&quot;
+</code></pre>
+</li>
+</ul>
+<h3 id="封装私有变量">封装私有变量</h3><p>每个脚本都是一个单独的作用域，在脚本内使用 <strong>var</strong> 定义的局部变量，将无法被模块外部访问。我们可以这样来封装模块内的私有变量：</p>
+<pre><code class="js">// foobar.js:
+var dirty = false;
+module.exports = {
+    setDirty: function () {
+        dirty = true;
+    },
+    isDirty: function () {
+        return dirty;
+    },
+};
+
+// test1.js:
+var foo = require(&quot;foobar&quot;);
+Fire.log(typeof foo.dirty);        // &quot;undefined&quot;
+foo.setDirty();
+
+// test2.js:
+var foo = require(&quot;foobar&quot;);
+Fire.log(foo.isDirty());           // true
+</code></pre>
+<p><strong>警告：定义变量前一定要在前面加上 var</strong>，否则将会变成全局变量！在 Fireball 中禁止使用全局变量。</p>
+<pre><code class="js">// foobar.js:
+dirty = false;        // 这是错的，dirty 会变成全局变量！前面应该加上 var ！
+module.exports = {
+    setDirty: function () {
+        dirty = true;
+    },
+};
+</code></pre>
+<h2 id="循环引用">循环引用</h2><p>(TODO)</p>
+
+            <div>
+                <hr>
+                <a href="#">Edit This Page</a>
+            </div>
+            <div id="discourse-comments"></div>
+            <div class="footer">
+                <footer id="footer" class="wrapper">
+    <div id="footer-copyright">
+      &copy; 2015 <a href="http://fireball-x.com/" target="_blank">Fireball Developers</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+</footer>
+
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
+            <aside id="article-toc" role="navigation" class="fixed">
+                <div id="article-toc-inner">
+                    <strong class="sidebar-title">TOC</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Module_Reference"><span class="toc-text">Module Reference</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#require"><span class="toc-text">require</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A_Complete_Example_of_require"><span class="toc-text">A Complete Example of require</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义模块"><span class="toc-text">定义模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义Component"><span class="toc-text">定义Component</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义普通JavaScript模块"><span class="toc-text">定义普通JavaScript模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更多示例"><span class="toc-text">更多示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#导出变量"><span class="toc-text">导出变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#封装私有变量"><span class="toc-text">封装私有变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#循环引用"><span class="toc-text">循环引用</span></a></li></ol>
+                    <a href="#top" id="article-toc-top">back to top</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
+
+
+  
+  
+    
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+      
+      
+      
+        
+        
+        
+      
+      
+    
+    
+    
+  
+  
+
+
+      </div>
+    </div>
+    <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<!-- endbuild -->
+
+
+<!-- Plugin search -->
+
+
+
+<!--bootstrap -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/js/toc.js" type="text/javascript"></script>
+
+<script src="/js/anchor.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+  addAnchors('.content-wrap h1, .content-wrap h2, .content-wrap h3');
+</script>
+<!-- Swiftype -->
+
+  
+  
+  
+  
+
+  
+
+<!--discourse comment -->
+
+
+    
+    
+    
+
+    
+        
+        
+        
+    
+
+
+  </body>
+</html>

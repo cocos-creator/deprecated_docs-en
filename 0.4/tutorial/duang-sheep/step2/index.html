@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Tutorial - Create Background | Fireball Docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.fireball-x.com/0.4/tutorial/duang-sheep/step2/index.html">
+  <!-- Alternative links -->
+  
+    
+      
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+
+  
+  <link rel="stylesheet" href="/css/anchor.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/tomorrow.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!-- endbuild -->
+  <!-- RSS -->
+  <link rel="alternative" href="/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <!-- Open Graph -->
+  
+    
+    
+  
+  <!-- Swiftype -->
+  
+  <!-- Google Analytics -->
+  
+</head>
+
+
+  
+    <div id="full-wrap">
+      <div class="container-fluid">
+        <header>
+    <nav class="navbar navbar-inverse">
+        <div class="container navbar-wrapper">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/images/logo.png">
+                </a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li ><a href="/">Home</a></li>
+                    
+                    <li ><a href="/manual/index">Manual</a></li>
+                    
+                    <li ><a href="/editor/index">Extending Editor</a></li>
+                    
+                    <li ><a href="/api">API</a></li>
+                    
+                    <li ><a href="http://fireball-x.com/en">Fireball</a></li>
+                    
+                    <li ><a href="http://docs-zh.fireball-x.com">中文</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+      </div>
+      <div class="container">
+        <div class="container sidebar">
+    <aside id="sidebar" role="navigation">
+  <div class="inner">
+      <ul class="nav nav-pills nav-stacked"><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Navigation</strong></li><li role="presentation"><a role="button" href="#top">back to top</a></li><li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_0.4.yml">edit sidebar</a></li></ul>
+  </div>
+</aside>
+</div>
+<div class="container content-wrap">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-9">
+            <div class="title-header" id="top">
+                <h1>Tutorial - Create Background</h1>
+            </div>
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/"></a></li>
+                    <li class="active">Tutorial - Create Background</li>
+                </ol>
+            </div>
+            <h2 id="Goal">Goal</h2><ul>
+<li>Create scrolling sky and ground background in <code>Game</code> scene.</li>
+</ul>
+<hr>
+<h2 id="Steps">Steps</h2><h3 id="Create_Sky">Create Sky</h3><p>Right click in <code>Hierarchy</code> view and choose <code>Create Empty</code> from context menu. Right click the <code>New Entity</code> object, choose <code>Rename</code> and name it to <code>Background</code>.</p>
+<p>With the same entity selected, find <code>Fire.Transform</code> component in <code>Inspector</code> view and set <code>Position</code> to (0, 0).</p>
+<p><strong>Background Transform:</strong><br><img src="https://cloud.githubusercontent.com/assets/7564028/6842952/d0a8d9ba-d3d8-11e4-979f-3f842f95f987.png" alt="000"></p>
+<p>In <code>Assets</code> view, find <code>bg</code> image in <code>sprites/background</code> folder. Drag it to <code>Background</code> entity in <code>Hierarchy</code> view. You’ll find a new entity <code>bg</code> created under <code>Background</code>, with a <code>Fire.SpriteRender</code> Component.</p>
+<p>Next let’s duplicate <code>bg</code> entity by right click it and choose <code>Duplicate</code>. Rename the two entities to <code>bg_1</code> and <code>bg_2</code>, set their <code>Position</code> property in <code>Inspector</code> view to <code>(0, 0)</code> and <code>(900,0)</code>.</p>
+<p><strong>bg_1 setup:</strong><br><img src="https://cloud.githubusercontent.com/assets/7564028/6843004/5b8c7334-d3d9-11e4-93c8-c32f8d4d8322.png" alt="001"></p>
+<p><strong>bg_2 setup:</strong><br><img src="https://cloud.githubusercontent.com/assets/7564028/6843007/65eadbc2-d3d9-11e4-85ab-ed773b7d0fbd.png" alt="002"></p>
+<h3 id="Create_Ground">Create Ground</h3><p>Create a new entity <code>Ground</code> the same way. Drag image asset <code>sprites/background/ground</code> from <code>Assets</code> view to <code>Ground</code> entity. Duplicate <code>ground</code> entity and rename both to <code>ground_1</code> and <code>ground_2</code>, set their positions to <code>(0, -15)</code> and <code>(864, -15)</code>.</p>
+<p><strong>Ground setup:</strong><br><img src="https://cloud.githubusercontent.com/assets/7564028/6843009/68a489a8-d3d9-11e4-9f35-2d9df96ac0bc.png" alt="003"></p>
+<p><strong>ground_1 setup:</strong><br><img src="https://cloud.githubusercontent.com/assets/7564028/6843014/7d8be7d0-d3d9-11e4-98e0-323303486f3d.png" alt="004"></p>
+<p><strong>ground_2 setup:</strong><br><img src="https://cloud.githubusercontent.com/assets/7564028/6843016/7ffe8900-d3d9-11e4-96a7-8dab6d3ca6e3.png" alt="005"></p>
+<h3 id="Create_Scrolling_Script">Create Scrolling Script</h3><p>Learn how to create a component by reading <a href="http://docs.fireball-x.com/zh/scripting/component/" target="_blank" rel="external"><strong>Component Overview</strong></a> and <a href="http://docs.fireball-x.com/zh/scripting/class/" target="_blank" rel="external"><strong>Define a Class</strong></a>. In <code>Assets</code> view, create a script file named <code>ScrollPicture</code> in <code>script</code> folder.</p>
+<p>This script will make all background entities moving from right to left according to the sheep’s speed. Once a background entity moves out of sight on the left, we will reposition it to the far right and keep scrolling infinitely.</p>
+<pre><code class="js">var ScrollPicture = Fire.Class({
+
+  // Custom components must inherit from Fire.Component
+  extends: Fire.Component,
+
+  // Properties
+  // The values is not relevant here, we will set proper values in Inspector
+  properties: {
+      // scrolling speed
+      speed: 0,
+      // reset position when moving past this distance
+      offsetX: 0
+  },
+
+  // update background entity position
+  update: function () {
+      this.transform.x -= Fire.Time.deltaTime * this.speed;
+      if (this.transform.x &lt; -this.offsetX) {
+        this.transform.x += this.offsetX;
+      }
+  }
+});
+</code></pre>
+<p>Once you put the above code into the script file, save and drag the script to <code>Background</code> and <code>Ground</code> entities. This will create <code>ScrollPicture</code> components on those entities.</p>
+<p><strong>BackGround Setup:</strong><br><img src="https://cloud.githubusercontent.com/assets/7564028/6843018/835bc748-d3d9-11e4-849e-3aee381b85bc.png" alt="006"></p>
+<p><strong>Ground Setup:</strong><br><img src="https://cloud.githubusercontent.com/assets/7564028/6843079/309b75f2-d3da-11e4-89b5-7fd2e93c3fb8.png" alt="007"></p>
+<h3 id="Run_Your_Game!">Run Your Game!</h3><p>Now you can click the <code>Play</code> button <img src="https://cloud.githubusercontent.com/assets/7564028/6843101/7917f008-d3da-11e4-8577-6e68a10c36c5.png" alt="008"> at the top center of the editor to run the game and see the background scrolling already.</p>
+<p><strong>Final Setup:</strong><br><img src="https://cloud.githubusercontent.com/assets/7564028/6843104/7ad32c78-d3da-11e4-98ac-a769575ea9a5.png" alt="009"></p>
+<hr>
+<p><strong>NOTE:</strong> <a href="https://github.com/fireball-x/tutorial/commits/step-2" target="_blank" rel="external"> Step - 2 Project Snapshot for Creating Background</a></p>
+
+            <div>
+                <hr>
+                <a href="#">Edit This Page</a>
+            </div>
+            <div id="discourse-comments"></div>
+            <div class="footer">
+                <footer id="footer" class="wrapper">
+    <div id="footer-copyright">
+      &copy; 2015 <a href="http://fireball-x.com/" target="_blank">Fireball Developers</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+</footer>
+
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
+            <aside id="article-toc" role="navigation" class="fixed">
+                <div id="article-toc-inner">
+                    <strong class="sidebar-title">TOC</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Goal"><span class="toc-text">Goal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Steps"><span class="toc-text">Steps</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_Sky"><span class="toc-text">Create Sky</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_Ground"><span class="toc-text">Create Ground</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_Scrolling_Script"><span class="toc-text">Create Scrolling Script</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_Your_Game!"><span class="toc-text">Run Your Game!</span></a></li></ol></li></ol>
+                    <a href="#top" id="article-toc-top">back to top</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
+
+
+  
+  
+    
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+      
+      
+      
+        
+        
+        
+      
+      
+    
+    
+    
+  
+  
+
+
+      </div>
+    </div>
+    <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<!-- endbuild -->
+
+
+<!-- Plugin search -->
+
+
+
+<!--bootstrap -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/js/toc.js" type="text/javascript"></script>
+
+<script src="/js/anchor.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+  addAnchors('.content-wrap h1, .content-wrap h2, .content-wrap h3');
+</script>
+<!-- Swiftype -->
+
+  
+  
+  
+  
+
+  
+
+<!--discourse comment -->
+
+
+    
+    
+    
+
+    
+        
+        
+        
+    
+
+
+  </body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Unit Test | Fireball Docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.fireball-x.com/editor/unit-test/index.html">
+  <!-- Alternative links -->
+  
+    
+      
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+
+  
+  <link rel="stylesheet" href="/css/anchor.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/tomorrow.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!-- endbuild -->
+  <!-- RSS -->
+  <link rel="alternative" href="/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <!-- Open Graph -->
+  
+    
+    
+  
+  <!-- Swiftype -->
+  
+  <!-- Google Analytics -->
+  
+</head>
+
+
+  
+    <div id="full-wrap">
+      <div class="container-fluid">
+        <header>
+    <nav class="navbar navbar-inverse">
+        <div class="container navbar-wrapper">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/images/logo.png">
+                </a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li ><a href="/">Home</a></li>
+                    
+                    <li ><a href="/manual/index">Manual</a></li>
+                    
+                    <li ><a href="/editor/index">Extending Editor</a></li>
+                    
+                    <li ><a href="/api">API</a></li>
+                    
+                    <li ><a href="http://fireball-x.com/en">Fireball</a></li>
+                    
+                    <li ><a href="http://docs-zh.fireball-x.com">中文</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://github.com/fireball-x/editor-framework/edit/master/docs/editor/unit-test.md"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+      </div>
+      <div class="container">
+        <div class="container sidebar">
+    <aside id="sidebar" role="navigation">
+  <div class="inner">
+      <ul class="nav nav-pills nav-stacked"><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Extending Editor</strong></li><li role="presentation" ><a href="/editor/editor-module" class="sidebar-link">Editor Module</a></li><li role="presentation" ><a href="/editor/ipc-channel" class="sidebar-link">Ipc Channel</a></li><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Packages</strong></li><li role="presentation" ><a href="/editor/packages/create-package" class="sidebar-link">Create Your Package</a></li><li role="presentation" ><a href="/editor/packages/create-panels" class="sidebar-link">Create Panels</a></li><li role="presentation" ><a href="/editor/packages/create-widgets" class="sidebar-link">Create Widgets</a></li><li role="presentation" ><a href="/editor/packages/register-shortcuts" class="sidebar-link">Register Shortcuts</a></li><li role="presentation" ><a href="/editor/packages/load-and-build" class="sidebar-link">Load And Rebuild</a></li><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Navigation</strong></li><li role="presentation"><a role="button" href="#top">back to top</a></li><li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_editor.yml">edit sidebar</a></li></ul>
+  </div>
+</aside>
+</div>
+<div class="container content-wrap">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-9">
+            <div class="title-header" id="top">
+                <h1>Unit Test</h1>
+            </div>
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/editor/index">Extending Editor</a></li>
+                    <li class="active">Unit Test</li>
+                </ol>
+            </div>
+            <p>In Editor Framework, we can make and run unit test easily with our Test Suite.</p>
+<h2 id="Package_Test">Package Test</h2><p>Any package can run test for itself using <a href="https://github.com/fireball-packages/Tester" target="_blank" rel="external">Tester</a>. Open the Package Manager, and click <code>Test</code> button of the package you want to run test with. It will run tests you registered in the <code>test</code> filed of your package’s <code>package.json</code>.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/344547/8370061/888597ee-1bf5-11e5-8132-b7ca4db4f4b6.png" alt="image"></p>
+<p>If the test is a <code>.html</code> file, Tester will run it as a page-level test. If it is a <code>.js</code> file, Tester will run it in the core process as a core-level test.</p>
+<pre><code class="js">// your pacakge.json
+...
+&quot;test&quot;: [
+  &quot;test/basic.html&quot;, // &lt;= this will be test in page-level
+  &quot;test/basic-asset-db.js&quot;, // &lt;= this will be test in core-level
+],
+</code></pre>
+<p>How to choose process to run your test? If you are developing <strong>Widget</strong>, <strong>Panel</strong>, you should provide <code>.html</code> file and test them in Tester’s page-level environment. You can check following builtin packages for example:</p>
+<ul>
+<li><a href="https://github.com/fireball-packages/ui-kit" target="_blank" rel="external">ui-kit</a>,</li>
+<li><a href="https://github.com/fireball-packages/console" target="_blank" rel="external">console</a></li>
+</ul>
+<p>If you are developing <strong>Assets</strong>, <strong>Meta</strong>, you should provide <code>.js</code> file and test them in Tester’s core-level environment. Example packages:</p>
+<ul>
+<li><a href="https://github.com/fireball-packages/canvas-assets" target="_blank" rel="external">canvas-assets</a></li>
+</ul>
+<h3 id="Write_Page-Level_Test">Write Page-Level Test</h3><p>The page-level test suite provides three environment:</p>
+<ul>
+<li><a href="https://github.com/fireball-packages/tester/blob/master/env/env-widget.html" target="_blank" rel="external">env-widget.html</a></li>
+<li><a href="https://github.com/fireball-packages/tester/blob/master/env/env-panel.html" target="_blank" rel="external">env-panel.html</a></li>
+<li><a href="https://github.com/fireball-packages/tester/blob/master/env/env-canvas-studio.html" target="_blank" rel="external">env-canvas-studio.html</a></li>
+</ul>
+<p>Each test environment import necessary files for your test to run.</p>
+<p>For example, if you are writing a panel for editor-framework, you can write your test html like this:</p>
+<pre><code class="html">&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;link rel=&quot;import&quot; href=&quot;packages://tester/env/env-panel.html&quot;&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;panel-fixture id=&quot;panel&quot; panel-id=&quot;my.panel&quot;&gt;&lt;/panel-fixture&gt;
+        &lt;script src=&quot;basic.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>The <code>basic.js</code> file is a standard <a href="http://mochajs.org/#getting-started" target="_blank" rel="external">mocha</a> test file with <a href="http://chaijs.com/" target="_blank" rel="external">chai</a> assertions. You can use helper functions in your test file depending on your test environment. Go through each environment files to see what helper library they have included.</p>
+<p>Check out the builtin package test examples to see what you can do. Such as <a href="https://github.com/fireball-packages/console/tree/master/test" target="_blank" rel="external">console</a>.</p>
+<p>If you are working with Fireball, change the <code>env-panel</code> to <code>env-canvas-studio</code> instead, it will load the additional script that Fireball needs before running your test.</p>
+<h3 id="Write_Core-Level_Test">Write Core-Level Test</h3><p>You don’t need to worry about test environment for your core-level test in Tester.</p>
+<p>When Tester run a <code>.js</code> test file registered in <code>package.json</code>, it will send a ipc message <code>tester:run-test</code> to core-level script (Tester’s <code>main.js</code>). Then it will spawn a child process using Electron as executable, and run the <code>js</code> file with <code>--test path/to/test/file --report-detials</code> arguments. If there are any test result that need to report back from the child process, it will send over ipc message, and the message is handled in one of <a href="https://github.com/fireball-packages/tester/blob/master/main.js#L28-L63" target="_blank" rel="external">ipcHandlers</a> of <code>main.js</code>.</p>
+<p>Core-level testing is useful for packages that dealing with Meta and Asset import/export. You can learn more about core-level testing by reading the test method for editor and engine below.</p>
+<h2 id="Editor_and_Engine_Test">Editor and Engine Test</h2><p>For Fireball and Editor Framework developer, we have two ways to run unit test.</p>
+<h3 id="Test_In_Terminal">Test In Terminal</h3><p>The framework can test itself or its submodules by running these shell commands:</p>
+<ul>
+<li><code>your-app --test &lt;your/test/file&gt;</code> Running a single test and output test report in terminal or command line tool you use.</li>
+<li><code>your-app --test &lt;your/test/file&gt; --report-failures</code> Running a single test and collect its failures to the main-process, useful when doing full test</li>
+<li><code>your-app --test &lt;your/test/file&gt; --report-details</code> Running a single test and collect every detail of the test to the main-process, useful when you try to test core-level modules in Tester</li>
+</ul>
+<p>By default, <code>--test</code> use <code>DefaultReporter</code> and print the result in terminal. But sometimes we need to run tests in the child process and report back to main process. Editor Framework provides two additional <a href="https://github.com/mochajs/mocha/wiki/Third-party-reporters" target="_blank" rel="external">reporters</a> for doing this.</p>
+<p>With the <code>--report-failures</code> argument, it will report if there are any failure during the tests, then sending back the data below when test process finished:</p>
+<pre><code class="js">{
+  channel: &#39;process:end&#39;,
+  failures: ${failure count},
+  path: ${current test path},
+}
+</code></pre>
+<p>With the <code>--report-details</code> argument it will send every mocha test event and its data back to main process. These test events including: <code>start</code>, <code>end</code>, <code>suite</code>, <code>suite end</code>, <code>test</code>, <code>test end</code>, see <a href="https://github.com/fireball-x/editor-framework/blob/master/core/test-runner.js#L183-L244" target="_blank" rel="external">test-runner</a> for details.</p>
+<h3 id="Test_In_Editor">Test In Editor</h3><p>You can also run tests within Editor Framework’s graphical editor UI.</p>
+<p>Go to the main menu <code>Developer/Run Tests</code> and Editor Framework will run all the tests and report the result in a panel(not implement yet). This is almost the same as Test in Terminal, except the report is output to a editor panel and you don’t need a terminal for that. (Means user with release version of Fireball or Editor-Framework app can see the test report as well)</p>
+<h2 id="Conclusion">Conclusion</h2><p>Let’s put all these test method together to help users better understand the pipeline.</p>
+<h4 id="Test_in_Terminal">Test in Terminal</h4><p><code>--test &lt;file&gt;</code> -&gt; <code>core/test-runner.js</code> -&gt; <code>Test.run(file)</code> -&gt; results</p>
+<h4 id="Test_in_Editor_Framework">Test in Editor Framework</h4><p>Editor Framework -&gt; Menu <code>Developer/Run Tests</code> -&gt; <code>Test.liveRun()</code> -&gt; <code>Editor.sendToWindow ( details )</code></p>
+<h4 id="Test_in_Tester_(Page_Environment)">Test in Tester (Page Environment)</h4><p>Package Manager -&gt; Test Button -&gt; <code>Tester._run</code> -&gt; Tester’s webview load ( your-test-html ) -&gt; <code>sendToHost</code> (send back result to Tester)</p>
+<h4 id="Test_in_Tester_(Core_Environment)">Test in Tester (Core Environment)</h4><p>Package Manager -&gt; Test Button -&gt; <code>Tester._run</code> -&gt; <code>Editor.sendToCore( &#39;tester:run-test&#39;, your-test-js )</code> -&gt; <code>child_process --test &lt;your-test-js&gt; --report-details</code> -&gt; listen on the details -&gt; <code>Editor.sendToPanel( &#39;tester.panel&#39;, details )</code></p>
+
+            <div>
+                <hr>
+                <a href="https://github.com/fireball-x/editor-framework/edit/master/docs/editor/unit-test.md">Edit This Page</a>
+            </div>
+            <div id="discourse-comments"></div>
+            <div class="footer">
+                <footer id="footer" class="wrapper">
+    <div id="footer-copyright">
+      &copy; 2015 <a href="http://fireball-x.com/" target="_blank">Fireball Developers</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+</footer>
+
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
+            <aside id="article-toc" role="navigation" class="fixed">
+                <div id="article-toc-inner">
+                    <strong class="sidebar-title">TOC</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Package_Test"><span class="toc-text">Package Test</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Write_Page-Level_Test"><span class="toc-text">Write Page-Level Test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Write_Core-Level_Test"><span class="toc-text">Write Core-Level Test</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Editor_and_Engine_Test"><span class="toc-text">Editor and Engine Test</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Test_In_Terminal"><span class="toc-text">Test In Terminal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Test_In_Editor"><span class="toc-text">Test In Editor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Test_in_Terminal"><span class="toc-text">Test in Terminal</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Test_in_Editor_Framework"><span class="toc-text">Test in Editor Framework</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Test_in_Tester_(Page_Environment)"><span class="toc-text">Test in Tester (Page Environment)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Test_in_Tester_(Core_Environment)"><span class="toc-text">Test in Tester (Core Environment)</span></a></li></ol></li></ol></li></ol>
+                    <a href="#top" id="article-toc-top">back to top</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
+
+
+  
+  
+    
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+      
+      
+      
+        
+        
+        
+      
+      
+    
+    
+    
+  
+  
+
+
+      </div>
+    </div>
+    <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<!-- endbuild -->
+
+
+<!-- Plugin search -->
+
+
+
+<!--bootstrap -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/js/toc.js" type="text/javascript"></script>
+
+<script src="/js/anchor.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+  addAnchors('.content-wrap h1, .content-wrap h2, .content-wrap h3');
+</script>
+<!-- Swiftype -->
+
+  
+  
+  
+  
+
+  
+
+<!--discourse comment -->
+
+
+    
+    
+    
+
+    
+        
+        
+        
+    
+
+
+  </body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Load and Build Packages | Fireball Docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.fireball-x.com/editor/packages/load-and-build/index.html">
+  <!-- Alternative links -->
+  
+    
+      
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+
+  
+  <link rel="stylesheet" href="/css/anchor.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/tomorrow.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!-- endbuild -->
+  <!-- RSS -->
+  <link rel="alternative" href="/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <!-- Open Graph -->
+  
+    
+    
+  
+  <!-- Swiftype -->
+  
+  <!-- Google Analytics -->
+  
+</head>
+
+
+  
+    <div id="full-wrap">
+      <div class="container-fluid">
+        <header>
+    <nav class="navbar navbar-inverse">
+        <div class="container navbar-wrapper">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/images/logo.png">
+                </a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li ><a href="/">Home</a></li>
+                    
+                    <li ><a href="/manual/index">Manual</a></li>
+                    
+                    <li ><a href="/editor/index">Extending Editor</a></li>
+                    
+                    <li ><a href="/api">API</a></li>
+                    
+                    <li ><a href="http://fireball-x.com/en">Fireball</a></li>
+                    
+                    <li ><a href="http://docs-zh.fireball-x.com">中文</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://github.com/fireball-x/editor-framework/edit/master/docs/editor/packages/load-and-build-packages.md"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+      </div>
+      <div class="container">
+        <div class="container sidebar">
+    <aside id="sidebar" role="navigation">
+  <div class="inner">
+      <ul class="nav nav-pills nav-stacked"><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Extending Editor</strong></li><li role="presentation" ><a href="/editor/editor-module" class="sidebar-link">Editor Module</a></li><li role="presentation" ><a href="/editor/ipc-channel" class="sidebar-link">Ipc Channel</a></li><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Packages</strong></li><li role="presentation" ><a href="/editor/packages/create-package" class="sidebar-link">Create Your Package</a></li><li role="presentation" ><a href="/editor/packages/create-panels" class="sidebar-link">Create Panels</a></li><li role="presentation" ><a href="/editor/packages/create-widgets" class="sidebar-link">Create Widgets</a></li><li role="presentation" ><a href="/editor/packages/register-shortcuts" class="sidebar-link">Register Shortcuts</a></li><li role="presentation" class="active"><a href="/editor/packages/load-and-build" class="sidebar-link">Load And Rebuild</a></li><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Navigation</strong></li><li role="presentation"><a role="button" href="#top">back to top</a></li><li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_editor.yml">edit sidebar</a></li></ul>
+  </div>
+</aside>
+</div>
+<div class="container content-wrap">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-9">
+            <div class="title-header" id="top">
+                <h1>Load and Build Packages</h1>
+            </div>
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/editor/index">Extending Editor</a></li>
+                    <li class="active">Load and Build Packages</li>
+                </ol>
+            </div>
+            <p>Packages can be developed in any of the following file format:</p>
+<ul>
+<li>HTML</li>
+<li>JavaScript with ES6 and ES7 features</li>
+<li><a href="https://learnboost.github.io/stylus/" target="_blank" rel="external">Stylus</a></li>
+<li><a href="http://lesscss.org/" target="_blank" rel="external">Less</a></li>
+<li><a href="http://sass-lang.com/" target="_blank" rel="external">Sass</a></li>
+<li><a href="http://coffeescript.org/" target="_blank" rel="external">CoffeeScript</a> will be supported, PR is welcome!</li>
+<li><a href="http://www.typescriptlang.org/" target="_blank" rel="external">TypeScript</a> will be supported, PR is welcome!</li>
+</ul>
+<p>To make sure package users facing consistent file format, Editor-Framework provides a pipeline to automatically build any of the above file format to vanila ES5 JavaScript and CSS. Here’s how.</p>
+<h2 id="Loading_Packages">Loading Packages</h2><p>To load packages into your Editor-Framework app, you need to either:</p>
+<ul>
+<li>Specify a path to load your packages from by running the method <code>Editor.registerPackagePath</code> in your <code>App.init</code> function. Then put all your packages into that path folder.</li>
+<li>By default, Editor-Framework load all packages in <a href="/demo">/demo</a> folder. You can also created your packages here to quickly see it in Package Manager list.</li>
+<li>You can also put your packages into <code>~/.{app-name}/packages</code> folder, read <a href="/docs/manual/create-your-package.md#create-your-package">create packages</a> doc for details.</li>
+</ul>
+<p>To load packages for <a href="https://github.com/fireball-x/fireball" target="_blank" rel="external">Fireball</a>, you can open Package-studio with the following parameter:</p>
+<pre><code class="bash"># Open Fireball Package Studio with all packages in editor-framework/demo loaded
+gulp package-studio --path editor-framework/demo
+</code></pre>
+<p>This way you can specify any folder you like to hold all your packages and they will be loaded by Package-studio automatically.</p>
+<h2 id="Building_Package">Building Package</h2><p>You can enable building for any loaded package, just add the property <code>&quot;build&quot;: &quot;true&quot;</code> to your package’s <code>package.json</code> file.</p>
+<p>If a package has building enabled(<code>&quot;build&quot;:&quot;true&quot;</code>), Editor-framework will build the package and put the compiled file into <code>package-name/bin/dev</code> folder. Then load the package from <code>package-name/bin/dev</code>.  The <code>&quot;build&quot;: &quot;true&quot;</code> property will also be removed from the compiled package’s <code>package.json</code> file, making it ready to ship.</p>
+<p>A package will also be rebuild when <code>package-name/bin/dev/package.json</code> has a different version number than <code>package-name/package.json</code>.</p>
+<p>If a package has no <code>build</code> property or has it disabled, Editor-framework will load the package as it is from <code>package-name</code> folder. No build or rebuild process will be applied to this package.</p>
+<h2 id="File_Change_Watch">File Change Watch</h2><p>When Editor-framework is running, it will watch all loaded packages. If you modified files in your package:</p>
+<ul>
+<li>File change notification fired by package watcher.</li>
+<li>If package has building enabled, rebuild the package.</li>
+<li>If building disabled or rebuild success, go through the dirty notify pipeline. If rebuild failed, stop the process.</li>
+</ul>
+<p>Dirty notification has different pipeline for <code>page-level</code> changes and <code>core-level</code> changes:</p>
+<ul>
+<li>For <code>page-level</code> changes, for example you changed the html or style in your <code>panel.html</code> file, it will send ipc message to panel indicating panel out-of-date. And your panel’s tab will turn red. You can reload the editor page to remove the ‘out-of-date’ state of page by select <code>Developer/Reload</code> or press Command+R (on Mac) or Control+R (on Windows).<br><img src="https://cloud.githubusercontent.com/assets/344547/8019179/70f804fe-0c73-11e5-8736-8df1a71e34a4.png" alt="red tab"></li>
+<li>For <code>core-level</code> changes, for example modification to <code>main.js</code> file, it will unload and reload the package.</li>
+</ul>
+<h2 id="Manual_Reload_Package">Manual Reload Package</h2><p>With your package loaded in Package Manager, you can also reload your package by clicking ‘Reload’ button in your package item:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/344547/8019037/beb6e248-0c6c-11e5-868d-9fe40c056155.png" alt="image"></p>
+<p>When ‘Reload’ button is clicked, Package Manager will:</p>
+<ul>
+<li>Check if the package has building enabled. If yes, rebuild it.</li>
+<li>If rebuild success, unload the package. If an error raised while compiling, don’t go to next step.</li>
+<li>Load the package again.</li>
+</ul>
+
+            <div>
+                <hr>
+                <a href="https://github.com/fireball-x/editor-framework/edit/master/docs/editor/packages/load-and-build-packages.md">Edit This Page</a>
+            </div>
+            <div id="discourse-comments"></div>
+            <div class="footer">
+                <footer id="footer" class="wrapper">
+    <div id="footer-copyright">
+      &copy; 2015 <a href="http://fireball-x.com/" target="_blank">Fireball Developers</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+</footer>
+
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
+            <aside id="article-toc" role="navigation" class="fixed">
+                <div id="article-toc-inner">
+                    <strong class="sidebar-title">TOC</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Loading_Packages"><span class="toc-text">Loading Packages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Building_Package"><span class="toc-text">Building Package</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#File_Change_Watch"><span class="toc-text">File Change Watch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Manual_Reload_Package"><span class="toc-text">Manual Reload Package</span></a></li></ol>
+                    <a href="#top" id="article-toc-top">back to top</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
+
+
+  
+  
+    
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+      
+      
+      
+        
+        
+        
+      
+      
+    
+    
+    
+  
+  
+
+
+      </div>
+    </div>
+    <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<!-- endbuild -->
+
+
+<!-- Plugin search -->
+
+
+
+<!--bootstrap -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/js/toc.js" type="text/javascript"></script>
+
+<script src="/js/anchor.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+  addAnchors('.content-wrap h1, .content-wrap h2, .content-wrap h3');
+</script>
+<!-- Swiftype -->
+
+  
+  
+  
+  
+
+  
+
+<!--discourse comment -->
+
+
+    
+    
+    
+
+    
+        
+        
+        
+    
+
+
+  </body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Tutorial - Create Pipes | Fireball Docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.fireball-x.com/0.4/tutorial/duang-sheep/step3/index.html">
+  <!-- Alternative links -->
+  
+    
+      
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+
+  
+  <link rel="stylesheet" href="/css/anchor.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/tomorrow.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!-- endbuild -->
+  <!-- RSS -->
+  <link rel="alternative" href="/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <!-- Open Graph -->
+  
+    
+    
+  
+  <!-- Swiftype -->
+  
+  <!-- Google Analytics -->
+  
+</head>
+
+
+  
+    <div id="full-wrap">
+      <div class="container-fluid">
+        <header>
+    <nav class="navbar navbar-inverse">
+        <div class="container navbar-wrapper">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/images/logo.png">
+                </a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li ><a href="/">Home</a></li>
+                    
+                    <li ><a href="/manual/index">Manual</a></li>
+                    
+                    <li ><a href="/editor/index">Extending Editor</a></li>
+                    
+                    <li ><a href="/api">API</a></li>
+                    
+                    <li ><a href="http://fireball-x.com/en">Fireball</a></li>
+                    
+                    <li ><a href="http://docs-zh.fireball-x.com">中文</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+      </div>
+      <div class="container">
+        <div class="container sidebar">
+    <aside id="sidebar" role="navigation">
+  <div class="inner">
+      <ul class="nav nav-pills nav-stacked"><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Navigation</strong></li><li role="presentation"><a role="button" href="#top">back to top</a></li><li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_0.4.yml">edit sidebar</a></li></ul>
+  </div>
+</aside>
+</div>
+<div class="container content-wrap">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-9">
+            <div class="title-header" id="top">
+                <h1>Tutorial - Create Pipes</h1>
+            </div>
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/"></a></li>
+                    <li class="active">Tutorial - Create Pipes</li>
+                </ol>
+            </div>
+            <h2 id="Goal">Goal</h2><ul>
+<li>Create a pipe template in <code>Game</code> scene, so that we can dynamically create pipes in runtime.</li>
+</ul>
+<hr>
+<h2 id="Steps">Steps</h2><h3 id="Create_Pipe_Template">Create Pipe Template</h3><p>Create two entities named <code>Template</code> and <code>PipeGroup</code> in <code>Hierarchy</code> view. Drag <code>PipeGroup</code> onto <code>Template</code>, make it a child.</p>
+<p>Find <code>sprites/background/pipe</code> image asset in <code>Asset</code> view. Drag it onto <code>Template/PipeGroup</code> in <code>Hierarchy</code> view. Expand <code>PipeGroup</code>, you’ll find a new child entity <code>pipe</code>.</p>
+<p>Right click <code>pipe</code> entity, and duplicate a new entity. Name the two as <code>topPipe</code> and <code>bottomPipe</code>. Set up their <code>Transform</code> component as the following picture shows:</p>
+<p><strong>Template setup:</strong></p>
+<p><img src="https://cloud.githubusercontent.com/assets/7564028/6843785/03c63d12-d3e1-11e4-88b8-789dd2f0ae3f.png" alt="000"></p>
+<p><strong>PipeGroup setup:</strong> (NOTE: We put PipeGroup out of screen since it’s only a template.)</p>
+<p><img src="https://cloud.githubusercontent.com/assets/7564028/6843962/af1fed88-d3e2-11e4-9c73-3212640a011b.png" alt="001"></p>
+<p><strong>topPipe setup:</strong></p>
+<p><img src="https://cloud.githubusercontent.com/assets/7564028/6843963/b2d67b4a-d3e2-11e4-95a4-2b8b1e217bf8.png" alt="002"></p>
+<p><strong>bottomPipe setup:</strong> (NOTE: Set Scale to negative value will flip the sprite)</p>
+<p><img src="https://cloud.githubusercontent.com/assets/7564028/6843964/b54cb254-d3e2-11e4-80ad-99f900f52c36.png" alt="003"></p>
+<p><strong>Final Setup:</strong></p>
+<p><img src="https://cloud.githubusercontent.com/assets/7564028/6843936/59b380f8-d3e2-11e4-9d73-0c3f654a6efd.png" alt="004"></p>
+<h3 id="Pipe_Scripting">Pipe Scripting</h3><p>In <code>assets/script</code> folder, create a new script file named <code>PipeGroup</code>. We will use this script to control the initialization of pipe position, the distance between top and bottom pipes, the scrolling of pipes and destroy pipe when it’s out of screen.</p>
+<p>Add the following code to the script file, and drag it to <code>PipeGroup</code> entity in <code>Hierarchy</code> view.</p>
+<p><strong>PipeGroup</strong></p>
+<pre><code class="js">var PipeGroup = Fire.Class({
+  // Inherit
+  extends: Fire.Component,
+  // constructor with a width member
+  constructor: function () {
+    // pipe width
+    this.width = 0;
+},
+// Properties
+properties: {
+    // scroll speed
+    speed: 200,
+    // destroy pipe when reach this position
+    minX: -900,
+    // top pipe y position range
+    topPosRange: {
+        default: new Fire.Vec2(100, 160)
+    },
+    // top and bottom pipe distance range
+    spacingRange: {
+      default: new Fire.Vec2(210, 230)
+    }
+},
+// Initialization
+onEnable: function () {
+    //randomly set a y position for top pipe
+    var topYpos = Math.randomRange(this.topPosRange.x, this.topPosRange.y);
+    //randomly set distance between top and bottom pipe
+    var randomSpacing = Math.randomRange(this.spacingRange.x, this.spacingRange.y);
+    var bottomYpos = topYpos - randomSpacing;
+
+    //set pipe positions
+    var topEntity = this.entity.find(&#39;topPipe&#39;);
+    topEntity.transform.y = topYpos;
+
+    var bottomEntity = this.entity.find(&#39;bottomPipe&#39;);
+    bottomEntity.transform.y = bottomYpos;
+
+    //set width
+    var bottomPipeRenderer = bottomEntity.getComponent(Fire.SpriteRenderer);
+    this.width = bottomPipeRenderer.sprite.width;
+},
+// update
+update: function () {
+    this.transform.x -= Fire.Time.deltaTime * this.speed;
+    //destroy pipes when it reaches out of screen position
+    if (this.transform.x &lt; this.minX) {
+        this.entity.destroy();
+    }
+}
+});
+</code></pre>
+<p><strong>PipeGroup setup:</strong></p>
+<p><img src="https://cloud.githubusercontent.com/assets/7564028/6844160/7ad5aa5c-d3e4-11e4-8208-c88ed5ca337a.png" alt="005"></p>
+<h3 id="Pipe_Manager">Pipe Manager</h3><p>Let’s create another script in <code>assets/script</code> folder named <code>PipeGroupManager</code>, to control the generation of <code>PipeGroup</code> in runtime.</p>
+<p>Add the following code to the new script. Create an entity named <code>PipeGroupManager</code> and drag the script onto it.</p>
+<p><strong>PipeGroupManager:</strong></p>
+<pre><code class="js">var PipeGroupManager = Fire.Class({
+    extends: Fire.Component,
+    constructor: function () {
+    // Last PipeGroup created time
+    this.lastTime = 0;
+  },
+  // Properties
+  properties: {
+      // reference to PipeGroup template
+      srcPipeGroup: {
+          default: null,
+          type: Fire.Entity
+      },
+      // PipeGroup initial position
+      initPipeGroupPos: {
+          default: new Fire.Vec2(600, 0)
+      },
+      // interval to next PipeGroup spawn
+      spawnInterval: 3
+  },
+  // Initialization
+  onLoad: function () {
+      this.lastTime = Fire.Time.time + 10;
+  },
+  // Instantiate PipeGroup
+  createPipeGroupEntity: function () {
+      var pipeGroup = Fire.instantiate(this.srcPipeGroup);
+      pipeGroup.parent = this.entity;
+      pipeGroup.transform.position = this.initPipeGroupPos;
+      pipeGroup.active = true;
+  },
+  // Updates
+  update: function () {
+      // Spawn PipeGroup in a certain interval
+      var idleTime = Math.abs(Fire.Time.time - this.lastTime);
+      if (idleTime &gt;= this.spawnInterval) {
+          this.lastTime = Fire.Time.time;
+          this.createPipeGroupEntity();
+      }
+  }
+});
+</code></pre>
+<p>Learn how to access entity and component by reading <a href="/manual/scripting/component/access/#access-other-component">Access Other Component in Inspector </a>. Drag <code>PipeGroup</code> entity to <code>Src Pipe Group</code> property of <code>PipeGroupManager</code> component. Now we the property <code>srcPipeGroup</code> has the reference to our Pipe template.</p>
+<p><strong>PipeGroupManager setup:</strong></p>
+<p><img src="https://cloud.githubusercontent.com/assets/7564028/6844364/0ef1b4a0-d3e6-11e4-93e6-58d060b9a6b5.png" alt="006"></p>
+<h3 id="Run_Your_Game!">Run Your Game!</h3><p>Click play button, and check your work so far in <code>Game</code> view.</p>
+<p><strong>Final Setup:</strong></p>
+<p><img src="https://cloud.githubusercontent.com/assets/7564028/6844397/4fac07f2-d3e6-11e4-85bf-5b66604a3204.png" alt="007"></p>
+<hr>
+<p><strong>NOTE:</strong> <a href="https://github.com/fireball-x/tutorial/commits/step-3" target="_blank" rel="external"> Step - 3 Project Snapshot for Creating Pipes</a></p>
+
+            <div>
+                <hr>
+                <a href="#">Edit This Page</a>
+            </div>
+            <div id="discourse-comments"></div>
+            <div class="footer">
+                <footer id="footer" class="wrapper">
+    <div id="footer-copyright">
+      &copy; 2015 <a href="http://fireball-x.com/" target="_blank">Fireball Developers</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+</footer>
+
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
+            <aside id="article-toc" role="navigation" class="fixed">
+                <div id="article-toc-inner">
+                    <strong class="sidebar-title">TOC</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Goal"><span class="toc-text">Goal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Steps"><span class="toc-text">Steps</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_Pipe_Template"><span class="toc-text">Create Pipe Template</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pipe_Scripting"><span class="toc-text">Pipe Scripting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pipe_Manager"><span class="toc-text">Pipe Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_Your_Game!"><span class="toc-text">Run Your Game!</span></a></li></ol></li></ol>
+                    <a href="#top" id="article-toc-top">back to top</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
+
+
+  
+  
+    
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+      
+      
+      
+        
+        
+        
+      
+      
+    
+    
+    
+  
+  
+
+
+      </div>
+    </div>
+    <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<!-- endbuild -->
+
+
+<!-- Plugin search -->
+
+
+
+<!--bootstrap -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/js/toc.js" type="text/javascript"></script>
+
+<script src="/js/anchor.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+  addAnchors('.content-wrap h1, .content-wrap h2, .content-wrap h3');
+</script>
+<!-- Swiftype -->
+
+  
+  
+  
+  
+
+  
+
+<!--discourse comment -->
+
+
+    
+    
+    
+
+    
+        
+        
+        
+    
+
+
+  </body>
+</html>

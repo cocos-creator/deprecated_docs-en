@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Meet Editor | Fireball Docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.fireball-x.com/0.4/manual/start/editor-overview/index.html">
+  <!-- Alternative links -->
+  
+    
+      
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+
+  
+  <link rel="stylesheet" href="/css/anchor.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/tomorrow.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!-- endbuild -->
+  <!-- RSS -->
+  <link rel="alternative" href="/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <!-- Open Graph -->
+  
+    
+    
+  
+  <!-- Swiftype -->
+  
+  <!-- Google Analytics -->
+  
+</head>
+
+
+  
+    <div id="full-wrap">
+      <div class="container-fluid">
+        <header>
+    <nav class="navbar navbar-inverse">
+        <div class="container navbar-wrapper">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/images/logo.png">
+                </a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li ><a href="/">Home</a></li>
+                    
+                    <li ><a href="/manual/index">Manual</a></li>
+                    
+                    <li ><a href="/editor/index">Extending Editor</a></li>
+                    
+                    <li ><a href="/api">API</a></li>
+                    
+                    <li ><a href="http://fireball-x.com/en">Fireball</a></li>
+                    
+                    <li ><a href="http://docs-zh.fireball-x.com">中文</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+      </div>
+      <div class="container">
+        <div class="container sidebar">
+    <aside id="sidebar" role="navigation">
+  <div class="inner">
+      <ul class="nav nav-pills nav-stacked"><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Navigation</strong></li><li role="presentation"><a role="button" href="#top">back to top</a></li><li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_0.4.yml">edit sidebar</a></li></ul>
+  </div>
+</aside>
+</div>
+<div class="container content-wrap">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-9">
+            <div class="title-header" id="top">
+                <h1>Meet Editor</h1>
+            </div>
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/"></a></li>
+                    <li class="active">Meet Editor</li>
+                </ol>
+            </div>
+            <blockquote>
+<p>This chapter will introduce you all the features of Fireball Editor. It would be a good place for being familiar with Fireball Editor, and getting ready for your future Fireball works.<br>Please make sure you have finished reading the following articles before going further:</p>
+<ul>
+<li><a href="/manual/start/get-fireball/">Get Fireball</a></li>
+<li><a href="/manual/start/new-project/">New Project</a></li>
+</ul>
+</blockquote>
+<h1 id="Introduction">Introduction</h1><p>You’ll have no chance to build an exciting game without understanding what all the editor tools can do for you first, so hold your horse for a while and meet the Fireball Editor along with thrilling features. And, whenever you are in doubt, don’t forget this chapter is a good place to look up for as well.</p>
+<p>Fireball Editor mainly consists of serveral panels, which are designed for finishing specific tasks, respectively. You can adjust their sizes and positions by your own taste. Beside of these panels, there are other UIs which are essential for building a game, including menu bar, tool bar and tool windows, and you should know about them as well.</p>
+<p>Check out the screenshot below - it gives a basic concept of the UI layout (In the default layout, <strong>Game Panel</strong> and <strong>Scene Panel</strong> are overlapped, and you may need to switch between them by clicking the <code>Scene</code> tab and <code>Game</code> tab). We will discuss every piece of features in the sections below.</p>
+<p><img src="/manual/start/editor-overview/editor-overview-intro.png" alt="editor-overview-intro"></p>
+<h1 id="Menus">Menus</h1><h2 id="Fireball">Fireball</h2><ul>
+<li><strong>Hide Fireball (Shortcut: <kbd>H</kbd> )</strong><br><em>In construction</em></li>
+<li><strong>Hide Others (Shortcut: <kbd>Shift + H</kbd> )</strong><br><em>In construction</em></li>
+<li><strong>Show All</strong><br><em>In construction</em></li>
+<li><strong>Quit (Shortcut: <kbd>Ctrl/Command + Q</kbd> )</strong><br>Exit Fireball Editor</li>
+<li><strong>Check For Updates</strong><br>Check if there is any new version of Fireball Editor to update.</li>
+<li><strong>About</strong><br>Display about information and copyrights of Fireball Editor.</li>
+<li><strong>Panels</strong><br><em>In construction</em></li>
+</ul>
+<h2 id="File">File</h2><ul>
+<li><strong>New Scene (Shortcut: <kbd>Ctrl/Command + N</kbd> )</strong><br>Create a new scene in current project.<br>A game consists of one or more scenes. You’ll need to create new scenes when you indend to make indepent modules such as new stages, main menu, loading screen, setting screen, etc.</li>
+<li><strong>Save Scene (Shortcut: <kbd>Ctrl/Command + S</kbd> )</strong><br>Save the current editing scene.<br>A save file dialog will pop up if the current scene is never saved before, in which you can determine where to save your scene file (*.fire). If the scene has been saved, Fireball Editor will update the save file directly.<blockquote>
+<p>It is suggested to place all scene files in a particular directory for management, for example <strong>assets/scenes</strong>.</p>
+</blockquote>
+</li>
+<li><strong>Build Settings</strong><br>Set the project build parameters.<br>Building is a critical step in the deployment process. Fireball Editor will pack and optimize your game files during building process, in order to make it able to be deployed on various platforms fast, safely and correctly. Through Build Settings, you can fine tuning the parameters for certain needs, as well as to preview your game before deployment.<br>You will find more information about Build Settings in the [Tool Windows](#tool-windows] section.</li>
+</ul>
+<h2 id="Edit">Edit</h2><ul>
+<li><strong>Undo (Shortcut: <kbd>Z</kbd> )</strong><br>Undo the last operation.</li>
+<li><strong>Redo (Shortcut: <kbd>Shift + Z</kbd> )</strong><br>Redo the latest undone operation.</li>
+<li><strong>Cut (Shortcut: <kbd>X</kbd> )</strong><br>Cut the selected Entity into the clipboard.</li>
+<li><strong>Copy (Shortcut: <kbd>C</kbd> )</strong><br>Copy the selected Entity into the clipboard.</li>
+<li><strong>Paste (Shortcut: <kbd>V</kbd> )</strong><br>Paste the Entity in the clipboard into the current scene.</li>
+<li><strong>Select All (Shortcut: <kbd>A</kbd> )</strong><br>Select all Entities in the current scene.</li>
+</ul>
+<h2 id="Entity">Entity</h2><blockquote>
+<p>In Fireball Engine, a game object is called a <strong>Entity</strong>. <strong>Entity</strong> will appear or behave differently by attaching different resources or components. The presentation, interactions and logic execution of a scene are organized by multiple <strong>Entities</strong>.</p>
+</blockquote>
+<ul>
+<li><strong>Create Empty</strong><br>Create an empty <strong>Entity</strong> in the scene.<br>An empty <strong>Entity</strong> solely contains its <strong>Transform information</strong>, i.e. its position, rotation and scale. The default property values are:<ul>
+<li><strong><em>Position</em></strong> x=0, y=0</li>
+<li><strong><em>Rotation</em></strong> 0</li>
+<li><strong><em>Scale</em></strong> x=1, y=1</li>
+</ul>
+</li>
+<li><strong>Create Empty Child</strong><br>Create a <strong>Child Entity</strong> that belongs to the selected <strong>Entity</strong>.<br>For the situation of no <strong>Entity</strong> is selected, this function will create an empty <strong>Entity</strong> as a root one, which behaves exactly the same as <strong>Create Empty</strong> function.</li>
+</ul>
+<h2 id="View">View</h2><p><em>In construction</em></p>
+<h2 id="Window">Window</h2><ul>
+<li><strong>Close (Shortcut: <kbd>W</kbd> )</strong><br>Close the Fireball Editor window.</li>
+</ul>
+<h2 id="Developer">Developer</h2><ul>
+<li><strong>Reload (Shortcut: <kbd>Ctrl/Command + R</kbd> )</strong><br>Reload the Fireball Editor.</li>
+<li><strong>Recompile (Shortcut: <kbd>F7</kbd> )</strong><br>Recompile all scripts in the current scene.</li>
+<li><strong>Developer Tools (Shortcut: <kbd>Alt + Ctrl/Command + I</kbd> )</strong><br>Open the <strong>Developer Tools</strong> window.<br>Various useful and powerful features are provided in <strong>Developer Tools</strong> for analyzing, debugging and tracing, which are essential for game script developers. You will find more information about <strong>Developer Tools</strong> in the <a href="#tool-windows">Tool Windows</a> section.</li>
+<li><strong>Show Selected Asset in Library</strong><br>Open the sub-directory of the Library folder where stores the currently selected asset in system file explorer.</li>
+<li><strong>Test</strong><ul>
+<li><strong>Reload Window Scripts</strong><br><em>In construction</em></li>
+<li><strong>Reload Core Plugins</strong><br><em>In construction</em></li>
+<li><strong>Thrown an Uncaught Exception</strong><br><em>In construction</em></li>
+<li><strong>Ipc send2panel foo:bar@foobar@fire</strong><br><em>In construction</em></li>
+<li><strong>AssetDB Debugger</strong><br>Open the <strong>AssetDB Debugger</strong>, which is for tracking asset modifications and correspondings during debugging. You will find more information about <strong>AssetDB Debugger</strong> in the <a href="#tool-windows">Tool Windows</a> section.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Help">Help</h2><ul>
+<li><strong>Website</strong><br>Visit the official website of Fireball Engine for more information.</li>
+<li><strong>Documentation</strong><br>Visit the documentation site of Fireball Engine for engine manuals and scripting API references.</li>
+<li><strong>Forum</strong><br>Visit the forum of Fireball Engine to share ideas with other users and developers.</li>
+<li><strong>Submit An Issue On Github</strong><br>Commit an issue in the Fireball Engine Github repository. You can always let us know by committing issues if you encounter bugs or have better ideas about Fireball Engine. Our team will be cheerful and reply you as soon as possible.</li>
+<li><strong>Subscribe To Newsletter</strong><br>Subscribe to Fireball Engine news letters for latest news and updates.</li>
+</ul>
+<h1 id="Toolbar">Toolbar<a id="toolbar"></a></h1><h2 id="Move_Tool">Move Tool <img src="/manual/start/editor-overview/tool-move.png" alt="tool-move"></h2><p>Move the selected <strong>Entity</strong> by handlers. The handlers will look like below when using the Move Tool:<br><img src="/manual/start/editor-overview/preview-move.png" alt="preview-move"></p>
+<ul>
+<li>Dragging the green arrow will move the <strong>Entity</strong> along the coordinates’ Y-axis.</li>
+<li>Dragging the red arrow will move the <strong>Entity</strong> along the coordinates’ X-axis.</li>
+<li>Dragging the blue rectangle in the centre will move the <strong>Entity</strong> along both of the coordinates’ X and Y axes.</li>
+</ul>
+<h2 id="Rotate_Tool">Rotate Tool <img src="/manual/start/editor-overview/tool-rotate.png" alt="tool-rotate"></h2><p>Rotate the selected <strong>Entity</strong> by hander. The handler will look like below when using the Rotate Tool:<br><img src="/manual/start/editor-overview/preview-rotate.png" alt="preview-rotate"></p>
+<ul>
+<li>Dragging the red handler or any point inside the circle will rotate the <strong>Entity</strong> clockwise or counter-clockwise, depending on the direction of dragging.</li>
+<li>The angel of rotation will be shown during your rotation.</li>
+</ul>
+<h2 id="Scale_Tool">Scale Tool <img src="/manual/start/editor-overview/tool-scale.png" alt="tool-scale"></h2><p>Scale the selected <strong>Entity</strong> by handlers. The handlers will look like below when using the Scale Tool:<br><img src="/manual/start/editor-overview/preview-scale.png" alt="preview-scale"></p>
+<ul>
+<li>Dragging the green handler will scale the <strong>Entity</strong> along the coordinates’ Y-axis.</li>
+<li>Dragging the red handler will scale the <strong>Entity</strong> along the coordinates’ X-axis.</li>
+<li>Dragging the grey rectangle in the centre will scale the <strong>Entity</strong> along both of the coordinates’ X and Y axes.</li>
+</ul>
+<h2 id="Use_self_coordinates">Use self coordinates <img src="/manual/start/editor-overview/tool-self-coordinate.png" alt="tool-self-coordinate"></h2><p>The handlers aligns with <strong>Entity</strong>‘s self coordinates, and will rotate as <strong>Entity</strong> rotates.<br>The handlers will behave as below when using self coordinates.<br><img src="/manual/start/editor-overview/preview-self-coordinate.png" alt="preview-self-coordinate"></p>
+<h2 id="Use_world_coordinates">Use world coordinates <img src="/manual/start/editor-overview/tool-world-coordinate.png" alt="tool-world-coordinate"></h2><p>The handers aligns with the world coordinates, pointing to the world’s X and Y axes.<br>The handlers will behave as below when using world coordinates.<br><img src="/manual/start/editor-overview/preview-world-coordinate.png" alt="preview-world-coordinate"></p>
+<h2 id="Place_on_Pivot">Place on Pivot <img src="/manual/start/editor-overview/tool-pivot.png" alt="tool-pivot"></h2><p>The handlers are placed on pivot of the selected <strong>Entity</strong>. Moving, rotating and scaling use the pivot as centre.<br>When multiple <strong>Entities</strong> are selected, the handlers will use the first selected one’s pivot. An example is shown below (<strong>Entities</strong> are selected from left to right):<br><img src="/manual/start/editor-overview/preview-pivot.png" alt="preview-pivot"></p>
+<h2 id="Place_on_Centre">Place on Centre <img src="/manual/start/editor-overview/tool-centre.png" alt="tool-centre"></h2><p>The handlers are placed on the centre of the selected <strong>Entities</strong>. Moving, rotating and scaling are based on the centre point.<br>When multiple <strong>Entities</strong> are selected, the handlers will be placed on the centre of the entire selection area, shown as below:<br><img src="/manual/start/editor-overview/preview-centre.png" alt="preview-centre"></p>
+<h2 id="Play">Play <img src="/manual/start/editor-overview/tool-play.png" alt="tool-play"></h2><p>Compile and run the current scene. The interaction of <strong>Game Panel</strong> will be activated in the meantime.</p>
+<h2 id="Pause">Pause <img src="/manual/start/editor-overview/tool-pause.png" alt="tool-pause"></h2><p>Pause the current running game.<br>By pausing the current game will make it possible to check game data and object states of a certain moment.</p>
+<h2 id="Stepping">Stepping <img src="/manual/start/editor-overview/tool-step.png" alt="tool-step"></h2><p>Run the game to the next frame and the pause.<br>By stepping, you can tracking the changes of game data and object states in every frame. This function is often used for dynamic debugging in a certain time range.</p>
+<h2 id="Shortcut_Mapping">Shortcut Mapping <img src="/manual/start/editor-overview/tool-hotkeys.png" alt="tool-hotkeys"></h2><p>Clicking this button will pop up the shortcut mapping table for quick reference.</p>
+<h2 id="User_Profile">User Profile <img src="/manual/start/editor-overview/tool-user.png" alt="tool-user"></h2><p><em>In construction</em></p>
+<h1 id="Hierarchy_Panel">Hierarchy Panel</h1><p><img src="/manual/start/editor-overview/hierarchy-panel.png" alt="hierarchy-panel"><br><strong>Hierarchy Panel</strong> is for managing all <strong>Entities</strong> (game objects) in the scene. <strong>Entities</strong> are organized hierarchically in the <strong>Hierarchy Panel</strong> to indicate the parent-child relationship between <strong>Entities</strong>. Child <strong>Entities</strong> will inherit some properties of their parents. For instance, when moving, rotating or scaling parent <strong>Entities</strong>, their children will transform with them.</p>
+<h2 id="Entity_List">Entity List</h2><p><strong>Entities</strong> in a scene will be present in terms of their relationship.  Those that owns children will show a little arrow <img src="/manual/start/editor-overview/collapse-arrow.png" alt="collapse-arrow"> in front of their names. Parent <strong>Entities</strong> will be expanded or collapsed by clicking the arrow.</p>
+<p>Properties of selected <strong>Entities</strong> will be shown in the <strong>Inspector Panel</strong>, while the handlers of the <strong>Entities</strong> will appear in the <strong>Scene Panel</strong> in the meantime. You can select multiple <strong>Entities</strong> in the list by pressing <kbd>Shift</kbd> key or <kbd>Ctrl</kbd> key, continuously or not.</p>
+<p>You can also change the relationship by dragging <strong>Entities</strong> in the list. Say, dragging <strong>Entity</strong> A onto <strong>Entity</strong> B will make A become B’s child.</p>
+<p>Click right mouse button in the list will pop up a context menu, whose features includes:</p>
+<ul>
+<li><strong>Duplicate</strong>: Make a copy of selected <strong>Entity</strong> and add it to the end of the list. It is the easiest way to create multiple <strong>Entities</strong> with same or similar properties.</li>
+<li><strong>Rename</strong>: Rename the selected <strong>Entity</strong>. You can do so in the <strong>Inspector Panel</strong> as well.</li>
+<li><strong>Delete</strong>: Delete the selected <strong>Entity</strong>. You can do so by pressing <kbd>Delete</kbd> key as well.</li>
+<li><strong>Create Empty</strong>: Create an empty <strong>Entity</strong> in the scene.<br>An empty <strong>Entity</strong> solely contains its <strong>Transform information</strong>, i.e. its position, rotation and scale. The default property values are:<ul>
+<li><strong><em>Position</em></strong> x=0, y=0</li>
+<li><strong><em>Rotation</em></strong> 0</li>
+<li><strong><em>Scale</em></strong> x=1, y=1</li>
+</ul>
+</li>
+<li><strong>Create Empty Child</strong><br>Create a <strong>Child Entity</strong> that belongs to the selected <strong>Entity</strong>.<br>For the situation of no <strong>Entity</strong> is selected, this function will create an empty <strong>Entity</strong> as a root one, which behaves exactly the same as <strong>Create Empty</strong> function.</li>
+</ul>
+<h2 id="Add_Entity">Add <strong>Entity</strong></h2><p>Click the <img src="/manual/start/editor-overview/add-button.png" alt="add-button"> in the upper-left corner in the panel will show you the <strong>Entity</strong> creation menu, whose features includes:</p>
+<ul>
+<li><strong>Create Empty</strong>: Create an empty <strong>Entity</strong> in the scene.<br>An empty <strong>Entity</strong> solely contains its <strong>Transform information</strong>, i.e. its position, rotation and scale. The default property values are:<ul>
+<li><strong><em>Position</em></strong> x=0, y=0</li>
+<li><strong><em>Rotation</em></strong> 0</li>
+<li><strong><em>Scale</em></strong> x=1, y=1</li>
+</ul>
+</li>
+<li><strong>Create Empty Child</strong><br>Create a <strong>Child Entity</strong> that belongs to the selected <strong>Entity</strong>.<br>For the situation of no <strong>Entity</strong> is selected, this function will create an empty <strong>Entity</strong> as a root one, which behaves exactly the same as <strong>Create Empty</strong> function.</li>
+</ul>
+<h2 id="Search_Entity">Search <strong>Entity</strong></h2><p>The search box is designed for filtering and locating <strong>Entities</strong> with specific keywords quickly. When there are numerous <strong>Entities</strong> in the scene, or the relationship between them are quite complicating, the search box will improve your efficiency in a great deal.</p>
+<h1 id="Assets_Panel">Assets Panel</h1><p><img src="/manual/start/editor-overview/assets-panel.png" alt="assets-panel"></p>
+<p><strong>Assets</strong>, belonging to the entire project, are basic elements for visual presents and logic controls of a game, and are shared among all scenes. <strong>Entities</strong> become useful, such as drawing graphics and executing scripts, only if there are corresponding <strong>Assets</strong>. In Fireball Engine, <strong>Assets</strong> can be of following types:</p>
+<ul>
+<li>Textures</li>
+<li>Normal Maps</li>
+<li>Sprites</li>
+<li>Sprite Animations</li>
+<li>Music and sound effects</li>
+<li>Fonts</li>
+<li>Fire-shell scripts</li>
+<li>Atlases</li>
+<li>Scenes</li>
+</ul>
+<p>There are different behaviours for different <strong>Assets</strong> that varies among <strong>Components</strong>. For more information please refer to Fireball Engine API documentaion.</p>
+<h2 id="Asset_List">Asset List</h2><p><strong>Assets</strong> of a project are organized by folders. The <em>Assets</em> folder is used as root, which means that Fire Editor will load the <strong>Assets</strong> placed in <em>Assets</em> folder and its sub folders. There can be numerous <strong>Assets</strong> for a complete game, so it is suggested to organize <strong>Assets</strong> by sub folders for your own convenience. For instance, all scripts should be in the <em>script</em> folder, while UI related <strong>Assets</strong> be in the <em>ui</em> folder, etc.</p>
+<p>Once an <strong>Asset</strong> is selected in the list, its property will be shown in the <strong>Inspector Panel</strong>. You can do multiple selection by <kbd>Shift</kbd> key or <kbd>Ctrl</kbd> key.</p>
+<p>You can set the which folder it belongs to by dragging an <strong>Asset</strong> for better structure.</p>
+<p>If you want to put an <strong>Asset</strong> into the current scene, simply drag it into the <strong>Hierarchy</strong> panel. The <strong>Asset</strong> will be converted to <strong>Entity</strong> automatically and be placed into the scene.</p>
+<blockquote>
+<p>Here is an exception: scenes cannot be dragged into <strong>Hierarchy Panel</strong>, for them cannot be contained by another scene. You can open the scene <strong>Assets</strong> by double-clicking them.</p>
+</blockquote>
+<p>Click right mouse button in the list will pop up a context menu, whose features includes:</p>
+<ul>
+<li><strong>Create</strong><ul>
+<li><strong>New Folder</strong>: Create a new sub folder in the selected folder.</li>
+<li><strong>New Script</strong>: Create a new fire-shell script. A basic template will be provided in a new script. Details can be found in API documentation.</li>
+<li><strong>New Scene</strong>: Create a new scene.</li>
+<li><strong>New Atlas</strong>: Create a new atlas (image pack).</li>
+<li><strong>New Sprite(Standalone)</strong>: Create a static sprite object. An image as texture must be selected first.</li>
+<li><strong>New Sprite Animation</strong>: <em>In construction</em></li>
+</ul>
+</li>
+<li><strong>Rename</strong>: Rename the selected <strong>Asset</strong>.</li>
+<li><strong>Delete</strong>: Delete the selected <strong>Asset</strong>. You can do so with <kbd>Delete</kbd> key as well.</li>
+<li><strong>Reimport</strong>: Reimport all <strong>Assets</strong> in the Asset List.</li>
+<li><strong>Show in Explorer</strong>: Open the system file explorer and locate to the <strong>Asset</strong> file.</li>
+<li><strong>Show in Library</strong>: Open the system file explorer and locate to the meta file of the selected <strong>Asset</strong> in the <em>Library</em> folder.</li>
+<li><strong>Show Uuid</strong>: Print the UUID of the selected <strong>Asset</strong> in the <strong>Console Panel</strong>.</li>
+</ul>
+<h2 id="Add_Assets">Add <strong>Assets</strong></h2><p>Click the <img src="/manual/start/editor-overview/add-button.png" alt="add-button"> button in the upper-left corner will pop up the <strong>Asset</strong> adding menu, whose features include:</p>
+<ul>
+<li><strong>New Folder</strong>: Create a new sub folder in the selected folder.</li>
+<li><strong>New Script</strong>: Create a new fire-shell script. A basic template will be provided in a new script. Details can be found in API documentation.</li>
+<li><strong>New Scene</strong>: Create a new scene.</li>
+<li><strong>New Atlas</strong>: Create a new atlas (image pack).</li>
+<li><strong>New Sprite(Standalone)</strong>: Create a static sprite object. An image as texture must be selected first.<br>You can also add new files to the <strong>Asset Panel</strong> by drag and drop.</li>
+</ul>
+<h2 id="Search_Assets">Search <strong>Assets</strong></h2><p>The search box is designed for filtering and locating <strong>Assets</strong> with specific keywords quickly. When there are numerous <strong>Assets</strong> in the scene, or the relationship between them are quite complicating, the search box will improve your efficiency in a great deal.</p>
+<h1 id="Inspector_Panel">Inspector Panel</h1><p>The <strong>Inspector Panel</strong> allows you to inspect and edit properties of selected items.<br>The <strong>Inspector Panel</strong> will show editable properties and their values as soon as you select an <strong>Asset</strong> as well as an <strong>Entity</strong>. All modifications made in inspector will be applied onto selected item without recompiling.</p>
+<h2 id="Entity_Property_Editing"><strong>Entity</strong> Property Editing</h2><p><img src="/manual/start/editor-overview/inspector-entity.png" alt="inspector-entity"></p>
+<ul>
+<li>Enable/Disable checkbox<br>You can enable or disable the selected <strong>Entity</strong> by ticking or unticking the checkbox. Disabled <strong>Entities</strong> will not be shown in the scene.</li>
+<li>Name textbox<br>Change the name of the selected <strong>Entity</strong> for better identification. Different <strong>Entities</strong> can have a same name, however, we suggest you to name your <strong>Entities</strong> following certain rules, in order to reduce the difficulty of development and maintenance. You can rename <strong>Entities</strong> in the <strong>Hierarchy Panel</strong> as well.</li>
+<li>New <strong>Component</strong> Button<br>You can add <strong>Components</strong> for <strong>Entities</strong> to make them acquire certain functions and behaviours.<br>Click the <img src="/manual/start/editor-overview/add-button.png" alt="add-button"> button in the upper-right corner will pop up the <strong>Component</strong> adding menu, whose features include:<ul>
+<li><strong>Scripts</strong>: Bind a Fire-shell script to the <strong>Entity</strong> for behaviour controlling. Fireball will search all scripts in the asset library, and list them in the sub-menu for quick selection.</li>
+<li><strong>SpriteRenderer</strong>: Add a sprite renderer component to make the <strong>Entity</strong> render specified sprite <strong>Asset</strong> in the scene.</li>
+<li><strong>BitmapText</strong>: Draw texts with bitmap font in the scene.</li>
+<li><strong>Text</strong>: Draw texts with system fonts in the scene.</li>
+<li><strong>Camera</strong>: Add a camera to control the game view.</li>
+<li><strong>AudioSource</strong>: Add a audio source for playing music or sound effects.</li>
+<li><strong>Sprite Animation</strong>: Add a sprite animation controller. <em>施工中</em></li>
+</ul>
+</li>
+<li><strong>Component</strong> List<br>This is the main working area of the <strong>Inspector Panel</strong>, including all <strong>Components</strong> of the selected <strong>Entity</strong> and all their editable properties. Typically, <strong>Components</strong> of an <strong>Entity</strong> will be listed in the sequence as added, but <code>Fire.Transform</code> will be the first one constantly, as it is the basic component. Click the arrow icon on the left of <strong>Component</strong> name will expand or collapse its details, which can save you some space. Click the X button will delete the <strong>Component</strong> from the <strong>Entity</strong>.<br>For details of <strong>Component</strong> properties, please refer to <strong>Component</strong> documentation.</li>
+</ul>
+<h2 id="Asset_Property_Editing"><strong>Asset</strong> Property Editing</h2><p><img src="/manual/start/editor-overview/inspector-asset.png" alt="inspector-asset"></p>
+<p>Comparing with <strong>Entity</strong> property panel, the one of <strong>Assets</strong> are much simpler, for the reason that <strong>Assets</strong> are not used directly in game scenes, which makes them unnecessary to be edited in detail in the editor - they are always fine tuned in particular external tools (such as image processing softwares).</p>
+<p>Generally, parameters in <strong>Asset</strong> property panel consist of two major types (some kinds of <strong>Assets</strong> probably have only one type of parameters for editing):</p>
+<ul>
+<li><strong>Meta</strong><br>Meta data of <strong>Assets</strong> in Fireball Editor, including their behaviour or presenting methods in the engine. For instance, you can set the <strong>Asset</strong> type as sprite, texture or normal map for imported images.</li>
+<li><strong>Asset</strong><br>The raw properties of the <strong>Asset</strong>, such as the image size, the audio sampling rate, etc. These properties usually cannot be changed in Fireball Editor but for reference.</li>
+</ul>
+<p><strong>Asset</strong> property panel provides preview window as well, for ensuring the editing and modifications. For different types of <strong>Assets</strong>:</p>
+<ul>
+<li>If it’s an image, preview window will show the image within the constraint of the window size, and note its original size in the bottom.</li>
+<li>If it’s an audio, preview window will show a playback tool bar for playing, stopping and looping the audio. Some basic information will be shown in the preview window meanwhile, including channels, sampling rate, format and playback time.</li>
+</ul>
+<p>的You will need to click the <img src="/manual/start/editor-overview/inspector-apply.png" alt="inspector-apply"> button in the upper-right corner of the <strong>Inspector Panel</strong> once making changes to an <strong>Asset</strong>, for applying your modifications to relevant <strong>Entities</strong>. Or you can click <img src="/manual/start/editor-overview/inspector-revert.png" alt="inspector-revert"> button to discard the changes you made.</p>
+<h1 id="Scene_Panel">Scene Panel</h1><p><img src="/manual/start/editor-overview/scene-panel.png" alt="scene-panel"><br>The <strong>Scene Panel</strong> is designed to editor the current game scene. It is the most ‘frank’ panel and most frequently used one in game making process, if you ask me.</p>
+<p>The <strong>Scene Panel</strong> are usually used for stage designing and building, such as setting up background, floor, obstacles and other visual elements. Thanks to its visual feature, it can also be used for UI layout and any WYSIWYG elements.</p>
+<p><strong>It is notable that every scene must have at least one camera for game view, or no picture will be shown when game runs.</strong> However, it is a relief that you don’t need to worry about it. Fireball Editor has created a default camera for you when a scene is created.</p>
+<p>The <strong>Scene Panel</strong> is very easy to master. All you need is to click or drag a selection box to selected the <strong>Entities</strong> you want to edit, transform them will the tools in tool bar, and check the results. When multiple <strong>Entities</strong> are selected, the items will be highlighten in the <strong>Hierarchy Panel</strong>, and handlers will be shown in the <strong>Scene Panel</strong> (but their positions depends on your <strong>handler position setting</strong>, referring to the <a href="#toolbar">Toolbar</a> manual).</p>
+<p>When the scene is large, you can use your mouse scroller for zooming.</p>
+<p>Also, you can quick select <strong>Entities</strong> by putting keywords in the search box in the upper-right corner.</p>
+<h1 id="Game_Panel">Game Panel</h1><p><img src="/manual/start/editor-overview/game-panel.png" alt="game-panel"><br>The <strong> Game Panel</strong> is where the game runs. It has no editing functions itself, but while game running, it will simulate the user-end environment, which allows you to ensure what the game looks like in users’ eyes, and to check the in-game interactions.</p>
+<p>Game view in the <strong>Game Panel</strong> depends on your settings of the camera <strong>Entity</strong>. The good news is, you can set screen ratio in the <strong>Game Panel</strong> to simulate different platforms and screens. Most aspect ratios are self-explained by their names, however there are some special ones:</p>
+<ul>
+<li><strong>Free Aspect</strong>: Fit the display area with the <strong>Game Panel</strong> size, using the entire available space.</li>
+<li><strong>Custom Size</strong>: Customize the size of the display area. By selecting this, you can set width and height accurantly in the value boxes to the right, with the unit of pixels.</li>
+<li><strong>Rotate</strong>: By ticking this option, the game display will rotate by 90 degrees, for landscape simulation.</li>
+</ul>
+<h1 id="Console_Panel">Console Panel</h1><p><img src="/manual/start/editor-overview/console-panel.png" alt="console-panel"><br>The <strong>Console Panel</strong> is for monitoring game script running status and console output, in purpose of debugging. Information printed here can be from your scripts, or Fireball Editor itself.</p>
+<p>Fireball Editor distinguishes different levels of information by colors. The severities are ordered from the lowest to the highest as:</p>
+<ul>
+<li><strong>Log</strong> (grey): information usually for tracking or debugging.</li>
+<li><strong>Info</strong>（blue）: information usually for notification or notes.</li>
+<li><strong>Warn</strong>（yellow）: information usually for indicating that there is an abnormal situation, but won’t crash the game.</li>
+<li><strong>Error</strong>（red）: information for fatal errors which will crash the game, such as uncaught exceptions.</li>
+</ul>
+<p>You can manage information in the <strong>Console Panel</strong> when there is too many:</p>
+<ul>
+<li><strong>Clear</strong> <img src="/manual/start/editor-overview/console-clear.png" alt="console-clear">: Clear all console outputs.</li>
+<li><strong>Filter box</strong> <img src="/manual/start/editor-overview/console-filter.png" alt="console-filter">:<br>Filter console information by keywords. When <strong>Regex</strong> checkbox is ticked, content in the filter box is considered as a regular expression.</li>
+<li><strong>Level filter combobox</strong> <img src="/manual/start/editor-overview/console-level.png" alt="console-level">:<br>Display information of only one severity level. All levels will be shown when <strong>All</strong> is selected.</li>
+<li><strong>Collapse checkbox</strong>: Ticking this checkbox will merge same outputs, with a leading number that tells how many times it has been repeated. This feature is rather useful and space economic when there are many outputs and their sequence don’t matter.</li>
+</ul>
+<h1 id="Status_Bar">Status Bar</h1><p><em>In construction</em></p>
+<h1 id="Tool_Windows">Tool Windows <a id="tool-windows"></a></h1><p><em>In construction</em></p>
+
+            <div>
+                <hr>
+                <a href="#">Edit This Page</a>
+            </div>
+            <div id="discourse-comments"></div>
+            <div class="footer">
+                <footer id="footer" class="wrapper">
+    <div id="footer-copyright">
+      &copy; 2015 <a href="http://fireball-x.com/" target="_blank">Fireball Developers</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+</footer>
+
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
+            <aside id="article-toc" role="navigation" class="fixed">
+                <div id="article-toc-inner">
+                    <strong class="sidebar-title">TOC</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Menus"><span class="toc-text">Menus</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fireball"><span class="toc-text">Fireball</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#File"><span class="toc-text">File</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Edit"><span class="toc-text">Edit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Entity"><span class="toc-text">Entity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View"><span class="toc-text">View</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Window"><span class="toc-text">Window</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Developer"><span class="toc-text">Developer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Help"><span class="toc-text">Help</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Toolbar"><span class="toc-text">Toolbar</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Move_Tool"><span class="toc-text">Move Tool </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rotate_Tool"><span class="toc-text">Rotate Tool </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scale_Tool"><span class="toc-text">Scale Tool </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use_self_coordinates"><span class="toc-text">Use self coordinates </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Use_world_coordinates"><span class="toc-text">Use world coordinates </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Place_on_Pivot"><span class="toc-text">Place on Pivot </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Place_on_Centre"><span class="toc-text">Place on Centre </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Play"><span class="toc-text">Play </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pause"><span class="toc-text">Pause </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stepping"><span class="toc-text">Stepping </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shortcut_Mapping"><span class="toc-text">Shortcut Mapping </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#User_Profile"><span class="toc-text">User Profile </span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hierarchy_Panel"><span class="toc-text">Hierarchy Panel</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Entity_List"><span class="toc-text">Entity List</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Add_Entity"><span class="toc-text">Add Entity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Search_Entity"><span class="toc-text">Search Entity</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Assets_Panel"><span class="toc-text">Assets Panel</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Asset_List"><span class="toc-text">Asset List</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Add_Assets"><span class="toc-text">Add Assets</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Search_Assets"><span class="toc-text">Search Assets</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Inspector_Panel"><span class="toc-text">Inspector Panel</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Entity_Property_Editing"><span class="toc-text">Entity Property Editing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Asset_Property_Editing"><span class="toc-text">Asset Property Editing</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Scene_Panel"><span class="toc-text">Scene Panel</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Game_Panel"><span class="toc-text">Game Panel</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Console_Panel"><span class="toc-text">Console Panel</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Status_Bar"><span class="toc-text">Status Bar</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tool_Windows"><span class="toc-text">Tool Windows </span></a></li></ol>
+                    <a href="#top" id="article-toc-top">back to top</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
+
+
+  
+  
+    
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+      
+      
+      
+        
+        
+        
+      
+      
+    
+    
+    
+  
+  
+
+
+      </div>
+    </div>
+    <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<!-- endbuild -->
+
+
+<!-- Plugin search -->
+
+
+
+<!--bootstrap -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/js/toc.js" type="text/javascript"></script>
+
+<script src="/js/anchor.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+  addAnchors('.content-wrap h1, .content-wrap h2, .content-wrap h3');
+</script>
+<!-- Swiftype -->
+
+  
+  
+  
+  
+
+  
+
+<!--discourse comment -->
+
+
+    
+    
+    
+
+    
+        
+        
+        
+    
+
+
+  </body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Create Package | Fireball Docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.fireball-x.com/editor/packages/create-package/index.html">
+  <!-- Alternative links -->
+  
+    
+      
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+
+  
+  <link rel="stylesheet" href="/css/anchor.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/tomorrow.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!-- endbuild -->
+  <!-- RSS -->
+  <link rel="alternative" href="/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <!-- Open Graph -->
+  
+    
+    
+  
+  <!-- Swiftype -->
+  
+  <!-- Google Analytics -->
+  
+</head>
+
+
+  
+    <div id="full-wrap">
+      <div class="container-fluid">
+        <header>
+    <nav class="navbar navbar-inverse">
+        <div class="container navbar-wrapper">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/images/logo.png">
+                </a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li ><a href="/">Home</a></li>
+                    
+                    <li ><a href="/manual/index">Manual</a></li>
+                    
+                    <li ><a href="/editor/index">Extending Editor</a></li>
+                    
+                    <li ><a href="/api">API</a></li>
+                    
+                    <li ><a href="http://fireball-x.com/en">Fireball</a></li>
+                    
+                    <li ><a href="http://docs-zh.fireball-x.com">中文</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://github.com/fireball-x/editor-framework/edit/master/docs/editor/packages/create-your-package.md"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+      </div>
+      <div class="container">
+        <div class="container sidebar">
+    <aside id="sidebar" role="navigation">
+  <div class="inner">
+      <ul class="nav nav-pills nav-stacked"><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Extending Editor</strong></li><li role="presentation" ><a href="/editor/editor-module" class="sidebar-link">Editor Module</a></li><li role="presentation" ><a href="/editor/ipc-channel" class="sidebar-link">Ipc Channel</a></li><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Packages</strong></li><li role="presentation" class="active"><a href="/editor/packages/create-package" class="sidebar-link">Create Your Package</a></li><li role="presentation" ><a href="/editor/packages/create-panels" class="sidebar-link">Create Panels</a></li><li role="presentation" ><a href="/editor/packages/create-widgets" class="sidebar-link">Create Widgets</a></li><li role="presentation" ><a href="/editor/packages/register-shortcuts" class="sidebar-link">Register Shortcuts</a></li><li role="presentation" ><a href="/editor/packages/load-and-build" class="sidebar-link">Load And Rebuild</a></li><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Navigation</strong></li><li role="presentation"><a role="button" href="#top">back to top</a></li><li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_editor.yml">edit sidebar</a></li></ul>
+  </div>
+</aside>
+</div>
+<div class="container content-wrap">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-9">
+            <div class="title-header" id="top">
+                <h1>Create Package</h1>
+            </div>
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/editor/index">Extending Editor</a></li>
+                    <li class="active">Create Package</li>
+                </ol>
+            </div>
+            <p>Editor Framework loads package before App runs. By default it loads packages from <code>editor-framework://builtin/</code> and <code>~/.{app-name}/packages/</code>. If you are working with <a href="https://github.com/fireball-x/fireball" target="_blank" rel="external">Fireball</a>, then it will load packages from <code>fireball/builtin</code> and <code>~/.fireball/packages</code> folder.</p>
+<p>You can customize the location it loads package from through the method <code>Editor.registerPackagePath</code> in your <code>App.init</code> function.</p>
+<h2 id="Structure">Structure</h2><p>In general, packages should have the following structure:</p>
+<pre><code class="plain">MyPackage
+  |--(optional)panel
+  |   |--mypanel.html
+  |   |--(optional)mypanel.js
+  |   |--(optional)mypanel.css
+  |--(optional)widget
+  |     |--mywidget
+  |       |--mywidget.html
+  |       |--(optional)mywidget.js
+  |       |--(optional)mywidget.css
+  |--main.js
+  |--package.json
+</code></pre>
+<p>Some key parts explained:</p>
+<ul>
+<li><code>main.js</code>: main entry file, read the <a href="#main-entry">Main Entry</a> section.</li>
+<li><code>package.json</code>: package description file, not used for <a href="https://www.npmjs.com/" target="_blank" rel="external">npm</a>, read <a href="#package-description">Package Description</a> section.</li>
+<li><code>panel</code>: this folder is necessary if your package need to open a panel to work. You can create any number of panel html files or sub-folders in this <code>panel</code> folder, if you need more than one panel for your package.</li>
+<li><code>widget</code>: this folder is optional, it contains ‘elements’ you can use in your panels or in panels of other packages. For example buttons, drop-down menu, tabs, etc. You can organize widgets in this folder any way you like. We recommend creating a folder for each of your widget element.</li>
+</ul>
+<p>For panels and widgets, you can combine script and styles to a single html file. See <a href="/test/fixtures/packages/simple/panel/panel.html">this simple test case</a> as an example. You can also write script and styles in any file format that compiles to JavaScript or CSS, such as <a href="http://coffeescript.org/" target="_blank" rel="external">coffeescript</a>, <a href="https://learnboost.github.io/stylus/" target="_blank" rel="external">stylus</a>, <a href="http://lesscss.org/" target="_blank" rel="external">less</a>, <a href="http://sass-lang.com/" target="_blank" rel="external">sass</a>. Check out <a href="load-and-build-packages.md">Building Packages</a> documentation for details.</p>
+<h2 id="Package_Description">Package Description</h2><p>Each package uses a <code>package.json</code> file to describe itself. Just create this file in your package project folder.</p>
+<p>For example:</p>
+<pre><code class="js">{
+  &quot;name&quot;: &quot;demo-simple&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;description&quot;: &quot;Simple Demo&quot;,
+  &quot;author&quot;: &quot;Firebox Technology&quot;,
+  &quot;main&quot;: &quot;main.js&quot;,
+  &quot;menus&quot;: {
+    &quot;Examples/Simple&quot;: {
+      &quot;message&quot;: &quot;demo-simple:open&quot;
+    }
+  },
+  &quot;panels&quot;: {
+    &quot;panel&quot;: {
+      &quot;frame&quot;: &quot;panel/panel.html&quot;,
+      &quot;type&quot;: &quot;dockable&quot;,
+      &quot;title&quot;: &quot;Simple&quot;,
+      &quot;width&quot;: 800,
+      &quot;height&quot;: 600,
+      &quot;messages&quot;: [
+      ]
+    }
+  }
+}
+</code></pre>
+<p>Explanation for each key-value pair:</p>
+<ul>
+<li><code>name</code> <em>String</em> - Name of the package, this name must be unique, otherwise it can not be published online.</li>
+<li><code>version</code> <em>String</em> - The version number that follows <a href="http://semver.org/" target="_blank" rel="external">semver</a> pattern.</li>
+<li><code>description</code> <em>String</em> (Optional) - A simple description of what your package does.</li>
+<li><code>author</code> <em>String</em> (Optional) - Who created this package.</li>
+<li><code>build</code> <em>Boolean</em> (Optional) - If build the package to <code>bin/dev</code></li>
+<li><code>hosts</code> <em>Object</em> (Optional) - The version of the hosts required for this package.</li>
+<li><code>main</code> <em>String</em> (Optional) - A file path to the main entry javascript. Usually <code>main.js</code>, you can also use other filename and specify it here.</li>
+<li><code>menus</code> <em>Object</em> (Optional) - The menu list.<ul>
+<li><code>key</code> <em>String</em> - Menu path, example: <code>foo/bar/foobar</code></li>
+<li><code>value</code> <em>Object</em> - Menu options<ul>
+<li><a href="https://github.com/fireball-x/editor-framework/blob/master/docs/api/core/menu.md" target="_blank" rel="external">Editor Menu Template</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>panels</code> <em>Object</em> (Optional) - The panel list.<ul>
+<li><code>key</code> <em>String</em> - Panel name, this name will be combined with package name to create an unique panelID (e.g. <code>PackageName.PanelName</code>).</li>
+<li><code>value</code> <em>Object</em> - Panel options.<ul>
+<li><code>frame</code> <em>String</em> - The panel frame html file. ( It is recommended to define it as a Polymer element ).</li>
+<li><code>type</code> <em>String</em> (Optional) - Default is <code>dockable</code>, can be <code>dockable</code>, <code>float</code>, <code>fixed-size</code>, <code>quick</code>.</li>
+<li><code>title</code> <em>String</em> (Optional) - The panel title shows in the tab label, default to the panelID.</li>
+<li><code>popable</code> <em>Boolean</em> (Optional) - Default is <code>true</code>, indicate if the panel is popable.</li>
+<li><code>width</code> <em>Integer</em> (Optional) - The width of the panel frame.</li>
+<li><code>height</code> <em>Integer</em> (Optional) - The height of the panel frame.</li>
+<li><code>min-width</code> <em>Integer</em> (Optional) - The min-width of the panel frame.</li>
+<li><code>min-height</code> <em>Integer</em> (Optional) - The min-height of the panel frame.</li>
+<li><code>shortcuts</code> <em>Object</em> (Optional) - The keyboard shortcut for the panel.<ul>
+<li><code>key</code> <em>String</em> - define the key combination (example: <code>command+k</code>).</li>
+<li><code>value</code> <em>String</em> - The method name defined in the panel frame.</li>
+</ul>
+</li>
+<li><code>messages</code> <em>Array</em> (Optional) - The ipc message name list.</li>
+<li><code>profiles</code> <em>Object</em> (Optional) - The list of default profile settings.<ul>
+<li><code>key</code> <em>String</em> - The profile type, by default it can be <code>local</code> or <code>global</code>. You can register more profile type through <code>Editor.registerProfilePath</code>.</li>
+<li><code>value</code> <em>Object</em> - The default setting values.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>widgets</code> <em>Object</em> (Optional) - The widget list.<ul>
+<li><code>key</code> <em>String</em> - Widget name, this name will be used as host name in <code>widgets://{host-name}/</code> protocol.</li>
+<li><code>value</code> <em>Object</em> - The widget folder path</li>
+</ul>
+</li>
+<li><code>dependencies</code> <em>Object</em> (Optional) - The dependencies list.</li>
+<li><code>npmDependencies??</code> <em>Object</em> (Optional) - The npm dependencies list.</li>
+<li><code>bowerDependencies??</code> <em>Object</em> (Optional) - The bower dependencies list.</li>
+</ul>
+<h2 id="Main_Entry">Main Entry</h2><p>The <code>main.js</code> file (or any file you register as main entry in <code>package.json</code>) serves as main entry of the package program. Main entry usually looks like this:</p>
+<pre><code class="js">module.exports = {
+    load: function () {
+        // callback when package has been loaded
+    },
+
+    unload: function () {
+        // callback when package has been unloaded
+    },
+
+    // a IPC message receiver
+    &#39;demo-simple:open&#39;: function () {
+        Editor.Panel.open(&#39;demo-simple.panel&#39;);
+    },
+};
+</code></pre>
+<h3 id="module-exports">module.exports</h3><p>Fireball run each package’s main entry as a module with <code>require</code>, so you must expose properties and method in your main entry with <code>module.exports</code>. See <a href="https://iojs.org/api/modules.html#modules_module_exports" target="_blank" rel="external">iojs module API docs</a> for details.</p>
+<h3 id="IPC_Message_Receiver">IPC Message Receiver</h3><p>In the above example, main entry listen to an IPC message <code>demo-simple:open</code> and call <code>Editor.Panel.open</code> to open a package panel. This is the most common way to open a package panel. To learn more about IPC messages and how package communicate between core and page level, read <a href="ipc-channel.md">IPC Channel docs</a>.</p>
+<p>The initial <code>demo-simple:open</code> message is registered in <code>menus[&#39;Examples/Simple&#39;].message</code> property of <code>package.json</code>. See the above <code>package.json</code> example.</p>
+<h3 id="Core-Level_Process">Core-Level Process</h3><p>Main entry runs in core-level process, you can do following things in core-level scripts:</p>
+<ul>
+<li>Use full <a href="https://iojs.org/api/" target="_blank" rel="external">iojs API</a></li>
+<li>Use <a href="https://github.com/atom/electron/tree/master/docs#api-references" target="_blank" rel="external">Electron’s API</a> that listed under ‘modules for the main process’ or ‘modules for both processes’</li>
+<li>Require any core, local or npm module. For npm modules, you can install those modules in Fireball’s root folder. And require them anywhere in your core-level scripts.</li>
+</ul>
+<h2 id="Menu_Path">Menu Path</h2><p>Menu paths are defined in <code>menus</code> property of <code>pacakge.json</code>. Menu paths definition should looks like this:</p>
+<pre><code class="json">&quot;menus&quot;: {
+    &quot;Examples/Simple&quot;: {
+        &quot;message&quot;: &quot;demo-simple:open&quot;
+    },
+    &quot;Examples/Advanced&quot;: {
+        &quot;message&quot;: &quot;demo-simple:advance&quot;
+    }
+}
+</code></pre>
+<p>A menu path looks like <code>MenuName/ItemName</code>. You can also write <code>MenuName/GroupName/ItemName</code>, results in the following menu:<br><img src="https://cloud.githubusercontent.com/assets/344547/8249697/89da532e-169f-11e5-9f69-d49731ea0ca6.png" alt="image"></p>
+<p>When a menu item is clicked, it sends an IPC message from page-level. That’s why we usually make a “package-name:open” IPC message receiver to actually open the package panel.</p>
+
+            <div>
+                <hr>
+                <a href="https://github.com/fireball-x/editor-framework/edit/master/docs/editor/packages/create-your-package.md">Edit This Page</a>
+            </div>
+            <div id="discourse-comments"></div>
+            <div class="footer">
+                <footer id="footer" class="wrapper">
+    <div id="footer-copyright">
+      &copy; 2015 <a href="http://fireball-x.com/" target="_blank">Fireball Developers</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+</footer>
+
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
+            <aside id="article-toc" role="navigation" class="fixed">
+                <div id="article-toc-inner">
+                    <strong class="sidebar-title">TOC</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Structure"><span class="toc-text">Structure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Package_Description"><span class="toc-text">Package Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Main_Entry"><span class="toc-text">Main Entry</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#module-exports"><span class="toc-text">module.exports</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IPC_Message_Receiver"><span class="toc-text">IPC Message Receiver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Core-Level_Process"><span class="toc-text">Core-Level Process</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Menu_Path"><span class="toc-text">Menu Path</span></a></li></ol>
+                    <a href="#top" id="article-toc-top">back to top</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
+
+
+  
+  
+    
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+      
+      
+      
+        
+        
+        
+      
+      
+    
+    
+    
+  
+  
+
+
+      </div>
+    </div>
+    <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<!-- endbuild -->
+
+
+<!-- Plugin search -->
+
+
+
+<!--bootstrap -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/js/toc.js" type="text/javascript"></script>
+
+<script src="/js/anchor.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+  addAnchors('.content-wrap h1, .content-wrap h2, .content-wrap h3');
+</script>
+<!-- Swiftype -->
+
+  
+  
+  
+  
+
+  
+
+<!--discourse comment -->
+
+
+    
+    
+    
+
+    
+        
+        
+        
+    
+
+
+  </body>
+</html>

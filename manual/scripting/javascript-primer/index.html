@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>JavaScript Primer | Fireball Docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.fireball-x.com/manual/scripting/javascript-primer/index.html">
+  <!-- Alternative links -->
+  
+    
+      
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+
+  
+  <link rel="stylesheet" href="/css/anchor.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/tomorrow.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!-- endbuild -->
+  <!-- RSS -->
+  <link rel="alternative" href="/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <!-- Open Graph -->
+  
+    
+    
+  
+  <!-- Swiftype -->
+  
+  <!-- Google Analytics -->
+  
+</head>
+
+
+  
+    <div id="full-wrap">
+      <div class="container-fluid">
+        <header>
+    <nav class="navbar navbar-inverse">
+        <div class="container navbar-wrapper">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/images/logo.png">
+                </a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li ><a href="/">Home</a></li>
+                    
+                    <li ><a href="/manual/index">Manual</a></li>
+                    
+                    <li ><a href="/editor/index">Extending Editor</a></li>
+                    
+                    <li ><a href="/api">API</a></li>
+                    
+                    <li ><a href="http://fireball-x.com/en">Fireball</a></li>
+                    
+                    <li ><a href="http://docs-zh.fireball-x.com">中文</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://github.com/fireball-x/fireball/edit/dev/docs/fireball/scripting/javascript-primer.md"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+      </div>
+      <div class="container">
+        <div class="container sidebar">
+    <aside id="sidebar" role="navigation">
+  <div class="inner">
+      <ul class="nav nav-pills nav-stacked"><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Get Started</strong></li><li role="presentation" ><a href="/manual/introduction" class="sidebar-link">What's Fireball</a></li><li role="presentation" ><a href="/manual/dashboard" class="sidebar-link">Dashboard</a></li><li role="presentation" ><a href="/manual/editor-overview" class="sidebar-link">Editor Overview</a></li><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Scripting</strong></li><li role="presentation" class="active"><a href="/manual/scripting/javascript-primer" class="sidebar-link">JavaScript Primer</a></li><li role="presentation" ><a href="/manual/scripting/nodes-in-scene" class="sidebar-link">Nodes in Scene</a></li><li role="presentation" ><a href="/manual/scripting/attachable-script" class="sidebar-link">Behavior (Attachable Script)</a></li><li role="presentation" ><a href="/manual/scripting/access-script" class="sidebar-link">Script Accessibility</a></li><li role="presentation" ><a href="/manual/scripting/mixin-mechanic" class="sidebar-link">Mixin Mechanic</a></li><li role="presentation" ><a href="/manual/scripting/class" class="sidebar-link">Advanced FireClass</a></li><li role="presentation" ><a href="/manual/scripting/attributes" class="sidebar-link">Attributes</a></li><li role="presentation" ><a href="/manual/scripting/module" class="sidebar-link">Module</a></li><li role="presentation" ><a href="/manual/scripting/runtimes/cocos2d-js" class="sidebar-link">Cocos2d-js Scripting Guide</a></li><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Navigation</strong></li><li role="presentation"><a role="button" href="#top">back to top</a></li><li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_manual.yml">edit sidebar</a></li></ul>
+  </div>
+</aside>
+</div>
+<div class="container content-wrap">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-9">
+            <div class="title-header" id="top">
+                <h1>JavaScript Primer</h1>
+            </div>
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/manual/index">Manual</a></li>
+                    <li class="active">JavaScript Primer</li>
+                </ol>
+            </div>
+            <blockquote>
+<p>This guide is based on <a href="https://www.discovermeteor.com/blog/javascript-for-meteor/" target="_blank" rel="external">A JavaScript Primer For Meteor</a></p>
+</blockquote>
+<h2 id="Overview">Overview</h2><p>This guide provides a set of minimal JavaScript syntax and patterns for beginner to be able to understand scripting in Fireball.</p>
+<p>JavaScript is a language full of contradictions: it’s named after Java even though it doesn’t have anything to do with it, it was <a href="https://www.w3.org/community/webed/wiki/A_Short_History_of_JavaScript" target="_blank" rel="external">created in 10 days</a> but is still in use 20 years later, and despite getting its fair share of criticism, it’s ubiquitous on the web.</p>
+<p>If JavaScript has one thing going for it, is that it’s easy to get started with. Now don’t get me wrong: truly mastering JavaScript is a difficult task. But learning enough to get by isn’t that hard, and shouldn’t take long especially if you already have some experience with other programming languages.</p>
+<p>What’s more, when building Fireball games you’ll often find yourself re-using the same patterns over and over. And as stated by the Pareto principle, learning 20% of a language should be enough to cover 80% of situations.</p>
+<p>So today, let’s take a look at the absolute minimum amount of JavaScript you need to know to learn Fireball.</p>
+<h2 id="Following_Along">Following Along</h2><p>Did you know that you already possessed a full-fledged JavaScript development environment? I’m talking about the very browser you’re reading this with!</p>
+<p>So you can follow along with all these examples simply by typing them into your browser console. Here’s <a href="http://webmasters.stackexchange.com/a/77337" target="_blank" rel="external">a handy guide</a> on how to open it in various browsers.</p>
+<p>Ready? Let’s learn some JavaScript!</p>
+<h2 id="Variables">Variables</h2><p>Here’s how you declare a variable in JavaScript:</p>
+<pre><code class="js">var a;
+</code></pre>
+<p>The var keyword lets JavaScript know that whatever comes after is a variable. Now let’s assign a value to our variable:</p>
+<pre><code class="js">var a = 12;
+</code></pre>
+<p>Now maybe you’ve seen something like this while looking at some JavaScript code:</p>
+<pre><code>a = 12;
+</code></pre><p>JavaScript doesn’t seem to mind when you ommit the var keyword. So what is it good for?</p>
+<p>The var keyword makes our variable local. Inside a Fireball project, this means that prefixing a variable with var will restrict its scope to the function you’re declaring it in (or the file, if you declare it outside of any function).</p>
+<p>On the other hand, <strong>omitting the var keyword will make your variable available to your whole Fireball project</strong>. Sometimes that’s good, but in most case it’s better to try and avoid polluting the global scope.</p>
+<h2 id="Functions">Functions</h2><p>Here’s how you declare a function in JavaScript:</p>
+<pre><code class="js">var myAwesomeFunction = function (myArgument) {
+    // do something
+}
+</code></pre>
+<p>And here’s how you’d call your function:</p>
+<pre><code class="js">myAwesomeFunction(something);
+</code></pre>
+<p>You’ll notice function declarations follow the same var something = somethingElse pattern as variable declarations.</p>
+<p>As they should, since in JavaScript, functions are variables too! This means that you can do stuff like using functions as arguments for other functions:</p>
+<pre><code class="js">square = function (a) {
+    return a * a;
+}
+applyOperation = function (f, a) {
+    return f(a);
+}
+applyOperation (square, 10); // 100
+</code></pre>
+<h2 id="Return">Return</h2><p>A return statement takes a value and returns this value as the result of a function. The key thing to remember here is that whatever comes after return will never get executed:</p>
+<pre><code class="js">myFunction = function (a) {
+    return a * 3;
+    explodeComputer(); // will never get executed (hopefully!)
+}
+</code></pre>
+<h2 id="If_Statements">If Statements</h2><p>Here’s what an If statement looks like in JavaScript:</p>
+<pre><code class="js">if (foo) {
+    return bar;
+}
+</code></pre>
+<h2 id="If/Else_Statements">If/Else Statements</h2><p>Here’s what an If/Else statement looks like in JavaScript:</p>
+<pre><code class="js">if (foo) {
+    function1();
+}
+else {
+    function2();
+}
+</code></pre>
+<p>If/Else statements also have their own shorthand syntax:</p>
+<pre><code class="js">foo ? function1() : function2();
+</code></pre>
+<p>This is particularly useful when assigning a value to a variable:</p>
+<pre><code class="js">var n = foo ? 1 : 2;
+</code></pre>
+<p>This means “if foo is true, then set n to 1, otherwise set it to 2”.</p>
+<p>Oh and for good measure, here’s an If/Else If/Else:</p>
+<pre><code class="js">if (foo) {
+    function1();
+}
+else if (bar) {
+    function2();
+}
+else {
+    function3();
+}
+</code></pre>
+<h2 id="JavaScript_Arrays">JavaScript Arrays</h2><p>Here’s how you define an array:</p>
+<pre><code class="js">a = [123, 456, 789];
+</code></pre>
+<p>And here’s how you access an array item (indexes start at 0):</p>
+<pre><code class="js">a[1]; // 456
+</code></pre>
+<h2 id="JavaScript_Objects">JavaScript Objects</h2><p>Here’s how you define a JavaScript object:</p>
+<pre><code class="js">myProfile = {
+    name: &quot;Jare Guo&quot;,
+    email: &quot;blabla@gmail.com&quot;,
+    &#39;zip code&#39;: 12345,
+    isInvited: true
+}
+</code></pre>
+<p>After the object declaration (<code>myProfile = {…}</code>) comes a list of comma-separated pairs. Each pair contains a key (a string, which can optionally be enclosed in quotes if it contains any spaces) and a value (any type of JavaScript item: strings, numbers, booleans, variables, arrays, objects, and even functions).</p>
+<p>You can also nest objects, and even use arrays:</p>
+<pre><code class="js">myProfile = {
+    name: &quot;Jare Guo&quot;,
+    email: &quot;blabla@gmail.com&quot;,
+    city: &quot;Xiamen&quot;,
+    points: 1234,
+    isInvited: true,
+    friends: [
+        {
+            name: &quot;Johnny&quot;,
+            email: &quot;blablabla@gmail.com&quot;
+        },
+        {
+            name: &quot;Nantas&quot;,
+            email: &quot;piapiapia@gmail.com&quot;
+        }
+    ]
+}
+</code></pre>
+<p>Accessing an object’s property couldn’t be simpler: just use the dot notation. You can even combine it with arrays:</p>
+<pre><code class="js">myProfile.name; // Jare Guo
+myProfile.friends[1].name; // Nantas
+</code></pre>
+<p>You’ll find JavaScript objects almost everywhere in JavaScript, especially when invoking functions. For example, here’s how you define a FireClass in Fireball:</p>
+<pre><code class="js">var MyComponent = Fire.Class({
+    extends: Fire.Component
+});
+</code></pre>
+<p>This <code>{extends: Fire.Component}</code> argument is an anonymous JavaScript object. With JavaScript, you’ll see that most of the time you don’t actually need to assign a name to an object (or even to a function) to make use of it.</p>
+<h2 id="Anonymous_Functions">Anonymous Functions</h2><p>We’ve seen you can declare functions using the following syntax:</p>
+<pre><code class="js">myFunction = function (myArgument) {
+    // do something
+}
+</code></pre>
+<p>And we’ve seen that JavaScript treats functions just like variables, letting you pass them as arguments to other functions:</p>
+<pre><code class="js">square = function (a) {
+    return a * a;
+}
+applyOperation = function (f, a) {
+    return f(a);
+}
+applyOperation(square, 10); // 100
+</code></pre>
+<p>And we’ve also seen that JavaScript loves coming up with shorter ways to write things. So here’s an equivalent syntax:</p>
+<pre><code class="js">applyOperation = function (f, a) {
+    return f(a);
+}
+applyOperation(
+    function(a){
+      return a*a;
+    },
+    10
+) // 100
+</code></pre>
+<p>Instead of defining the square function and passing it as an argument, we’re defining it inside the argument call. This is known as using an “anonymous function”, and it’s one of the most common JavaScript patterns around.</p>
+<h2 id="Chaining">Chaining</h2><p>We’ve seen that you can pass parameters to functions. But there’s another syntax that you’ll often encounter for things such as array or string operations:</p>
+<pre><code class="js">var myArray = [123, 456];
+myArray.push(789) // 123, 456, 789
+var myString = &quot;abcdef&quot;;
+myString.replace(&quot;a&quot;, &quot;z&quot;); // &quot;zbcdef&quot;
+</code></pre>
+<p>This dot notation means “call the <code>replace</code> function on <code>myString</code> with arguments “a” and “z” and return the result”.</p>
+<p>The beauty of it is that you can also chain multiple links together as long as they all return something. We won’t get into how to define chainable functions, but using them is easy enough. Just follow the <code>something.function1().function2().function3()</code> pattern.</p>
+<p>Each link of the chain will take a value, apply a function to it, and then pass on its result to the next link:</p>
+<pre><code class="js">var n = 5;
+n.double().square(); //100
+</code></pre>
+<h2 id="This">This</h2><p><code>this</code> is probably one of the hardest concept to master in JavaScript.</p>
+<p>Basically, the <code>this</code> keyword lets you access the object on which you’re currently working: just like a chameleon, <code>this</code> keeps changing based on its surroundings.</p>
+<p>So instead of trying to explain <code>this</code>, let me give you two tools to help you figure things out yourself (what do you mean, I’m taking the easy way out?!).</p>
+<p>The first is the good old <code>console.log()</code>, which prints any object to the browser’s console. Adding a <code>console.log(this)</code> to begin a function is often the best way to figure out what’s going on:</p>
+<pre><code class="js">myFunction = function (a, b) {
+    console.log(this);
+    // do something
+}
+</code></pre>
+<p>The second pattern is assigning <code>this</code> to another variable:</p>
+<pre><code class="js">myFunction = function (a, b) {
+    var myObject = this;
+    // do something
+}
+</code></pre>
+<p>While it might at first seem like this doesn’t accomplish anything, it lets you safely re-use <code>myObject</code> throughout your code, since unlike <code>this</code> its value won’t change depending on the context.</p>
+<p>In Fireball script, <code>this</code> usually refers to the instance of current class.</p>
+<h2 id="Operators">Operators</h2><p><code>=</code> is the assigment operator. This means that <code>a = 12</code> means assign the value “12” to <code>a</code>.</p>
+<p>If you want to compare two values, you would use <code>==</code>, as in <code>a == 12</code>.</p>
+<p>JavaScript also features the <code>===</code> operator, which compares both value and type (i.e. string, integer, etc.):</p>
+<pre><code class="js">a = &quot;12&quot;;
+a == 12; // true
+a === 12; // false
+</code></pre>
+<p>In most cases, you’ll want to use the <code>===</code> operator whenever comparing two values, because there aren’t that many cases where you’d want two variables to be equal in value but not in type.</p>
+<p>Here’s JavaScript’s unequality operator:</p>
+<pre><code class="js">a = 12;
+a !== 11; // true
+</code></pre>
+<p>The <code>!</code> operator can also be used independently to get the opposite of a boolean value:</p>
+<pre><code class="js">a = true;
+!a; // false
+</code></pre>
+<p>An interesting consequence of the <code>!</code> operator is that it always returns a boolean value, even if what comes after is not a boolean:</p>
+<pre><code class="js">a = 12;
+!a; // false
+</code></pre>
+<p>This means that if you want to convert a variable to boolean you can just use the <code>!</code> operator twice (once to force the variable to boolean, a second time to revert the value back):</p>
+<pre><code class="js">a = 12;
+!!a; // true
+</code></pre>
+<p>Or:</p>
+<pre><code class="js">a = 0;
+!!a; // false
+</code></pre>
+<h2 id="Style">Style</h2><p>Finally, here are a few optional style rules that will make your JavaScript code cleaner:</p>
+<ul>
+<li>Use camelCase: write myRandomVariable, not my_random_variable.</li>
+<li>Add a ; at the end of each line, even if it’s optional.</li>
+<li>Separate each keyword with a space, i.e. a = b + 1, not a=b+1.</li>
+</ul>
+<p>You’ll find more guidelines in the (TODO).</p>
+<h2 id="Putting_It_Together">Putting It Together</h2><p>So now that you’re equipped with the basics of JavaScript syntax, let’s try to put it together and understand a bit of Fireball code:</p>
+<pre><code class="js">var Comp = Fire.Class({
+    extends: Fire.Component,
+
+    properties: {
+        target: {
+            default: null,
+            type: Fire.Entity
+        }
+    },
+
+    onStart: function () {
+        this.target = Fire.Entity.find(&#39;/Main Player/Bip/Head&#39;);
+    },
+
+    update: function () {
+        this.transform.worldPosition = this.target.transform.worldPosition;
+    }
+});
+</code></pre>
+<p>The above code defines a new component for engine, with a <code>target</code> parameter. At runtime this component will place itself at the same position as <code>target</code> entity.</p>
+<p>Let’s break this down (I’ll highlight each syntax pattern as we go):</p>
+<p><code>var Comp = Fire.Class({</code>: We’re diving into the <code>Fire</code> object, using <strong>dot notation</strong> to call the <code>Class()</code> function (which is itself a property of <code>Fire</code>) on an anonymous <strong>JavaScript object</strong> (<code>{}</code>) (chaining, JavaScript objects).</p>
+<p><code>target: { default: null, type: Fire.Entity }</code>: This key-pair defines a <code>target</code> property. Value is an object literal, which specifies default value and type for <code>target</code>.</p>
+<p><code>extends: Fire.Component</code>: This means the class inherits from <code>Fire.Component</code>，it’s a builtin class in Fireball.</p>
+<p><code>onStart: function () {</code>: The key/value pair implement an instance method called onStart, the value is an <strong>anonymous function</strong>.</p>
+<p><code>this.target = Fire.Entity.find(&#39;</code>: In this context, <code>this</code> corresponds to the component being created. We use <code>this.target</code> to access <code>target</code> property.</p>
+<h2 id="Going_Forward">Going Forward</h2><p>This tutorial is by no means meant to replace actually learning JavaScript. But the various patterns covered here should be enough to let you understand the vast majority of Discover Fireball’s code, at least from a syntax point of view.</p>
+<p>So if like me you prefer learning by doing, hopefully this should be enough to get you ready to start building Fireball games!</p>
+<h2 id="JavaScript_Resources">JavaScript Resources</h2><p>If you want to learn more about JavaScript, we recommend the following ebook:</p>
+<ul>
+<li><a href="http://eloquentjavascript.net/" target="_blank" rel="external">Eloquent JavaScript</a></li>
+<li><a href="http://bonsaiden.github.io/JavaScript-Garden/" target="_blank" rel="external">JavaScript Garden</a></li>
+</ul>
+
+            <div>
+                <hr>
+                <a href="https://github.com/fireball-x/fireball/edit/dev/docs/fireball/scripting/javascript-primer.md">Edit This Page</a>
+            </div>
+            <div id="discourse-comments"></div>
+            <div class="footer">
+                <footer id="footer" class="wrapper">
+    <div id="footer-copyright">
+      &copy; 2015 <a href="http://fireball-x.com/" target="_blank">Fireball Developers</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+</footer>
+
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
+            <aside id="article-toc" role="navigation" class="fixed">
+                <div id="article-toc-inner">
+                    <strong class="sidebar-title">TOC</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-text">Overview</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Following_Along"><span class="toc-text">Following Along</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Variables"><span class="toc-text">Variables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Functions"><span class="toc-text">Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Return"><span class="toc-text">Return</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#If_Statements"><span class="toc-text">If Statements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#If/Else_Statements"><span class="toc-text">If/Else Statements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript_Arrays"><span class="toc-text">JavaScript Arrays</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript_Objects"><span class="toc-text">JavaScript Objects</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Anonymous_Functions"><span class="toc-text">Anonymous Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chaining"><span class="toc-text">Chaining</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#This"><span class="toc-text">This</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Operators"><span class="toc-text">Operators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Style"><span class="toc-text">Style</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Putting_It_Together"><span class="toc-text">Putting It Together</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Going_Forward"><span class="toc-text">Going Forward</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript_Resources"><span class="toc-text">JavaScript Resources</span></a></li></ol>
+                    <a href="#top" id="article-toc-top">back to top</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
+
+
+  
+  
+    
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+      
+      
+      
+        
+        
+        
+      
+      
+    
+    
+    
+  
+  
+
+
+      </div>
+    </div>
+    <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<!-- endbuild -->
+
+
+<!-- Plugin search -->
+
+
+
+<!--bootstrap -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/js/toc.js" type="text/javascript"></script>
+
+<script src="/js/anchor.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+  addAnchors('.content-wrap h1, .content-wrap h2, .content-wrap h3');
+</script>
+<!-- Swiftype -->
+
+  
+  
+  
+  
+
+  
+
+<!--discourse comment -->
+
+
+    
+    
+    
+
+    
+        
+        
+        
+    
+
+
+  </body>
+</html>

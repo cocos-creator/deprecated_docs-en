@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>From Unity | Fireball Docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.fireball-x.com/0.4/manual/start/from-unity/index.html">
+  <!-- Alternative links -->
+  
+    
+      
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+
+  
+  <link rel="stylesheet" href="/css/anchor.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/tomorrow.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!-- endbuild -->
+  <!-- RSS -->
+  <link rel="alternative" href="/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <!-- Open Graph -->
+  
+    
+    
+  
+  <!-- Swiftype -->
+  
+  <!-- Google Analytics -->
+  
+</head>
+
+
+  
+    <div id="full-wrap">
+      <div class="container-fluid">
+        <header>
+    <nav class="navbar navbar-inverse">
+        <div class="container navbar-wrapper">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/images/logo.png">
+                </a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li ><a href="/">Home</a></li>
+                    
+                    <li ><a href="/manual/index">Manual</a></li>
+                    
+                    <li ><a href="/editor/index">Extending Editor</a></li>
+                    
+                    <li ><a href="/api">API</a></li>
+                    
+                    <li ><a href="http://fireball-x.com/en">Fireball</a></li>
+                    
+                    <li ><a href="http://docs-zh.fireball-x.com">中文</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+      </div>
+      <div class="container">
+        <div class="container sidebar">
+    <aside id="sidebar" role="navigation">
+  <div class="inner">
+      <ul class="nav nav-pills nav-stacked"><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Navigation</strong></li><li role="presentation"><a role="button" href="#top">back to top</a></li><li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_0.4.yml">edit sidebar</a></li></ul>
+  </div>
+</aside>
+</div>
+<div class="container content-wrap">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-9">
+            <div class="title-header" id="top">
+                <h1>From Unity</h1>
+            </div>
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/"></a></li>
+                    <li class="active">From Unity</li>
+                </ol>
+            </div>
+            <p>Though there are many differences between Fireball and <a href="http://unity3d.com/" target="_blank" rel="external">Unity®</a>, they are both designed based on components, and share some common user experiences. Knowledge of Unity is therefore helpful for getting started with Fireball. You will find this chapter useful if you ever used Unity.</p>
+<p>This chapter will not give you a detailed introduction of Fireball from scratch, nor will list all differences from Unity.</p>
+<h2 id="Differences_In_Terms">Differences In Terms</h2><table>
+<thead>
+<tr>
+<th>Terms in Fireball</th>
+<th>Terms in Unity</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scene</td>
+<td>Level</td>
+<td>Game Scene</td>
+</tr>
+<tr>
+<td>Entity</td>
+<td>GameObject</td>
+<td>Objects in game scene, which may include multiple Components respectively.</td>
+</tr>
+<tr>
+<td>Assets</td>
+<td>Project</td>
+<td>Project resources</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Differences_In_Design">Differences In Design</h2><ul>
+<li>Parent-child relations are maintained by Entity in Fireball, while in Unity are by Transform.</li>
+<li>Fireball chooses uppper-left corner as origin point (i.e. (0,0)) in coordinates system (both Viewport and Screen), while Unity chooses bottom-left corner.</li>
+<li>NonSerialized fields <strong>can</strong> be shown in Fireball Inspector Panel, while they cannot to so in Unity.</li>
+<li>Fireball <strong>can</strong> access properties defined by getter/setter in Inspector Panel. Unity can’t.</li>
+</ul>
+<h2 id="Differences_in_API">Differences in API</h2><ul>
+<li>Fireball methods’ names start with lower-cased letters.</li>
+<li>Fireball objects are all inherited from Fire.FObject. (As Unity objects are inherited from UnityEngine.Object)</li>
+<li>Fireball doesn’t destroy objects by calling Object.Destroy(obj), but by <code>obj.destroy()</code>.</li>
+<li>Fireball checks if an object has been destroyed by <code>if(obj.isValid)</code> or <code>Fire.isValid(obj)</code>, and <code>if(obj)</code> doesn’t work. <code>obj.isValid</code> is available only when the reference to <code>obj</code> is not null.</li>
+<li>Fireball uses <code>Entity.active</code> to get and set the activation state for entities. (Unity uses <code>activeSelf</code>)</li>
+<li>Fireball components are of type <code>Component</code> <del>and <code>Behaviour</code></del>. There is no <code>Monobehaviour</code>.</li>
+<li>Fireball adds components by <code>entity.addComponent(MyComponent)</code> or <code>entity.addComponent(&quot;MyComponent&quot;)</code>.</li>
+<li>Fireball gets components by <code>entity.getComponent(MyComponent</code> or <code>entity.GetComponent(MyComponent)</code>.</li>
+<li>Fireball retrieves Entity from components by <code>component.entity</code>. (Unity uses <code>component.gameObject</code>)</li>
+<li>Fireball retrieves and sets parent objects directly by <code>Entity.parent</code>. Related interfaces such as <code>children</code>, <code>sibling</code> and <code>find</code> can be accessed through Entity as well.</li>
+<li>Fireball uses the local coordinates of the parent object, not the world coordinates, for the value of <code>Transform.position</code>. Values of <code>rotation</code> and <code>scale</code> follow the same rule.</li>
+<li>Fireball provides <code>transform.x</code> and <code>transform.y</code> in Transform for users’ convenience.</li>
+<li>Fireball provides the <code>onLoad</code> callback for components, equaling to <code>Awake</code> in Unity.</li>
+<li>Fireball provides the <code>start</code> callback for components, equaling to <code>Start</code> in Unity.</li>
+<li>Fireball follows the node.js style in callback functions, which means the first parameter is error message, and the second is actual passed data.</li>
+<li>Fireball can set an Entity as <code>dontDestroyOnLoad = true</code>, which equals to <code>DontDestroyOnLoad()</code> in Unity.</li>
+</ul>
+
+            <div>
+                <hr>
+                <a href="#">Edit This Page</a>
+            </div>
+            <div id="discourse-comments"></div>
+            <div class="footer">
+                <footer id="footer" class="wrapper">
+    <div id="footer-copyright">
+      &copy; 2015 <a href="http://fireball-x.com/" target="_blank">Fireball Developers</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+</footer>
+
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
+            <aside id="article-toc" role="navigation" class="fixed">
+                <div id="article-toc-inner">
+                    <strong class="sidebar-title">TOC</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Differences_In_Terms"><span class="toc-text">Differences In Terms</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Differences_In_Design"><span class="toc-text">Differences In Design</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Differences_in_API"><span class="toc-text">Differences in API</span></a></li></ol>
+                    <a href="#top" id="article-toc-top">back to top</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
+
+
+  
+  
+    
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+      
+      
+      
+        
+        
+        
+      
+      
+    
+    
+    
+  
+  
+
+
+      </div>
+    </div>
+    <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<!-- endbuild -->
+
+
+<!-- Plugin search -->
+
+
+
+<!--bootstrap -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/js/toc.js" type="text/javascript"></script>
+
+<script src="/js/anchor.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+  addAnchors('.content-wrap h1, .content-wrap h2, .content-wrap h3');
+</script>
+<!-- Swiftype -->
+
+  
+  
+  
+  
+
+  
+
+<!--discourse comment -->
+
+
+    
+    
+    
+
+    
+        
+        
+        
+    
+
+
+  </body>
+</html>

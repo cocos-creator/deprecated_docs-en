@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Tutorial - Game Loop | Fireball Docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://docs.fireball-x.com/0.4/tutorial/duang-sheep/step5/index.html">
+  <!-- Alternative links -->
+  
+    
+      
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+
+  
+  <link rel="stylesheet" href="/css/anchor.css" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/tomorrow.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!-- endbuild -->
+  <!-- RSS -->
+  <link rel="alternative" href="/atom.xml" title="Fireball Docs" type="application/atom+xml">
+  <!-- Open Graph -->
+  
+    
+    
+  
+  <!-- Swiftype -->
+  
+  <!-- Google Analytics -->
+  
+</head>
+
+
+  
+    <div id="full-wrap">
+      <div class="container-fluid">
+        <header>
+    <nav class="navbar navbar-inverse">
+        <div class="container navbar-wrapper">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="/images/logo.png">
+                </a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <li ><a href="/">Home</a></li>
+                    
+                    <li ><a href="/manual/index">Manual</a></li>
+                    
+                    <li ><a href="/editor/index">Extending Editor</a></li>
+                    
+                    <li ><a href="/api">API</a></li>
+                    
+                    <li ><a href="http://fireball-x.com/en">Fireball</a></li>
+                    
+                    <li ><a href="http://docs-zh.fireball-x.com">中文</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+      </div>
+      <div class="container">
+        <div class="container sidebar">
+    <aside id="sidebar" role="navigation">
+  <div class="inner">
+      <ul class="nav nav-pills nav-stacked"><li role="presentation" class="sidebar-title"><strong class="sidebar-title">Navigation</strong></li><li role="presentation"><a role="button" href="#top">back to top</a></li><li role="presentation"><a role="button" href="https://github.com/fireball-x/docs-en/edit/master/source/_data/sidebar_0.4.yml">edit sidebar</a></li></ul>
+  </div>
+</aside>
+</div>
+<div class="container content-wrap">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-9">
+            <div class="title-header" id="top">
+                <h1>Tutorial - Game Loop</h1>
+            </div>
+            <div>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/"></a></li>
+                    <li class="active">Tutorial - Game Loop</li>
+                </ol>
+            </div>
+            <h2 id="Goal">Goal</h2><ul>
+<li>Adding collision detect between sheep and pipes</li>
+<li>When sheep hit a pipe, pop up a game over menu</li>
+<li>Click the restart button in game over menu to restart game</li>
+</ul>
+<h2 id="Steps">Steps</h2><h3 id="Add_Collision_Detection_for_Pipes">Add Collision Detection for Pipes</h3><p>Open<code>PipeGroupManager</code> script for editing. Add a function called <code>collisionDetection</code>. Also add a property <code>pipeGroupList</code> to manage all existing <code>PipeGroup</code> entities.</p>
+<p>Add the following code to <code>PipeGroupManager</code> script:</p>
+<p><strong>PipeGroupManager.js: <code>.....</code> are the parts stay unchanged.</strong></p>
+<pre><code class="js">var PipeGroupManager = Fire.Class({
+  extends: Fire.Component,
+  constructor: function () {
+     .....
+  },
+  // Properties
+  properties: {
+      .....
+      // a list to manage all existing pipes
+      pipeGroupList: {
+         get: function () {
+             return this.entity.getChildren();
+         },
+         hideInInspector: true
+        }
+    },
+
+    .....
+
+    // create pipe group entity
+    createPipeGroupEntity: function () {
+        var pipeGroup = Fire.instantiate(this.srcPipeGroup);
+        pipeGroup.parent = this.entity;
+        pipeGroup.transform.position = this.initPipeGroupPos;
+        pipeGroup.active = true;
+    },
+    // collision detection iterating each pipe group in the list
+    collisionDetection: function (sheepRect) {
+        for (var i = 0; i &lt; this.pipeGroupList.length; ++i) {
+            // top pipe
+            var pipeGroupEntity = this.pipeGroupList[i];
+            var pipe = pipeGroupEntity.find(&#39;topPipe&#39;);
+            var pipeRender = pipe.getComponent(Fire.SpriteRenderer)
+            var pipeRect = pipeRender.getWorldBounds();
+
+            if (Fire.Intersection.rectRect(sheepRect, pipeRect)) {
+                return true;
+            }
+
+            // bottom pipe
+            pipe = pipeGroupEntity.find(&#39;bottomPipe&#39;);
+            pipeRender = pipe.getComponent(Fire.SpriteRenderer);
+            pipeRect = pipeRender.getWorldBounds();
+
+            if (Fire.Intersection.rectRect(sheepRect, pipeRect)) {
+                return true;
+            }
+        }
+        return false;
+    },
+  .....
+});
+</code></pre>
+<h3 id="Add_Collision_Detection_for_Sheep">Add Collision Detection for Sheep</h3><p>Now let’s update<code>Sheep</code> script. We will add a <code>renderer</code> variable to fetch sheep’s collider information.</p>
+<p>We will update <code>Sheep</code> script like this:</p>
+<p><strong>Sheep.js: <code>.....</code> are parts stay unchanged</strong></p>
+<pre><code class="js">// sheep states
+var State = Fire.defineEnum({...});
+
+var Sheep = Fire.Class({
+    extends: Fire.Component,
+    constructor: function () {
+        .....
+        // this variable will store the reference for sheep&#39;s SpriteRenderer
+        this.renderer = null;
+        .....
+    },
+    // properties
+    properties: {....},
+    // initialization
+    onLoad: function () {
+        .....
+        // sheep&#39;s Sprite Renderer will be used as collider
+        this.renderer = this.getComponent(Fire.SpriteRenderer);
+        .....
+      },
+    .....
+});
+
+Sheep.State = State;
+</code></pre>
+<h3 id="Create_Game_Over_Menu">Create Game Over Menu</h3><p>We will mock up a very simple menu using assets in <code>sprite/ui</code> folder.</p>
+<p>First create a <code>GameOver</code> entity in <code>Hierarchy</code> view. Then drag the following image assets from <code>sprite/ui</code> folder in <code>Assets</code> onto <code>GameOver</code>, to create its children automatically:</p>
+<ul>
+<li><code>gameoverbg</code></li>
+<li><code>text_game_over</code></li>
+<li><code>button_play</code></li>
+</ul>
+<p>We will use their names as they are. The complete menu should look like this:</p>
+<p><strong>GameOver Setup</strong></p>
+<p><img src="https://cloud.githubusercontent.com/assets/7564028/6864748/8a9e57ec-d4a0-11e4-970a-21bcb3b182c1.png" alt="000"></p>
+<p>Select <code>GameOver</code> entity, find the show/hide checkbox at top left of <code>Inspector</code> view:<img src="https://cloud.githubusercontent.com/assets/7564028/6864833/80d6e0ca-d4a1-11e4-88e3-05d0de382a9e.png" alt="001"></p>
+<p>Uncheck it to hide <code>GameOver</code> entity in <code>Game</code> view.</p>
+<h3 id="GameOver_Restart_Button">GameOver Restart Button</h3><p>Create a <code>GameOverMenu</code> script. It will add click event for restart button(<code>button_play</code> entity). Once clicked game will be restarted.</p>
+<p><strong>GameOverMenu.js</strong></p>
+<pre><code class="js">var GameOverMenu = Fire.Class({
+  extends: Fire.Component,
+  constructor: function () {
+      // restart game event
+      this.resetGameEvent;
+  },
+  // properties
+  properties: {
+      // reference to restart button
+      btn_play: {
+          default: null,
+          type: Fire.Entity
+      }
+  },
+  // restart game by reloading scene
+  resetGameEvent: function () {
+      Fire.Engine.loadScene(&#39;Game&#39;);
+  },
+  // when game starts, do button event registering
+  start: function () {
+      //  register click event for restart button
+      this.btn_play.on(&#39;mousedown&#39;, this.resetGameEvent);
+  },
+  // menu destroyed
+  onDestroy: function () {
+      // unregister click event
+      this.btn_play.off(&#39;mousedown&#39;, this.resetGameEvent);
+  }
+});
+</code></pre>
+<p>Drag <code>GameOverMenu</code> script onto <code>GameOver</code> entity in <code>Hierarchy</code> view. Then drag  <code>GameOver/button_play</code> entity onto <code>GameOverMenu</code> component’s <code>Btn Play</code> property.</p>
+<h3 id="Finish_the_Game_Loop">Finish the Game Loop</h3><p>Now we are all set with collisions and menus. Let’s create a script named <code>GameManager</code> and connect all the assets and script to finish the game loop.</p>
+<p><strong>GameManager.js</strong></p>
+<pre><code class="js">var Sheep = require(&#39;Sheep&#39;);
+var ScrollPicture = require(&#39;ScrollPicture&#39;);
+var PipeGroupManager = require(&#39;PipeGroupManager&#39;);
+
+var GameState = Fire.defineEnum({
+   Run : -1,
+   Over: -1
+});
+
+var GameManager = Fire.Class({
+   extends: Fire.Component,
+   constructor: function () {
+       // current game state
+       this.gameState = GameState.Run
+   },
+   // property
+   properties: {
+       // Sheep component reference
+       sheep: {
+           default: null,
+           type: Sheep
+       },
+       // background reference
+       background: {
+           default: null,
+           type: ScrollPicture
+       },
+       // ground reference
+       ground: {
+           default: null,
+           type: ScrollPicture
+       },
+       // PipeGroupManager component reference
+       pipeGroupMgr: {
+           default: null,
+           type: PipeGroupManager
+       },
+       // GameOverMenu component reference
+       gameOverMenu: {
+           default: null,
+           type: Fire.Entity
+       }
+   },
+   // when game starts, set state to Run
+   start: function () {
+       this.gameState = GameState.Run;
+   },
+   // update game state
+   update: function () {
+       switch (this.gameState) {
+           case GameState.Run:
+               // Get bounding box from sheep&#39;s renderer, for collision detection
+               var sheepRect = this.sheep.renderer.getWorldBounds();
+               var gameOver = this.pipeGroupMgr.collisionDetection(sheepRect);
+               // If collisionDetection returns true, we know sheep hits pipe
+               if (gameOver) {
+                   // set new state for game and sheep, use enabled property to switch off scrolling of backgrounds
+                   this.gameState = GameState.Over;
+                   this.sheep.state = Sheep.State.Dead;
+                   this.ground.enabled = false;
+                   this.background.enabled = false;
+                   for (var i = 0; i &lt; this.pipeGroupMgr.pipeGroupList.length; ++i) {
+                       var pipeGroup = this.pipeGroupMgr.pipeGroupList[i].getComponent(&#39;PipeGroup&#39;);
+                       pipeGroup.enabled = false;
+                   }
+                   this.pipeGroupMgr.enabled = false;
+                   // turn on the active property of GameOverMenu to show it
+                   this.gameOverMenu.active = true;
+               }
+               break;
+           default :
+               break;
+       }
+   }
+});
+</code></pre>
+<p><strong>Final Setup</strong></p>
+<p><img src="https://cloud.githubusercontent.com/assets/7564028/6864920/df1f73da-d4a2-11e4-9c02-e12597cfa1dc.png" alt="002"></p>
+<hr>
+<p><strong>NOTE:</strong> <a href="https://github.com/fireball-x/tutorial/commits/step-5" target="_blank" rel="external"> Step - 5 Project Snapshot for Complete Game Loop</a><br>                                                                            </p>
+
+            <div>
+                <hr>
+                <a href="#">Edit This Page</a>
+            </div>
+            <div id="discourse-comments"></div>
+            <div class="footer">
+                <footer id="footer" class="wrapper">
+    <div id="footer-copyright">
+      &copy; 2015 <a href="http://fireball-x.com/" target="_blank">Fireball Developers</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+</footer>
+
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-2 hidden-sm hidden-xs">
+            <aside id="article-toc" role="navigation" class="fixed">
+                <div id="article-toc-inner">
+                    <strong class="sidebar-title">TOC</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Goal"><span class="toc-text">Goal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Steps"><span class="toc-text">Steps</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Add_Collision_Detection_for_Pipes"><span class="toc-text">Add Collision Detection for Pipes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add_Collision_Detection_for_Sheep"><span class="toc-text">Add Collision Detection for Sheep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_Game_Over_Menu"><span class="toc-text">Create Game Over Menu</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GameOver_Restart_Button"><span class="toc-text">GameOver Restart Button</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Finish_the_Game_Loop"><span class="toc-text">Finish the Game Loop</span></a></li></ol></li></ol>
+                    <a href="#top" id="article-toc-top">back to top</a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+
+
+
+  
+  
+    
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+      
+      
+      
+        
+        
+        
+      
+      
+    
+    
+    
+  
+  
+
+
+      </div>
+    </div>
+    <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<!-- endbuild -->
+
+
+<!-- Plugin search -->
+
+
+
+<!--bootstrap -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/js/toc.js" type="text/javascript"></script>
+
+<script src="/js/anchor.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  hljs.initHighlightingOnLoad();
+  addAnchors('.content-wrap h1, .content-wrap h2, .content-wrap h3');
+</script>
+<!-- Swiftype -->
+
+  
+  
+  
+  
+
+  
+
+<!--discourse comment -->
+
+
+    
+    
+    
+
+    
+        
+        
+        
+    
+
+
+  </body>
+</html>
